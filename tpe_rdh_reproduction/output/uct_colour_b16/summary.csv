@@ -1,0 +1,7 @@
+image,height,width,channels,dtype,block_size,payload_bits,exact_recovery,max_recovery_error,payload_recovery,post_rdh_block_sum_preservation,error,output_folder
+airplane.tif,512,512,3,uint8,16,256,True,0,True,True,,C:\Users\E547-1\Documents\MCM - new\tpe_rdh_reproduction\output\uct_colour_b16\airplane
+baboon.tif,512,512,3,uint8,16,256,True,0,True,True,,C:\Users\E547-1\Documents\MCM - new\tpe_rdh_reproduction\output\uct_colour_b16\baboon
+couple.tif,256,256,3,uint8,16,256,True,0,True,True,,C:\Users\E547-1\Documents\MCM - new\tpe_rdh_reproduction\output\uct_colour_b16\couple
+girl.tif,256,256,3,uint8,16,256,True,0,True,True,,C:\Users\E547-1\Documents\MCM - new\tpe_rdh_reproduction\output\uct_colour_b16\girl
+lena.tif,512,512,3,uint8,16,256,True,0,True,True,,C:\Users\E547-1\Documents\MCM - new\tpe_rdh_reproduction\output\uct_colour_b16\lena
+peppers.tif,512,512,3,uint8,16,256,True,0,True,True,,C:\Users\E547-1\Documents\MCM - new\tpe_rdh_reproduction\output\uct_colour_b16\peppers

@@ -1,0 +1,17 @@
+image,block_size,psnr,ssim,max_abs_error,exact_recovery
+coffee,8,inf,1.0,0,True
+coffee,16,inf,1.0,0,True
+coffee,32,inf,1.0,0,True
+coffee,64,inf,1.0,0,True
+chelsea,8,inf,1.0,0,True
+chelsea,16,inf,1.0,0,True
+chelsea,32,inf,1.0,0,True
+chelsea,64,inf,1.0,0,True
+rocket,8,inf,1.0,0,True
+rocket,16,inf,1.0,0,True
+rocket,32,inf,1.0,0,True
+rocket,64,inf,1.0,0,True
+hubble_deep_field,8,inf,1.0,0,True
+hubble_deep_field,16,inf,1.0,0,True
+hubble_deep_field,32,inf,1.0,0,True
+hubble_deep_field,64,inf,1.0,0,True

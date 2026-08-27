@@ -1,0 +1,18 @@
+Final demonstration report
+
+Image used: skimage.data.coffee resized to 512x512 RGB
+Exact recovery: yes
+Max recovery error: 0
+Payload recovered: yes
+Block size: 16
+vartheta: 10000.0
+
+Implementation assumptions:
+- Paper ambiguity: key-to-chaos conversion is not specified; current demo uses explicit x0=0.3, y0=0.2, r1=50, r2=50.
+- Paper ambiguity: kappa_1, T, T_tau, and kappa_2 are not numerically specified; current demo uses discard_count=0.
+- Paper ambiguity / implementation decision: vartheta=10000.0 is inferred from Fig. 4 examples, not explicit text.
+- Paper ambiguity / implementation decision: permutation uses row-major flattening and stable ascending sort of Upsilon_P blocks.
+- Paper ambiguity / implementation decision: substitution pairs pixels and Upsilon_S values in row-major flattened order.
+- Paper ambiguity / implementation decision: RDH uses an explicit metadata header because the paper does not define payload/overhead serialization.
+- Paper ambiguity / implementation decision: first 16 top-row pixels are excluded from RDH histogram shifting and embedding.
+- Paper ambiguity / implementation decision: RGB payload is embedded in channel 0 only; channels 1 and 2 receive empty RDH payloads.
