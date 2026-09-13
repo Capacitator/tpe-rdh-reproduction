@@ -1,212 +1,280 @@
-# TPE-RDH Reproduction
+# Dual-Mode Thumbnail-Preserving Encryption With RDH
 
-Academic reproduction/prototype for the paper:
+Python reproduction/prototype for:
 
 An, D., Pu, X., Lu, J., & Xia, X. (2026). "A dual-mode thumbnail-preserving encryption scheme based on chaotic system and reversible data hiding." Journal of King Saud University Computer and Information Sciences. https://doi.org/10.1007/s44443-026-00479-y
 
-This repository is not the authors' original source code. It is a readable Python reproduction built to help a master's student or researcher understand, test, and explain the paper's core algorithm.
+This is not the authors' original code. It is a readable student/research implementation that demonstrates the main executable stages we could reproduce from the paper text and documents every required implementation assumption.
 
-## Method In One Paragraph
+## Purpose
 
-The paper protects RGB images while keeping a coarse thumbnail-like preview. The current reproduction first generates chaotic matrices from the paper's 2D-CSM map, then permutes pixels inside fixed-size thumbnail blocks, embeds extra information using histogram-shifting reversible data hiding (RDH), and finally applies two-pixel sum-preserving substitution encryption. The substitution step changes pixel values while keeping each pixel-pair sum fixed, which preserves the block-average thumbnail of the RDH-adjusted image.
+The project demonstrates a thumbnail-preserving encryption pipeline with reversible data hiding:
 
-## Pipeline
+1. Generate chaotic values with the paper's 2D-CSM map.
+2. Reshape chaotic sequences into `Upsilon_P` and `Upsilon_S`.
+3. Permute pixels inside thumbnail blocks using sorted `Upsilon_P`.
+4. Embed payload/metadata using histogram-shifting RDH.
+5. Encrypt pixel values with sum-preserving two-pixel substitution controlled by `Upsilon_S`.
+6. Decrypt, extract payload bits, recover the RDH carrier, and inverse-permute the image.
+
+The "dual-mode" concept is handled as two ways of using the encrypted result:
+
+- public/preview mode: the encrypted image preserves the coarse block-average thumbnail after RDH marking;
+- authorized recovery mode: using the same parameters, the receiver reverses substitution, extracts RDH data, and exactly recovers the original image.
+
+The current code does not expose two separately named encryption APIs called "Mode 1" and "Mode 2". That limitation is stated explicitly rather than hidden.
+
+## Current Status
+
+Working:
+
+- 2D-CSM chaotic map and chaotic matrix generation.
+- Block-wise permutation and inverse permutation.
+- Histogram-shifting RDH embedding, extraction, and recovery.
+- Pair-wise sum-preserving substitution and inverse substitution.
+- Integrated RGB encryption/decryption pipeline.
+- Exact image recovery and payload recovery in tests and experiments.
+- Thumbnail/block-sum validation for the substitution stage.
+- Reproducible submission result generation in `results/`.
+
+Partially working / limitations:
+
+- The paper's key-to-chaos conversion, `kappa_1`, `T`, `T_tau`, and `kappa_2` are not numerically specified, so the implementation uses explicit parameters.
+- `vartheta=10000.0` is an implementation inference from the paper's figure-style examples, not an explicit textual parameter.
+- RDH can change block sums before substitution. The substitution stage then preserves the RDH-marked block sums exactly.
+- Differential-security metrics are validation metrics for this implementation, not reproduction of the paper's reported security tables.
+
+Missing:
+
+- A fully specified 256-bit key schedule from the paper.
+- A paper-defined payload/overhead binary format, so this implementation uses a documented metadata header.
+- Separate named APIs for two paper modes, if the authors intended them as separately selectable algorithms.
+
+## Repository Structure
 
 ```text
-Image
-  -> block permutation
-  -> RDH
-  -> sum-preserving substitution
-  -> encrypted image
-
-Encrypted image
-  -> inverse substitution
-  -> RDH extraction and recovery
-  -> inverse block permutation
-  -> recovered image + extracted payload
+tpe_rdh_reproduction/
+  docs/
+    paper_map.md
+    IMPLEMENTATION_NOTES.md
+    EXPERIMENTS.md
+  experiments/
+    generate_submission_results.py
+    final_demo.py
+    run_section6_experiments.py
+    uct_all_blocks_outputs.py
+    validate_thumbnail.py
+  input/
+    uct_colour/
+  output/
+    generated experiment outputs
+  results/
+    submission-ready generated outputs
+  scripts/
+    diagnostic trace helpers
+  src/
+    chaos.py
+    permutation.py
+    rdh.py
+    substitution.py
+    pipeline.py
+  tests/
+    test_*.py
+  requirements.txt
+  README.md
 ```
 
-`Upsilon_P` controls Section 5.2 permutation. Each `b x b` block of `Upsilon_P` is sorted, and the sorted chaotic positions define how pixels are rearranged inside the matching image block.
+## Installation
 
-`Upsilon_S` controls Section 5.4 substitution. Its values are converted to non-negative `Upsilon_S'`, paired with image pixels, and used in Eq. (6) to calculate the modular index shift for each two-pixel same-sum group.
+From inside `tpe_rdh_reproduction/`:
 
-## Install
-
-From a fresh clone:
-
-```text
-cd tpe_rdh_reproduction
+```bash
 python -m venv .venv
 .venv\Scripts\activate
 python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
 ```
 
-On macOS/Linux, activate with:
+On macOS/Linux:
 
-```text
+```bash
+python -m venv .venv
 source .venv/bin/activate
+python -m pip install --upgrade pip
+python -m pip install -r requirements.txt
 ```
 
 ## Run Tests
 
-From the repository root that contains `tpe_rdh_reproduction/`:
-
-```text
-python -m pytest tpe_rdh_reproduction\tests
-```
-
-From inside `tpe_rdh_reproduction/`, use:
-
-```text
+```bash
 python -m pytest tests
 ```
 
-Current result at cleanup time:
+Verified result in the current workspace:
 
 ```text
 64 passed
 ```
 
-## Run Demos
+## Generate Submission Results
 
-From the repository root:
+This command creates a safe deterministic RGB test image, runs the full current pipeline, and writes presentable results:
 
-```text
-python tpe_rdh_reproduction\experiments\plot_chaos.py
-python tpe_rdh_reproduction\experiments\plot_upsilon_matrices.py
-python tpe_rdh_reproduction\experiments\demo_permutation.py
-python tpe_rdh_reproduction\experiments\demo_rdh.py
-python tpe_rdh_reproduction\experiments\demo_substitution.py
-python tpe_rdh_reproduction\experiments\demo_pipeline.py
-python tpe_rdh_reproduction\experiments\final_demo.py
+```bash
+python experiments/generate_submission_results.py
 ```
 
-The cleanest single demonstration is:
+Generated files:
 
 ```text
-python tpe_rdh_reproduction\experiments\final_demo.py
+results/
+  original.png
+  encrypted.png
+  thumbnail.png
+  decrypted.png
+  metrics.txt
 ```
 
-It writes original, permutation output, RDH marked output, final encrypted image, recovered image, extracted payload, and a side-by-side figure to `output/final_demo/`.
-
-## UCT Colour-Image Experiments
-
-The UCT source page lists exactly six colour test images:
+Actual metrics from the current run:
 
 ```text
-airplane.tif
-baboon.tif
-couple.tif
-girl.tif
-lena.tif
-peppers.tif
+image_shape: (512, 512, 3)
+block_size: 16
+thumbnail_shape: (32, 32, 3)
+payload_bytes: 31
+payload_bits: 248
+payload_recovered: True
+exact_recovery: True
+max_abs_error: 0
+mse_original_recovered: 0.0
+psnr_original_recovered: inf
+ssim_original_recovered: 1.0
+entropy_original: 3.8154290297300544
+entropy_encrypted: 7.987381868179968
+correlation_original_horizontal: 0.9954550416497832
+correlation_encrypted_horizontal: 0.11602307522818449
+correlation_original_vertical: 0.9959389496754845
+correlation_encrypted_vertical: 0.4038360486384358
+correlation_original_diagonal: 0.9915082354583871
+correlation_encrypted_diagonal: 0.4055012496129004
+rdh_channel0_peak: 92
+rdh_channel0_zero: 91
+rdh_channel0_payload_bits: 248
+rdh_channel0_embedded_bits_including_overhead: 328
+marked_to_encrypted_block_sums_preserved: True
+thumbnail_max_abs_difference_marked_vs_encrypted: 0
+thumbnail_max_abs_difference_original_vs_encrypted: 0
 ```
 
-Source: https://www.dip.ee.uct.ac.za/imageproc/stdimages/colour/
+Timing values are written to `results/metrics.txt` and will vary by machine.
 
-If the images are not already present under `input/uct_colour/`, download the six `.tif` files from that page into that folder.
+## Other Useful Runs
 
-Run all six images for `b = 8, 16, 32, 64`:
+Clean end-to-end demo on a `skimage.data` image:
+
+```bash
+python experiments/final_demo.py
+```
+
+Outputs:
 
 ```text
-python tpe_rdh_reproduction\experiments\uct_all_blocks_outputs.py
+output/final_demo/
+  01_original.png
+  02_permutation_output.png
+  03_rdh_marked_output.png
+  04_final_encrypted.png
+  05_recovered.png
+  06_extracted_payload.txt
+  final_demo_report.txt
+  final_demo_stages.png
 ```
 
-Output summary:
+UCT image validation for `b = 8, 16, 32, 64`:
+
+```bash
+python experiments/uct_all_blocks_outputs.py
+```
+
+Current result:
 
 ```text
-output/uct_colour_all_blocks/summary.csv
+total_runs=24
+successful_runs=24
+failed_runs=0
+exact recovery: True for all runs
+payload recovery: True for all runs
+block_sum_preserved: True for all runs
 ```
 
-Run the broader Section 6-style validation on natural images:
+Section 6-style validation metrics:
+
+```bash
+python experiments/run_section6_experiments.py
+```
+
+This writes CSV files and plots under:
 
 ```text
-python tpe_rdh_reproduction\experiments\run_section6_experiments.py
+output/section6/
 ```
 
-## Project Structure
+## Algorithm Notes
+
+### Chaotic System
+
+`src/chaos.py` implements the Cubic map, Sinusoidal map, and coupled 2D-CSM map. `generate_upsilon_matrices` produces `Upsilon_P` and `Upsilon_S` for a given image size.
+
+### Permutation
+
+`src/permutation.py` partitions the image into `b x b` blocks. For each block, the matching `Upsilon_P` block is flattened in row-major order and sorted with stable ascending `np.argsort`. The sorted indices reorder the image pixels inside the block.
+
+### RDH
+
+`src/rdh.py` implements histogram-shifting RDH for one channel. It selects a peak point `P` and zero point `Z`, stores `P/Z` in the first 16 top-row LSBs, embeds metadata plus payload bits, and can recover the exact carrier.
+
+### Substitution
+
+`src/substitution.py` implements the paper's two-pixel same-sum mapping:
+
+- `same_sum_pair_count`
+- `pair_to_index`
+- `chaotic_pair_delta`
+- modular index encryption
+- `index_to_pair`
+- inverse substitution
+
+The implementation uses `abs(Upsilon_S)` before forming chaotic value pairs, matching the documented current implementation.
+
+### Thumbnail Preservation
+
+The substitution stage preserves each two-pixel sum, so it preserves each RDH-marked block sum. Since a block-average thumbnail depends on block sums, the encrypted image preserves the thumbnail of the RDH-marked image. In the generated submission result, the marked-vs-encrypted thumbnail maximum absolute difference is `0`.
+
+## Known Assumptions
+
+- `x0=0.3`, `y0=0.2`, `r1=50`, `r2=50` are passed explicitly.
+- `discard_count=0` is used because the paper does not numerically define `kappa_1`, `T`, `T_tau`, or `kappa_2`.
+- `vartheta=10000.0` is inferred, not explicitly specified in the accessible text.
+- `Upsilon_P` and `Upsilon_S` are generated from the x/y outputs of one 2D-CSM run.
+- Sorting direction, tie handling, flattening order, and pairing order are implementation decisions documented in the code.
+- RGB payload data is embedded in channel 0; channels 1 and 2 receive empty RDH payloads so their metadata remains recoverable.
+
+## Reproducibility Checklist
+
+Use these commands from the project root:
+
+```bash
+python -m pytest tests
+python experiments/generate_submission_results.py
+python experiments/final_demo.py
+```
+
+Expected core checks:
 
 ```text
-tpe_rdh_reproduction/
-  docs/
-    paper_map.md              # paper sections, equations, and ambiguities
-    SECTION5_NOTES.md         # implementation checklist and pseudocode
-    IMPLEMENTATION_NOTES.md   # paper-step to code mapping and assumptions
-    EXPERIMENTS.md            # datasets, metrics, results, and limitations
-  experiments/
-    demo_*.py                 # small component demos
-    final_demo.py             # clean end-to-end demonstration
-    run_section6_experiments.py
-    uct_all_blocks_outputs.py
-    uct_b16_stage_outputs.py
-    validate_thumbnail.py
-  input/
-    uct_colour/               # UCT colour test images when downloaded
-  output/
-    ...                       # generated figures, CSVs, and demo images
-  src/
-    chaos.py                  # Eqs. (2)-(4), Section 5.1 matrices
-    permutation.py            # Section 5.2 permutation and inverse
-    rdh.py                    # Section 5.3 RDH and recovery
-    substitution.py           # Section 5.4 Eqs. (6)-(10)
-    pipeline.py               # Section 5.2-5.5 integration
-  tests/
-    test_*.py                 # component and integration tests
-  requirements.txt
-  README.md
+tests: 64 passed
+exact_recovery: True
+payload_recovered: True
+max_abs_error: 0
+marked_to_encrypted_block_sums_preserved: True
 ```
-
-## Current Validation Results
-
-Core tests:
-
-```text
-64 passed
-```
-
-UCT colour images, all block sizes `8, 16, 32, 64`:
-
-```text
-total runs: 24
-successful runs: 24
-failed runs: 0
-exact recovery: yes for all runs
-maximum recovery error: 0 for all runs
-payload recovery: yes for all runs
-post-RDH block-sum preservation: yes for all runs
-```
-
-Final demo:
-
-```text
-image: skimage.data.coffee resized to 512x512 RGB
-block size: 16
-vartheta: 10000.0
-exact recovery: yes
-max recovery error: 0
-payload recovered: yes
-```
-
-Section 6-style validation currently demonstrates exact recovery and basic security/quality metrics, but the NPCR/UACI values and luminance-only correlation values are not claimed to reproduce the paper's reported security tables. See `docs/EXPERIMENTS.md`.
-
-## Implementation Assumptions And Paper Ambiguities
-
-The paper is treated as the source of truth. When the accessible text does not specify a detail needed for executable code, this reproduction uses an explicit implementation decision instead of silently inventing a paper claim.
-
-Known assumptions:
-
-- Key conversion is not specified. The implementation uses explicit parameters `x0=0.3`, `y0=0.2`, `r1=50`, `r2=50`.
-- `kappa_1`, `T`, `T_tau`, and `kappa_2` are not numerically specified. The current demo/reproduction configuration uses `discard_count=0`.
-- `vartheta=10000.0` is an inference from Fig. 4-style numeric examples, not an explicit textual parameter.
-- `Upsilon_P` and `Upsilon_S` are generated from the x/y outputs of one deterministic 2D-CSM run. The paper says two independent chaotic matrices are generated but does not fully specify the construction.
-- Permutation uses row-major flattening and stable ascending sort of each `Upsilon_P` block.
-- Substitution pairs pixels and `Upsilon_S` values in row-major flattened order.
-- RDH uses an explicit metadata header because the paper does not define payload length, overhead serialization, or coordinate encoding.
-- The first 16 top-row pixels are excluded from RDH histogram shifting and embedding so P/Z storage can be recovered exactly.
-- RGB payload embedding uses channel 0 for the actual payload; channels 1 and 2 receive empty RDH payloads so they remain recoverable.
-- Differential NPCR/UACI validation changes the top-left R-channel pixel of each block by `+1`, or `-1` if the value is already `255`, because the paper does not specify the exact changed pixel/channel/direction.
-
-## Notes For Researchers
-
-This code is deliberately simple and modular. The important reversible pieces are tested independently before being composed. Exact recovery is verified with pixel equality, not visual similarity. Generated experiment results are useful for understanding this reproduction, but should not be presented as the authors' official numbers unless all paper settings, datasets, and hidden implementation details are matched.
