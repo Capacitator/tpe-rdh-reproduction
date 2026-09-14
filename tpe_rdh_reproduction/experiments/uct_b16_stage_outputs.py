@@ -134,7 +134,7 @@ def main() -> None:
                 "payload_recovery": payload_recovery,
                 "post_rdh_block_sum_preservation": post_rdh_block_sum_preservation,
                 "error": error,
-                "output_folder": str(image_dir),
+                "output_folder": image_dir.relative_to(PROJECT_ROOT).as_posix(),
             }
         )
 

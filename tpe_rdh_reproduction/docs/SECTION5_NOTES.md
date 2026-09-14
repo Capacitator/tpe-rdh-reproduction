@@ -5,41 +5,17 @@ Sources:
 - Paper: "A dual-mode thumbnail-preserving encryption scheme based on chaotic system and reversible data hiding", Sec. 5.1-5.5.
 - Local map: `docs/paper_map.md`.
 
-No Section 5 algorithm code should be implemented from this file alone. Ambiguities below must become explicit implementation decisions before coding.
+These notes summarize how Section 5 of the paper was interpreted for this project. They also list places where the accessible paper text does not give enough detail for an exact paper-level implementation.
 
-## Clean Implementation Checklist
+## Current Implementation Status
 
-- [ ] 5.1 Chaotic matrices
-  - [ ] Implement Eq. (4) iterator only after confirming numeric/key handling policy.
-  - [ ] Generate two length `M*N` sequences after discarding `kappa_1 + kappa_2`.
-  - [ ] Reshape sequences into `Upsilon_P` and `Upsilon_S`.
-  - [ ] Test deterministic regeneration with identical parameters.
-- [ ] 5.2 Permutation encryption
-  - [ ] Split RGB image into channels.
-  - [ ] Validate each channel and chaotic matrix can be divided into `b x b` blocks.
-  - [ ] Derive per-block permutation from sorted `Upsilon_P` block.
-  - [ ] Apply permutation and inverse permutation.
-  - [ ] Test exact reversibility and block-sum preservation.
-- [ ] 5.3 RDH embedding
-  - [ ] Convert payload to bitstream.
-  - [ ] Find histogram peak `P` and zero/minimum point `Z`.
-  - [ ] Preserve first 16 LSBs as overhead.
-  - [ ] Embed overhead plus payload by histogram shifting.
-  - [ ] Store binary `P` and `Z` in first 16 top-row LSBs.
-  - [ ] Test extraction, payload recovery, and image recovery.
-- [ ] 5.4 Substitution encryption
-  - [ ] Build non-negative `Upsilon_S' = abs(Upsilon_S)`.
-  - [ ] Split image and chaotic matrix into `b x b` blocks.
-  - [ ] Pair chaotic values and pixels consistently.
-  - [ ] Compute `delta` using Eq. (6).
-  - [ ] Apply Eq. (7)-Eq. (10) to each pixel pair.
-  - [ ] Test pair-sum preservation and exact inverse substitution.
-- [ ] 5.5 Decryption/recovery
-  - [ ] Regenerate chaotic matrices.
-  - [ ] Reverse substitution.
-  - [ ] Extract RDH payload and recover pre-RDH image.
-  - [ ] Reverse permutation.
-  - [ ] Test full exact recovery only after all component tests pass.
+- 5.1 Chaotic matrices: implemented in `src/chaos.py` with explicit `x0`, `y0`, `r1`, `r2`, and `discard_count`. The paper-defined 256-bit key conversion, `T`, `T_tau`, `kappa_1`, and `kappa_2` remain unresolved.
+- 5.2 Permutation encryption: implemented in `src/permutation.py` with row-major flattening, stable ascending sort, and exact inverse permutation.
+- 5.3 RDH embedding: implemented in `src/rdh.py` with an explicit metadata header because the paper does not define a parseable payload/overhead format.
+- 5.4 Substitution encryption: implemented in `src/substitution.py` for row-major two-pixel pairs using caller-supplied `vartheta`.
+- 5.5 Decryption/recovery: implemented in `src/pipeline.py`; integration tests verify exact RGB recovery and payload recovery.
+
+This implementation is a working reproduction prototype for the executable stages, while the full paper key schedule and some format details remain outside the available information.
 
 ## Subsection Notes
 
@@ -103,87 +79,87 @@ No Section 5 algorithm code should be implemented from this file alone. Ambiguit
 - RGB channel policy for `P`, `Z`, overhead, payload segmentation, and first-row LSB storage.
 - Handling rule for image dimensions not divisible by `b`.
 
-## Ambiguities
+## Paper Details Not Fully Specified
 
 ### Key Conversion
 
-PAPER AMBIGUITY
+Paper detail not fully specified
 
 - Why it matters: chaotic encryption must regenerate identical matrices during decryption and must support the claimed key space.
 - What the paper explicitly says: the system has a 256-bit key space; Sec. 5.1 uses `x_0 = 0.3`, `y_0 = 0.2`, and `r_1 = r_2 = 50`.
-- What cannot safely be assumed: how a 256-bit key maps to initial states, control parameters, `T`, or discard counts.
+- Project note: the code uses explicit demo parameters instead of inventing a 256-bit key conversion.
 
 ### `kappa_1`
 
-PAPER AMBIGUITY
+Paper detail not fully specified
 
 - Why it matters: changing `kappa_1` changes every chaotic value and therefore all permutations/substitutions.
 - What the paper explicitly says: initial `kappa_1` sequence values are discarded because of transient effects.
-- What cannot safely be assumed: a numeric value, adaptive rule, or relation to image size/key.
+- Project note: the code uses an explicit discard count parameter.
 
 ### `T`, `T_tau`, and `kappa_2`
 
-PAPER AMBIGUITY
+Paper detail not fully specified
 
 - Why it matters: these values are part of the uniqueness and reproducibility mechanism for chaotic matrices.
 - What the paper explicitly says: unique image identifier `T` is converted to positive integer `T_tau`; after `kappa_1 + T_tau` iterations, output is converted to integer `kappa_2`.
-- What cannot safely be assumed: how `T` is selected, stored, shared, converted, or which chaotic output determines `kappa_2`.
+- Project note: `T`, `T_tau`, and `kappa_2` are documented as unresolved paper details.
 
 ### Independent Chaotic Matrices
 
-PAPER AMBIGUITY
+Paper detail not fully specified
 
 - Why it matters: `Upsilon_P` and `Upsilon_S` drive different encryption stages, so their construction affects all results.
 - What the paper explicitly says: two independent chaotic matrices are generated; two valid 1D sequences are reshaped into `M x N` matrices.
-- What cannot safely be assumed: whether the two sequences are `x` and `y`, two separate 2D-CSM runs, or another split/transformation.
+- Project note: the code uses the generated `x` and `y` outputs as the two matrices.
 
 ### Permutation Mapping
 
-PAPER AMBIGUITY
+Paper detail not fully specified
 
 - Why it matters: inverse permutation must use the same source-to-destination convention.
 - What the paper explicitly says: each chaotic block is reordered by value to form `Upsilon_P'`, which acts as a positional mapping template.
-- What cannot safely be assumed: ascending vs descending sort, stable tie policy, flattened order, or whether sorted indices map old-to-new or new-to-old.
+- Project note: the code uses row-major flattening and stable ascending sorting.
 
 ### Pairing Order
 
-PAPER AMBIGUITY
+Paper detail not fully specified
 
 - Why it matters: substitution decryption must pair pixels and chaotic values in exactly the same order.
 - What the paper explicitly says: pixels and chaotic matrix elements inside each thumbnail block are grouped in pairs.
-- What cannot safely be assumed: row-major pairing, column-major pairing, serpentine order, channel interleaving, or behavior for odd block pixel counts.
+- Project note: the code uses row-major two-pixel pairing.
 
 ### Amplification Coefficient `vartheta`
 
-PAPER AMBIGUITY
+Paper detail not fully specified
 
 - Why it matters: `delta` controls substitution offsets and therefore ciphertext and inverse decryption.
 - What the paper explicitly says: `vartheta` is predefined and `vartheta >> 1`.
-- What cannot safely be assumed: a numeric value, scale, relation to key, or whether it is global/channel-specific.
+- Project note: the code uses a caller-supplied `vartheta` value.
 
 ### RDH Channel and Metadata Format
 
-PAPER AMBIGUITY
+Paper detail not fully specified
 
 - Why it matters: extraction cannot separate payload, first-row LSB overhead, and coordinate overhead without a format.
 - What the paper explicitly says: color images have per-channel histograms; first 16 top-row LSBs store binary `P` and `Z`; original LSBs and minimum-point coordinates are overhead.
-- What cannot safely be assumed: per-channel vs whole-image embedding, channel order, overhead serialization, length header, payload terminator, or coordinate bit width.
+- Project note: the code uses an explicit metadata header and a channel-0 payload policy.
 
 ### Histogram Recovery Range
 
-PAPER AMBIGUITY
+Paper detail not fully specified
 
 - Why it matters: incorrect inverse shifting breaks lossless recovery.
 - What the paper explicitly says: Sec. 3.2.2 describes extraction for both `P < Z` and `P > Z`; Sec. 5.5 says values `x in (P, Z]` are decremented.
-- What cannot safely be assumed: that the Sec. 5.5 range applies to `P > Z`; the symmetric inverse must be treated as an implementation decision unless confirmed.
+- Project note: the code uses a symmetric inverse for the `P > Z` case.
 
 ### Algorithm 1 and Figures
 
-PAPER AMBIGUITY
+Paper detail not fully specified
 
 - Why it matters: Algorithm 1 may contain loop bounds, pairing order, or assignment details omitted from prose.
 - What the paper explicitly says: Algorithm 1 is titled "Substitution Encryption Algorithm"; Fig. 6 shows the whole encryption and embedding process.
-- What cannot safely be assumed: any pseudocode detail inside Algorithm 1 or Fig. 6 that is not present in the accessible text.
+- Project note: the implementation follows the equations and prose that are available in text form.
 
 ## Pseudocode Only
 
@@ -207,7 +183,7 @@ reshape sequence B to M x N as Upsilon_S
 return Upsilon_P, Upsilon_S
 ```
 
-PAPER AMBIGUITY: "reset or continue" and "sequence A/B" cannot be resolved from text alone.
+Paper detail not fully specified: "reset or continue" and "sequence A/B" are not resolved by the accessible text.
 
 ### 5.2 Block Permutation
 
@@ -229,7 +205,7 @@ combine channels into permuted image
 return permuted image
 ```
 
-PAPER AMBIGUITY: sorting direction, tie handling, flatten order, and index mapping direction are not fully specified.
+Paper detail not fully specified: sorting direction, tie handling, flatten order, and index mapping direction are not fully specified.
 
 ### 5.3 RDH Embedding
 
@@ -266,7 +242,7 @@ write 8-bit P and 8-bit Z into LSBs of first 16 top-row pixels
 return marked image/channel
 ```
 
-PAPER AMBIGUITY: bitstream format and first-16-pixel exclusion rules are not fully specified.
+Paper detail not fully specified: bitstream format and first-16-pixel exclusion rules are not fully specified.
 
 ### 5.4 Substitution
 
@@ -292,7 +268,7 @@ for each image block and chaotic block:
 return encrypted marked image/channel
 ```
 
-PAPER AMBIGUITY: exact pairing order must be fixed before coding.
+Paper detail not fully specified: exact pairing order is not stated in the accessible text.
 
 ### 5.5 Decryption
 
@@ -329,7 +305,7 @@ apply inverse block permutation
 return recovered original image and extracted payload
 ```
 
-PAPER AMBIGUITY: payload parsing, coordinate overhead parsing, and `P > Z` histogram inverse require decisions before code.
+Paper detail not fully specified: payload parsing, coordinate overhead parsing, and the `P > Z` histogram inverse require implementation choices.
 
 ## Algorithm 1 / Figure Inspection Status
 
@@ -338,4 +314,4 @@ PAPER AMBIGUITY: payload parsing, coordinate overhead parsing, and `P > Z` histo
 - Cannot verify from text: Algorithm 1's internal pseudocode, any loop ordering, variable initialization, assignment convention, or pairing order that may appear inside the image.
 - Local download attempt status: the Springer media/PDF endpoint returned a challenge page outside the web viewer, so the figure image itself was not available for local inspection/OCR.
 
-PAPER AMBIGUITY: If Algorithm 1 contains details missing from Sec. 5.4 prose, those details are not available in the accessible text and must be checked manually from the PDF before finalizing implementation choices.
+Paper detail not fully specified: If Algorithm 1 contains details missing from Sec. 5.4 prose, those details are not available in the accessible text and would need to be checked manually from the PDF.

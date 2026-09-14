@@ -1,6 +1,6 @@
 # Experiments
 
-This document describes the current validation experiments and their limitations.
+This document describes the experiments used to check the project implementation.
 
 ## Datasets And Images
 
@@ -19,7 +19,7 @@ Source: https://www.dip.ee.uct.ac.za/imageproc/stdimages/colour/
 
 Additional demo/validation images are loaded from `skimage.data`, including `coffee`, `chelsea`, `rocket`, and `hubble_deep_field`.
 
-The paper reports experiments on the Helen dataset. The current experiments are validation runs for this reproduction and should not be claimed as exact reproduction of the authors' tables.
+The original paper reports experiments on the Helen dataset. This project uses the UCT colour images and several `skimage.data` images because those images were easy to include and reproduce locally. The results below are therefore project validation results, not a copy of the authors' Helen-dataset tables.
 
 ## Block Sizes
 
@@ -54,7 +54,7 @@ Implemented metrics and checks:
 Unit/integration tests:
 
 ```text
-64 passed
+65 passed
 ```
 
 UCT all-block validation:
@@ -85,23 +85,23 @@ RDH-marked block sum == final encrypted block sum
 
 This is because RDH may change pixel values before substitution. The substitution stage is the sum-preserving stage, so it preserves the block sums of the RDH-adjusted image.
 
-## NPCR/UACI Limitation
+## NPCR/UACI Notes
 
-The current NPCR/UACI experiment is useful for auditing this reproduction, but the results are not claimed as reproduction of the paper's differential-security numbers.
+The NPCR/UACI experiment is included to study how this implementation behaves when the input image is changed slightly. It is not used as an exact reproduction of the paper's differential-security table.
 
 Reasons:
 
 - The paper says one pixel value within each block is altered, but does not specify the exact pixel position, channel, or direction.
-- Current code changes the top-left pixel of each block in the R channel by `+1`, or `-1` if the value is already `255`.
-- The current implementation has local block/pair behavior and does not show the high avalanche behavior reported by the paper.
+- This project changes the top-left pixel of each block in the R channel by `+1`, or `-1` if the value is already `255`.
+- The implemented block/pair substitution is local, so its avalanche behavior is lower than the values reported in the paper.
 - The paper's hidden key-generation/discard details may affect differential behavior.
 
 The experiment reports per-channel NPCR/UACI using the paper's Eq. (15)-Eq. (17) normalization, plus an `RGB_mean` summary row for convenience.
 
-## Correlation Limitation
+## Correlation Notes
 
-The paper reports adjacent-pixel correlation for R, G, and B channels separately. The current `run_section6_experiments.py` helper computes correlation on RGB-to-luminance data with 5,000 sampled adjacent pairs. Those values are useful for sanity-checking that encryption lowers local correlation, but they should not be presented as the paper's per-channel correlation reproduction until the metric is split by R/G/B.
+The paper reports adjacent-pixel correlation for R, G, and B channels separately. In this project, `run_section6_experiments.py` computes correlation on RGB-to-luminance data with 5,000 sampled adjacent pairs. These values are used as a simple check that encryption lowers local correlation. A closer match to the paper would require separate R, G, and B channel measurements.
 
-## Runtime Limitation
+## Runtime Notes
 
-Timing values are Python prototype timings. They exclude image file I/O and plotting. They should not be compared directly to the paper unless the authors' implementation language, hardware behavior, threading, and IO policy are matched.
+Timing values are Python prototype timings. They exclude image file I/O and plotting. They are included to show the runtime of this project on the local environment, not to make a direct timing comparison with the authors' implementation.

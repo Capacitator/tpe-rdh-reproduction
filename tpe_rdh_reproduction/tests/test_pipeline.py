@@ -91,3 +91,18 @@ def test_pipeline_preserves_rgb_dimensions_and_dtype():
     assert decrypted.recovered_image.shape == image.shape
     assert decrypted.recovered_image.dtype == image.dtype
 
+
+def test_decryption_with_wrong_parameter_does_not_recover_original():
+    image = _small_rgb_image()
+    payload = bits_from_bytes(b"wrong")
+    encrypt_params = DemoPipelineParameters()
+    wrong_params = DemoPipelineParameters(x0=0.3001)
+
+    encrypted = encrypt_rgb_image(image, payload, encrypt_params)
+
+    try:
+        decrypted = decrypt_rgb_image(encrypted.encrypted_image, wrong_params)
+    except ValueError:
+        return
+
+    assert not np.array_equal(decrypted.recovered_image, image)

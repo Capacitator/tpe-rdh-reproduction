@@ -1,10 +1,10 @@
-# Dual-Mode Thumbnail-Preserving Encryption With RDH
+# Dual-Mode TPE/RDH Reproduction Prototype
 
-Python reproduction/prototype for:
+Python reproduction prototype for:
 
 An, D., Pu, X., Lu, J., & Xia, X. (2026). "A dual-mode thumbnail-preserving encryption scheme based on chaotic system and reversible data hiding." Journal of King Saud University Computer and Information Sciences. https://doi.org/10.1007/s44443-026-00479-y
 
-This is not the authors' original code. It is a readable student/research implementation that demonstrates the main executable stages we could reproduce from the paper text and documents every required implementation assumption.
+This is a reproduction prototype for the paper "A dual-mode thumbnail-preserving encryption scheme based on chaotic system and reversible data hiding." It implements the executable stages that can be reconstructed from the accessible paper text. Some paper details, especially the 256-bit key-to-chaos conversion, exact mode semantics, and RDH metadata format, are not specified sufficiently in the accessible source, so this project documents those parts as implementation limitations.
 
 ## Purpose
 
@@ -22,7 +22,14 @@ The "dual-mode" concept is handled as two ways of using the encrypted result:
 - public/preview mode: the encrypted image preserves the coarse block-average thumbnail after RDH marking;
 - authorized recovery mode: using the same parameters, the receiver reverses substitution, extracts RDH data, and exactly recovers the original image.
 
-The current code does not expose two separately named encryption APIs called "Mode 1" and "Mode 2". That limitation is stated explicitly rather than hidden.
+The current code does not expose two separately named encryption APIs called "Mode 1" and "Mode 2". This is recorded as a project limitation.
+
+In this repository, "dual-mode" means:
+
+- preview use: inspect the final encrypted image as a coarse thumbnail of the RDH-marked image;
+- authorized recovery use: run the inverse pipeline with the same explicit parameters to recover the payload and original image exactly.
+
+It does not mean that the code implements two separately selectable paper-defined encryption modes.
 
 ## Current Status
 
@@ -67,11 +74,9 @@ tpe_rdh_reproduction/
   input/
     uct_colour/
   output/
-    generated experiment outputs
+    generated experiment outputs; see output/README.md
   results/
     submission-ready generated outputs
-  scripts/
-    diagnostic trace helpers
   src/
     chaos.py
     permutation.py
@@ -87,6 +92,10 @@ tpe_rdh_reproduction/
 ## Installation
 
 From inside `tpe_rdh_reproduction/`:
+
+The checked-in dependency pins were verified with Python 3.13.9. The checked-in submission metrics were regenerated from commit `5f0b6f55dab01439be4de1ec83d1c385c7fbf637`.
+
+Windows:
 
 ```bash
 python -m venv .venv
@@ -113,7 +122,7 @@ python -m pytest tests
 Verified result in the current workspace:
 
 ```text
-64 passed
+65 passed
 ```
 
 ## Generate Submission Results
@@ -135,9 +144,12 @@ results/
   metrics.txt
 ```
 
-Actual metrics from the current run:
+Representative checked-in metrics from the deterministic synthetic submission image:
 
 ```text
+source_commit_at_generation: 5f0b6f55dab01439be4de1ec83d1c385c7fbf637
+python_version: 3.13.9
+requirements: numpy==2.4.4, pillow==12.0.0, opencv-python==4.13.0.92, matplotlib==3.10.6, scikit-image==0.25.2, pytest==8.4.2
 image_shape: (512, 512, 3)
 block_size: 16
 thumbnail_shape: (32, 32, 3)
@@ -166,7 +178,7 @@ thumbnail_max_abs_difference_marked_vs_encrypted: 0
 thumbnail_max_abs_difference_original_vs_encrypted: 0
 ```
 
-Timing values are written to `results/metrics.txt` and will vary by machine.
+Timing values are written to `results/metrics.txt` and will vary by machine. The `source_commit_at_generation` field records the clean checkout used to generate the artifact; after committing the regenerated file, the repository commit that contains it will necessarily have a newer hash.
 
 ## Other Useful Runs
 
@@ -207,6 +219,8 @@ payload recovery: True for all runs
 block_sum_preserved: True for all runs
 ```
 
+These runs use six UCT colour standard images. The paper's published tables use the Helen dataset, so the UCT results are reported as project validation results.
+
 Section 6-style validation metrics:
 
 ```bash
@@ -244,11 +258,13 @@ output/section6/
 - `index_to_pair`
 - inverse substitution
 
-The implementation uses `abs(Upsilon_S)` before forming chaotic value pairs, matching the documented current implementation.
+The implementation uses `abs(Upsilon_S)` before forming chaotic value pairs.
 
 ### Thumbnail Preservation
 
 The substitution stage preserves each two-pixel sum, so it preserves each RDH-marked block sum. Since a block-average thumbnail depends on block sums, the encrypted image preserves the thumbnail of the RDH-marked image. In the generated submission result, the marked-vs-encrypted thumbnail maximum absolute difference is `0`.
+
+RDH itself can change block sums before substitution. Therefore exact original-vs-encrypted thumbnail equality is not guaranteed in general; the checked-in synthetic submission image happens to report `thumbnail_max_abs_difference_original_vs_encrypted: 0`.
 
 ## Known Assumptions
 
@@ -272,7 +288,7 @@ python experiments/final_demo.py
 Expected core checks:
 
 ```text
-tests: 64 passed
+tests: 65 passed
 exact_recovery: True
 payload_recovered: True
 max_abs_error: 0

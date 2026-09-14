@@ -1,6 +1,6 @@
-# Test Plan
+# Test Plan And Coverage
 
-This file lists tests to write before or alongside Section 5 implementation. Tests should use small synthetic arrays first, then real images.
+This file records the tests used to check the Section 5 implementation. The main goal is to verify deterministic behavior, exact recovery, and correct data extraction for the project implementation.
 
 ## 5.1 Chaotic Matrices
 
@@ -10,7 +10,7 @@ This file lists tests to write before or alongside Section 5 implementation. Tes
 - Parameter sensitivity smoke test: changing one explicit numeric parameter changes at least one output value.
 - No hidden randomness: function output depends only on explicit inputs.
 
-Blocked until ambiguity resolution: key conversion, `T -> T_tau`, `kappa_2` conversion, and whether `Upsilon_P`/`Upsilon_S` are x/y sequences or independent runs.
+Covered for the explicit demo parameters used in this project. The paper's full key conversion, `T -> T_tau`, `kappa_2` conversion, and exact construction of `Upsilon_P`/`Upsilon_S` are not fully specified in the accessible text.
 
 ## 5.2 Permutation Encryption
 
@@ -21,7 +21,7 @@ Blocked until ambiguity resolution: key conversion, `T -> T_tau`, `kappa_2` conv
 - RGB handling: each channel is permuted independently and channel shapes are preserved.
 - Invalid dimensions: image dimensions not divisible by `b` raise a clear error unless a paper-supported edge policy is later found.
 
-Blocked until ambiguity resolution: sort direction, tie policy, flatten order, and mapping direction.
+Implemented with row-major flattening, stable ascending sort, and a documented mapping direction.
 
 ## 5.3 RDH Embedding
 
@@ -34,7 +34,7 @@ Blocked until ambiguity resolution: sort direction, tie policy, flatten order, a
 - Minimum-point overhead: if no zero bin exists, affected pixels are restored exactly after extraction.
 - RGB/channel policy: once decided, test payload split/recovery across channels.
 
-Blocked until ambiguity resolution: overhead serialization, payload length format, first-16-pixel exclusion, RGB metadata policy, and `P > Z` recovery range.
+Covered with an explicit metadata header, first-16-pixel exclusion, channel-0 payload policy, and symmetric `P > Z` handling. These choices make the project executable while keeping the missing paper format details documented.
 
 ## 5.4 Substitution Encryption
 
@@ -46,7 +46,7 @@ Blocked until ambiguity resolution: overhead serialization, payload length forma
 - Full substitution reversibility: inverse substitution restores the exact marked channel.
 - Boundary pixel values: include pairs containing `0`, `255`, and sums on both sides of `d`.
 
-Blocked until ambiguity resolution: `vartheta` value and pairing order.
+Implemented with row-major pairing and caller-supplied `vartheta`. The numeric `vartheta` value remains an implementation assumption.
 
 ## 5.5 Full Decryption/Recovery
 
@@ -57,13 +57,13 @@ Blocked until ambiguity resolution: `vartheta` value and pairing order.
 - Full RGB pipeline: original RGB image and payload recover exactly.
 - Thumbnail preservation: encrypted marked image preserves each thumbnail block sum after substitution, subject to RDH placement policy.
 - Metrics sanity: exact recovery gives infinite PSNR and SSIM of 1.
-- Wrong-parameter negative test: decryption with altered chaotic parameter should not recover the original image.
+- Wrong-parameter negative test: decryption with an altered chaotic parameter is expected to fail exact original-image recovery.
 
-Blocked until all Section 5 ambiguities that affect reversibility are resolved.
+Covered for the documented project choices, including a wrong-parameter negative test. A complete paper-level test suite would also need the authors' exact key schedule and exact Mode 1/Mode 2 definitions.
 
 ## Experiment Readiness Tests
 
 - File IO: PNG load/save preserves array dimensions and dtype.
 - Reproducibility: fixed inputs and parameters produce byte-identical output arrays.
 - Timing harness: measures algorithm time without image-display overhead.
-- Small-image smoke suite: all reversible tests pass on synthetic arrays before using Helen dataset images.
+- Small-image smoke suite: all reversible tests pass on synthetic arrays before running larger image experiments.

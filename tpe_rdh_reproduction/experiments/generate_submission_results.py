@@ -7,7 +7,10 @@ existing encryption/decryption pipeline without changing the algorithm.
 
 from __future__ import annotations
 
+from datetime import datetime, timezone
+import platform
 from pathlib import Path
+import subprocess
 import sys
 import time
 from typing import Tuple
@@ -26,6 +29,27 @@ from rdh import bits_from_bytes
 
 BLOCK_SIZE = 16
 PAYLOAD = b"TPE-RDH submission demo payload"
+
+
+def current_git_commit() -> str:
+    try:
+        return subprocess.check_output(
+            ["git", "rev-parse", "HEAD"],
+            cwd=PROJECT_ROOT,
+            text=True,
+            stderr=subprocess.DEVNULL,
+        ).strip()
+    except (OSError, subprocess.CalledProcessError):
+        return "unknown"
+
+
+def pinned_requirements() -> str:
+    requirements_path = PROJECT_ROOT / "requirements.txt"
+    return ", ".join(
+        line.strip()
+        for line in requirements_path.read_text(encoding="utf-8").splitlines()
+        if line.strip() and not line.startswith("#")
+    )
 
 
 def make_submission_image(size: int = 512) -> np.ndarray:
@@ -159,6 +183,10 @@ def run() -> None:
     save_rgb(output_dir / "decrypted.png", recovered)
 
     metrics = {
+        "generated_utc": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+        "source_commit_at_generation": current_git_commit(),
+        "python_version": platform.python_version(),
+        "requirements": pinned_requirements(),
         "image": "deterministic synthetic RGB image",
         "image_shape": str(original.shape),
         "block_size": BLOCK_SIZE,

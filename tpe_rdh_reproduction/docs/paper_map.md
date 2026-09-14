@@ -50,31 +50,33 @@ The paper proposes an image protection method that keeps an encrypted image visu
 13. Recreate the permutation mapping from `Upsilon_P`.
 14. Apply inverse block permutation to recover the original image.
 
-PAPER AMBIGUITY: The paper describes substitution decryption conceptually but does not provide a numbered decryption equation. The modular inverse `eta = (eta_e - delta) mod |Theta_sum(s_tau)|` is the direct inverse of Eq. (8), but it should be documented as an inferred algebraic inverse during implementation.
+Paper detail not fully specified: The paper describes substitution decryption conceptually but does not provide a numbered decryption equation. The modular inverse `eta = (eta_e - delta) mod |Theta_sum(s_tau)|` is the direct inverse of Eq. (8), so this project uses it as the algebraic inverse of the substitution step.
 
 ## 4. Section/Equation Implementation Table
 
-| Paper section/equation | What it does | Inputs | Outputs | Planned Python function/module |
+This table maps paper concepts to the project implementation where available. Rows marked as validation-only or not implemented show where the project differs from a complete reproduction of every paper detail.
+
+| Paper section/equation | What it does | Inputs | Outputs | Current Python function/module |
 |---|---|---|---|---|
-| Sec. 3.1 | Defines sum-preserving encryption over vectors with fixed sum | Pixel vector `tau`, max value `d`, sum `S` | Same-sum encrypted vector | `src/spe.py` |
-| Sec. 3.2.1 / Eq. (1) | Embeds one bit by changing a peak-point pixel after histogram shifting | Pixel `M(i,j)`, peak `P`, bit `b` | Marked pixel `M'(i,j)` | `src/rdh.py::embed_bits_histogram_shift` |
-| Sec. 3.2.2 | Extracts bits and reverses histogram shifting | Marked image/channel, `P`, `Z`, overhead | Extracted bitstream, recovered image/channel | `src/rdh.py::extract_and_recover_histogram_shift` |
+| Sec. 3.1 | Defines sum-preserving encryption over vectors with fixed sum | Pixel vector `tau`, max value `d`, sum `S` | Same-sum encrypted vector | Two-pixel specialization in `src/substitution.py` |
+| Sec. 3.2.1 / Eq. (1) | Embeds one bit by changing a peak-point pixel after histogram shifting | Pixel `M(i,j)`, peak `P`, bit `b` | Marked pixel `M'(i,j)` | `src/rdh.py::embed_bits` |
+| Sec. 3.2.2 | Extracts bits and reverses histogram shifting | Marked image/channel, `P`, `Z`, overhead | Extracted bitstream, recovered image/channel | `src/rdh.py::extract_bits_and_recover` |
 | Sec. 4.1 / Eq. (2) | Cubic map used as a basis for 2D-CSM | `x_n`, `r_1` | `x_{n+1}` | `src/chaos.py::cubic_map` |
 | Sec. 4.1 / Eq. (3) | Sinusoidal map used as a basis for 2D-CSM | `x_n`, `r_2` | `x_{n+1}` | `src/chaos.py::sinusoidal_map` |
-| Sec. 4.1 / Eq. (4) | Generates coupled 2D chaotic sequence | `x_n`, `y_n`, `r_1`, `r_2` | `x_{n+1}`, `y_{n+1}` | `src/chaos.py::iterate_2d_csm` |
-| Sec. 4.3 / Eq. (5) | Computes Lyapunov exponents for chaotic-system analysis | Iterated states, Jacobian eigenvalues | LE values | `experiments/chaos_analysis.py` |
-| Sec. 5.1 | Builds chaotic matrices for encryption | Image shape `M x N`, key/parameters, `T`, `kappa_1`, `kappa_2` | `Upsilon_P`, `Upsilon_S` | `src/chaos.py::build_chaotic_matrices` |
-| Sec. 5.2 | Performs block-wise permutation encryption | Image channels, `Upsilon_P`, block size `b` | Permutation-encrypted image | `src/permutation.py::permute_blocks` |
+| Sec. 4.1 / Eq. (4) | Generates coupled 2D chaotic sequence | `x_n`, `y_n`, `r_1`, `r_2` | `x_{n+1}`, `y_{n+1}` | `src/chaos.py::csm_2d_step`, `generate_2d_csm` |
+| Sec. 4.3 / Eq. (5) | Computes Lyapunov exponents for chaotic-system analysis | Iterated states, Jacobian eigenvalues | LE values | Not included; chaos visualization only in `experiments/plot_chaos.py` |
+| Sec. 5.1 | Builds chaotic matrices for encryption | Image shape `M x N`, explicit demo parameters, explicit `discard_count` | `Upsilon_P`, `Upsilon_S` | `src/chaos.py::generate_upsilon_matrices` |
+| Sec. 5.2 | Performs block-wise permutation encryption | Image channels, `Upsilon_P`, block size `b` | Permutation-encrypted image | `src/permutation.py::permute_image_blocks` |
 | Sec. 5.3 | Embeds non-visual information in permutation-encrypted image | Permuted image, payload bits | Marked image, overhead | `src/rdh.py` |
 | Sec. 5.4 / Eq. (6) | Converts chaotic value pairs into substitution offsets | `gamma_1`, `gamma_2`, `theta` | `delta` | `src/substitution.py::chaotic_pair_delta` |
-| Sec. 5.4 / Eq. (7) | Maps a two-pixel same-sum pair to an index | `tau_1`, `tau_2`, `s_tau`, `d` | `eta` | `src/spe.py::pair_to_index` |
-| Sec. 5.4 / Eq. (8) | Encrypts same-sum index by modular offset | `eta`, `delta`, `|Theta_sum(s_tau)|` | `eta_e` | `src/spe.py::encrypt_index` |
-| Sec. 5.4 / Eq. (9) | Counts valid two-pixel pairs having the same sum | `s_tau`, `d` | same-sum set size | `src/spe.py::same_sum_pair_count` |
-| Sec. 5.4 / Eq. (10) | Converts encrypted index back into a same-sum pixel pair | `eta_e`, `s_tau`, `d` | encrypted pair `tau_e` | `src/spe.py::index_to_pair` |
-| Sec. 5.5 | Reverses substitution, extracts data, recovers image, reverses permutation | Encrypted marked image, key/parameters | Payload, original image | `src/pipeline.py::decrypt_and_recover` |
-| Sec. 6.2 | Measures recovery quality with PSNR and SSIM | Original image, recovered image | PSNR, SSIM | `experiments/quality_metrics.py` |
-| Sec. 6.7 / Eqs. (11)-(14) | Computes adjacent-pixel correlation | Sampled adjacent pixel pairs | Correlation coefficient | `experiments/correlation.py` |
-| Sec. 6.8 / Eqs. (15)-(17) | Computes NPCR and UACI for differential attack analysis | Two ciphertext images | NPCR, UACI | `experiments/differential_attack.py` |
+| Sec. 5.4 / Eq. (7) | Maps a two-pixel same-sum pair to an index | `tau_1`, `tau_2`, `s_tau`, `d` | `eta` | `src/substitution.py::pair_to_index` |
+| Sec. 5.4 / Eq. (8) | Encrypts same-sum index by modular offset | `eta`, `delta`, `|Theta_sum(s_tau)|` | `eta_e` | `src/substitution.py::encrypt_pair` |
+| Sec. 5.4 / Eq. (9) | Counts valid two-pixel pairs having the same sum | `s_tau`, `d` | same-sum set size | `src/substitution.py::same_sum_pair_count` |
+| Sec. 5.4 / Eq. (10) | Converts encrypted index back into a same-sum pixel pair | `eta_e`, `s_tau`, `d` | encrypted pair `tau_e` | `src/substitution.py::index_to_pair` |
+| Sec. 5.5 | Reverses substitution, extracts data, recovers image, reverses permutation | Encrypted marked image, explicit parameters | Payload, original image | `src/pipeline.py::decrypt_rgb_image` |
+| Sec. 6.2 | Measures recovery quality with PSNR and SSIM | Original image, recovered image | PSNR, SSIM | `experiments/run_section6_experiments.py::recovery_quality` |
+| Sec. 6.7 / Eqs. (11)-(14) | Computes adjacent-pixel correlation | Sampled adjacent pixel pairs | Correlation coefficient | Validation helper in `experiments/run_section6_experiments.py` |
+| Sec. 6.8 / Eqs. (15)-(17) | Computes NPCR and UACI for differential attack analysis | Two ciphertext images | NPCR, UACI | Validation helper in `experiments/run_section6_experiments.py` |
 
 ## 5. Important Parameters Used by the Authors
 
@@ -133,41 +135,41 @@ PAPER AMBIGUITY: The paper describes substitution decryption conceptually but do
 
 ## 8. Ambiguities and Underspecified Details
 
-PAPER AMBIGUITY: The paper says the scheme uses a 256-bit key and that the key seeds the chaotic system, but Sec. 5.1 initializes `x_0 = 0.3`, `y_0 = 0.2`, and `r_1 = r_2 = 50`. It does not specify how a 256-bit key is converted into chaotic initial conditions or parameters.
+Paper detail not fully specified: The paper says the scheme uses a 256-bit key and that the key seeds the chaotic system, but Sec. 5.1 initializes `x_0 = 0.3`, `y_0 = 0.2`, and `r_1 = r_2 = 50`. It does not specify how a 256-bit key is converted into chaotic initial conditions or parameters.
 
-PAPER AMBIGUITY: `kappa_1` is introduced as the transient discard length but no numeric value or rule for choosing it is provided.
+Paper detail not fully specified: `kappa_1` is introduced as the transient discard length but no numeric value or rule for choosing it is provided.
 
-PAPER AMBIGUITY: The unique image identifier `T` is introduced, but the paper does not define how `T` is chosen, stored, transmitted, or regenerated during decryption.
+Paper detail not fully specified: The unique image identifier `T` is introduced, but the paper does not define how `T` is chosen, stored, transmitted, or regenerated during decryption.
 
-PAPER AMBIGUITY: `T` is converted to a positive integer `T_tau`, but the conversion method is not specified.
+Paper detail not fully specified: `T` is converted to a positive integer `T_tau`, but the conversion method is not specified.
 
-PAPER AMBIGUITY: The output after `kappa_1 + T_tau` chaotic iterations is converted to integer `kappa_2`, but the exact conversion, scaling, modulo, and whether `x`, `y`, or both are used is not specified.
+Paper detail not fully specified: The output after `kappa_1 + T_tau` chaotic iterations is converted to integer `kappa_2`, but the exact conversion, scaling, modulo, and whether `x`, `y`, or both are used is not specified.
 
-PAPER AMBIGUITY: The paper says two independent chaotic matrices are generated, but it does not fully specify whether `Upsilon_P` and `Upsilon_S` come directly from the `x` and `y` sequences, from separate runs, or from another split of the generated sequence.
+Paper detail not fully specified: The paper says two independent chaotic matrices are generated, but it does not fully specify whether `Upsilon_P` and `Upsilon_S` come directly from the `x` and `y` sequences, from separate runs, or from another split of the generated sequence.
 
-PAPER AMBIGUITY: The permutation step says chaotic block elements are reordered by value to generate `Upsilon_P'`, but it does not specify sorting direction, tie handling, or exact source-to-destination mapping convention.
+Paper detail not fully specified: The permutation step says chaotic block elements are reordered by value to generate `Upsilon_P'`, but it does not specify sorting direction, tie handling, or exact source-to-destination mapping convention.
 
-PAPER AMBIGUITY: The paper's experiments use image sizes and block sizes that divide evenly, but it does not specify how to handle arbitrary image dimensions or incomplete edge blocks.
+Paper detail not fully specified: The paper's experiments use image sizes and block sizes that divide evenly, but it does not specify how to handle arbitrary image dimensions or incomplete edge blocks.
 
-PAPER AMBIGUITY: Pairing order inside each `b x b` thumbnail block is not explicitly stated for either chaotic pairs or image pixel pairs.
+Paper detail not fully specified: Pairing order inside each `b x b` thumbnail block is not explicitly stated for either chaotic pairs or image pixel pairs.
 
-PAPER AMBIGUITY: The amplification coefficient `theta` is only described as predefined and much greater than 1; no concrete value is provided.
+Paper detail not fully specified: The amplification coefficient `theta` is only described as predefined and much greater than 1; no concrete value is provided.
 
-PAPER AMBIGUITY: The RDH description is written mostly for a grayscale histogram, while later Sec. 6.6 says embedding capacity is processed channel-wise. It does not fully specify whether `P`, `Z`, first-row LSB storage, overhead, and payload segmentation are independent per RGB channel.
+Paper detail not fully specified: The RDH description is written mostly for a grayscale histogram, while later Sec. 6.6 says embedding capacity is processed channel-wise. It does not fully specify whether `P`, `Z`, first-row LSB storage, overhead, and payload segmentation are independent per RGB channel.
 
-PAPER AMBIGUITY: If no zero point exists, the paper says to record coordinates `(i, j)` of minimum-point pixels and re-encode them as overhead, but it does not specify the binary encoding format, coordinate order, length fields, or how many coordinates are stored.
+Paper detail not fully specified: If no zero point exists, the paper says to record coordinates `(i, j)` of minimum-point pixels and re-encode them as overhead, but it does not specify the binary encoding format, coordinate order, length fields, or how many coordinates are stored.
 
-PAPER AMBIGUITY: The payload and overhead are embedded together, but the paper does not define a payload length header, end marker, or parsing format needed to separate user payload from overhead during extraction.
+Paper detail not fully specified: The payload and overhead are embedded together, but the paper does not define a payload length header, end marker, or parsing format needed to separate user payload from overhead during extraction.
 
-PAPER AMBIGUITY: The first 16 first-row LSBs store `P` and `Z`, and their original LSBs become overhead. The paper does not specify whether those 16 pixels are excluded from histogram shifting and payload embedding before the final LSB update.
+Paper detail not fully specified: The first 16 first-row LSBs store `P` and `Z`, and their original LSBs become overhead. The paper does not specify whether those 16 pixels are excluded from histogram shifting and payload embedding before the final LSB update.
 
-PAPER AMBIGUITY: Sec. 5.5 describes recovery by decrementing `x in (P, Z]`, which only matches the `P < Z` case. The exact inverse range for `P > Z` is not written in the proposed-scheme recovery section.
+Paper detail not fully specified: Sec. 5.5 describes recovery by decrementing `x in (P, Z]`, which only matches the `P < Z` case. The exact inverse range for `P > Z` is not written in the proposed-scheme recovery section.
 
-PAPER AMBIGUITY: Algorithm 1 is embedded as an image in the Springer HTML. The surrounding prose describes the substitution algorithm, but if the image contains extra pseudocode details, those details are not available from the accessible text view used here.
+Paper detail not fully specified: Algorithm 1 is embedded as an image in the Springer HTML. The surrounding prose describes the substitution algorithm, but if the image contains extra pseudocode details, those details are not available from the accessible text view used here.
 
-PAPER AMBIGUITY: Sec. 6.8 says TPE is applied to each block while altering one pixel value within each block to yield two encrypted images, but it does not specify the exact pixel alteration pattern, channel, or payload conditions used for the reported NPCR/UACI table.
+Paper detail not fully specified: Sec. 6.8 says TPE is applied to each block while altering one pixel value within each block to yield two encrypted images, but it does not specify the exact pixel alteration pattern, channel, or payload conditions used for the reported NPCR/UACI table.
 
-PAPER AMBIGUITY: The paper reports timing on a specific i9-13900HX/32GB platform but does not specify Python/MATLAB/C++ implementation language, library versions, threading, or IO inclusion.
+Paper detail not fully specified: The paper reports timing on a specific i9-13900HX/32GB platform but does not specify Python/MATLAB/C++ implementation language, library versions, threading, or IO inclusion.
 
 ## 9. Minimum Experiments to Reproduce First
 
@@ -193,7 +195,7 @@ PAPER AMBIGUITY: The paper reports timing on a specific i9-13900HX/32GB platform
 9. Add lossless end-to-end tests and thumbnail-block-sum tests.
 10. Add experiment scripts for quality, capacity, timing, correlation, and differential attack metrics.
 
-## WHAT I NEED TO UNDERSTAND
+## Background Topics Studied
 
 1. Thumbnail-preserving encryption and why preserving block sums preserves coarse thumbnails.
 2. Format-preserving and sum-preserving encryption for bounded integer vectors.
