@@ -147,8 +147,8 @@ results/
 Representative checked-in metrics from the deterministic synthetic submission image:
 
 ```text
-source_commit_at_generation: 4388ce030ecf6147a8c9b35365f45a093af3b970
-source_tree_state_at_generation: modified
+source_commit_at_generation: 3b621da2988d1626eaa8d029fa27f572e213b9be
+source_tree_state_at_generation: clean
 python_version: 3.13.9
 requirements: numpy==2.4.4, pillow==12.0.0, opencv-python==4.13.0.92, matplotlib==3.10.6, scikit-image==0.25.2, pytest==8.4.2
 image_shape: (512, 512, 3)
