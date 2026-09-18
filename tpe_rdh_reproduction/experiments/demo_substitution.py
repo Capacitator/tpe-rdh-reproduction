@@ -32,6 +32,11 @@ from substitution import (
 
 
 DEMO_VARTETHA = 10000.0
+DEMO_KEY = bytes.fromhex(
+    "00112233445566778899aabbccddeeff"
+    "102132435465768798a9babbdcedfe0f"
+)
+DEMO_IDENTIFIER = b"demo-substitution-image"
 
 
 def _make_demo_channel() -> np.ndarray:
@@ -46,7 +51,7 @@ def main() -> None:
     output_dir.mkdir(parents=True, exist_ok=True)
 
     channel = _make_demo_channel()
-    _, upsilon_s = generate_upsilon_matrices(8, 8, 0.3, 0.2, 50.0, 50.0, 0)
+    _, upsilon_s = generate_upsilon_matrices(8, 8, DEMO_KEY, DEMO_IDENTIFIER)
 
     encrypted = substitute_channel_blocks(channel, upsilon_s, 4, DEMO_VARTETHA)
     recovered = inverse_substitute_channel_blocks(encrypted, upsilon_s, 4, DEMO_VARTETHA)

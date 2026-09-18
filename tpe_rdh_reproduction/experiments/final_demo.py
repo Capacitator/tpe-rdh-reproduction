@@ -104,8 +104,8 @@ Block size: {params.block_size}
 vartheta: {params.vartheta}
 
 Implementation assumptions:
-- Paper ambiguity: key-to-chaos conversion is not specified; current demo uses explicit x0=0.3, y0=0.2, r1=50, r2=50.
-- Paper ambiguity: kappa_1, T, T_tau, and kappa_2 are not numerically specified; current demo uses discard_count=0.
+- Implementation decision: the 256-bit key is converted to x0, y0, r1, r2, and kappa_1 by the documented convention in src/chaos.py.
+- Implementation decision: image identifier T is converted to T_tau, then kappa_2 is derived with the documented two-stage Section 5.1 procedure.
 - Paper ambiguity / implementation decision: vartheta=10000.0 is inferred from Fig. 4 examples, not explicit text.
 - Paper ambiguity / implementation decision: permutation uses row-major flattening and stable ascending sort of Upsilon_P blocks.
 - Paper ambiguity / implementation decision: substitution pairs pixels and Upsilon_S values in row-major flattened order.

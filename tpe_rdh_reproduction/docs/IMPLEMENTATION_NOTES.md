@@ -34,19 +34,22 @@ d = 255
 Current reproduction/demo parameters:
 
 ```text
-discard_count = 0
+key = 256-bit demo key in DemoPipelineParameters
+image_identifier = demo-image-identifier
 vartheta = 10000.0
 block sizes used in experiments = 8, 16, 32, 64
 default integration block size = 4 for small unit tests
 final demo block size = 16
 ```
 
+The Section 5.1 key/T convention is implemented in `src/chaos.py`. A 256-bit key is split into four 64-bit fields for `x0`, `y0`, `r1`, and `r2`; `kappa_1` is derived from `SHA-256(key || b"kappa_1")`; image identifier `T` is hashed into `T_tau`; `kappa_2` is derived from the first-stage chaotic output; and matrix generation uses the two-stage iteration described in Section 5.1.
+
 `vartheta=10000.0` is used because the paper's Fig. 4 examples appear to map values such as `0.7492 -> 7492`, which is consistent with multiplying by `10000`. This is recorded as an inference, not an explicit textual parameter.
 
 ## Important Assumptions
 
-- The paper does not specify key-to-chaos conversion. Code receives chaotic parameters directly.
-- The paper does not define `kappa_1`, `T`, `T_tau`, or `kappa_2` numerically. Code receives a single explicit `discard_count`.
+- The paper does not specify key-to-chaos conversion, so the project uses the documented SHA-256/fixed-field convention in `src/chaos.py`.
+- The paper does not define the exact `T -> T_tau -> kappa_2` conversion, so the project uses the documented bounded SHA-256 convention in `src/chaos.py`.
 - `Upsilon_P` and `Upsilon_S` are generated from the x/y sequences of one 2D-CSM run. The paper does not fully define the independence mechanism.
 - Permutation sorts each flattened `Upsilon_P` block in stable ascending order and applies that index order to the flattened image block.
 - Substitution pairs pixels and chaotic values in row-major flattened order.
@@ -56,8 +59,8 @@ final demo block size = 16
 
 ## Unresolved Paper Ambiguities
 
-- 256-bit key derivation.
-- Exact `kappa_1`, `T`, `T_tau`, and `kappa_2` construction.
+- The authors' exact 256-bit key derivation, if different from the project convention.
+- The authors' exact `T`, `T_tau`, and `kappa_2` construction, if different from the project convention.
 - Whether `Upsilon_P` and `Upsilon_S` are x/y outputs from one run, separate runs, or another split.
 - Permutation sort direction and tie handling.
 - Pixel/chaotic pairing order inside each block.

@@ -15,9 +15,9 @@ only, while channels 1 and 2 receive empty RDH payloads so their P/Z and LSB
 overhead are still recoverable by the same Section 5.3 mechanism.
 
 PAPER AMBIGUITY / IMPLEMENTATION DECISION:
-This pipeline uses the existing demo assumptions from the component modules:
-explicit `discard_count`, explicit `vartheta`, row-major permutation mapping,
-row-major substitution pairs, and the explicit RDH metadata header.
+This pipeline uses the documented key-to-chaos convention in `chaos.py`,
+explicit `vartheta`, row-major permutation mapping, row-major substitution
+pairs, and the explicit RDH metadata header.
 
 PAPER AMBIGUITY / IMPLEMENTATION DECISION:
 The paper text says only `vartheta >> 1`. The default below uses
@@ -28,7 +28,7 @@ The paper text says only `vartheta >> 1`. The default below uses
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import List, Sequence, Tuple
+from typing import List, Sequence, Tuple, Union
 
 import numpy as np
 
@@ -37,22 +37,28 @@ from permutation import inverse_permute_image_blocks, permute_image_blocks
 from rdh import RDHEmbeddingInfo, embed_bits, extract_bits_and_recover
 from substitution import inverse_substitute_channel_blocks, substitute_channel_blocks
 
+DEFAULT_DEMO_KEY = bytes.fromhex(
+    "00112233445566778899aabbccddeeff"
+    "102132435465768798a9babbdcedfe0f"
+)
+DEFAULT_IMAGE_IDENTIFIER = b"demo-image-identifier"
+IdentifierLike = Union[bytes, str, int]
+
 
 @dataclass(frozen=True)
 class DemoPipelineParameters:
     """Explicit parameters for the first reproducible integration.
 
-    The chaotic initial values and control parameters are stated by the paper.
-    `discard_count` is not numerically specified by the paper. `vartheta`
-    defaults to `10000.0` as a Fig. 4 inference, not an explicit textual value.
+    `key` is a 256-bit value used by `chaos.py` to derive `x0`, `y0`, `r1`,
+    `r2`, and `kappa_1`. `image_identifier` is the Section 5.1 image
+    identifier `T`; the same value is required during decryption so `kappa_2`
+    can be reconstructed. `vartheta` defaults to `10000.0` as a Fig. 4
+    inference, not an explicit textual value.
     """
 
     block_size: int = 4
-    x0: float = 0.3
-    y0: float = 0.2
-    r1: float = 50.0
-    r2: float = 50.0
-    discard_count: int = 0
+    key: bytes = DEFAULT_DEMO_KEY
+    image_identifier: IdentifierLike = DEFAULT_IMAGE_IDENTIFIER
     vartheta: float = 10000.0
 
 
@@ -66,6 +72,7 @@ class EncryptionResult:
     permuted_image: np.ndarray
     marked_image: np.ndarray
     rdh_infos: Tuple[RDHEmbeddingInfo, RDHEmbeddingInfo, RDHEmbeddingInfo]
+    image_identifier: IdentifierLike
 
 
 @dataclass(frozen=True)
@@ -103,11 +110,8 @@ def encrypt_rgb_image(
     upsilon_p, upsilon_s = generate_upsilon_matrices(
         height=height,
         width=width,
-        x0=params.x0,
-        y0=params.y0,
-        r1=params.r1,
-        r2=params.r2,
-        discard_count=params.discard_count,
+        key=params.key,
+        image_identifier=params.image_identifier,
     )
 
     # Section 5.2: split RGB into channels conceptually and apply the same
@@ -145,6 +149,7 @@ def encrypt_rgb_image(
         permuted_image=permuted,
         marked_image=marked,
         rdh_infos=tuple(rdh_infos),  # type: ignore[arg-type]
+        image_identifier=params.image_identifier,
     )
 
 
@@ -168,11 +173,8 @@ def decrypt_rgb_image(
     upsilon_p, upsilon_s = generate_upsilon_matrices(
         height=height,
         width=width,
-        x0=params.x0,
-        y0=params.y0,
-        r1=params.r1,
-        r2=params.r2,
-        discard_count=params.discard_count,
+        key=params.key,
+        image_identifier=params.image_identifier,
     )
 
     recovered_marked_channels = [

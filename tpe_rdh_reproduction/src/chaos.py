@@ -1,42 +1,39 @@
 """Chaotic maps from Section 4 of the paper.
 
-This module implements the 2D-CSM material from Section 4 and the narrow
-chaotic-matrix reshaping step from Section 5.1:
+This module implements the 2D-CSM material from Section 4 and the
+chaotic-matrix generation step from Section 5.1:
 
 - Eq. (2): Cubic map
 - Eq. (3): Sinusoidal map
 - Eq. (4): coupled two-dimensional CSM map
-- Section 5.1: reshape two valid chaotic sequences into `Upsilon_P` and
+- Section 5.1: derive key/image-dependent chaotic matrices `Upsilon_P` and
   `Upsilon_S`
 
-It intentionally does not implement Section 5 key conversion, `T`, `T_tau`,
-`kappa_1`, `kappa_2`, permutation, RDH, substitution, or pipeline logic.
+The accessible paper text does not specify how the claimed 256-bit key is
+converted into chaotic parameters, or how image identifier `T` becomes
+`T_tau` and `kappa_2`. This module uses a documented SHA-256/fixed-field
+convention so the implementation has the required key and per-image behavior.
 """
 
 from __future__ import annotations
 
+import hashlib
 import math
-from typing import Tuple
+from typing import Tuple, Union
 
 import numpy as np
 
 
 PAPER_UNSPECIFIED_SECTION5_PARAMETERS = {
-    "key_conversion": (
-        "PAPER AMBIGUITY: the paper claims a 256-bit key space but does not "
-        "state how the key is converted into x0, y0, r1, r2, T, or discards."
-    ),
-    "kappa_1": (
-        "PAPER AMBIGUITY: Section 5.1 discards kappa_1 transient values but "
-        "does not give a numeric value or selection rule."
-    ),
-    "T_and_T_tau": (
-        "PAPER AMBIGUITY: Section 5.1 uses an image identifier T and a "
-        "positive integer T_tau, but does not define the conversion."
-    ),
-    "kappa_2": (
-        "PAPER AMBIGUITY: Section 5.1 derives kappa_2 from chaotic output, "
-        "but does not specify which output or integer conversion."
+    "key_T_kappa_convention": (
+        "IMPLEMENTATION DECISION: a 256-bit key is split into four 64-bit "
+        "fields. The first two fields are normalized to x0 and y0 in (0, 1), "
+        "the third and fourth fields define r1 and r2 in [1, 100], and "
+        "kappa_1 is derived from SHA-256(key || b'kappa_1') as 128..1151. "
+        "Image identifier T is hashed as SHA-256(T) and mapped to positive "
+        "T_tau in 1..1024. kappa_2 is derived from the stage-1 chaotic "
+        "output as 1..1024. These ranges keep experiments reproducible and "
+        "bounded while providing key-dependent and image-dependent matrices."
     ),
     "matrix_independence": (
         "PAPER AMBIGUITY: Section 5.1 says two independent chaotic matrices "
@@ -44,6 +41,18 @@ PAPER_UNSPECIFIED_SECTION5_PARAMETERS = {
         "they are the x/y sequences from one 2D-CSM run or separate runs."
     ),
 }
+
+KeyLike = Union[bytes, bytearray, int]
+IdentifierLike = Union[bytes, bytearray, str, int]
+
+KEY_BITS = 256
+KEY_BYTES = KEY_BITS // 8
+KAPPA_1_MIN = 128
+KAPPA_1_SPAN = 1024
+T_TAU_SPAN = 1024
+KAPPA_2_SPAN = 1024
+R_MIN = 1.0
+R_MAX = 100.0
 
 
 def cubic_map(x_n: float, r1: float) -> float:
@@ -170,32 +179,36 @@ def generate_2d_csm(
 def generate_upsilon_matrices(
     height: int,
     width: int,
-    x0: float,
-    y0: float,
-    r1: float,
-    r2: float,
-    discard_count: int,
+    key: KeyLike,
+    image_identifier: IdentifierLike,
 ) -> Tuple[np.ndarray, np.ndarray]:
-    """Generate Section 5.1 chaotic matrices for a known image shape.
+    """Generate Section 5.1 key/image-dependent chaotic matrices.
 
     Section 5.1 says the valid chaotic sequences are reshaped into two
     matrices: `Upsilon_P`, which later controls block permutation, and
-    `Upsilon_S`, which later controls substitution offsets. The paper's
-    missing `kappa_1`, `T`, `T_tau`, and `kappa_2` details mean this function
-    requires a caller-supplied total `discard_count` instead of pretending that
-    a paper value exists.
+    `Upsilon_S`, which later controls substitution offsets.
+
+    The paper does not specify the 256-bit key conversion or the exact
+    `T -> T_tau -> kappa_2` convention. This implementation uses:
+
+    1. split the 256-bit key into four 64-bit fields;
+    2. map fields 1 and 2 to `x0` and `y0` in `(0, 1)`;
+    3. map fields 3 and 4 to `r1` and `r2` in `[1, 100]`;
+    4. derive `kappa_1` from `SHA-256(key || b"kappa_1")`;
+    5. derive positive `T_tau` from `SHA-256(image_identifier)`;
+    6. run Eq. (4) for `kappa_1 + T_tau` iterations;
+    7. derive positive `kappa_2` from the resulting chaotic state;
+    8. restart from `(x0, y0)`, run `kappa_1 + kappa_2 + M*N`
+       iterations, discard `kappa_1 + kappa_2`, and reshape the remainder.
 
     Args:
         height: Image/channel height `M`.
         width: Image/channel width `N`.
-        x0: Initial x state. The paper example uses `0.3`.
-        y0: Initial y state. The paper example uses `0.2`.
-        r1: Cubic-map control parameter. The paper example uses `50`.
-        r2: Sinusoidal-map control parameter. The paper example uses `50`.
-        discard_count: Total number of Eq. (4) updates to discard before
-            reshaping valid sequence values. This is an explicit experiment
-            parameter because the paper does not numerically specify the
-            Section 5.1 discard construction.
+        key: 256-bit secret key as exactly 32 bytes or an integer in
+            `[0, 2**256)`.
+        image_identifier: Per-image identifier `T`, such as image bytes,
+            a filename, or a stored identifier. The same value is required
+            during decryption.
 
     Returns:
         `(Upsilon_P, Upsilon_S)`, both shaped `(height, width)`.
@@ -207,16 +220,26 @@ def generate_upsilon_matrices(
 
     if height <= 0 or width <= 0:
         raise ValueError("height and width must be positive")
-    if discard_count < 0:
-        raise ValueError("discard_count must be non-negative")
 
     matrix_size = height * width
+    key_bytes = _key_to_32_bytes(key)
+    t_bytes = _identifier_to_bytes(image_identifier)
+    x0, y0, r1, r2, kappa_1 = derive_csm_parameters_from_key(key_bytes)
+    t_tau = derive_t_tau(t_bytes)
 
-    # We generate enough Eq. (4) states for the explicit discard plus the
-    # retained values needed by the two Section 5.1 matrices. The accessible
-    # paper text describes two valid 1D chaotic sequences, but leaves the
-    # independence construction underspecified; here they are the x/y outputs
-    # from the same deterministic 2D-CSM run, and this choice is flagged above.
+    stage1_iterations = kappa_1 + t_tau
+    stage1_x, stage1_y = generate_2d_csm(
+        x0=x0,
+        y0=y0,
+        r1=r1,
+        r2=r2,
+        iterations=stage1_iterations,
+    )
+    kappa_2 = derive_kappa_2(stage1_x[-1], stage1_y[-1])
+    discard_count = kappa_1 + kappa_2
+
+    # Section 5.1 restarts from the key-derived initial state, discards the
+    # transient/image-dependent prefix, and reshapes the retained x/y outputs.
     x_values, y_values = generate_2d_csm(
         x0=x0,
         y0=y0,
@@ -232,3 +255,73 @@ def generate_upsilon_matrices(
     upsilon_s = valid_y.reshape((height, width))
 
     return upsilon_p, upsilon_s
+
+
+def derive_csm_parameters_from_key(key: KeyLike) -> Tuple[float, float, float, float, int]:
+    """Return `(x0, y0, r1, r2, kappa_1)` from a 256-bit key.
+
+    This is an implementation convention for the unspecified Section 5.1 key
+    schedule. It is deterministic and uses every key bit either directly in
+    the four fixed-width fields or through the SHA-256-derived `kappa_1`.
+    """
+
+    key_bytes = _key_to_32_bytes(key)
+    fields = [
+        int.from_bytes(key_bytes[index : index + 8], "big")
+        for index in range(0, KEY_BYTES, 8)
+    ]
+    denominator = float(2**64)
+    x0 = (fields[0] + 0.5) / denominator
+    y0 = (fields[1] + 0.5) / denominator
+    r_span = R_MAX - R_MIN
+    r_denominator = float(2**64 - 1)
+    r1 = R_MIN + r_span * (fields[2] / r_denominator)
+    r2 = R_MIN + r_span * (fields[3] / r_denominator)
+    kappa_digest = hashlib.sha256(key_bytes + b"kappa_1").digest()
+    kappa_1 = KAPPA_1_MIN + int.from_bytes(kappa_digest[:4], "big") % KAPPA_1_SPAN
+    return x0, y0, r1, r2, kappa_1
+
+
+def derive_t_tau(image_identifier: IdentifierLike) -> int:
+    """Return a positive bounded `T_tau` from image identifier `T`."""
+
+    t_bytes = _identifier_to_bytes(image_identifier)
+    digest = hashlib.sha256(t_bytes).digest()
+    return 1 + int.from_bytes(digest[:4], "big") % T_TAU_SPAN
+
+
+def derive_kappa_2(x_value: float, y_value: float) -> int:
+    """Return a positive bounded `kappa_2` from stage-1 chaotic output."""
+
+    material = f"{x_value:.17g},{y_value:.17g}".encode("ascii")
+    digest = hashlib.sha256(material).digest()
+    return 1 + int.from_bytes(digest[:4], "big") % KAPPA_2_SPAN
+
+
+def _key_to_32_bytes(key: KeyLike) -> bytes:
+    if isinstance(key, int):
+        if key < 0 or key >= 2**KEY_BITS:
+            raise ValueError("key integer must be in [0, 2**256)")
+        return key.to_bytes(KEY_BYTES, "big")
+    if isinstance(key, (bytes, bytearray)):
+        key_bytes = bytes(key)
+        if len(key_bytes) != KEY_BYTES:
+            raise ValueError("key must be exactly 32 bytes (256 bits)")
+        return key_bytes
+    raise TypeError("key must be 32 bytes or an integer in [0, 2**256)")
+
+
+def _identifier_to_bytes(image_identifier: IdentifierLike) -> bytes:
+    if isinstance(image_identifier, str):
+        return image_identifier.encode("utf-8")
+    if isinstance(image_identifier, int):
+        if image_identifier < 0:
+            raise ValueError("image_identifier integer must be non-negative")
+        length = max(1, (image_identifier.bit_length() + 7) // 8)
+        return image_identifier.to_bytes(length, "big")
+    if isinstance(image_identifier, (bytes, bytearray)):
+        identifier = bytes(image_identifier)
+        if not identifier:
+            raise ValueError("image_identifier must not be empty")
+        return identifier
+    raise TypeError("image_identifier must be bytes, str, or non-negative int")

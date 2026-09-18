@@ -27,7 +27,7 @@ The current code does not expose two separately named encryption APIs called "Mo
 In this repository, "dual-mode" means:
 
 - preview use: inspect the final encrypted image as a coarse thumbnail of the RDH-marked image;
-- authorized recovery use: run the inverse pipeline with the same explicit parameters to recover the payload and original image exactly.
+- authorized recovery use: run the inverse pipeline with the same key, image identifier, and parameters to recover the payload and original image exactly.
 
 It does not mean that the code implements two separately selectable paper-defined encryption modes.
 
@@ -46,14 +46,14 @@ Working:
 
 Partially working / limitations:
 
-- The paper's key-to-chaos conversion, `kappa_1`, `T`, `T_tau`, and `kappa_2` are not numerically specified, so the implementation uses explicit parameters.
+- The paper's exact key-to-chaos conversion is not numerically specified, so the implementation uses a documented 256-bit key and image-identifier convention in `src/chaos.py`.
 - `vartheta=10000.0` is an implementation inference from the paper's figure-style examples, not an explicit textual parameter.
 - RDH can change block sums before substitution. The substitution stage then preserves the RDH-marked block sums exactly.
 - Differential-security metrics are validation metrics for this implementation, not reproduction of the paper's reported security tables.
 
 Missing:
 
-- A fully specified 256-bit key schedule from the paper.
+- The authors' exact 256-bit key schedule, if it differs from the documented implementation convention.
 - A paper-defined payload/overhead binary format, so this implementation uses a documented metadata header.
 - Separate named APIs for two paper modes, if the authors intended them as separately selectable algorithms.
 
@@ -93,7 +93,7 @@ tpe_rdh_reproduction/
 
 From inside `tpe_rdh_reproduction/`:
 
-The checked-in dependency pins were verified with Python 3.13.9. The checked-in submission metrics were regenerated from commit `5f0b6f55dab01439be4de1ec83d1c385c7fbf637`.
+The checked-in dependency pins were verified with Python 3.13.9. The checked-in submission metrics were regenerated from commit `c20053a4baa24a43efd50052a5cf577def24c0b7`.
 
 Windows:
 
@@ -122,7 +122,7 @@ python -m pytest tests
 Verified result in the current workspace:
 
 ```text
-65 passed
+72 passed
 ```
 
 ## Generate Submission Results
@@ -147,7 +147,7 @@ results/
 Representative checked-in metrics from the deterministic synthetic submission image:
 
 ```text
-source_commit_at_generation: 5f0b6f55dab01439be4de1ec83d1c385c7fbf637
+source_commit_at_generation: c20053a4baa24a43efd50052a5cf577def24c0b7
 python_version: 3.13.9
 requirements: numpy==2.4.4, pillow==12.0.0, opencv-python==4.13.0.92, matplotlib==3.10.6, scikit-image==0.25.2, pytest==8.4.2
 image_shape: (512, 512, 3)
@@ -162,13 +162,13 @@ mse_original_recovered: 0.0
 psnr_original_recovered: inf
 ssim_original_recovered: 1.0
 entropy_original: 3.8154290297300544
-entropy_encrypted: 7.987381868179968
+entropy_encrypted: 7.9875668803488225
 correlation_original_horizontal: 0.9954550416497832
-correlation_encrypted_horizontal: 0.11602307522818449
+correlation_encrypted_horizontal: 0.11724601008558908
 correlation_original_vertical: 0.9959389496754845
-correlation_encrypted_vertical: 0.4038360486384358
+correlation_encrypted_vertical: 0.4058552002590935
 correlation_original_diagonal: 0.9915082354583871
-correlation_encrypted_diagonal: 0.4055012496129004
+correlation_encrypted_diagonal: 0.4045763453988114
 rdh_channel0_peak: 92
 rdh_channel0_zero: 91
 rdh_channel0_payload_bits: 248
@@ -237,7 +237,7 @@ output/section6/
 
 ### Chaotic System
 
-`src/chaos.py` implements the Cubic map, Sinusoidal map, and coupled 2D-CSM map. `generate_upsilon_matrices` produces `Upsilon_P` and `Upsilon_S` for a given image size.
+`src/chaos.py` implements the Cubic map, Sinusoidal map, and coupled 2D-CSM map. `generate_upsilon_matrices` produces key-dependent and image-dependent `Upsilon_P` and `Upsilon_S` matrices for a given image size. The implementation accepts a 256-bit key and an image identifier `T`, derives `x0`, `y0`, `r1`, `r2`, `kappa_1`, `T_tau`, and `kappa_2`, and uses the two-stage Section 5.1 iteration procedure.
 
 ### Permutation
 
@@ -268,8 +268,10 @@ RDH itself can change block sums before substitution. Therefore exact original-v
 
 ## Known Assumptions
 
-- `x0=0.3`, `y0=0.2`, `r1=50`, `r2=50` are passed explicitly.
-- `discard_count=0` is used because the paper does not numerically define `kappa_1`, `T`, `T_tau`, or `kappa_2`.
+- The 256-bit key is split into four 64-bit fields to derive `x0`, `y0`, `r1`, and `r2`.
+- `kappa_1` is derived from `SHA-256(key || b"kappa_1")` in the range `128..1151`.
+- Image identifier `T` is converted to `T_tau` with `SHA-256(T)` in the range `1..1024`.
+- `kappa_2` is derived from the first-stage chaotic output in the range `1..1024`.
 - `vartheta=10000.0` is inferred, not explicitly specified in the accessible text.
 - `Upsilon_P` and `Upsilon_S` are generated from the x/y outputs of one 2D-CSM run.
 - Sorting direction, tie handling, flattening order, and pairing order are implementation decisions documented in the code.
@@ -288,7 +290,7 @@ python experiments/final_demo.py
 Expected core checks:
 
 ```text
-tests: 65 passed
+tests: 72 passed
 exact_recovery: True
 payload_recovered: True
 max_abs_error: 0

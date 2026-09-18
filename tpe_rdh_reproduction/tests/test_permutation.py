@@ -15,6 +15,12 @@ from permutation import (
     permute_image_blocks,
 )
 
+TEST_KEY = bytes.fromhex(
+    "00112233445566778899aabbccddeeff"
+    "102132435465768798a9babbdcedfe0f"
+)
+TEST_IDENTIFIER = b"permutation-test-image"
+
 
 def _synthetic_rgb_image(height: int, width: int) -> np.ndarray:
     values = np.arange(height * width * 3, dtype=np.uint16)
@@ -44,7 +50,7 @@ def test_permutation_indices_use_stable_ascending_sort_decision():
 
 def test_permutation_then_inverse_recovers_exact_original_rgb_image():
     image = _synthetic_rgb_image(8, 8)
-    upsilon_p, _ = generate_upsilon_matrices(8, 8, 0.3, 0.2, 50.0, 50.0, 0)
+    upsilon_p, _ = generate_upsilon_matrices(8, 8, TEST_KEY, TEST_IDENTIFIER)
 
     permuted = permute_image_blocks(image, upsilon_p, block_size=4)
     recovered = inverse_permute_image_blocks(permuted, upsilon_p, block_size=4)
@@ -54,7 +60,7 @@ def test_permutation_then_inverse_recovers_exact_original_rgb_image():
 
 def test_permutation_then_inverse_recovers_exact_original_2d_channel():
     image = np.arange(64, dtype=np.uint8).reshape(8, 8)
-    upsilon_p, _ = generate_upsilon_matrices(8, 8, 0.3, 0.2, 50.0, 50.0, 0)
+    upsilon_p, _ = generate_upsilon_matrices(8, 8, TEST_KEY, TEST_IDENTIFIER)
 
     permuted = permute_image_blocks(image, upsilon_p, block_size=4)
     recovered = inverse_permute_image_blocks(permuted, upsilon_p, block_size=4)
@@ -64,7 +70,7 @@ def test_permutation_then_inverse_recovers_exact_original_2d_channel():
 
 def test_permutation_preserves_every_block_pixel_sum():
     image = _synthetic_rgb_image(8, 8)
-    upsilon_p, _ = generate_upsilon_matrices(8, 8, 0.3, 0.2, 50.0, 50.0, 0)
+    upsilon_p, _ = generate_upsilon_matrices(8, 8, TEST_KEY, TEST_IDENTIFIER)
 
     permuted = permute_image_blocks(image, upsilon_p, block_size=4)
 
@@ -73,7 +79,7 @@ def test_permutation_preserves_every_block_pixel_sum():
 
 def test_permutation_shape_is_unchanged():
     image = _synthetic_rgb_image(8, 8)
-    upsilon_p, _ = generate_upsilon_matrices(8, 8, 0.3, 0.2, 50.0, 50.0, 0)
+    upsilon_p, _ = generate_upsilon_matrices(8, 8, TEST_KEY, TEST_IDENTIFIER)
 
     permuted = permute_image_blocks(image, upsilon_p, block_size=4)
 
@@ -83,7 +89,7 @@ def test_permutation_shape_is_unchanged():
 
 def test_permutation_is_deterministic_with_same_upsilon_and_block_size():
     image = _synthetic_rgb_image(8, 8)
-    upsilon_p, _ = generate_upsilon_matrices(8, 8, 0.3, 0.2, 50.0, 50.0, 0)
+    upsilon_p, _ = generate_upsilon_matrices(8, 8, TEST_KEY, TEST_IDENTIFIER)
 
     first = permute_image_blocks(image, upsilon_p, block_size=4)
     second = permute_image_blocks(image, upsilon_p, block_size=4)

@@ -9,7 +9,7 @@ These notes summarize how Section 5 of the paper was interpreted for this projec
 
 ## Current Implementation Status
 
-- 5.1 Chaotic matrices: implemented in `src/chaos.py` with explicit `x0`, `y0`, `r1`, `r2`, and `discard_count`. The paper-defined 256-bit key conversion, `T`, `T_tau`, `kappa_1`, and `kappa_2` remain unresolved.
+- 5.1 Chaotic matrices: implemented in `src/chaos.py` with a documented 256-bit key conversion, image identifier `T`, derived `T_tau`, derived `kappa_1`, derived `kappa_2`, and the two-stage iteration procedure described by Section 5.1.
 - 5.2 Permutation encryption: implemented in `src/permutation.py` with row-major flattening, stable ascending sort, and exact inverse permutation.
 - 5.3 RDH embedding: implemented in `src/rdh.py` with an explicit metadata header because the paper does not define a parseable payload/overhead format.
 - 5.4 Substitution encryption: implemented in `src/substitution.py` for row-major two-pixel pairs using caller-supplied `vartheta`.
@@ -66,12 +66,9 @@ This implementation is a working reproduction prototype for the executable stage
 
 ## Required Parameters Not Numerically Specified
 
-- `kappa_1`: transient discard count.
-- `T`: unique image identifier source/value.
-- `T_tau`: integer conversion of `T`.
-- `kappa_2`: dynamic discard value derived from chaotic output after `kappa_1 + T_tau` iterations.
+- The authors' exact key-to-chaos convention, if different from the project convention.
+- The authors' exact `T -> T_tau -> kappa_2` convention, if different from the project convention.
 - `vartheta` / `theta`: amplification coefficient for Eq. (6).
-- 256-bit key material: actual key value and conversion into `x_0`, `y_0`, `r_1`, `r_2`, `T`, or other state.
 - Permutation sorting direction and tie-breaking rule.
 - Pairing order for pixels and chaotic values inside each `b x b` block.
 - RDH overhead encoding format for original first-row LSBs and minimum-point coordinates.
@@ -87,7 +84,7 @@ Paper detail not fully specified
 
 - Why it matters: chaotic encryption must regenerate identical matrices during decryption and must support the claimed key space.
 - What the paper explicitly says: the system has a 256-bit key space; Sec. 5.1 uses `x_0 = 0.3`, `y_0 = 0.2`, and `r_1 = r_2 = 50`.
-- Project note: the code uses explicit demo parameters instead of inventing a 256-bit key conversion.
+- Project note: the code uses a documented 256-bit key convention. The key is split into four 64-bit fields for `x0`, `y0`, `r1`, and `r2`, and `kappa_1` is derived from `SHA-256(key || b"kappa_1")`.
 
 ### `kappa_1`
 
@@ -95,7 +92,7 @@ Paper detail not fully specified
 
 - Why it matters: changing `kappa_1` changes every chaotic value and therefore all permutations/substitutions.
 - What the paper explicitly says: initial `kappa_1` sequence values are discarded because of transient effects.
-- Project note: the code uses an explicit discard count parameter.
+- Project note: the code derives `kappa_1` from the 256-bit key in the range `128..1151`.
 
 ### `T`, `T_tau`, and `kappa_2`
 
@@ -103,7 +100,7 @@ Paper detail not fully specified
 
 - Why it matters: these values are part of the uniqueness and reproducibility mechanism for chaotic matrices.
 - What the paper explicitly says: unique image identifier `T` is converted to positive integer `T_tau`; after `kappa_1 + T_tau` iterations, output is converted to integer `kappa_2`.
-- Project note: `T`, `T_tau`, and `kappa_2` are documented as unresolved paper details.
+- Project note: the code hashes image identifier `T` into `T_tau` in the range `1..1024`, derives `kappa_2` from the first-stage chaotic output in the range `1..1024`, and then uses the Section 5.1 two-stage iteration procedure.
 
 ### Independent Chaotic Matrices
 

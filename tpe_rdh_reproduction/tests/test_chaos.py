@@ -12,10 +12,21 @@ sys.path.insert(0, str(PROJECT_ROOT / "src"))
 from chaos import (
     cubic_map,
     csm_2d_step,
+    derive_csm_parameters_from_key,
+    derive_kappa_2,
+    derive_t_tau,
     generate_2d_csm,
     generate_upsilon_matrices,
     sinusoidal_map,
 )
+
+TEST_KEY = bytes.fromhex(
+    "00112233445566778899aabbccddeeff"
+    "102132435465768798a9babbdcedfe0f"
+)
+FLIPPED_TEST_KEY = bytes([TEST_KEY[0] ^ 0x01]) + TEST_KEY[1:]
+TEST_IDENTIFIER = b"test-image-a"
+OTHER_IDENTIFIER = b"test-image-b"
 
 
 def test_cubic_map_matches_eq_2_formula():
@@ -91,11 +102,8 @@ def test_generate_upsilon_matrices_dimensions_and_finite_values():
     upsilon_p, upsilon_s = generate_upsilon_matrices(
         height=8,
         width=8,
-        x0=0.3,
-        y0=0.2,
-        r1=50.0,
-        r2=50.0,
-        discard_count=0,
+        key=TEST_KEY,
+        image_identifier=TEST_IDENTIFIER,
     )
 
     assert upsilon_p.shape == (8, 8)
@@ -108,20 +116,14 @@ def test_generate_upsilon_matrices_is_deterministic_for_identical_inputs():
     first_p, first_s = generate_upsilon_matrices(
         height=4,
         width=5,
-        x0=0.3,
-        y0=0.2,
-        r1=50.0,
-        r2=50.0,
-        discard_count=3,
+        key=TEST_KEY,
+        image_identifier=TEST_IDENTIFIER,
     )
     second_p, second_s = generate_upsilon_matrices(
         height=4,
         width=5,
-        x0=0.3,
-        y0=0.2,
-        r1=50.0,
-        r2=50.0,
-        discard_count=3,
+        key=TEST_KEY,
+        image_identifier=TEST_IDENTIFIER,
     )
 
     np.testing.assert_array_equal(first_p, second_p)
@@ -130,12 +132,51 @@ def test_generate_upsilon_matrices_is_deterministic_for_identical_inputs():
 
 def test_generate_upsilon_matrices_rejects_invalid_dimensions():
     with pytest.raises(ValueError, match="height and width"):
-        generate_upsilon_matrices(0, 8, 0.3, 0.2, 50.0, 50.0, 0)
+        generate_upsilon_matrices(0, 8, TEST_KEY, TEST_IDENTIFIER)
 
     with pytest.raises(ValueError, match="height and width"):
-        generate_upsilon_matrices(8, -1, 0.3, 0.2, 50.0, 50.0, 0)
+        generate_upsilon_matrices(8, -1, TEST_KEY, TEST_IDENTIFIER)
 
 
-def test_generate_upsilon_matrices_rejects_negative_discard_count():
-    with pytest.raises(ValueError, match="discard_count"):
-        generate_upsilon_matrices(8, 8, 0.3, 0.2, 50.0, 50.0, -1)
+def test_generate_upsilon_matrices_rejects_invalid_key_and_identifier():
+    with pytest.raises(ValueError, match="32 bytes"):
+        generate_upsilon_matrices(8, 8, b"short", TEST_IDENTIFIER)
+
+    with pytest.raises(ValueError, match="image_identifier"):
+        generate_upsilon_matrices(8, 8, TEST_KEY, b"")
+
+
+def test_key_conversion_outputs_valid_csm_parameters():
+    x0, y0, r1, r2, kappa_1 = derive_csm_parameters_from_key(TEST_KEY)
+
+    assert 0.0 < x0 < 1.0
+    assert 0.0 < y0 < 1.0
+    assert 1.0 <= r1 <= 100.0
+    assert 1.0 <= r2 <= 100.0
+    assert 128 <= kappa_1 <= 1151
+
+
+def test_t_tau_and_kappa_2_are_positive_bounded_integers():
+    t_tau = derive_t_tau(TEST_IDENTIFIER)
+    kappa_2 = derive_kappa_2(0.123, -0.456)
+
+    assert 1 <= t_tau <= 1024
+    assert 1 <= kappa_2 <= 1024
+
+
+def test_same_key_different_identifier_changes_upsilon_matrices():
+    first_p, first_s = generate_upsilon_matrices(8, 8, TEST_KEY, TEST_IDENTIFIER)
+    second_p, second_s = generate_upsilon_matrices(8, 8, TEST_KEY, OTHER_IDENTIFIER)
+
+    assert not np.array_equal(first_p, second_p)
+    assert not np.array_equal(first_s, second_s)
+
+
+def test_one_bit_key_flip_changes_upsilon_matrices():
+    first_p, first_s = generate_upsilon_matrices(8, 8, TEST_KEY, TEST_IDENTIFIER)
+    second_p, second_s = generate_upsilon_matrices(
+        8, 8, FLIPPED_TEST_KEY, TEST_IDENTIFIER
+    )
+
+    assert not np.array_equal(first_p, second_p)
+    assert not np.array_equal(first_s, second_s)

@@ -1,8 +1,8 @@
 """Small end-to-end demo for Sections 5.2-5.5.
 
 This demo integrates the existing component modules in paper order. It uses
-small synthetic RGB data and the current explicit demo assumptions; it does not
-add security metrics or optimization.
+small synthetic RGB data and the documented demo key/image identifier; it does
+not add security metrics or optimization.
 """
 
 from pathlib import Path
@@ -66,7 +66,7 @@ def main() -> None:
     fig.savefig(output_path, dpi=200)
 
     print("PAPER AMBIGUITY / IMPLEMENTATION DECISION: payload is embedded in channel 0 only.")
-    print("PAPER AMBIGUITY / IMPLEMENTATION DECISION: demo discard_count=0.")
+    print("IMPLEMENTATION DECISION: Section 5.1 key/T conversion is documented in src/chaos.py.")
     print("PAPER AMBIGUITY / IMPLEMENTATION DECISION: vartheta=10000.0 is inferred from Fig. 4, not explicit text.")
     print(f"Extracted payload: {bytes_from_bits(decrypted.payload_bits)!r}")
     print(f"Recovered exactly: {np.array_equal(original, decrypted.recovered_image)}")

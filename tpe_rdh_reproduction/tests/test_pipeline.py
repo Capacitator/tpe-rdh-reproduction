@@ -15,6 +15,8 @@ from pipeline import (
 )
 from rdh import bits_from_bytes
 
+FLIPPED_KEY = bytes([DemoPipelineParameters.key[0] ^ 0x01]) + DemoPipelineParameters.key[1:]
+
 
 def _small_rgb_image() -> np.ndarray:
     image = np.zeros((32, 32, 3), dtype=np.uint8)
@@ -96,7 +98,7 @@ def test_decryption_with_wrong_parameter_does_not_recover_original():
     image = _small_rgb_image()
     payload = bits_from_bytes(b"wrong")
     encrypt_params = DemoPipelineParameters()
-    wrong_params = DemoPipelineParameters(x0=0.3001)
+    wrong_params = DemoPipelineParameters(key=FLIPPED_KEY)
 
     encrypted = encrypt_rgb_image(image, payload, encrypt_params)
 
@@ -106,3 +108,45 @@ def test_decryption_with_wrong_parameter_does_not_recover_original():
         return
 
     assert not np.array_equal(decrypted.recovered_image, image)
+
+
+def test_same_key_and_same_identifier_are_deterministic():
+    image = _small_rgb_image()
+    payload = bits_from_bytes(b"stable")
+    params = DemoPipelineParameters(image_identifier=b"same-identifier")
+
+    first = encrypt_rgb_image(image, payload, params)
+    second = encrypt_rgb_image(image, payload, params)
+
+    np.testing.assert_array_equal(first.upsilon_p, second.upsilon_p)
+    np.testing.assert_array_equal(first.upsilon_s, second.upsilon_s)
+    np.testing.assert_array_equal(first.encrypted_image, second.encrypted_image)
+
+
+def test_same_key_and_different_identifier_change_matrices_and_ciphertext():
+    image = _small_rgb_image()
+    payload = bits_from_bytes(b"identifier")
+    first_params = DemoPipelineParameters(image_identifier=b"image-a")
+    second_params = DemoPipelineParameters(image_identifier=b"image-b")
+
+    first = encrypt_rgb_image(image, payload, first_params)
+    second = encrypt_rgb_image(image, payload, second_params)
+
+    assert not np.array_equal(first.upsilon_p, second.upsilon_p)
+    assert not np.array_equal(first.upsilon_s, second.upsilon_s)
+    assert not np.array_equal(first.encrypted_image, second.encrypted_image)
+
+
+def test_one_bit_key_flip_substantially_changes_ciphertext():
+    image = _small_rgb_image()
+    payload = bits_from_bytes(b"key-flip")
+    first_params = DemoPipelineParameters(image_identifier=b"key-test-image")
+    second_params = DemoPipelineParameters(
+        key=FLIPPED_KEY, image_identifier=b"key-test-image"
+    )
+
+    first = encrypt_rgb_image(image, payload, first_params)
+    second = encrypt_rgb_image(image, payload, second_params)
+
+    changed_ratio = np.mean(first.encrypted_image != second.encrypted_image)
+    assert changed_ratio > 0.25

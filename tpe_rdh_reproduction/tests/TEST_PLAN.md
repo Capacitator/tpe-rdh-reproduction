@@ -6,11 +6,12 @@ This file records the tests used to check the Section 5 implementation. The main
 
 - Determinism: same parameters produce identical `Upsilon_P` and `Upsilon_S`.
 - Shape: output matrices are exactly `M x N`.
-- Length/discard accounting: retained sequences contain exactly `M*N` values after the specified discard count.
-- Parameter sensitivity smoke test: changing one explicit numeric parameter changes at least one output value.
+- Length/discard accounting: retained sequences contain exactly `M*N` values after derived `kappa_1 + kappa_2` values are discarded.
+- Image identifier sensitivity: same key with different `T` values changes `Upsilon_P` and `Upsilon_S`.
+- Key sensitivity: a one-bit key change changes `Upsilon_P`, `Upsilon_S`, and the integrated ciphertext.
 - No hidden randomness: function output depends only on explicit inputs.
 
-Covered for the explicit demo parameters used in this project. The paper's full key conversion, `T -> T_tau`, `kappa_2` conversion, and exact construction of `Upsilon_P`/`Upsilon_S` are not fully specified in the accessible text.
+Covered for the documented project key/T convention. The authors' exact key conversion, `T -> T_tau`, and `kappa_2` conversion remain unknown if they differ from this convention.
 
 ## 5.2 Permutation Encryption
 
@@ -57,9 +58,9 @@ Implemented with row-major pairing and caller-supplied `vartheta`. The numeric `
 - Full RGB pipeline: original RGB image and payload recover exactly.
 - Thumbnail preservation: encrypted marked image preserves each thumbnail block sum after substitution, subject to RDH placement policy.
 - Metrics sanity: exact recovery gives infinite PSNR and SSIM of 1.
-- Wrong-parameter negative test: decryption with an altered chaotic parameter is expected to fail exact original-image recovery.
+- Wrong-parameter negative test: decryption with an altered key is expected to fail exact original-image recovery.
 
-Covered for the documented project choices, including a wrong-parameter negative test. A complete paper-level test suite would also need the authors' exact key schedule and exact Mode 1/Mode 2 definitions.
+Covered for the documented project choices, including a wrong-key negative test, deterministic same-key/same-T tests, same-key/different-T tests, and a one-bit key-flip ciphertext sensitivity test. A complete paper-level test suite would also need the authors' exact key schedule and exact Mode 1/Mode 2 definitions.
 
 ## Experiment Readiness Tests
 

@@ -65,7 +65,7 @@ This table maps paper concepts to the project implementation where available. Ro
 | Sec. 4.1 / Eq. (3) | Sinusoidal map used as a basis for 2D-CSM | `x_n`, `r_2` | `x_{n+1}` | `src/chaos.py::sinusoidal_map` |
 | Sec. 4.1 / Eq. (4) | Generates coupled 2D chaotic sequence | `x_n`, `y_n`, `r_1`, `r_2` | `x_{n+1}`, `y_{n+1}` | `src/chaos.py::csm_2d_step`, `generate_2d_csm` |
 | Sec. 4.3 / Eq. (5) | Computes Lyapunov exponents for chaotic-system analysis | Iterated states, Jacobian eigenvalues | LE values | Not included; chaos visualization only in `experiments/plot_chaos.py` |
-| Sec. 5.1 | Builds chaotic matrices for encryption | Image shape `M x N`, explicit demo parameters, explicit `discard_count` | `Upsilon_P`, `Upsilon_S` | `src/chaos.py::generate_upsilon_matrices` |
+| Sec. 5.1 | Builds chaotic matrices for encryption | Image shape `M x N`, 256-bit key, image identifier `T` | `Upsilon_P`, `Upsilon_S` | `src/chaos.py::generate_upsilon_matrices` |
 | Sec. 5.2 | Performs block-wise permutation encryption | Image channels, `Upsilon_P`, block size `b` | Permutation-encrypted image | `src/permutation.py::permute_image_blocks` |
 | Sec. 5.3 | Embeds non-visual information in permutation-encrypted image | Permuted image, payload bits | Marked image, overhead | `src/rdh.py` |
 | Sec. 5.4 / Eq. (6) | Converts chaotic value pairs into substitution offsets | `gamma_1`, `gamma_2`, `theta` | `delta` | `src/substitution.py::chaotic_pair_delta` |
@@ -73,7 +73,7 @@ This table maps paper concepts to the project implementation where available. Ro
 | Sec. 5.4 / Eq. (8) | Encrypts same-sum index by modular offset | `eta`, `delta`, `|Theta_sum(s_tau)|` | `eta_e` | `src/substitution.py::encrypt_pair` |
 | Sec. 5.4 / Eq. (9) | Counts valid two-pixel pairs having the same sum | `s_tau`, `d` | same-sum set size | `src/substitution.py::same_sum_pair_count` |
 | Sec. 5.4 / Eq. (10) | Converts encrypted index back into a same-sum pixel pair | `eta_e`, `s_tau`, `d` | encrypted pair `tau_e` | `src/substitution.py::index_to_pair` |
-| Sec. 5.5 | Reverses substitution, extracts data, recovers image, reverses permutation | Encrypted marked image, explicit parameters | Payload, original image | `src/pipeline.py::decrypt_rgb_image` |
+| Sec. 5.5 | Reverses substitution, extracts data, recovers image, reverses permutation | Encrypted marked image, same key, same image identifier, parameters | Payload, original image | `src/pipeline.py::decrypt_rgb_image` |
 | Sec. 6.2 | Measures recovery quality with PSNR and SSIM | Original image, recovered image | PSNR, SSIM | `experiments/run_section6_experiments.py::recovery_quality` |
 | Sec. 6.7 / Eqs. (11)-(14) | Computes adjacent-pixel correlation | Sampled adjacent pixel pairs | Correlation coefficient | Validation helper in `experiments/run_section6_experiments.py` |
 | Sec. 6.8 / Eqs. (15)-(17) | Computes NPCR and UACI for differential attack analysis | Two ciphertext images | NPCR, UACI | Validation helper in `experiments/run_section6_experiments.py` |
@@ -135,15 +135,15 @@ This table maps paper concepts to the project implementation where available. Ro
 
 ## 8. Ambiguities and Underspecified Details
 
-Paper detail not fully specified: The paper says the scheme uses a 256-bit key and that the key seeds the chaotic system, but Sec. 5.1 initializes `x_0 = 0.3`, `y_0 = 0.2`, and `r_1 = r_2 = 50`. It does not specify how a 256-bit key is converted into chaotic initial conditions or parameters.
+Paper detail not fully specified: The paper says the scheme uses a 256-bit key and that the key seeds the chaotic system, but Sec. 5.1 initializes `x_0 = 0.3`, `y_0 = 0.2`, and `r_1 = r_2 = 50`. It does not specify how a 256-bit key is converted into chaotic initial conditions or parameters. This project uses the documented fixed-field/SHA-256 convention in `src/chaos.py`.
 
-Paper detail not fully specified: `kappa_1` is introduced as the transient discard length but no numeric value or rule for choosing it is provided.
+Paper detail not fully specified: `kappa_1` is introduced as the transient discard length but no numeric value or rule for choosing it is provided. This project derives `kappa_1` from the 256-bit key.
 
 Paper detail not fully specified: The unique image identifier `T` is introduced, but the paper does not define how `T` is chosen, stored, transmitted, or regenerated during decryption.
 
-Paper detail not fully specified: `T` is converted to a positive integer `T_tau`, but the conversion method is not specified.
+Paper detail not fully specified: `T` is converted to a positive integer `T_tau`, but the conversion method is not specified. This project derives `T_tau` from `SHA-256(T)`.
 
-Paper detail not fully specified: The output after `kappa_1 + T_tau` chaotic iterations is converted to integer `kappa_2`, but the exact conversion, scaling, modulo, and whether `x`, `y`, or both are used is not specified.
+Paper detail not fully specified: The output after `kappa_1 + T_tau` chaotic iterations is converted to integer `kappa_2`, but the exact conversion, scaling, modulo, and whether `x`, `y`, or both are used is not specified. This project derives `kappa_2` from the first-stage chaotic state.
 
 Paper detail not fully specified: The paper says two independent chaotic matrices are generated, but it does not fully specify whether `Upsilon_P` and `Upsilon_S` come directly from the `x` and `y` sequences, from separate runs, or from another split of the generated sequence.
 
@@ -180,7 +180,7 @@ Paper detail not fully specified: The paper reports timing on a specific i9-1390
 5. Runtime measurement: report encryption plus embedding time and decryption plus recovery time for selected block sizes.
 6. Correlation analysis: sample 5,000 adjacent pixel pairs in horizontal, vertical, and diagonal directions before and after encryption.
 7. Differential attack metrics: calculate NPCR and UACI between ciphertexts generated from slightly different plaintexts.
-8. Key sensitivity visualization: encrypt the same image using two minimally different keys once the key-to-chaos ambiguity is resolved.
+8. Key sensitivity visualization: encrypt the same image using two minimally different keys under the documented key/T convention.
 
 ## 10. Recommended Implementation Order
 

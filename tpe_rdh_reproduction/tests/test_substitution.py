@@ -22,6 +22,11 @@ from substitution import (
 
 
 DEMO_VARTETHA = 10000.0
+TEST_KEY = bytes.fromhex(
+    "00112233445566778899aabbccddeeff"
+    "102132435465768798a9babbdcedfe0f"
+)
+TEST_IDENTIFIER = b"substitution-test-image"
 
 
 def test_same_sum_pair_count_matches_eq_9_boundaries():
@@ -94,7 +99,7 @@ def test_random_pixel_pairs_encrypt_decrypt_and_stay_in_range():
 
 def test_channel_substitution_then_inverse_recovers_exact_original():
     channel = np.arange(64, dtype=np.uint8).reshape(8, 8)
-    _, upsilon_s = generate_upsilon_matrices(8, 8, 0.3, 0.2, 50.0, 50.0, 0)
+    _, upsilon_s = generate_upsilon_matrices(8, 8, TEST_KEY, TEST_IDENTIFIER)
 
     encrypted = substitute_channel_blocks(channel, upsilon_s, 4, DEMO_VARTETHA)
     recovered = inverse_substitute_channel_blocks(encrypted, upsilon_s, 4, DEMO_VARTETHA)
@@ -104,7 +109,7 @@ def test_channel_substitution_then_inverse_recovers_exact_original():
 
 def test_channel_substitution_preserves_pair_sums():
     channel = np.arange(64, dtype=np.uint8).reshape(8, 8)
-    _, upsilon_s = generate_upsilon_matrices(8, 8, 0.3, 0.2, 50.0, 50.0, 0)
+    _, upsilon_s = generate_upsilon_matrices(8, 8, TEST_KEY, TEST_IDENTIFIER)
 
     encrypted = substitute_channel_blocks(channel, upsilon_s, 4, DEMO_VARTETHA)
 
@@ -119,7 +124,7 @@ def test_channel_substitution_preserves_pair_sums():
 
 def test_channel_substitution_outputs_uint8_values_in_range():
     channel = np.arange(64, dtype=np.uint8).reshape(8, 8)
-    _, upsilon_s = generate_upsilon_matrices(8, 8, 0.3, 0.2, 50.0, 50.0, 0)
+    _, upsilon_s = generate_upsilon_matrices(8, 8, TEST_KEY, TEST_IDENTIFIER)
 
     encrypted = substitute_channel_blocks(channel, upsilon_s, 4, DEMO_VARTETHA)
 

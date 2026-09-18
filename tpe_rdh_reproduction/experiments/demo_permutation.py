@@ -17,6 +17,12 @@ sys.path.insert(0, str(PROJECT_ROOT / "src"))
 from chaos import generate_upsilon_matrices
 from permutation import inverse_permute_image_blocks, permute_image_blocks
 
+DEMO_KEY = bytes.fromhex(
+    "00112233445566778899aabbccddeeff"
+    "102132435465768798a9babbdcedfe0f"
+)
+DEMO_IDENTIFIER = b"demo-permutation-image"
+
 
 def _make_demo_image(height: int, width: int) -> np.ndarray:
     """Create a tiny RGB image with visible structure for permutation checks."""
@@ -41,10 +47,8 @@ def main() -> None:
     if upsilon_path.exists():
         upsilon_p = np.load(upsilon_path)
     else:
-        # Paper-stated Section 5.1 example parameters. discard_count=0 remains
-        # a demo-only setting because the paper does not specify kappa/T values.
         upsilon_p, _ = generate_upsilon_matrices(
-            height, width, 0.3, 0.2, 50.0, 50.0, discard_count=0
+            height, width, DEMO_KEY, DEMO_IDENTIFIER
         )
         np.save(upsilon_path, upsilon_p)
 

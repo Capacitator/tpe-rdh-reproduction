@@ -54,7 +54,7 @@ Implemented metrics and checks:
 Unit/integration tests:
 
 ```text
-65 passed
+72 passed
 ```
 
 UCT all-block validation:
