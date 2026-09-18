@@ -7,6 +7,7 @@ existing encryption/decryption pipeline without changing the algorithm.
 
 from __future__ import annotations
 
+from dataclasses import replace
 from datetime import datetime, timezone
 import platform
 from pathlib import Path
@@ -157,7 +158,10 @@ def run() -> None:
     encryption_seconds = time.perf_counter() - start
 
     start = time.perf_counter()
-    decrypted_result = decrypt_rgb_image(encrypted_result.encrypted_image, params)
+    decrypted_result = decrypt_rgb_image(
+        encrypted_result.encrypted_image,
+        replace(params, image_identifier=encrypted_result.image_identifier),
+    )
     decryption_seconds = time.perf_counter() - start
 
     encrypted = encrypted_result.encrypted_image
@@ -215,7 +219,12 @@ def run() -> None:
         "correlation_encrypted_diagonal": channel_correlation(encrypted, "diagonal"),
         "rdh_channel0_peak": encrypted_result.rdh_infos[0].peak,
         "rdh_channel0_zero": encrypted_result.rdh_infos[0].zero,
-        "rdh_channel0_payload_bits": encrypted_result.rdh_infos[0].payload_length,
+        "rdh_payload_bits_by_channel": str(
+            tuple(info.payload_length for info in encrypted_result.rdh_infos)
+        ),
+        "rdh_total_payload_bits": sum(
+            info.payload_length for info in encrypted_result.rdh_infos
+        ),
         "rdh_channel0_embedded_bits_including_overhead": encrypted_result.rdh_infos[
             0
         ].embedded_bit_count,

@@ -10,9 +10,9 @@ This module wires together the already tested components:
 
 PAPER AMBIGUITY / IMPLEMENTATION DECISION:
 The paper does not specify an RGB payload distribution or per-channel metadata
-format for RDH. This first integration embeds the user payload in channel 0
-only, while channels 1 and 2 receive empty RDH payloads so their P/Z and LSB
-overhead are still recoverable by the same Section 5.3 mechanism.
+format for RDH. This integration splits the user payload into three contiguous
+chunks and embeds one chunk per RGB channel. Decryption concatenates the three
+extracted streams in channel order.
 
 PAPER AMBIGUITY / IMPLEMENTATION DECISION:
 This pipeline uses the documented key-to-chaos convention in `chaos.py`,
@@ -27,8 +27,9 @@ The paper text says only `vartheta >> 1`. The default below uses
 
 from __future__ import annotations
 
+import hashlib
 from dataclasses import dataclass
-from typing import List, Sequence, Tuple, Union
+from typing import List, Optional, Sequence, Tuple, Union
 
 import numpy as np
 
@@ -41,7 +42,6 @@ DEFAULT_DEMO_KEY = bytes.fromhex(
     "00112233445566778899aabbccddeeff"
     "102132435465768798a9babbdcedfe0f"
 )
-DEFAULT_IMAGE_IDENTIFIER = b"demo-image-identifier"
 IdentifierLike = Union[bytes, str, int]
 
 
@@ -51,14 +51,17 @@ class DemoPipelineParameters:
 
     `key` is a 256-bit value used by `chaos.py` to derive `x0`, `y0`, `r1`,
     `r2`, and `kappa_1`. `image_identifier` is the Section 5.1 image
-    identifier `T`; the same value is required during decryption so `kappa_2`
-    can be reconstructed. `vartheta` defaults to `10000.0` as a Fig. 4
-    inference, not an explicit textual value.
+    identifier `T`; when omitted for encryption it is derived from the
+    plaintext image bytes so key reuse across images still diversifies the
+    chaotic matrices. The resolved identifier returned by `EncryptionResult`
+    must be supplied during decryption so `kappa_2` can be reconstructed.
+    `vartheta` defaults to `10000.0` as a Fig. 4 inference, not an explicit
+    textual value.
     """
 
     block_size: int = 4
     key: bytes = DEFAULT_DEMO_KEY
-    image_identifier: IdentifierLike = DEFAULT_IMAGE_IDENTIFIER
+    image_identifier: Optional[IdentifierLike] = None
     vartheta: float = 10000.0
 
 
@@ -94,8 +97,8 @@ def encrypt_rgb_image(
 
     Args:
         image: 3D `uint8` RGB image with shape `(height, width, 3)`.
-        payload_bits: User payload bits. In this first integration they are
-            embedded in channel 0 only.
+        payload_bits: User payload bits split across RGB channels in channel
+            order.
         params: Explicit demo/reproduction parameters.
 
     Returns:
@@ -106,24 +109,25 @@ def encrypt_rgb_image(
     _validate_rgb_image(image)
     payload = _validate_bits(payload_bits)
     height, width = image.shape[:2]
+    image_identifier = _resolve_encryption_identifier(image, params.image_identifier)
 
     upsilon_p, upsilon_s = generate_upsilon_matrices(
         height=height,
         width=width,
         key=params.key,
-        image_identifier=params.image_identifier,
+        image_identifier=image_identifier,
     )
 
     # Section 5.2: split RGB into channels conceptually and apply the same
     # `Upsilon_P` block template to each channel.
     permuted = permute_image_blocks(image, upsilon_p, params.block_size)
 
-    # Section 5.3: RDH is currently implemented and tested for one channel.
-    # The first integration embeds the actual payload in channel 0 only.
+    # Section 5.3: RDH is implemented per channel. Split one logical payload
+    # across RGB channels so the pipeline uses all three channel capacities.
+    channel_payloads = _split_payload_across_channels(payload, channel_count=3)
     marked_channels = []
     rdh_infos = []
-    for channel_index in range(3):
-        channel_payload = payload if channel_index == 0 else []
+    for channel_index, channel_payload in enumerate(channel_payloads):
         marked_channel, info = embed_bits(permuted[:, :, channel_index], channel_payload)
         marked_channels.append(marked_channel)
         rdh_infos.append(info)
@@ -149,7 +153,7 @@ def encrypt_rgb_image(
         permuted_image=permuted,
         marked_image=marked,
         rdh_infos=tuple(rdh_infos),  # type: ignore[arg-type]
-        image_identifier=params.image_identifier,
+        image_identifier=image_identifier,
     )
 
 
@@ -165,16 +169,17 @@ def decrypt_rgb_image(
 
     Returns:
         `DecryptionResult` with the exact recovered RGB image and extracted
-        channel-0 payload bits.
+        payload bits concatenated from channels 0, 1, and 2.
     """
 
     _validate_rgb_image(encrypted_image)
     height, width = encrypted_image.shape[:2]
+    image_identifier = _require_decryption_identifier(params.image_identifier)
     upsilon_p, upsilon_s = generate_upsilon_matrices(
         height=height,
         width=width,
         key=params.key,
-        image_identifier=params.image_identifier,
+        image_identifier=image_identifier,
     )
 
     recovered_marked_channels = [
@@ -204,7 +209,9 @@ def decrypt_rgb_image(
 
     return DecryptionResult(
         recovered_image=recovered,
-        payload_bits=extracted_payloads[0],
+        payload_bits=[
+            bit for channel_payload in extracted_payloads for bit in channel_payload
+        ],
         recovered_permuted_image=recovered_permuted,
         recovered_marked_image=recovered_marked,
     )
@@ -239,3 +246,48 @@ def _validate_bits(bits: Sequence[int]) -> List[int]:
     if any(bit not in (0, 1) for bit in result):
         raise ValueError("payload_bits must contain only 0 and 1")
     return result
+
+
+def _resolve_encryption_identifier(
+    image: np.ndarray, image_identifier: Optional[IdentifierLike]
+) -> IdentifierLike:
+    if image_identifier is not None:
+        return image_identifier
+    return _derive_identifier_from_image(image)
+
+
+def _require_decryption_identifier(
+    image_identifier: Optional[IdentifierLike],
+) -> IdentifierLike:
+    if image_identifier is None:
+        raise ValueError(
+            "image_identifier is required for decryption; use the "
+            "EncryptionResult.image_identifier value stored with the ciphertext"
+        )
+    return image_identifier
+
+
+def _derive_identifier_from_image(image: np.ndarray) -> bytes:
+    digest = hashlib.sha256()
+    digest.update(str(image.shape).encode("ascii"))
+    digest.update(str(image.dtype).encode("ascii"))
+    digest.update(np.ascontiguousarray(image).tobytes())
+    return digest.digest()
+
+
+def _split_payload_across_channels(
+    payload_bits: Sequence[int], channel_count: int
+) -> List[List[int]]:
+    if channel_count <= 0:
+        raise ValueError("channel_count must be positive")
+
+    payload = list(payload_bits)
+    base_size, remainder = divmod(len(payload), channel_count)
+    chunks: List[List[int]] = []
+    start = 0
+    for channel_index in range(channel_count):
+        chunk_size = base_size + (1 if channel_index < remainder else 0)
+        end = start + chunk_size
+        chunks.append(payload[start:end])
+        start = end
+    return chunks

@@ -13,6 +13,7 @@ pipeline on one real 512x512 RGB image and saves each major stage:
 
 from __future__ import annotations
 
+from dataclasses import replace
 from pathlib import Path
 import sys
 
@@ -61,7 +62,10 @@ def main() -> None:
 
     original = load_demo_image()
     encrypted = encrypt_rgb_image(original, payload_bits, params)
-    decrypted = decrypt_rgb_image(encrypted.encrypted_image, params)
+    decrypted = decrypt_rgb_image(
+        encrypted.encrypted_image,
+        replace(params, image_identifier=encrypted.image_identifier),
+    )
     extracted_payload = bytes_from_bits(decrypted.payload_bits)
 
     max_recovery_error = int(
@@ -111,7 +115,7 @@ Implementation assumptions:
 - Paper ambiguity / implementation decision: substitution pairs pixels and Upsilon_S values in row-major flattened order.
 - Paper ambiguity / implementation decision: RDH uses an explicit metadata header because the paper does not define payload/overhead serialization.
 - Paper ambiguity / implementation decision: first 16 top-row pixels are excluded from RDH histogram shifting and embedding.
-- Paper ambiguity / implementation decision: RGB payload is embedded in channel 0 only; channels 1 and 2 receive empty RDH payloads.
+- Paper ambiguity / implementation decision: RGB payload is split into contiguous chunks and embedded across channels 0, 1, and 2.
 """
     (output_dir / "final_demo_report.txt").write_text(report, encoding="utf-8")
 

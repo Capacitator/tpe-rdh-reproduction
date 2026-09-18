@@ -7,6 +7,7 @@ not add security metrics or optimization.
 
 from pathlib import Path
 import sys
+from dataclasses import replace
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -45,7 +46,10 @@ def main() -> None:
     payload_bits = bits_from_bytes(b"Sections 5.2-5.5")
 
     encrypted = encrypt_rgb_image(original, payload_bits, params)
-    decrypted = decrypt_rgb_image(encrypted.encrypted_image, params)
+    decrypted = decrypt_rgb_image(
+        encrypted.encrypted_image,
+        replace(params, image_identifier=encrypted.image_identifier),
+    )
 
     np.save(output_dir / "demo_pipeline_original.npy", original)
     np.save(output_dir / "demo_pipeline_encrypted.npy", encrypted.encrypted_image)
@@ -65,7 +69,7 @@ def main() -> None:
     output_path = output_dir / "demo_pipeline.png"
     fig.savefig(output_path, dpi=200)
 
-    print("PAPER AMBIGUITY / IMPLEMENTATION DECISION: payload is embedded in channel 0 only.")
+    print("PAPER AMBIGUITY / IMPLEMENTATION DECISION: payload is split across RGB channels.")
     print("IMPLEMENTATION DECISION: Section 5.1 key/T conversion is documented in src/chaos.py.")
     print("PAPER AMBIGUITY / IMPLEMENTATION DECISION: vartheta=10000.0 is inferred from Fig. 4, not explicit text.")
     print(f"Extracted payload: {bytes_from_bits(decrypted.payload_bits)!r}")

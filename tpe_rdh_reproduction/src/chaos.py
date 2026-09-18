@@ -9,10 +9,12 @@ chaotic-matrix generation step from Section 5.1:
 - Section 5.1: derive key/image-dependent chaotic matrices `Upsilon_P` and
   `Upsilon_S`
 
-The accessible paper text does not specify how the claimed 256-bit key is
-converted into chaotic parameters, or how image identifier `T` becomes
-`T_tau` and `kappa_2`. This module uses a documented SHA-256/fixed-field
-convention so the implementation has the required key and per-image behavior.
+The paper requires key reuse across images to remain secure: the same secret
+key applied to different images must still generate different chaotic
+sequences. The accessible text specifies the `T -> T_tau -> kappa_2`
+diversification behavior but not the exact byte-level conversion rules. This
+module uses a documented SHA-256/fixed-field convention to implement that
+required key-reuse property.
 """
 
 from __future__ import annotations
@@ -33,7 +35,8 @@ PAPER_UNSPECIFIED_SECTION5_PARAMETERS = {
         "Image identifier T is hashed as SHA-256(T) and mapped to positive "
         "T_tau in 1..1024. kappa_2 is derived from the stage-1 chaotic "
         "output as 1..1024. These ranges keep experiments reproducible and "
-        "bounded while providing key-dependent and image-dependent matrices."
+        "bounded while preserving the paper's required key-reuse behavior: "
+        "same key plus different image identifiers yields different matrices."
     ),
     "matrix_independence": (
         "PAPER AMBIGUITY: Section 5.1 says two independent chaotic matrices "
@@ -188,8 +191,9 @@ def generate_upsilon_matrices(
     matrices: `Upsilon_P`, which later controls block permutation, and
     `Upsilon_S`, which later controls substitution offsets.
 
-    The paper does not specify the 256-bit key conversion or the exact
-    `T -> T_tau -> kappa_2` convention. This implementation uses:
+    The paper requires per-image diversification under key reuse by deriving
+    `kappa_2` through `T` and `T_tau`, but it does not specify the exact
+    byte-level conversion convention. This implementation uses:
 
     1. split the 256-bit key into four 64-bit fields;
     2. map fields 1 and 2 to `x0` and `y0` in `(0, 1)`;
@@ -260,9 +264,9 @@ def generate_upsilon_matrices(
 def derive_csm_parameters_from_key(key: KeyLike) -> Tuple[float, float, float, float, int]:
     """Return `(x0, y0, r1, r2, kappa_1)` from a 256-bit key.
 
-    This is an implementation convention for the unspecified Section 5.1 key
-    schedule. It is deterministic and uses every key bit either directly in
-    the four fixed-width fields or through the SHA-256-derived `kappa_1`.
+    This is an implementation convention for the Section 5.1 key schedule.
+    It is deterministic and uses every key bit either directly in the four
+    fixed-width fields or through the SHA-256-derived `kappa_1`.
     """
 
     key_bytes = _key_to_32_bytes(key)

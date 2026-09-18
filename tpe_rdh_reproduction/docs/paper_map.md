@@ -139,7 +139,7 @@ Paper detail not fully specified: The paper says the scheme uses a 256-bit key a
 
 Paper detail not fully specified: `kappa_1` is introduced as the transient discard length but no numeric value or rule for choosing it is provided. This project derives `kappa_1` from the 256-bit key.
 
-Paper detail not fully specified: The unique image identifier `T` is introduced, but the paper does not define how `T` is chosen, stored, transmitted, or regenerated during decryption.
+Paper detail not fully specified: The unique image identifier `T` is introduced, but the paper does not define the storage/transmission format. This project derives `T` from plaintext image bytes by default during encryption and stores the resolved identifier alongside the ciphertext for decryption.
 
 Paper detail not fully specified: `T` is converted to a positive integer `T_tau`, but the conversion method is not specified. This project derives `T_tau` from `SHA-256(T)`.
 

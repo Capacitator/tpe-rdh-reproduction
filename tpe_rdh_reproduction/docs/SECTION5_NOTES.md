@@ -9,13 +9,13 @@ These notes summarize how Section 5 of the paper was interpreted for this projec
 
 ## Current Implementation Status
 
-- 5.1 Chaotic matrices: implemented in `src/chaos.py` with a documented 256-bit key conversion, image identifier `T`, derived `T_tau`, derived `kappa_1`, derived `kappa_2`, and the two-stage iteration procedure described by Section 5.1.
+- 5.1 Chaotic matrices: implemented in `src/chaos.py` with a documented 256-bit key conversion, image identifier `T`, derived `T_tau`, derived `kappa_1`, derived `kappa_2`, and the two-stage iteration procedure described by Section 5.1. This preserves the paper's required key-reuse behavior: different images under the same key derive different chaotic matrices. In the pipeline, `T` is derived from plaintext image bytes by default during encryption and returned for storage with the ciphertext.
 - 5.2 Permutation encryption: implemented in `src/permutation.py` with row-major flattening, stable ascending sort, and exact inverse permutation.
 - 5.3 RDH embedding: implemented in `src/rdh.py` with an explicit metadata header because the paper does not define a parseable payload/overhead format.
 - 5.4 Substitution encryption: implemented in `src/substitution.py` for row-major two-pixel pairs using caller-supplied `vartheta`.
 - 5.5 Decryption/recovery: implemented in `src/pipeline.py`; integration tests verify exact RGB recovery and payload recovery.
 
-This implementation is a working reproduction prototype for the executable stages, while the full paper key schedule and some format details remain outside the available information.
+This implementation is a working reproduction prototype for the executable stages. The paper-required key-reuse property is implemented; the exact author byte-level key/T conversions and some format details remain outside the available information.
 
 ## Subsection Notes
 
@@ -98,9 +98,9 @@ Paper detail not fully specified
 
 Paper detail not fully specified
 
-- Why it matters: these values are part of the uniqueness and reproducibility mechanism for chaotic matrices.
+- Why it matters: these values are the paper's mechanism for preserving key-reuse security across images while keeping decryption reproducible.
 - What the paper explicitly says: unique image identifier `T` is converted to positive integer `T_tau`; after `kappa_1 + T_tau` iterations, output is converted to integer `kappa_2`.
-- Project note: the code hashes image identifier `T` into `T_tau` in the range `1..1024`, derives `kappa_2` from the first-stage chaotic output in the range `1..1024`, and then uses the Section 5.1 two-stage iteration procedure.
+- Project note: the code hashes image identifier `T` into `T_tau` in the range `1..1024`, derives `kappa_2` from the first-stage chaotic output in the range `1..1024`, and then uses the Section 5.1 two-stage iteration procedure. The pipeline derives `T` from plaintext image bytes when no explicit identifier is supplied and requires the stored identifier during decryption.
 
 ### Independent Chaotic Matrices
 
@@ -140,7 +140,7 @@ Paper detail not fully specified
 
 - Why it matters: extraction cannot separate payload, first-row LSB overhead, and coordinate overhead without a format.
 - What the paper explicitly says: color images have per-channel histograms; first 16 top-row LSBs store binary `P` and `Z`; original LSBs and minimum-point coordinates are overhead.
-- Project note: the code uses an explicit metadata header and a channel-0 payload policy.
+- Project note: the code uses an explicit metadata header and splits payload bits across RGB channels in channel order.
 
 ### Histogram Recovery Range
 

@@ -12,6 +12,7 @@ comparison figure.
 from __future__ import annotations
 
 import csv
+from dataclasses import replace
 from pathlib import Path
 import sys
 
@@ -90,7 +91,10 @@ def main() -> None:
         error = ""
         try:
             encrypted = encrypt_rgb_image(image, PAYLOAD_BITS, params)
-            decrypted = decrypt_rgb_image(encrypted.encrypted_image, params)
+            decrypted = decrypt_rgb_image(
+                encrypted.encrypted_image,
+                replace(params, image_identifier=encrypted.image_identifier),
+            )
 
             exact_recovery = bool(np.array_equal(image, decrypted.recovered_image))
             max_recovery_error = int(

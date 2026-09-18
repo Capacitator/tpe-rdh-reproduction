@@ -14,6 +14,7 @@ a compact processing summary.
 from __future__ import annotations
 
 import csv
+from dataclasses import replace
 import time
 from pathlib import Path
 import sys
@@ -67,7 +68,10 @@ def main() -> None:
             encryption_seconds = time.perf_counter() - start
 
             start = time.perf_counter()
-            decrypted = decrypt_rgb_image(encrypted.encrypted_image, params)
+            decrypted = decrypt_rgb_image(
+                encrypted.encrypted_image,
+                replace(params, image_identifier=encrypted.image_identifier),
+            )
             decryption_seconds = time.perf_counter() - start
 
             max_error = int(

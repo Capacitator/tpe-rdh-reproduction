@@ -29,6 +29,7 @@ Assumptions/limitations:
 from __future__ import annotations
 
 import csv
+from dataclasses import replace
 import time
 from pathlib import Path
 import sys
@@ -365,7 +366,10 @@ def run() -> None:
             encryption_seconds = time.perf_counter() - start
 
             start = time.perf_counter()
-            decrypted_result = decrypt_rgb_image(encrypted_result.encrypted_image, params)
+            decrypted_result = decrypt_rgb_image(
+                encrypted_result.encrypted_image,
+                replace(params, image_identifier=encrypted_result.image_identifier),
+            )
             decryption_seconds = time.perf_counter() - start
 
             quality = recovery_quality(image, decrypted_result.recovered_image)

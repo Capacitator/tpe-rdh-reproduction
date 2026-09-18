@@ -1,5 +1,6 @@
 from pathlib import Path
 import sys
+from dataclasses import replace
 
 import numpy as np
 
@@ -41,7 +42,10 @@ def test_pipeline_encryption_and_decryption_run_successfully():
     payload = bits_from_bytes(b"pipeline")
 
     encrypted = encrypt_rgb_image(image, payload, params)
-    decrypted = decrypt_rgb_image(encrypted.encrypted_image, params)
+    decrypted = decrypt_rgb_image(
+        encrypted.encrypted_image,
+        replace(params, image_identifier=encrypted.image_identifier),
+    )
 
     assert encrypted.encrypted_image.shape == image.shape
     assert decrypted.recovered_image.shape == image.shape
@@ -53,9 +57,30 @@ def test_pipeline_recovers_exact_original_image_and_payload():
     payload = bits_from_bytes(b"exact")
 
     encrypted = encrypt_rgb_image(image, payload, params)
-    decrypted = decrypt_rgb_image(encrypted.encrypted_image, params)
+    decrypted = decrypt_rgb_image(
+        encrypted.encrypted_image,
+        replace(params, image_identifier=encrypted.image_identifier),
+    )
 
     np.testing.assert_array_equal(decrypted.recovered_image, image)
+    assert decrypted.payload_bits == payload
+
+
+def test_pipeline_distributes_payload_across_rgb_channels():
+    image = _small_rgb_image()
+    params = DemoPipelineParameters()
+    payload = bits_from_bytes(b"payload-distributed-across-rgb")
+
+    encrypted = encrypt_rgb_image(image, payload, params)
+    decrypted = decrypt_rgb_image(
+        encrypted.encrypted_image,
+        replace(params, image_identifier=encrypted.image_identifier),
+    )
+
+    channel_lengths = [info.payload_length for info in encrypted.rdh_infos]
+    assert sum(channel_lengths) == len(payload)
+    assert min(channel_lengths) > 0
+    assert max(channel_lengths) - min(channel_lengths) <= 1
     assert decrypted.payload_bits == payload
 
 
@@ -86,7 +111,10 @@ def test_pipeline_preserves_rgb_dimensions_and_dtype():
     params = DemoPipelineParameters()
 
     encrypted = encrypt_rgb_image(image, [], params)
-    decrypted = decrypt_rgb_image(encrypted.encrypted_image, params)
+    decrypted = decrypt_rgb_image(
+        encrypted.encrypted_image,
+        replace(params, image_identifier=encrypted.image_identifier),
+    )
 
     assert encrypted.encrypted_image.shape == image.shape
     assert encrypted.encrypted_image.dtype == image.dtype
@@ -103,11 +131,28 @@ def test_decryption_with_wrong_parameter_does_not_recover_original():
     encrypted = encrypt_rgb_image(image, payload, encrypt_params)
 
     try:
-        decrypted = decrypt_rgb_image(encrypted.encrypted_image, wrong_params)
+        decrypted = decrypt_rgb_image(
+            encrypted.encrypted_image,
+            replace(wrong_params, image_identifier=encrypted.image_identifier),
+        )
     except ValueError:
         return
 
     assert not np.array_equal(decrypted.recovered_image, image)
+
+
+def test_decryption_requires_stored_image_identifier():
+    image = _small_rgb_image()
+    params = DemoPipelineParameters()
+    encrypted = encrypt_rgb_image(image, [], params)
+
+    try:
+        decrypt_rgb_image(encrypted.encrypted_image, params)
+    except ValueError as error:
+        assert "image_identifier is required" in str(error)
+        return
+
+    raise AssertionError("decryption should require the stored image identifier")
 
 
 def test_same_key_and_same_identifier_are_deterministic():
@@ -121,6 +166,36 @@ def test_same_key_and_same_identifier_are_deterministic():
     np.testing.assert_array_equal(first.upsilon_p, second.upsilon_p)
     np.testing.assert_array_equal(first.upsilon_s, second.upsilon_s)
     np.testing.assert_array_equal(first.encrypted_image, second.encrypted_image)
+
+
+def test_same_key_and_default_identifier_derive_different_matrices_for_different_images():
+    first_image = _small_rgb_image()
+    second_image = _small_rgb_image()
+    second_image[8, 8] = [33, 44, 55]
+    payload = bits_from_bytes(b"image-derived")
+    params = DemoPipelineParameters()
+
+    first = encrypt_rgb_image(first_image, payload, params)
+    second = encrypt_rgb_image(second_image, payload, params)
+
+    assert first.image_identifier != second.image_identifier
+    assert not np.array_equal(first.upsilon_p, second.upsilon_p)
+    assert not np.array_equal(first.upsilon_s, second.upsilon_s)
+    assert not np.array_equal(first.encrypted_image, second.encrypted_image)
+
+    first_decrypted = decrypt_rgb_image(
+        first.encrypted_image,
+        replace(params, image_identifier=first.image_identifier),
+    )
+    second_decrypted = decrypt_rgb_image(
+        second.encrypted_image,
+        replace(params, image_identifier=second.image_identifier),
+    )
+
+    np.testing.assert_array_equal(first_decrypted.recovered_image, first_image)
+    np.testing.assert_array_equal(second_decrypted.recovered_image, second_image)
+    assert first_decrypted.payload_bits == payload
+    assert second_decrypted.payload_bits == payload
 
 
 def test_same_key_and_different_identifier_change_matrices_and_ciphertext():

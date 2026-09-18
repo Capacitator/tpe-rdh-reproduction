@@ -27,7 +27,7 @@ The current code does not expose two separately named encryption APIs called "Mo
 In this repository, "dual-mode" means:
 
 - preview use: inspect the final encrypted image as a coarse thumbnail of the RDH-marked image;
-- authorized recovery use: run the inverse pipeline with the same key, image identifier, and parameters to recover the payload and original image exactly.
+- authorized recovery use: run the inverse pipeline with the same key, stored image identifier, and parameters to recover the payload and original image exactly.
 
 It does not mean that the code implements two separately selectable paper-defined encryption modes.
 
@@ -122,7 +122,7 @@ python -m pytest tests
 Verified result in the current workspace:
 
 ```text
-72 passed
+75 passed
 ```
 
 ## Generate Submission Results
@@ -171,7 +171,8 @@ correlation_original_diagonal: 0.9915082354583871
 correlation_encrypted_diagonal: 0.4045763453988114
 rdh_channel0_peak: 92
 rdh_channel0_zero: 91
-rdh_channel0_payload_bits: 248
+rdh_payload_bits_by_channel: (83, 83, 82)
+rdh_total_payload_bits: 248
 rdh_channel0_embedded_bits_including_overhead: 328
 marked_to_encrypted_block_sums_preserved: True
 thumbnail_max_abs_difference_marked_vs_encrypted: 0
@@ -237,7 +238,7 @@ output/section6/
 
 ### Chaotic System
 
-`src/chaos.py` implements the Cubic map, Sinusoidal map, and coupled 2D-CSM map. `generate_upsilon_matrices` produces key-dependent and image-dependent `Upsilon_P` and `Upsilon_S` matrices for a given image size. The implementation accepts a 256-bit key and an image identifier `T`, derives `x0`, `y0`, `r1`, `r2`, `kappa_1`, `T_tau`, and `kappa_2`, and uses the two-stage Section 5.1 iteration procedure.
+`src/chaos.py` implements the Cubic map, Sinusoidal map, and coupled 2D-CSM map. `generate_upsilon_matrices` produces key-dependent and image-dependent `Upsilon_P` and `Upsilon_S` matrices for a given image size. The implementation accepts a 256-bit key and an image identifier `T`, derives `x0`, `y0`, `r1`, `r2`, `kappa_1`, `T_tau`, and `kappa_2`, and uses the two-stage Section 5.1 iteration procedure. The pipeline derives `T` from plaintext image bytes by default during encryption and returns it in `EncryptionResult.image_identifier` so decryption can reconstruct the same `kappa_2`.
 
 ### Permutation
 
@@ -275,7 +276,7 @@ RDH itself can change block sums before substitution. Therefore exact original-v
 - `vartheta=10000.0` is inferred, not explicitly specified in the accessible text.
 - `Upsilon_P` and `Upsilon_S` are generated from the x/y outputs of one 2D-CSM run.
 - Sorting direction, tie handling, flattening order, and pairing order are implementation decisions documented in the code.
-- RGB payload data is embedded in channel 0; channels 1 and 2 receive empty RDH payloads so their metadata remains recoverable.
+- RGB payload data is split into contiguous chunks and embedded across channels 0, 1, and 2, then concatenated during extraction.
 
 ## Reproducibility Checklist
 
@@ -290,7 +291,7 @@ python experiments/final_demo.py
 Expected core checks:
 
 ```text
-tests: 72 passed
+tests: 75 passed
 exact_recovery: True
 payload_recovered: True
 max_abs_error: 0

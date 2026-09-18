@@ -4,6 +4,8 @@ This file records the tests used to check the Section 5 implementation. The main
 
 ## 5.1 Chaotic Matrices
 
+- Key-reuse requirement: same secret key with different image identifiers must still produce different chaotic sequences and ciphertext.
+- Default pipeline behavior: when no explicit `T` is supplied for encryption, derive it from the plaintext image bytes and require the stored value during decryption.
 - Determinism: same parameters produce identical `Upsilon_P` and `Upsilon_S`.
 - Shape: output matrices are exactly `M x N`.
 - Length/discard accounting: retained sequences contain exactly `M*N` values after derived `kappa_1 + kappa_2` values are discarded.
@@ -11,7 +13,7 @@ This file records the tests used to check the Section 5 implementation. The main
 - Key sensitivity: a one-bit key change changes `Upsilon_P`, `Upsilon_S`, and the integrated ciphertext.
 - No hidden randomness: function output depends only on explicit inputs.
 
-Covered for the documented project key/T convention. The authors' exact key conversion, `T -> T_tau`, and `kappa_2` conversion remain unknown if they differ from this convention.
+Covered for the documented project key/T convention, including the paper's required same-key/different-image diversification behavior. The authors' exact serialization and numeric conversion choices remain unknown if they differ from this convention.
 
 ## 5.2 Permutation Encryption
 
@@ -35,7 +37,7 @@ Implemented with row-major flattening, stable ascending sort, and a documented m
 - Minimum-point overhead: if no zero bin exists, affected pixels are restored exactly after extraction.
 - RGB/channel policy: once decided, test payload split/recovery across channels.
 
-Covered with an explicit metadata header, first-16-pixel exclusion, channel-0 payload policy, and symmetric `P > Z` handling. These choices make the project executable while keeping the missing paper format details documented.
+Covered with an explicit metadata header, first-16-pixel exclusion, RGB channel payload splitting, and symmetric `P > Z` handling. These choices make the project executable while keeping the missing paper format details documented.
 
 ## 5.4 Substitution Encryption
 

@@ -35,27 +35,27 @@ Current reproduction/demo parameters:
 
 ```text
 key = 256-bit demo key in DemoPipelineParameters
-image_identifier = demo-image-identifier
+image_identifier = SHA-256-derived from plaintext image bytes by default
 vartheta = 10000.0
 block sizes used in experiments = 8, 16, 32, 64
 default integration block size = 4 for small unit tests
 final demo block size = 16
 ```
 
-The Section 5.1 key/T convention is implemented in `src/chaos.py`. A 256-bit key is split into four 64-bit fields for `x0`, `y0`, `r1`, and `r2`; `kappa_1` is derived from `SHA-256(key || b"kappa_1")`; image identifier `T` is hashed into `T_tau`; `kappa_2` is derived from the first-stage chaotic output; and matrix generation uses the two-stage iteration described in Section 5.1.
+The Section 5.1 key/T convention is implemented in `src/chaos.py`. The paper requires key reuse across images to remain diversified: the same secret key with different input images must produce different chaotic sequences. The implementation follows the report's mechanism for that behavior: a 256-bit key is split into four 64-bit fields for `x0`, `y0`, `r1`, and `r2`; `kappa_1` is derived from `SHA-256(key || b"kappa_1")`; image identifier `T` is hashed into `T_tau`; `kappa_2` is derived from the first-stage chaotic output; and matrix generation uses the two-stage iteration described in Section 5.1. The pipeline derives `T` from plaintext image bytes by default during encryption and returns the resolved identifier so it can be stored with the ciphertext for decryption.
 
 `vartheta=10000.0` is used because the paper's Fig. 4 examples appear to map values such as `0.7492 -> 7492`, which is consistent with multiplying by `10000`. This is recorded as an inference, not an explicit textual parameter.
 
 ## Important Assumptions
 
-- The paper does not specify key-to-chaos conversion, so the project uses the documented SHA-256/fixed-field convention in `src/chaos.py`.
-- The paper does not define the exact `T -> T_tau -> kappa_2` conversion, so the project uses the documented bounded SHA-256 convention in `src/chaos.py`.
+- The paper requires key-reuse diversification across images; the project implements it with the documented SHA-256/fixed-field convention in `src/chaos.py`.
+- The paper specifies the `T -> T_tau -> kappa_2` role but not exact conversion bounds/serialization, so the project uses the documented bounded SHA-256 convention in `src/chaos.py`.
 - `Upsilon_P` and `Upsilon_S` are generated from the x/y sequences of one 2D-CSM run. The paper does not fully define the independence mechanism.
 - Permutation sorts each flattened `Upsilon_P` block in stable ascending order and applies that index order to the flattened image block.
 - Substitution pairs pixels and chaotic values in row-major flattened order.
 - RDH metadata uses an explicit binary header because the paper does not define a parseable overhead/payload format.
 - RDH excludes the first 16 top-row pixels from shifting/embedding because those pixels store P and Z in their LSBs.
-- RGB RDH embeds the real payload in channel 0 only; channels 1 and 2 embed empty payloads so their metadata remains reversible.
+- RGB RDH splits the real payload into contiguous chunks across channels 0, 1, and 2, and decryption concatenates the extracted streams in channel order.
 
 ## Unresolved Paper Ambiguities
 

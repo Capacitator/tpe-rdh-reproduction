@@ -15,4 +15,4 @@ Implementation assumptions:
 - Paper ambiguity / implementation decision: substitution pairs pixels and Upsilon_S values in row-major flattened order.
 - Paper ambiguity / implementation decision: RDH uses an explicit metadata header because the paper does not define payload/overhead serialization.
 - Paper ambiguity / implementation decision: first 16 top-row pixels are excluded from RDH histogram shifting and embedding.
-- Paper ambiguity / implementation decision: RGB payload is embedded in channel 0 only; channels 1 and 2 receive empty RDH payloads.
+- Paper ambiguity / implementation decision: RGB payload is split into contiguous chunks and embedded across channels 0, 1, and 2.

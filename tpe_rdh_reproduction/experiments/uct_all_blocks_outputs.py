@@ -8,6 +8,7 @@ whether each run is exactly reversible.
 from __future__ import annotations
 
 import csv
+from dataclasses import replace
 from pathlib import Path
 import sys
 
@@ -67,7 +68,10 @@ def main() -> None:
             params = DemoPipelineParameters(block_size=block_size)
 
             encrypted = encrypt_rgb_image(image, PAYLOAD_BITS, params)
-            decrypted = decrypt_rgb_image(encrypted.encrypted_image, params)
+            decrypted = decrypt_rgb_image(
+                encrypted.encrypted_image,
+                replace(params, image_identifier=encrypted.image_identifier),
+            )
 
             max_recovery_error = int(
                 np.abs(image.astype(np.int16) - decrypted.recovered_image.astype(np.int16)).max()
