@@ -94,6 +94,8 @@ def make_key_reuse_images() -> tuple[np.ndarray, np.ndarray]:
 def main() -> None:
     """Run the current end-to-end implementation and save final demo artifacts."""
 
+    generation_revision = source_revision()
+    generation_tree_state = source_tree_state()
     output_dir = PROJECT_ROOT / "output" / "final_demo"
     output_dir.mkdir(parents=True, exist_ok=True)
 
@@ -166,8 +168,8 @@ def main() -> None:
     report = f"""Final demonstration report
 
 Image used: skimage.data.coffee resized to 512x512 RGB
-Source base revision at generation: {source_revision()}
-Source tree state at generation: {source_tree_state()}
+Source base revision at generation: {generation_revision}
+Source tree state at generation: {generation_tree_state}
 Exact recovery: {'yes' if exact_recovery else 'no'}
 Max recovery error: {max_recovery_error}
 Payload recovered: {'yes' if payload_recovered else 'no'}
@@ -202,13 +204,14 @@ One-bit key sensitivity
 Upsilon_P changed: {'yes' if not np.array_equal(first.upsilon_p, key_flipped.upsilon_p) else 'no'}
 Upsilon_S changed: {'yes' if not np.array_equal(first.upsilon_s, key_flipped.upsilon_s) else 'no'}
 Ciphertext changed: {'yes' if not np.array_equal(first.encrypted_image, key_flipped.encrypted_image) else 'no'}
-Ciphertext NPCR: {key_flip_npcr:.6f}%
-Ciphertext UACI: {key_flip_uaci:.6f}%
+One-bit-key ciphertext NPCR: {key_flip_npcr:.6f}%
+One-bit-key ciphertext UACI: {key_flip_uaci:.6f}%
 
 Implementation assumptions:
 - Implementation decision: the 256-bit key is converted to x0, y0, r1, r2, and kappa_1 by the documented convention in src/chaos.py.
 - Implementation decision: image identifier T is converted to T_tau, then the complete T, key, and stage-1 state are bound into kappa_2 by the documented two-stage Section 5.1 procedure.
 - Image identifier convention: SHA-256 hashes the domain tag tpe-rdh:image-id:v1, RGB channel-order tag, uint8 dtype name, three dimensions encoded as fixed-width integers, and C-contiguous row-major plaintext pixel bytes. No compressed or saved-file bytes are hashed.
+- Collision scope: the full identifier is cryptographically bound into kappa_2; its bounded iteration count is an implementation/runtime choice. This is collision-resistant rather than mathematically injective over every possible image.
 - Paper ambiguity / implementation decision: vartheta=10000.0 is inferred from Fig. 4 examples, not explicit text.
 - Paper ambiguity / implementation decision: permutation uses row-major flattening and stable ascending sort of Upsilon_P blocks.
 - Paper ambiguity / implementation decision: substitution pairs pixels and Upsilon_S values in row-major flattened order.

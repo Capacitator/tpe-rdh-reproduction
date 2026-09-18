@@ -93,7 +93,7 @@ tpe_rdh_reproduction/
 
 From inside `tpe_rdh_reproduction/`:
 
-The checked-in dependency pins were verified with Python 3.13.9. The checked-in submission metrics were regenerated from commit `c20053a4baa24a43efd50052a5cf577def24c0b7`.
+The checked-in dependency pins were verified with Python 3.13.9. The exact source commit and initial working-tree state used for checked-in submission metrics are recorded in `results/metrics.txt`.
 
 Windows:
 
@@ -122,7 +122,7 @@ python -m pytest tests
 Verified result in the current workspace:
 
 ```text
-75 passed
+All repository tests pass.
 ```
 
 ## Generate Submission Results
@@ -275,7 +275,7 @@ RDH itself can change block sums before substitution. Therefore exact original-v
 - The 256-bit key is split into four 64-bit fields to derive `x0`, `y0`, `r1`, and `r2`.
 - `kappa_1` is derived from `SHA-256(key || b"kappa_1")` in the range `128..1151`.
 - Image identifier `T` is converted to `T_tau` with `SHA-256(T)` in the range `1..1024`.
-- `kappa_2` is derived from the first-stage chaotic output in the range `1..1024`.
+- `kappa_2` is derived in the range `1..1024` from a domain-separated SHA-256 input containing the complete key, complete image identifier, and first-stage chaotic state. Binding the full identifier prevents `T_tau` collisions from automatically producing identical matrices. The bounded output is a runtime choice: the construction is collision-resistant, not mathematically injective over all possible images.
 - `vartheta=10000.0` is inferred, not explicitly specified in the accessible text.
 - `Upsilon_P` and `Upsilon_S` are generated from the x/y outputs of one 2D-CSM run.
 - Sorting direction, tie handling, flattening order, and pairing order are implementation decisions documented in the code.
@@ -294,7 +294,7 @@ python experiments/final_demo.py
 Expected core checks:
 
 ```text
-tests: 75 passed
+tests: all repository tests pass
 exact_recovery: True
 payload_recovered: True
 max_abs_error: 0

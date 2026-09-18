@@ -54,7 +54,7 @@ Implemented metrics and checks:
 Unit/integration tests:
 
 ```text
-75 passed
+All repository tests pass.
 ```
 
 UCT all-block validation:

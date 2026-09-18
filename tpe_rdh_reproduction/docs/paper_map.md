@@ -143,7 +143,7 @@ Paper detail not fully specified: The unique image identifier `T` is introduced,
 
 Paper detail not fully specified: `T` is converted to a positive integer `T_tau`, but the conversion method is not specified. This project derives `T_tau` from `SHA-256(T)`.
 
-Paper detail not fully specified: The output after `kappa_1 + T_tau` chaotic iterations is converted to integer `kappa_2`, but the exact conversion, scaling, modulo, and whether `x`, `y`, or both are used is not specified. This project derives `kappa_2` from the first-stage chaotic state.
+Paper detail not fully specified: The output after `kappa_1 + T_tau` chaotic iterations is converted to integer `kappa_2`, but the exact conversion, scaling, modulo, and whether `x`, `y`, or both are used is not specified. This project derives bounded `kappa_2` from a domain-separated SHA-256 input containing the complete key, complete image identifier, and both values of the first-stage chaotic state. This avoids deliberately collapsing identifier information at `T_tau`; it is collision-resistant, not mathematically injective over all images.
 
 Paper detail not fully specified: The paper says two independent chaotic matrices are generated, but it does not fully specify whether `Upsilon_P` and `Upsilon_S` come directly from the `x` and `y` sequences, from separate runs, or from another split of the generated sequence.
 

@@ -100,7 +100,7 @@ Paper detail not fully specified
 
 - Why it matters: these values are the paper's mechanism for preserving key-reuse security across images while keeping decryption reproducible.
 - What the paper explicitly says: unique image identifier `T` is converted to positive integer `T_tau`; after `kappa_1 + T_tau` iterations, output is converted to integer `kappa_2`.
-- Project note: the code hashes image identifier `T` into `T_tau` in the range `1..1024`, derives `kappa_2` from the first-stage chaotic output in the range `1..1024`, and then uses the Section 5.1 two-stage iteration procedure. The pipeline derives `T` from plaintext image bytes when no explicit identifier is supplied and requires the stored identifier during decryption.
+- Project note: the code hashes image identifier `T` into `T_tau` in the range `1..1024`, then derives `kappa_2` in the range `1..1024` from a domain-separated SHA-256 input binding the complete key, complete identifier, and first-stage chaotic state. This prevents a `T_tau` collision from automatically producing identical matrices, although the bounded output is collision-resistant rather than mathematically injective. The code then uses the Section 5.1 two-stage iteration procedure. The pipeline derives `T` from plaintext image bytes when no explicit identifier is supplied and requires the stored identifier during ndarray-only decryption.
 
 ### Independent Chaotic Matrices
 

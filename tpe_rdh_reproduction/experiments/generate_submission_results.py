@@ -158,6 +158,8 @@ def thumbnail_max_abs_difference(a: np.ndarray, b: np.ndarray) -> int:
 
 
 def run() -> None:
+    generation_commit = current_git_commit()
+    generation_tree_state = current_git_tree_state()
     output_dir = PROJECT_ROOT / "results"
     output_dir.mkdir(parents=True, exist_ok=True)
 
@@ -197,8 +199,8 @@ def run() -> None:
 
     metrics = {
         "generated_utc": datetime.now(timezone.utc).isoformat(timespec="seconds"),
-        "source_commit_at_generation": current_git_commit(),
-        "source_tree_state_at_generation": current_git_tree_state(),
+        "source_commit_at_generation": generation_commit,
+        "source_tree_state_at_generation": generation_tree_state,
         "python_version": platform.python_version(),
         "requirements": pinned_requirements(),
         "image": "deterministic synthetic RGB image",
