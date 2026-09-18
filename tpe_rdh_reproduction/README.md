@@ -147,7 +147,7 @@ results/
 Representative checked-in metrics from the deterministic synthetic submission image:
 
 ```text
-source_commit_at_generation: 480cd9395eb79259871342090f769cef3e28a639
+source_commit_at_generation: 4388ce030ecf6147a8c9b35365f45a093af3b970
 source_tree_state_at_generation: modified
 python_version: 3.13.9
 requirements: numpy==2.4.4, pillow==12.0.0, opencv-python==4.13.0.92, matplotlib==3.10.6, scikit-image==0.25.2, pytest==8.4.2
@@ -163,13 +163,13 @@ mse_original_recovered: 0.0
 psnr_original_recovered: inf
 ssim_original_recovered: 1.0
 entropy_original: 3.8154290297300544
-entropy_encrypted: 7.987395414184459
+entropy_encrypted: 7.987439406422887
 correlation_original_horizontal: 0.9954550416497832
-correlation_encrypted_horizontal: 0.11834873827533605
+correlation_encrypted_horizontal: 0.11722325720278601
 correlation_original_vertical: 0.9959389496754845
-correlation_encrypted_vertical: 0.4044632778114362
+correlation_encrypted_vertical: 0.4062607276319208
 correlation_original_diagonal: 0.9915082354583871
-correlation_encrypted_diagonal: 0.40623617469262746
+correlation_encrypted_diagonal: 0.40454563900899454
 rdh_channel0_peak: 92
 rdh_channel0_zero: 91
 rdh_payload_bits_by_channel: (83, 83, 82)
@@ -240,6 +240,8 @@ output/section6/
 ### Chaotic System
 
 `src/chaos.py` implements the Cubic map, Sinusoidal map, and coupled 2D-CSM map. `generate_upsilon_matrices` produces key-dependent and image-dependent `Upsilon_P` and `Upsilon_S` matrices for a given image size. The implementation accepts a 256-bit key and an image identifier `T`, derives `x0`, `y0`, `r1`, `r2`, `kappa_1`, `T_tau`, and `kappa_2`, and uses the two-stage Section 5.1 iteration procedure. The complete key and identifier are bound into `kappa_2`, so identifiers that collide at the bounded `T_tau` step do not automatically produce identical matrices. The pipeline derives `T` from plaintext image bytes by default during encryption and returns it in `EncryptionResult.image_identifier`; callers can pass the complete `EncryptionResult` directly to `decrypt_rgb_image`.
+
+The automatic image identifier is SHA-256 over a domain-separated canonical representation: `tpe-rdh:image-id:v1`, an RGB channel-order tag, the `uint8` dtype name, the three shape dimensions encoded as fixed-width integers, and the C-contiguous row-major plaintext pixel bytes. It hashes the in-memory image before encryption, not PNG/JPEG encoding or bytes obtained by saving and reloading the image.
 
 ### Permutation
 

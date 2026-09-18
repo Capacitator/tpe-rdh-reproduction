@@ -125,6 +125,19 @@ def main() -> None:
     )
     first_decrypted = decrypt_rgb_image(first, DemoPipelineParameters())
     second_decrypted = decrypt_rgb_image(second, DemoPipelineParameters())
+    key_flip_npcr = float(
+        np.mean(first.encrypted_image != key_flipped.encrypted_image) * 100.0
+    )
+    key_flip_uaci = float(
+        np.mean(
+            np.abs(
+                first.encrypted_image.astype(np.int16)
+                - key_flipped.encrypted_image.astype(np.int16)
+            )
+        )
+        / 255.0
+        * 100.0
+    )
 
     save_rgb(output_dir / "01_original.png", original)
     save_rgb(output_dir / "02_permutation_output.png", encrypted.permuted_image)
@@ -189,10 +202,13 @@ One-bit key sensitivity
 Upsilon_P changed: {'yes' if not np.array_equal(first.upsilon_p, key_flipped.upsilon_p) else 'no'}
 Upsilon_S changed: {'yes' if not np.array_equal(first.upsilon_s, key_flipped.upsilon_s) else 'no'}
 Ciphertext changed: {'yes' if not np.array_equal(first.encrypted_image, key_flipped.encrypted_image) else 'no'}
+Ciphertext NPCR: {key_flip_npcr:.6f}%
+Ciphertext UACI: {key_flip_uaci:.6f}%
 
 Implementation assumptions:
 - Implementation decision: the 256-bit key is converted to x0, y0, r1, r2, and kappa_1 by the documented convention in src/chaos.py.
 - Implementation decision: image identifier T is converted to T_tau, then the complete T, key, and stage-1 state are bound into kappa_2 by the documented two-stage Section 5.1 procedure.
+- Image identifier convention: SHA-256 hashes the domain tag tpe-rdh:image-id:v1, RGB channel-order tag, uint8 dtype name, three dimensions encoded as fixed-width integers, and C-contiguous row-major plaintext pixel bytes. No compressed or saved-file bytes are hashed.
 - Paper ambiguity / implementation decision: vartheta=10000.0 is inferred from Fig. 4 examples, not explicit text.
 - Paper ambiguity / implementation decision: permutation uses row-major flattening and stable ascending sort of Upsilon_P blocks.
 - Paper ambiguity / implementation decision: substitution pairs pixels and Upsilon_S values in row-major flattened order.

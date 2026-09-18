@@ -1,7 +1,7 @@
 Final demonstration report
 
 Image used: skimage.data.coffee resized to 512x512 RGB
-Source base revision at generation: 480cd9395eb79259871342090f769cef3e28a639
+Source base revision at generation: 4388ce030ecf6147a8c9b35365f45a093af3b970
 Source tree state at generation: modified
 Exact recovery: yes
 Max recovery error: 0
@@ -37,10 +37,13 @@ One-bit key sensitivity
 Upsilon_P changed: yes
 Upsilon_S changed: yes
 Ciphertext changed: yes
+Ciphertext NPCR: 99.121094%
+Ciphertext UACI: 27.021293%
 
 Implementation assumptions:
 - Implementation decision: the 256-bit key is converted to x0, y0, r1, r2, and kappa_1 by the documented convention in src/chaos.py.
 - Implementation decision: image identifier T is converted to T_tau, then the complete T, key, and stage-1 state are bound into kappa_2 by the documented two-stage Section 5.1 procedure.
+- Image identifier convention: SHA-256 hashes the domain tag tpe-rdh:image-id:v1, RGB channel-order tag, uint8 dtype name, three dimensions encoded as fixed-width integers, and C-contiguous row-major plaintext pixel bytes. No compressed or saved-file bytes are hashed.
 - Paper ambiguity / implementation decision: vartheta=10000.0 is inferred from Fig. 4 examples, not explicit text.
 - Paper ambiguity / implementation decision: permutation uses row-major flattening and stable ascending sort of Upsilon_P blocks.
 - Paper ambiguity / implementation decision: substitution pairs pixels and Upsilon_S values in row-major flattened order.

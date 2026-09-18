@@ -278,10 +278,22 @@ def _require_decryption_identifier(
 
 
 def _derive_identifier_from_image(image: np.ndarray) -> bytes:
+    """Hash a canonical in-memory RGB image representation.
+
+    RGB channel order, the uint8 dtype name, the three dimensions, and the
+    C-contiguous row-major pixel bytes are all authenticated explicitly. No
+    encoded or compressed image-file representation is involved.
+    """
+
+    contiguous = np.ascontiguousarray(image)
     digest = hashlib.sha256()
-    digest.update(str(image.shape).encode("ascii"))
-    digest.update(str(image.dtype).encode("ascii"))
-    digest.update(np.ascontiguousarray(image).tobytes())
+    digest.update(b"tpe-rdh:image-id:v1\x00")
+    digest.update(b"RGB\x00")
+    digest.update(contiguous.dtype.name.encode("ascii") + b"\x00")
+    digest.update(len(contiguous.shape).to_bytes(1, "big"))
+    for dimension in contiguous.shape:
+        digest.update(int(dimension).to_bytes(8, "big"))
+    digest.update(contiguous.tobytes(order="C"))
     return digest.digest()
 
 

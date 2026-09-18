@@ -13,6 +13,7 @@ from pipeline import (
     block_sums,
     decrypt_rgb_image,
     encrypt_rgb_image,
+    _derive_identifier_from_image,
 )
 from rdh import bits_from_bytes
 
@@ -178,6 +179,17 @@ def test_same_key_and_same_identifier_are_deterministic():
     np.testing.assert_array_equal(first.upsilon_p, second.upsilon_p)
     np.testing.assert_array_equal(first.upsilon_s, second.upsilon_s)
     np.testing.assert_array_equal(first.encrypted_image, second.encrypted_image)
+
+
+def test_automatic_identifier_uses_canonical_contiguous_pixel_bytes():
+    image = _small_rgb_image()
+    non_contiguous = np.asfortranarray(image)
+
+    assert image.flags.c_contiguous
+    assert not non_contiguous.flags.c_contiguous
+    assert _derive_identifier_from_image(image) == _derive_identifier_from_image(
+        non_contiguous
+    )
 
 
 def test_same_key_and_default_identifier_derive_different_matrices_for_different_images():
