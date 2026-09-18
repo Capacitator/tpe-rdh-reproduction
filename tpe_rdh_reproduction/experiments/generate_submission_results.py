@@ -7,7 +7,6 @@ existing encryption/decryption pipeline without changing the algorithm.
 
 from __future__ import annotations
 
-from dataclasses import replace
 from datetime import datetime, timezone
 import platform
 from pathlib import Path
@@ -40,6 +39,19 @@ def current_git_commit() -> str:
             text=True,
             stderr=subprocess.DEVNULL,
         ).strip()
+    except (OSError, subprocess.CalledProcessError):
+        return "unknown"
+
+
+def current_git_tree_state() -> str:
+    try:
+        status = subprocess.check_output(
+            ["git", "status", "--porcelain", "--untracked-files=no"],
+            cwd=PROJECT_ROOT,
+            text=True,
+            stderr=subprocess.DEVNULL,
+        )
+        return "modified" if status.strip() else "clean"
     except (OSError, subprocess.CalledProcessError):
         return "unknown"
 
@@ -158,10 +170,7 @@ def run() -> None:
     encryption_seconds = time.perf_counter() - start
 
     start = time.perf_counter()
-    decrypted_result = decrypt_rgb_image(
-        encrypted_result.encrypted_image,
-        replace(params, image_identifier=encrypted_result.image_identifier),
-    )
+    decrypted_result = decrypt_rgb_image(encrypted_result, params)
     decryption_seconds = time.perf_counter() - start
 
     encrypted = encrypted_result.encrypted_image
@@ -189,6 +198,7 @@ def run() -> None:
     metrics = {
         "generated_utc": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "source_commit_at_generation": current_git_commit(),
+        "source_tree_state_at_generation": current_git_tree_state(),
         "python_version": platform.python_version(),
         "requirements": pinned_requirements(),
         "image": "deterministic synthetic RGB image",

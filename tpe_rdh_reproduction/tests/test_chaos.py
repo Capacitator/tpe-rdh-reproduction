@@ -158,10 +158,27 @@ def test_key_conversion_outputs_valid_csm_parameters():
 
 def test_t_tau_and_kappa_2_are_positive_bounded_integers():
     t_tau = derive_t_tau(TEST_IDENTIFIER)
-    kappa_2 = derive_kappa_2(0.123, -0.456)
+    kappa_2 = derive_kappa_2(0.123, -0.456, TEST_KEY, TEST_IDENTIFIER)
 
     assert 1 <= t_tau <= 1024
     assert 1 <= kappa_2 <= 1024
+
+
+def test_identifiers_with_same_t_tau_still_produce_different_matrices():
+    first_identifier = b"ident-30"
+    second_identifier = b"ident-62"
+
+    assert derive_t_tau(first_identifier) == derive_t_tau(second_identifier)
+
+    first_p, first_s = generate_upsilon_matrices(
+        8, 8, TEST_KEY, first_identifier
+    )
+    second_p, second_s = generate_upsilon_matrices(
+        8, 8, TEST_KEY, second_identifier
+    )
+
+    assert not np.array_equal(first_p, second_p)
+    assert not np.array_equal(first_s, second_s)
 
 
 def test_same_key_different_identifier_changes_upsilon_matrices():

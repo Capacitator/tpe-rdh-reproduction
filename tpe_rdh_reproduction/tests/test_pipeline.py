@@ -66,6 +66,18 @@ def test_pipeline_recovers_exact_original_image_and_payload():
     assert decrypted.payload_bits == payload
 
 
+def test_decryption_accepts_encryption_result_and_uses_stored_identifier():
+    image = _small_rgb_image()
+    params = DemoPipelineParameters()
+    payload = bits_from_bytes(b"result-object")
+
+    encrypted = encrypt_rgb_image(image, payload, params)
+    decrypted = decrypt_rgb_image(encrypted, params)
+
+    np.testing.assert_array_equal(decrypted.recovered_image, image)
+    assert decrypted.payload_bits == payload
+
+
 def test_pipeline_distributes_payload_across_rgb_channels():
     image = _small_rgb_image()
     params = DemoPipelineParameters()

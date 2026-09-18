@@ -1,15 +1,46 @@
 Final demonstration report
 
 Image used: skimage.data.coffee resized to 512x512 RGB
+Source base revision at generation: 480cd9395eb79259871342090f769cef3e28a639
+Source tree state at generation: modified
 Exact recovery: yes
 Max recovery error: 0
 Payload recovered: yes
 Block size: 16
 vartheta: 10000.0
 
+Key-reuse validation
+
+Two different 32x32 RGB images were encrypted with the same 256-bit key and
+no manually supplied image identifier.
+
+Image-derived identifiers differed: yes
+Upsilon_P matrices differed: yes
+Upsilon_S matrices differed: yes
+Ciphertexts differed: yes
+Image A exact recovery: yes
+Image B exact recovery: yes
+Payload A recovered: yes
+Payload B recovered: yes
+
+Determinism validation
+
+The same image, key, payload, and parameters were encrypted twice.
+
+Derived identifiers identical: yes
+Upsilon_P identical: yes
+Upsilon_S identical: yes
+Ciphertexts byte-identical: yes
+
+One-bit key sensitivity
+
+Upsilon_P changed: yes
+Upsilon_S changed: yes
+Ciphertext changed: yes
+
 Implementation assumptions:
 - Implementation decision: the 256-bit key is converted to x0, y0, r1, r2, and kappa_1 by the documented convention in src/chaos.py.
-- Implementation decision: image identifier T is converted to T_tau, then kappa_2 is derived with the documented two-stage Section 5.1 procedure.
+- Implementation decision: image identifier T is converted to T_tau, then the complete T, key, and stage-1 state are bound into kappa_2 by the documented two-stage Section 5.1 procedure.
 - Paper ambiguity / implementation decision: vartheta=10000.0 is inferred from Fig. 4 examples, not explicit text.
 - Paper ambiguity / implementation decision: permutation uses row-major flattening and stable ascending sort of Upsilon_P blocks.
 - Paper ambiguity / implementation decision: substitution pairs pixels and Upsilon_S values in row-major flattened order.

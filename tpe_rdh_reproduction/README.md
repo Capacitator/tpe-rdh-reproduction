@@ -147,7 +147,8 @@ results/
 Representative checked-in metrics from the deterministic synthetic submission image:
 
 ```text
-source_commit_at_generation: c20053a4baa24a43efd50052a5cf577def24c0b7
+source_commit_at_generation: 480cd9395eb79259871342090f769cef3e28a639
+source_tree_state_at_generation: modified
 python_version: 3.13.9
 requirements: numpy==2.4.4, pillow==12.0.0, opencv-python==4.13.0.92, matplotlib==3.10.6, scikit-image==0.25.2, pytest==8.4.2
 image_shape: (512, 512, 3)
@@ -162,24 +163,24 @@ mse_original_recovered: 0.0
 psnr_original_recovered: inf
 ssim_original_recovered: 1.0
 entropy_original: 3.8154290297300544
-entropy_encrypted: 7.9875668803488225
+entropy_encrypted: 7.987395414184459
 correlation_original_horizontal: 0.9954550416497832
-correlation_encrypted_horizontal: 0.11724601008558908
+correlation_encrypted_horizontal: 0.11834873827533605
 correlation_original_vertical: 0.9959389496754845
-correlation_encrypted_vertical: 0.4058552002590935
+correlation_encrypted_vertical: 0.4044632778114362
 correlation_original_diagonal: 0.9915082354583871
-correlation_encrypted_diagonal: 0.4045763453988114
+correlation_encrypted_diagonal: 0.40623617469262746
 rdh_channel0_peak: 92
 rdh_channel0_zero: 91
 rdh_payload_bits_by_channel: (83, 83, 82)
 rdh_total_payload_bits: 248
-rdh_channel0_embedded_bits_including_overhead: 328
+rdh_channel0_embedded_bits_including_overhead: 163
 marked_to_encrypted_block_sums_preserved: True
 thumbnail_max_abs_difference_marked_vs_encrypted: 0
 thumbnail_max_abs_difference_original_vs_encrypted: 0
 ```
 
-Timing values are written to `results/metrics.txt` and will vary by machine. The `source_commit_at_generation` field records the clean checkout used to generate the artifact; after committing the regenerated file, the repository commit that contains it will necessarily have a newer hash.
+Timing values are written to `results/metrics.txt` and will vary by machine. The source fields record both the base commit and whether tracked files were modified when the artifact was generated; after committing a regenerated artifact, the repository commit that contains it will necessarily have a newer hash.
 
 ## Other Useful Runs
 
@@ -238,7 +239,7 @@ output/section6/
 
 ### Chaotic System
 
-`src/chaos.py` implements the Cubic map, Sinusoidal map, and coupled 2D-CSM map. `generate_upsilon_matrices` produces key-dependent and image-dependent `Upsilon_P` and `Upsilon_S` matrices for a given image size. The implementation accepts a 256-bit key and an image identifier `T`, derives `x0`, `y0`, `r1`, `r2`, `kappa_1`, `T_tau`, and `kappa_2`, and uses the two-stage Section 5.1 iteration procedure. The pipeline derives `T` from plaintext image bytes by default during encryption and returns it in `EncryptionResult.image_identifier` so decryption can reconstruct the same `kappa_2`.
+`src/chaos.py` implements the Cubic map, Sinusoidal map, and coupled 2D-CSM map. `generate_upsilon_matrices` produces key-dependent and image-dependent `Upsilon_P` and `Upsilon_S` matrices for a given image size. The implementation accepts a 256-bit key and an image identifier `T`, derives `x0`, `y0`, `r1`, `r2`, `kappa_1`, `T_tau`, and `kappa_2`, and uses the two-stage Section 5.1 iteration procedure. The complete key and identifier are bound into `kappa_2`, so identifiers that collide at the bounded `T_tau` step do not automatically produce identical matrices. The pipeline derives `T` from plaintext image bytes by default during encryption and returns it in `EncryptionResult.image_identifier`; callers can pass the complete `EncryptionResult` directly to `decrypt_rgb_image`.
 
 ### Permutation
 

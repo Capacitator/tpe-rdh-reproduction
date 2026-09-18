@@ -13,8 +13,8 @@ pipeline on one real 512x512 RGB image and saves each major stage:
 
 from __future__ import annotations
 
-from dataclasses import replace
 from pathlib import Path
+import subprocess
 import sys
 
 import matplotlib.pyplot as plt
@@ -50,6 +50,47 @@ def save_rgb(path: Path, image: np.ndarray) -> None:
     Image.fromarray(image, mode="RGB").save(path)
 
 
+def source_revision() -> str:
+    """Return the revision whose working tree was used for this report."""
+
+    try:
+        return subprocess.check_output(
+            ["git", "rev-parse", "HEAD"],
+            cwd=PROJECT_ROOT,
+            text=True,
+            stderr=subprocess.DEVNULL,
+        ).strip()
+    except (OSError, subprocess.CalledProcessError):
+        return "unknown"
+
+
+def source_tree_state() -> str:
+    """Describe whether generated evidence includes uncommitted source edits."""
+
+    try:
+        status = subprocess.check_output(
+            ["git", "status", "--porcelain", "--untracked-files=no"],
+            cwd=PROJECT_ROOT,
+            text=True,
+            stderr=subprocess.DEVNULL,
+        )
+        return "modified" if status.strip() else "clean"
+    except (OSError, subprocess.CalledProcessError):
+        return "unknown"
+
+
+def make_key_reuse_images() -> tuple[np.ndarray, np.ndarray]:
+    """Return two high-capacity images for fast key-reuse validation."""
+
+    first = np.zeros((32, 32, 3), dtype=np.uint8)
+    first[:, :, :] = [90, 120, 150]
+    for channel in range(3):
+        first[0, :16, channel] = np.arange(16, dtype=np.uint8) + channel
+    second = first.copy()
+    second[8, 8] = [33, 44, 55]
+    return first, second
+
+
 def main() -> None:
     """Run the current end-to-end implementation and save final demo artifacts."""
 
@@ -62,10 +103,7 @@ def main() -> None:
 
     original = load_demo_image()
     encrypted = encrypt_rgb_image(original, payload_bits, params)
-    decrypted = decrypt_rgb_image(
-        encrypted.encrypted_image,
-        replace(params, image_identifier=encrypted.image_identifier),
-    )
+    decrypted = decrypt_rgb_image(encrypted, params)
     extracted_payload = bytes_from_bits(decrypted.payload_bits)
 
     max_recovery_error = int(
@@ -73,6 +111,20 @@ def main() -> None:
     )
     exact_recovery = bool(np.array_equal(original, decrypted.recovered_image))
     payload_recovered = extracted_payload == payload
+
+    validation_payload = bits_from_bytes(b"key-reuse validation")
+    first_image, second_image = make_key_reuse_images()
+    first = encrypt_rgb_image(first_image, validation_payload, DemoPipelineParameters())
+    second = encrypt_rgb_image(second_image, validation_payload, DemoPipelineParameters())
+    repeated = encrypt_rgb_image(first_image, validation_payload, DemoPipelineParameters())
+    flipped_key = bytes([params.key[0] ^ 0x01]) + params.key[1:]
+    key_flipped = encrypt_rgb_image(
+        first_image,
+        validation_payload,
+        DemoPipelineParameters(key=flipped_key),
+    )
+    first_decrypted = decrypt_rgb_image(first, DemoPipelineParameters())
+    second_decrypted = decrypt_rgb_image(second, DemoPipelineParameters())
 
     save_rgb(output_dir / "01_original.png", original)
     save_rgb(output_dir / "02_permutation_output.png", encrypted.permuted_image)
@@ -101,15 +153,46 @@ def main() -> None:
     report = f"""Final demonstration report
 
 Image used: skimage.data.coffee resized to 512x512 RGB
+Source base revision at generation: {source_revision()}
+Source tree state at generation: {source_tree_state()}
 Exact recovery: {'yes' if exact_recovery else 'no'}
 Max recovery error: {max_recovery_error}
 Payload recovered: {'yes' if payload_recovered else 'no'}
 Block size: {params.block_size}
 vartheta: {params.vartheta}
 
+Key-reuse validation
+
+Two different 32x32 RGB images were encrypted with the same 256-bit key and
+no manually supplied image identifier.
+
+Image-derived identifiers differed: {'yes' if first.image_identifier != second.image_identifier else 'no'}
+Upsilon_P matrices differed: {'yes' if not np.array_equal(first.upsilon_p, second.upsilon_p) else 'no'}
+Upsilon_S matrices differed: {'yes' if not np.array_equal(first.upsilon_s, second.upsilon_s) else 'no'}
+Ciphertexts differed: {'yes' if not np.array_equal(first.encrypted_image, second.encrypted_image) else 'no'}
+Image A exact recovery: {'yes' if np.array_equal(first_decrypted.recovered_image, first_image) else 'no'}
+Image B exact recovery: {'yes' if np.array_equal(second_decrypted.recovered_image, second_image) else 'no'}
+Payload A recovered: {'yes' if first_decrypted.payload_bits == validation_payload else 'no'}
+Payload B recovered: {'yes' if second_decrypted.payload_bits == validation_payload else 'no'}
+
+Determinism validation
+
+The same image, key, payload, and parameters were encrypted twice.
+
+Derived identifiers identical: {'yes' if first.image_identifier == repeated.image_identifier else 'no'}
+Upsilon_P identical: {'yes' if np.array_equal(first.upsilon_p, repeated.upsilon_p) else 'no'}
+Upsilon_S identical: {'yes' if np.array_equal(first.upsilon_s, repeated.upsilon_s) else 'no'}
+Ciphertexts byte-identical: {'yes' if np.array_equal(first.encrypted_image, repeated.encrypted_image) else 'no'}
+
+One-bit key sensitivity
+
+Upsilon_P changed: {'yes' if not np.array_equal(first.upsilon_p, key_flipped.upsilon_p) else 'no'}
+Upsilon_S changed: {'yes' if not np.array_equal(first.upsilon_s, key_flipped.upsilon_s) else 'no'}
+Ciphertext changed: {'yes' if not np.array_equal(first.encrypted_image, key_flipped.encrypted_image) else 'no'}
+
 Implementation assumptions:
 - Implementation decision: the 256-bit key is converted to x0, y0, r1, r2, and kappa_1 by the documented convention in src/chaos.py.
-- Implementation decision: image identifier T is converted to T_tau, then kappa_2 is derived with the documented two-stage Section 5.1 procedure.
+- Implementation decision: image identifier T is converted to T_tau, then the complete T, key, and stage-1 state are bound into kappa_2 by the documented two-stage Section 5.1 procedure.
 - Paper ambiguity / implementation decision: vartheta=10000.0 is inferred from Fig. 4 examples, not explicit text.
 - Paper ambiguity / implementation decision: permutation uses row-major flattening and stable ascending sort of Upsilon_P blocks.
 - Paper ambiguity / implementation decision: substitution pairs pixels and Upsilon_S values in row-major flattened order.

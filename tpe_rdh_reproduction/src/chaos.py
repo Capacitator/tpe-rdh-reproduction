@@ -33,10 +33,10 @@ PAPER_UNSPECIFIED_SECTION5_PARAMETERS = {
         "the third and fourth fields define r1 and r2 in [1, 100], and "
         "kappa_1 is derived from SHA-256(key || b'kappa_1') as 128..1151. "
         "Image identifier T is hashed as SHA-256(T) and mapped to positive "
-        "T_tau in 1..1024. kappa_2 is derived from the stage-1 chaotic "
-        "output as 1..1024. These ranges keep experiments reproducible and "
-        "bounded while preserving the paper's required key-reuse behavior: "
-        "same key plus different image identifiers yields different matrices."
+        "T_tau in 1..1024. kappa_2 is derived from the key, complete image "
+        "identifier, and stage-1 chaotic output as 1..1024. These ranges "
+        "keep experiments reproducible and bounded while ensuring T_tau "
+        "collisions do not discard the remaining identifier information."
     ),
     "matrix_independence": (
         "PAPER AMBIGUITY: Section 5.1 says two independent chaotic matrices "
@@ -201,7 +201,8 @@ def generate_upsilon_matrices(
     4. derive `kappa_1` from `SHA-256(key || b"kappa_1")`;
     5. derive positive `T_tau` from `SHA-256(image_identifier)`;
     6. run Eq. (4) for `kappa_1 + T_tau` iterations;
-    7. derive positive `kappa_2` from the resulting chaotic state;
+    7. derive positive `kappa_2` from the key, complete image identifier, and
+       resulting chaotic state;
     8. restart from `(x0, y0)`, run `kappa_1 + kappa_2 + M*N`
        iterations, discard `kappa_1 + kappa_2`, and reshape the remainder.
 
@@ -239,7 +240,12 @@ def generate_upsilon_matrices(
         r2=r2,
         iterations=stage1_iterations,
     )
-    kappa_2 = derive_kappa_2(stage1_x[-1], stage1_y[-1])
+    kappa_2 = derive_kappa_2(
+        stage1_x[-1],
+        stage1_y[-1],
+        key=key_bytes,
+        image_identifier=t_bytes,
+    )
     discard_count = kappa_1 + kappa_2
 
     # Section 5.1 restarts from the key-derived initial state, discards the
@@ -294,12 +300,31 @@ def derive_t_tau(image_identifier: IdentifierLike) -> int:
     return 1 + int.from_bytes(digest[:4], "big") % T_TAU_SPAN
 
 
-def derive_kappa_2(x_value: float, y_value: float) -> int:
-    """Return a positive bounded `kappa_2` from stage-1 chaotic output."""
+def derive_kappa_2(
+    x_value: float,
+    y_value: float,
+    key: KeyLike,
+    image_identifier: IdentifierLike,
+) -> int:
+    """Return a positive bounded, fully context-bound `kappa_2`.
 
-    material = f"{x_value:.17g},{y_value:.17g}".encode("ascii")
+    Including the complete identifier prevents distinct identifiers that map
+    to the same bounded ``T_tau`` from automatically producing the same final
+    matrices. The key and domain tag keep this derivation separate from the
+    other SHA-256-based schedule steps.
+    """
+
+    key_bytes = _key_to_32_bytes(key)
+    identifier_bytes = _identifier_to_bytes(image_identifier)
+    material = (
+        b"tpe-rdh:kappa_2:v1\x00"
+        + key_bytes
+        + len(identifier_bytes).to_bytes(8, "big")
+        + identifier_bytes
+        + f"{x_value:.17g},{y_value:.17g}".encode("ascii")
+    )
     digest = hashlib.sha256(material).digest()
-    return 1 + int.from_bytes(digest[:4], "big") % KAPPA_2_SPAN
+    return 1 + int.from_bytes(digest[:8], "big") % KAPPA_2_SPAN
 
 
 def _key_to_32_bytes(key: KeyLike) -> bytes:

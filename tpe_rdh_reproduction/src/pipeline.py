@@ -158,13 +158,16 @@ def encrypt_rgb_image(
 
 
 def decrypt_rgb_image(
-    encrypted_image: np.ndarray,
+    encrypted: Union[EncryptionResult, np.ndarray],
     params: DemoPipelineParameters,
 ) -> DecryptionResult:
     """Reverse the integrated pipeline using Section 5.5 order.
 
     Args:
-        encrypted_image: Output image from `encrypt_rgb_image`.
+        encrypted: Either the complete output from `encrypt_rgb_image`, or its
+            encrypted image array. When an `EncryptionResult` is supplied,
+            its stored image identifier is used automatically. Array callers
+            must provide the stored identifier in `params`.
         params: Same explicit parameters used during encryption.
 
     Returns:
@@ -172,9 +175,15 @@ def decrypt_rgb_image(
         payload bits concatenated from channels 0, 1, and 2.
     """
 
+    if isinstance(encrypted, EncryptionResult):
+        encrypted_image = encrypted.encrypted_image
+        image_identifier = encrypted.image_identifier
+    else:
+        encrypted_image = encrypted
+        image_identifier = _require_decryption_identifier(params.image_identifier)
+
     _validate_rgb_image(encrypted_image)
     height, width = encrypted_image.shape[:2]
-    image_identifier = _require_decryption_identifier(params.image_identifier)
     upsilon_p, upsilon_s = generate_upsilon_matrices(
         height=height,
         width=width,
@@ -261,8 +270,9 @@ def _require_decryption_identifier(
 ) -> IdentifierLike:
     if image_identifier is None:
         raise ValueError(
-            "image_identifier is required for decryption; use the "
-            "EncryptionResult.image_identifier value stored with the ciphertext"
+            "image_identifier is required when decrypting an image array; "
+            "pass the EncryptionResult directly or provide its stored "
+            "image_identifier through DemoPipelineParameters"
         )
     return image_identifier
 
