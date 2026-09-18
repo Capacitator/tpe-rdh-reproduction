@@ -30,6 +30,8 @@ from __future__ import annotations
 
 import csv
 from dataclasses import replace
+import platform
+import subprocess
 import time
 from pathlib import Path
 import sys
@@ -52,6 +54,35 @@ BLOCK_SIZES = [8, 16, 32, 64]
 IMAGE_NAMES = ["coffee", "chelsea", "rocket", "hubble_deep_field"]
 PAIR_COUNT = 5000
 PAYLOAD_BITS = bits_from_bytes(b"section6")
+
+
+def source_revision() -> str:
+    """Return the revision whose working tree generated these metrics."""
+
+    try:
+        return subprocess.check_output(
+            ["git", "rev-parse", "HEAD"],
+            cwd=PROJECT_ROOT,
+            text=True,
+            stderr=subprocess.DEVNULL,
+        ).strip()
+    except (OSError, subprocess.CalledProcessError):
+        return "unknown"
+
+
+def source_tree_state() -> str:
+    """Report whether tracked files were modified at generation time."""
+
+    try:
+        status = subprocess.check_output(
+            ["git", "status", "--porcelain", "--untracked-files=no"],
+            cwd=PROJECT_ROOT,
+            text=True,
+            stderr=subprocess.DEVNULL,
+        )
+        return "modified" if status.strip() else "clean"
+    except (OSError, subprocess.CalledProcessError):
+        return "unknown"
 
 
 def load_real_rgb_images() -> Dict[str, np.ndarray]:
@@ -345,6 +376,8 @@ def plot_capacity(rows: List[Dict[str, object]], output_path: Path) -> None:
 
 
 def run() -> None:
+    generation_revision = source_revision()
+    generation_tree_state = source_tree_state()
     output_dir = PROJECT_ROOT / "output" / "section6"
     output_dir.mkdir(parents=True, exist_ok=True)
 
@@ -475,6 +508,23 @@ def run() -> None:
         "Decryption + Recovery Time",
         output_dir / "plot_decryption_time.png",
     )
+
+    provenance = "\n".join(
+        [
+            "Section 6 validation provenance",
+            "",
+            f"source_commit_at_generation: {generation_revision}",
+            f"source_tree_state_at_generation: {generation_tree_state}",
+            f"python_version: {platform.python_version()}",
+            f"block_sizes: {BLOCK_SIZES}",
+            f"images: {IMAGE_NAMES}",
+            f"payload_bits: {len(PAYLOAD_BITS)}",
+            "correlation_sampling: deterministic NumPy default_rng, 5000 pairs per direction",
+            "differential_setup: top-left pixel of each block changed by +/-1 in R channel",
+            "",
+        ]
+    )
+    (output_dir / "provenance.txt").write_text(provenance, encoding="utf-8")
 
     print(f"saved_dir={output_dir}")
 

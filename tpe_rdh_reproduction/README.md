@@ -235,6 +235,9 @@ This writes CSV files and plots under:
 output/section6/
 ```
 
+The generated `output/section6/provenance.txt` records the exact source revision
+and deterministic experiment settings for those validation artifacts.
+
 ## Algorithm Notes
 
 ### Chaotic System

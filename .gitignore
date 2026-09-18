@@ -31,3 +31,6 @@ uct_colour_listing.html
 build/
 dist/
 *.egg-info/
+
+# Locally generated professor submission packages
+tpe_rdh_reproduction_professor_*.zip

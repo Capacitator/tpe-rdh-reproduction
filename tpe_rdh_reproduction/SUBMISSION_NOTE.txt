@@ -1,0 +1,19 @@
+Professor submission package
+
+Project: Dual-Mode Thumbnail-Preserving Encryption With RDH
+
+Start here:
+1. Open README.md.
+2. Install dependencies with: python -m pip install -r requirements.txt
+3. Run tests with: python -m pytest tests
+4. Generate the main submission outputs with: python experiments/generate_submission_results.py
+
+Important folders:
+- src/: implementation
+- experiments/: runnable experiments and result generators
+- results/: concise submission outputs (original, encrypted, thumbnail, decrypted, metrics)
+- output/section6/: reproducible validation CSVs, plots, and provenance
+- output/uct_colour_all_blocks/: real-image outputs for airplane, baboon, couple, girl, lena, peppers
+- docs/: paper mapping, assumptions, and experiment notes
+
+Known limitations are documented in README.md and docs/IMPLEMENTATION_NOTES.md.

@@ -16,3 +16,6 @@ Demo/debug artifacts:
 - `demo_*.npy`: small NumPy arrays saved beside the demo images so intermediate matrices and images can be inspected exactly. These are not required to run the code, but they are useful as trace artifacts for the demonstration.
 
 Submission-ready synthetic results are in `results/`, not `output/`.
+
+`section6/provenance.txt` records the source revision and deterministic
+experiment settings for the checked-in Section 6 CSVs and plots.

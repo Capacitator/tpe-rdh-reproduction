@@ -75,6 +75,11 @@ The UCT all-block summary is written to:
 output/uct_colour_all_blocks/summary.csv
 ```
 
+Each regenerated Section 6 run writes `output/section6/provenance.txt`. It
+records the source commit, tracked-tree state, interpreter version, image set,
+and deterministic sampling/differential settings that produced the CSVs and
+plots.
+
 ## Thumbnail Preservation
 
 The correct thumbnail-preservation check in this implementation is:
@@ -93,8 +98,8 @@ Reasons:
 
 - The paper says one pixel value within each block is altered, but does not specify the exact pixel position, channel, or direction.
 - This project changes the top-left pixel of each block in the R channel by `+1`, or `-1` if the value is already `255`.
-- The implemented block/pair substitution is local, so its avalanche behavior is lower than the values reported in the paper.
-- The paper's hidden key-generation/discard details may affect differential behavior.
+- With the default pipeline, the modified plaintext also derives a different image identifier and therefore different chaotic matrices. The measured NPCR/UACI values consequently reflect both the required same-key/different-image diversification and local substitution; they are not a substitution-only measurement.
+- The paper's hidden key-generation/discard details may affect differential behavior, so these values remain project-validation results rather than a reproduction of the paper's table.
 
 The experiment reports per-channel NPCR/UACI using the paper's Eq. (15)-Eq. (17) normalization, plus an `RGB_mean` summary row for convenience.
 
