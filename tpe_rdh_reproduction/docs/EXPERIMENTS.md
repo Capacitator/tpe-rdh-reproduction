@@ -103,6 +103,15 @@ Reasons:
 
 The experiment reports per-channel NPCR/UACI using the paper's Eq. (15)-Eq. (17) normalization, plus an `RGB_mean` summary row for convenience.
 
+## Key-Sensitivity NPCR/UACI
+
+`experiments/key_sensitivity_npcr_uaci.py` performs a separate one-bit
+key-sensitivity check on the six UCT colour images. It keeps the plaintext
+image, payload, automatic image identifier, and other parameters fixed, flips
+one bit of the 256-bit key, and computes NPCR/UACI between the two ciphertexts.
+Results are written to `output/key_sensitivity/`. This is intentionally
+separate from the paper's Section 6.8 plaintext-differential NPCR/UACI table.
+
 ## Correlation Notes
 
 The paper reports adjacent-pixel correlation for R, G, and B channels separately. In this project, `run_section6_experiments.py` computes correlation on RGB-to-luminance data with 5,000 sampled adjacent pairs. These values are used as a simple check that encryption lowers local correlation. A closer match to the paper would require separate R, G, and B channel measurements.

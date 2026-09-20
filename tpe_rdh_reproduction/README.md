@@ -238,6 +238,17 @@ output/section6/
 The generated `output/section6/provenance.txt` records the exact source revision
 and deterministic experiment settings for those validation artifacts.
 
+One-bit key-sensitivity NPCR/UACI:
+
+```bash
+python experiments/key_sensitivity_npcr_uaci.py
+```
+
+This keeps the input image, payload, automatic image identifier, and pipeline
+parameters fixed while flipping one bit of the 256-bit key. Results are written
+to `output/key_sensitivity/` and are separate from the paper's
+plaintext-differential NPCR/UACI table.
+
 ## Algorithm Notes
 
 ### Chaotic System
