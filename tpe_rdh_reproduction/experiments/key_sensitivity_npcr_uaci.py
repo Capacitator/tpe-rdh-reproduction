@@ -1,12 +1,7 @@
-"""Measure one-bit key-sensitivity NPCR/UACI on UCT colour images.
+"""Quick key-sensitivity NPCR/UACI check.
 
-This experiment keeps the plaintext image, payload, block size, and all other
-pipeline parameters fixed. It encrypts once with the base 256-bit key and once
-with a one-bit-flipped key, then compares the two ciphertext images using the
-paper's NPCR/UACI normalization.
-
-The result is a key-sensitivity check. It is intentionally separate from the
-paper's Section 6.8 plaintext-differential NPCR/UACI experiment.
+Only one key bit is changed. The image, payload, and block size stay the same.
+This is separate from the paper's plaintext-difference NPCR/UACI table.
 """
 
 from __future__ import annotations
@@ -40,7 +35,7 @@ PAYLOAD_BITS = bits_from_bytes(b"airplane key-sensitivity audit")
 
 
 def load_rgb(path: Path) -> np.ndarray:
-    """Load a source TIF as uint8 RGB."""
+    """Load one UCT image as RGB."""
 
     image = cv2.imread(str(path), cv2.IMREAD_COLOR)
     if image is None:
@@ -49,7 +44,7 @@ def load_rgb(path: Path) -> np.ndarray:
 
 
 def flip_first_key_bit(key: bytes) -> bytes:
-    """Return a copy of a key with exactly one bit changed."""
+    """Flip one bit of the key."""
 
     flipped = bytearray(key)
     flipped[0] ^= 0x01
@@ -57,7 +52,7 @@ def flip_first_key_bit(key: bytes) -> bytes:
 
 
 def npcr_uaci(cipher_a: np.ndarray, cipher_b: np.ndarray) -> dict[str, float]:
-    """Compute per-channel and RGB-aggregate NPCR/UACI percentages."""
+    """Compute NPCR/UACI for each channel and all RGB values."""
 
     if cipher_a.shape != cipher_b.shape:
         raise ValueError("ciphertext shapes differ")
@@ -129,13 +124,11 @@ def main() -> None:
             [
                 "# Key-Sensitivity NPCR/UACI",
                 "",
-                "This folder records a one-bit key-sensitivity check on the six UCT",
-                "colour images. For each image and block size, the experiment keeps",
-                "the plaintext image, payload, automatic image identifier, and all",
-                "parameters fixed, then flips one bit of the 256-bit key and compares",
-                "the two ciphertext images.",
+                "One-bit key-sensitivity check on the six UCT colour images.",
+                "For each run, the image, payload, image identifier, and block",
+                "size stay fixed. Only one bit of the 256-bit key is flipped.",
                 "",
-                "This is not the paper's Section 6.8 plaintext-differential table.",
+                "This is not the paper's Section 6.8 plaintext-difference table.",
                 "",
                 "Best RGB UACI in this sweep:",
                 f"- image: `{best['image']}`",
@@ -143,10 +136,9 @@ def main() -> None:
                 f"- RGB NPCR: `{best['rgb_npcr_percent']:.6f}%`",
                 f"- RGB UACI: `{best['rgb_uaci_percent']:.6f}%`",
                 "",
-                "The ideal random 8-bit image-cipher reference is approximately",
-                "NPCR 99.6094% and UACI 33.4635%, so these results should be",
-                "reported as strong pixel-change sensitivity with moderate UACI,",
-                "not ideal avalanche behavior.",
+                "Reference ideal values for an 8-bit random cipher are about",
+                "NPCR 99.6094% and UACI 33.4635%. So the result shows high",
+                "pixel-change rate, but UACI is still below ideal.",
                 "",
                 "Regenerate with:",
                 "",

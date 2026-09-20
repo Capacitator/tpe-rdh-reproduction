@@ -244,10 +244,10 @@ One-bit key-sensitivity NPCR/UACI:
 python experiments/key_sensitivity_npcr_uaci.py
 ```
 
-This keeps the input image, payload, automatic image identifier, and pipeline
-parameters fixed while flipping one bit of the 256-bit key. Results are written
-to `output/key_sensitivity/` and are separate from the paper's
-plaintext-differential NPCR/UACI table.
+This keeps the image, payload, image identifier, and block size fixed while
+flipping one bit of the 256-bit key. Results are written to
+`output/key_sensitivity/`. This is separate from the paper's plaintext
+difference NPCR/UACI table.
 
 ## Algorithm Notes
 

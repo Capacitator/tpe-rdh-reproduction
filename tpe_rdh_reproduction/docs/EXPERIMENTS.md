@@ -105,12 +105,11 @@ The experiment reports per-channel NPCR/UACI using the paper's Eq. (15)-Eq. (17)
 
 ## Key-Sensitivity NPCR/UACI
 
-`experiments/key_sensitivity_npcr_uaci.py` performs a separate one-bit
-key-sensitivity check on the six UCT colour images. It keeps the plaintext
-image, payload, automatic image identifier, and other parameters fixed, flips
-one bit of the 256-bit key, and computes NPCR/UACI between the two ciphertexts.
-Results are written to `output/key_sensitivity/`. This is intentionally
-separate from the paper's Section 6.8 plaintext-differential NPCR/UACI table.
+`experiments/key_sensitivity_npcr_uaci.py` checks one-bit key sensitivity on
+the six UCT colour images. It keeps the image, payload, image identifier, and
+block size fixed, flips one key bit, and writes NPCR/UACI results to
+`output/key_sensitivity/`. This is separate from the paper's Section 6.8
+plaintext-difference NPCR/UACI table.
 
 ## Correlation Notes
 
