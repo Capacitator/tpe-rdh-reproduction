@@ -1,4 +1,4 @@
-"""Quick key-sensitivity NPCR/UACI check.
+"""key-sensitivity NPCR/UACI check.
 
 Only one key bit is changed. The image, payload, and block size stay the same.
 This is separate from the paper's plaintext-difference NPCR/UACI table.
