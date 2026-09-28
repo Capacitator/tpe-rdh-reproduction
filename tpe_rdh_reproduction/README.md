@@ -50,6 +50,7 @@ Partially working / limitations:
 - `vartheta=10000.0` is an implementation inference from the paper's figure-style examples, not an explicit textual parameter.
 - RDH can change block sums before substitution. The substitution stage then preserves the RDH-marked block sums exactly.
 - Differential-security metrics are validation metrics for this implementation, not reproduction of the paper's reported security tables.
+- The NIST SP 800-22 Rev. 1a experiment in `experiments/run_nist_sp800_22.py` statistically evaluates selected pipeline bitstreams; passing tests do not establish cryptographic security or reproduce the paper's official security tables.
 
 Missing:
 
@@ -69,6 +70,7 @@ tpe_rdh_reproduction/
     generate_submission_results.py
     final_demo.py
     run_section6_experiments.py
+    run_nist_sp800_22.py
     uct_all_blocks_outputs.py
     validate_thumbnail.py
   input/

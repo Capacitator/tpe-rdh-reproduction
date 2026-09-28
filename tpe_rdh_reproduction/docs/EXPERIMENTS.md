@@ -118,3 +118,75 @@ The paper reports adjacent-pixel correlation for R, G, and B channels separately
 ## Runtime Notes
 
 Timing values are Python prototype timings. They exclude image file I/O and plotting. They are included to show the runtime of this project on the local environment, not to make a direct timing comparison with the authors' implementation.
+
+## NIST SP 800-22 Rev. 1a Bitstream Validation
+
+`experiments/run_nist_sp800_22.py` drives the NIST Statistical Test Suite
+(STS) 2.1.2 executable on two categories of bitstreams from the actual
+pipeline: the `Upsilon_P` and `Upsilon_S` chaotic matrices, and final encrypted
+RGB images. This is an additional statistical validation of these selected
+bitstreams. It is not a proof of cryptographic security and is not an exact
+reproduction of the paper's official security tables. Its results are separate
+from NPCR, UACI, entropy, correlation, exact recovery, and thumbnail-preservation
+metrics.
+
+The run uses 10 streams per category, 1,000,000 bits per stream, and default
+STS test parameters at alpha 0.01. Images and ordering are listed in
+`output/nist_sp800_22/stream_manifest.csv`; streams 1 and 2 use the same fixed
+key on different images. The pipeline automatically derives each image
+identifier from plaintext RGB pixels. Ciphertext conversion uses row-major
+RGB `uint8` bytes, MSB first. Chaotic values use `floor((x+1)*128)`, clipped to
+uint8, with `Upsilon_P` followed by `Upsilon_S`, row-major and MSB first. Each
+stream is truncated to exactly 1,000,000 bits.
+
+Download and build the official NIST STS 2.1.2 distribution, then run:
+
+```bash
+curl -L -o sts-2_1_2.zip https://csrc.nist.gov/CSRC/media/Projects/Random-Bit-Generation/documents/sts-2_1_2.zip
+unzip sts-2_1_2.zip
+cd sts-2.1.2/sts-2.1.2
+mkdir -p obj experiments/{AlgorithmTesting,BBS,CCG,G-SHA1,LCG,MODEXP,MS,QCG1,QCG2,XOR}
+(cd experiments && bash ./create-dir-script)
+make
+cd /path/to/tpe_rdh_reproduction
+python experiments/run_nist_sp800_22.py --sts-dir /path/to/sts-2.1.2/sts-2.1.2
+```
+
+The experiment records source revision, Python and runtime dependency
+versions, STS version/source, exact command, image/key/identifier data, stream
+conversion, lengths, test parameters, native reports, and parsed results. If
+STS cannot be built or run, the command fails explicitly and does not substitute
+unrelated metrics. NIST statistical results do not establish cryptographic
+security and are separate from NPCR, UACI, entropy, correlation, exact recovery,
+and thumbnail-preservation results.
+
+### Sources and limitations
+
+The authoritative sources are NIST's documentation/software page, SP 800-22
+Rev. 1a, guide to the tests, publication page, and revision notice. The
+`terrillmoore/NIST-Statistical-Test-Suite` GitHub repository is cited only as a
+practical implementation reference; this experiment runs the official NIST
+STS 2.1.2 distribution. Sources were accessed on 2026-09-28:
+
+1. [NIST documentation and software](https://csrc.nist.gov/projects/random-bit-generation/documentation-and-software)
+2. [NIST SP 800-22 Rev. 1a PDF](https://nvlpubs.nist.gov/nistpubs/legacy/sp/nistspecialpublication800-22r1a.pdf)
+3. [NIST guide to the statistical tests](https://csrc.nist.gov/projects/random-bit-generation/documentation-and-software/guide-to-the-statistical-tests)
+4. [NIST publication page](https://csrc.nist.gov/pubs/sp/800/22/r1/upd1/final) (published 2010-04-30)
+5. [NIST revision notice](https://csrc.nist.gov/news/2022/decision-to-revise-nist-sp-800-22-rev-1a) (2022-04-19)
+6. [Professor-provided practical implementation reference](https://github.com/terrillmoore/NIST-Statistical-Test-Suite)
+
+SP 800-22 Rev. 1a provides statistical tests for random and pseudorandom
+bitstreams. This suite is an additional statistical evaluation for this
+project. Passing selected tests under stated parameters does not prove that the
+encryption scheme is cryptographically secure. Statistical testing is not a
+substitute for cryptanalysis. NIST's April 19, 2022 notice says the publication
+is planned for revision and explicitly calls for clarifying its purpose and
+rejecting its use for assessing cryptographic random number generators.
+Accordingly, report results as “passed/failed the selected statistical tests
+under the stated parameters,” never as “proved secure.” NIST results remain
+distinct from NPCR, UACI, entropy, correlation, exact-recovery, and
+thumbnail-preservation metrics.
+
+The implementation retains documented paper ambiguities: key-to-chaos
+conversion and image identifier hashing, `T_tau`, `kappa_2`, RDH metadata, and
+`vartheta` remain project implementation decisions or inferences.
