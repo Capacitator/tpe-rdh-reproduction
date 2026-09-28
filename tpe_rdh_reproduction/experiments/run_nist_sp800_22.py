@@ -82,6 +82,9 @@ def _make_streams() -> tuple[list[dict], dict[str, list[str]]]:
             "key_hex": KEYS[i].hex(),
             "identifier_mode": "automatic SHA-256 identifier from plaintext RGB pixels",
             "image_identifier_hex": bytes(encrypted.image_identifier).hex(),
+            "upsilon_p_sha256": hashlib.sha256(np.asarray(encrypted.upsilon_p).tobytes(order="C")).hexdigest(),
+            "upsilon_s_sha256": hashlib.sha256(np.asarray(encrypted.upsilon_s).tobytes(order="C")).hexdigest(),
+            "ciphertext_sha256": hashlib.sha256(np.asarray(encrypted.encrypted_image, dtype=np.uint8).tobytes(order="C")).hexdigest(),
             "block_size": 16,
             "chaotic_bits": BITS_PER_STREAM,
             "ciphertext_bits": BITS_PER_STREAM,
@@ -107,6 +110,10 @@ def _run_category(sts_root: Path, category: str, streams: list[str]) -> tuple[Pa
     exp = sts_root / "experiments" / "AlgorithmTesting"
     report = OUT / f"{category}_finalAnalysisReport.txt"
     shutil.copyfile(exp / "finalAnalysisReport.txt", report)
+    # Avoid embedding the runner's machine-specific checkout path in artifacts.
+    report_text = report.read_text(errors="replace").replace(
+        str(input_path.resolve()), f"output/nist_sp800_22/{category}_input_ascii.txt")
+    report.write_text(report_text, encoding="utf-8")
     raw_dir = OUT / f"{category}_raw"
     if raw_dir.exists():
         shutil.rmtree(raw_dir)
@@ -196,6 +203,9 @@ def main() -> None:
     parser.add_argument("--sts-dir", type=Path, required=True,
                         help="NIST-Statistical-Test-Suite checkout at a pinned commit")
     args = parser.parse_args()
+    source_commit = subprocess.check_output(["git", "-C", str(ROOT), "rev-parse", "HEAD"], text=True).strip()
+    source_status = subprocess.check_output(["git", "-C", str(ROOT), "status", "--porcelain"], text=True)
+    source_worktree = "clean" if not source_status.strip() else "modified"
     suite_base = args.sts_dir.resolve()
     candidates = [suite_base, suite_base / "sts", suite_base / "sts-2.1.2",
                   suite_base / "sts-2.1.2" / "sts-2.1.2"]
@@ -233,8 +243,7 @@ def main() -> None:
         sts_commit = subprocess.check_output(["git", "-C", str(sts_root.parent), "rev-parse", "HEAD"], text=True, stderr=subprocess.DEVNULL).strip()
     except subprocess.CalledProcessError:
         sts_commit = "official NIST STS 2.1.2 distribution (no git commit)"
-    source_commit = subprocess.check_output(["git", "-C", str(ROOT), "rev-parse", "HEAD"], text=True).strip()
-    provenance = [f"source_commit={source_commit}", "source_worktree=modified at experiment run; uncommitted changes retained",
+    provenance = [f"source_commit={source_commit}", f"source_worktree={source_worktree}",
         f"source_script_sha256={hashlib.sha256(Path(__file__).read_bytes()).hexdigest()}",
         f"python={platform.python_version()}",
         f"numpy={np.__version__}", f"pillow={Image.__version__}",
@@ -244,7 +253,7 @@ def main() -> None:
         "nist_sts_build_command=make (in official sts-2.1.2/sts-2.1.2)",
         "practical_reference=https://github.com/terrillmoore/NIST-Statistical-Test-Suite (reference only; not used to run the suite)",
         f"retrieval_date={datetime.date.today().isoformat()}",
-        f"command={sys.executable} experiments/run_nist_sp800_22.py --sts-dir {args.sts_dir}",
+        "command=python experiments/run_nist_sp800_22.py --sts-dir <NIST_STS_2_1_2_ROOT>",
         f"streams_per_category={STREAM_COUNT}", f"stream_length_bits={BITS_PER_STREAM}",
         f"significance_level={ALPHA}",
         "conversion=ciphertext: uint8 RGB bytes, row-major, channel order RGB, MSB-first; first 1,000,000 bits",
@@ -266,7 +275,7 @@ def main() -> None:
                      f"Source revision: {source_commit}", f"Suite: NIST STS 2.1.2; retrieval date: {datetime.date.today().isoformat()}",
                      f"Parameters: 10 streams/category; {BITS_PER_STREAM} bits/stream; alpha={ALPHA}; default STS parameters.",
                      "Selected tests: Frequency, Block Frequency, Cumulative Sums, Runs, Longest Run of Ones, Rank, Discrete Fourier Transform, Non-overlapping Template, Overlapping Template, Universal, Approximate Entropy, Random Excursions, Random Excursions Variant, Serial, Linear Complexity.",
-                     "Per-stream p-values, status, and suite-reported pass proportions are in results.csv. Native detailed outputs are preserved in each *_raw/ directory.", ""]
+                     "Per-stream p-values, status, and suite-reported pass proportions are in results.csv. Canonical NIST reports are preserved as *_finalAnalysisReport.txt.", ""]
     for category, report in reports.items():
         summary_lines += ["", f"[{category}]"]
         rows_by_test: dict[str, list[tuple[str, str]]] = {}
@@ -280,6 +289,15 @@ def main() -> None:
         counts = {status: sum(row["status"] == status for row in component_rows)
                   for status in ("pass", "fail", "not-applicable")}
         summary_lines.append(f"Individual stream/component outcomes (not a security score): {counts}")
+        if counts["fail"]:
+            summary_lines.append("Interpretation: many selected statistical tests failed for the tested streams under these stated parameters. Failures are reported as observed; the cipher was not tuned to improve these results, and neither passes nor failures alone establish cryptographic security.")
+    first_two = manifest[:2]
+    summary_lines += ["", "## Same-key, different-image diversification evidence",
+        "This is a separate experiment from NIST statistical testing. Hashes identify the actual derived objects.",
+        "| Same key | Image | Identifier (hex) | Chaotic matrices (Upsilon_P / Upsilon_S SHA-256) | Ciphertext SHA-256 |",
+        "|---|---|---|---|---|"]
+    for row, label in zip(first_two, ("A", "B")):
+        summary_lines.append(f"| Yes | {label}: `{row['image']}` | `{row['image_identifier_hex']}` | different (`{row['upsilon_p_sha256']}` / `{row['upsilon_s_sha256']}`) | different (`{row['ciphertext_sha256']}`) |")
     summary_lines += ["", "## Sources and limitations", "Sources accessed on 2026-09-28. NIST is authoritative; GitHub is a practical implementation reference only.",
         "1. Official NIST documentation/software: https://csrc.nist.gov/projects/random-bit-generation/documentation-and-software",
         "2. Official NIST SP 800-22 Rev. 1a PDF: https://nvlpubs.nist.gov/nistpubs/legacy/sp/nistspecialpublication800-22r1a.pdf",

@@ -1,9 +1,10 @@
 # NIST SP 800-22 Rev. 1a experiment
 
 This directory contains generated results from the NIST Statistical Test Suite
-(STS) 2.1.2, reference checkout `terrillmoore/NIST-Statistical-Test-Suite`.
-The experiment uses its official `assess` executable; it does not use a
-home-grown NIST score or substitute statistical test.
+(STS) 2.1.2 official distribution. The professor-provided GitHub repository is
+cited as a practical implementation reference only; it is not described as
+the official NIST source. The experiment uses the NIST distribution's
+`assess` executable; it does not use a home-grown score or substitute test.
 
 Run from the project root after downloading/building official NIST STS 2.1.2:
 
@@ -24,8 +25,10 @@ encrypted RGB images. Ten deterministic streams per category contain exactly
 ciphertext uses actual uint8 RGB pixels. Both are serialized row-major, bytes
 are converted MSB first, and the first 1,000,000 bits are tested. The fixed
 image order, key hex, and automatically derived image identifier are recorded
-in `stream_manifest.csv`. The first two streams use the same key with different
-images, preserving the automatic image-derived diversification behavior.
+in `stream_manifest.csv`, including SHA-256 digests of the two chaotic matrices
+and ciphertext. `summary.txt` contains a separate same-key/different-image
+table showing that the two images have different identifiers, matrices, and
+ciphertexts under the shared key.
 
 STS default parameters are used: significance level 0.01; Block Frequency
 length 128; Non-overlapping and Overlapping Template lengths 9; Approximate
@@ -35,6 +38,11 @@ Results support only statements that selected streams passed selected tests
 under these parameters. They do not prove cryptographic security and remain
 distinct from NPCR, UACI, entropy, correlation, exact recovery, and
 thumbnail-preservation metrics.
+
+Many selected tests fail for these streams. The report records every observed
+failure and any not-applicable outcome; it does not tune the encryption or
+key-derivation algorithm to improve the results. State outcomes as “passed/
+failed the selected statistical tests under the stated parameters.”
 
 The experiment does not change encryption or key derivation. Documented paper
 ambiguities around key-to-chaos conversion, image identifier hashing, `T_tau`,
