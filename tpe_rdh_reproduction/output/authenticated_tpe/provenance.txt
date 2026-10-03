@@ -1,0 +1,23 @@
+experiment=paper-specific authenticated TPE/RCM/HMAC validation
+specification=professor-supplied Our method.pdf (16 pages)
+specification_sha256=f0348a3435259037f53028830f4d00056f8ad58f4c87843f3766c924b1a1607d
+source_commit=efac40393062e9a22707cb36cadfc778374d20a2
+source_worktree=dirty
+authenticated_tpe_py_sha256=e082e7b01e3181b5a3f1a9ddecfed4971834617e6f72a37d09782ae185ade594
+experiment_script_sha256=bb7fa099ab74a551cf5116439541a1ed181c03d71620cef14087b5baff4f2f5a
+authenticated_tests_sha256=12b31c170677151419e4b6d213749635a58d9b6afc07293d8e3c9cee9190844d
+independent_tamper_script_sha256=4226d9a806a8ac67db1209924b6b16fdc48915a557d2158a59ba7c14900552ba
+input_uct_colour_sha256=airplane.tif:515d0a5105047916be9faed513330046be41a61f4b155e854731e512ce1f4c4a,baboon.tif:cd4456f2562dc352acee627428eb4e2ccaed5f53082ce0838d9fff6b8a3e3517,couple.tif:e1760e29f10762fe60349e2848b01065b69784d04848606dd8644b6a9a893288,girl.tif:d044fcfbea02123efdc167e596f45e839c39c2e1ca2ff841710ef4db15bc4dfb,lena.tif:d5cd280e7e970a31828fe2c91ead6c8ce3ea257d04b6eabbd8e254c6e1cce255,peppers.tif:208e8c6542e91a1b3d7d9457626b7577fc0d21affeb800435858cc83f2537649
+python=3.11.0 (v3.11.0:deaf509e8f, Oct 24 2022, 14:43:23) [Clang 13.0.0 (clang-1300.0.29.30)]
+numpy=2.4.4
+pillow=12.0.0
+pytest=8.4.2
+user_key_fixture=bytes(range(32)); explicitly public deterministic test fixture
+image_id_method=SHA256(domain || ASCII image label)[:16]; explicit deterministic test fixture only
+production_image_id=secrets.token_bytes(16); retained by owner outside marked image
+dimensions=512x512x3 uint8 RGB; blocks=32x32; groups=4 blocks; tag=256 bits
+commands=../.venv/bin/python -m pytest tests -q ; ../.venv/bin/python experiments/run_authenticated_tpe.py
+independent_tamper_command=../.venv/bin/python experiments/check_authenticated_tpe_tampering.py
+test_result=python -m pytest tests -q -> 102 passed, 14 dependency deprecation warnings
+ImageID values and test key bytes are not written to the result artifacts.
+The working tree is expected to be dirty until changes are reviewed and committed; outputs must not be represented as generated from a clean committed source revision.

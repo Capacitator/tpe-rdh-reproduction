@@ -1,0 +1,8 @@
+image,dimensions,mode,embedded_tags,verified,exact_recovery,pairs_used,marked_vs_step2_psnr_db,protect_seconds,verify_seconds
+airplane,512x512x3,group,192,True,True,54314,30.200616,2.869990,3.146256
+baboon,512x512x3,group,192,True,True,57326,27.708603,2.852495,3.141126
+couple,512x512x3,group,192,True,True,80498,32.585125,2.992568,3.437414
+girl,512x512x3,group,192,True,True,61936,30.054280,2.865778,3.204221
+lena,512x512x3,group,192,True,True,54926,28.046331,2.952922,3.473820
+peppers,512x512x3,group,192,True,True,57430,28.999219,2.892093,3.176892
+constructed_capacity_fallback_fixture,512x512x3,whole-image,1,True,True,268,50.359641,2.427058,3.215544

@@ -1,0 +1,8 @@
+image,mode,groups_attempted,groups_capacity_at_least_256,min_group_peak_net_bits,mean_group_peak_net_bits,max_group_peak_net_bits,whole_image_net_capacity_bits,whole_image_capacity_at_least_256
+airplane,group,192,192,1619,1854.995,2048,356142,True
+baboon,group,192,192,1225,1759.474,2010,337798,True
+couple,group,192,192,333,1403.224,1970,269366,True
+girl,group,192,192,652,1691.089,2048,324672,True
+lena,group,192,192,1392,1841.245,2048,353508,True
+peppers,group,192,192,1216,1762.359,2026,338340,True
+constructed_capacity_fallback_fixture,whole-image,192,189,0,1953.422,2048,368912,True

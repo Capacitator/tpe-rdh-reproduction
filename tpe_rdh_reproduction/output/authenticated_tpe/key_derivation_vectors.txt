@@ -1,0 +1,12 @@
+Deterministic TEST fixtures only; not production keys or ImageIDs.
+UserKey fixture: bytes(range(32)); ImageID fixture: bytes(range(16)); channel=1; block IDs=(1,2,3,4).
+Kch=97e1198fbd14ad6075f840f3b927f409470fee9e96a6fddb82d93ab0f1be1a47
+Ktpe=1fc6e601803dc259344165e87a674cf4a1751a47bf4704499c58d58206fb9b62
+Kr1=f346307d750a7949d18f29f9f4e22ad0b790296cc7e6fab0df093cab7086c272
+Kstruct=d80039f3d57379c89d54cf1e4c5182fb633ca2dbb506717f93bb5d508830e02b
+Kauth=147de1bc2bd0892d7aa55bbae4cb317ead56029b488ccbb885fd16d57b6a7017
+Kgroup=e9fa70face6f7109b325e59efe381caacd067be215ac9b359c706c5ff6936cf1
+Kimage=e2d1110a18e0fa9518299ee537c7c41a54dbaa54c6d4e4045139ebe4ee177f2b
+HMAC_DRBG first four Generate(4) values for Kstruct=00..1f: 833513c6 b64f37e2 37299c7d 7e60d678
+Permutation prefix: 224 3 167 218 229 171 106 172
+SHA256 of full 256-byte permutation: 55f272be5c1686f05a22714dba3a2651d79cb11d14df3d66ba715d3e38ba8c38

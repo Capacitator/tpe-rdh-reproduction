@@ -1,0 +1,8 @@
+attack,verification_rejected,failed_groups_reported,plaintext_released
+single_pixel_lsb_flip,True,1,False
+same_channel_block_swap,True,2,False
+cross_channel_block_swap,True,2,False
+wrong_user_key,True,0,False
+wrong_image_id,True,0,False
+different_protected_image_replacement,True,0,False
+single_pixel_lsb_flip_whole_image_mode,True,0,False

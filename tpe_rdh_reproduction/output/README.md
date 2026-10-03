@@ -4,6 +4,12 @@ The `output/` directory contains generated validation and demonstration artifact
 
 Canonical validation outputs:
 
+- `authenticated_tpe/`: outputs from the separate professor-specific
+  RCM/HMAC reversible block-group authentication prototype. These are project
+  validation results, not the PDF's reported notebook results. See
+  `docs/AUTHENTICATED_TPE.md` for key/ImageID handling, assumptions, and
+  limitations.
+
 - `final_demo/`: stage images and report from `experiments/final_demo.py`.
 - `section6/`: project validation metrics from `experiments/run_section6_experiments.py`; these are separate from the paper authors' official tables.
 - `key_sensitivity/`: one-bit secret-key sensitivity NPCR/UACI sweep on the six UCT colour images.

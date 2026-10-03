@@ -1,0 +1,11 @@
+Paper-specific prototype experiment summary (not the professor PDF's reference notebook results).
+natural_images=6
+all_clean_cases_verified_and_exact=True
+group_mode_cases=6
+whole_image_mode_cases=1
+attack_cases=7
+all_attack_cases_rejected_without_plaintext=True
+constructed_fallback_mode=whole-image
+fallback_clean_exact=True
+fallback_tamper_rejected=True
+Interpretation: report every case as tested under the deterministic fixtures; this is not a proof of security.
