@@ -217,7 +217,7 @@ def test_rcm_insufficient_capacity_does_not_partially_embed():
 
 @pytest.fixture(scope="module")
 def clean_group_case():
-    image_path = PROJECT_ROOT / "input" / "uct_colour" / "airplane.tif"
+    image_path = PROJECT_ROOT.parent / "tpe_rdh_reproduction" / "input" / "uct_colour" / "airplane.tif"
     image = np.asarray(Image.open(image_path).convert("RGB").resize((512, 512)), dtype=np.uint8)
     result = a.protect_image(image, KEY, IMAGE_ID)
     return image, result

@@ -17,30 +17,6 @@ The project demonstrates a thumbnail-preserving encryption pipeline with reversi
 5. Encrypt pixel values with sum-preserving two-pixel substitution controlled by `Upsilon_S`.
 6. Decrypt, extract payload bits, recover the RDH carrier, and inverse-permute the image.
 
-## Separate Paper-Specific Authentication Prototype
-
-`src/authenticated_tpe.py` is a separate implementation of the professor-provided
-reversible block-group authentication method using pair-sum-preserving TPE,
-smaller-pixel re-encryption, reversible contrast mapping, and HMAC-SHA256. It
-does not replace or modify the chaotic TPE/RDH pipeline described above. The
-implementation, tests, report, and outputs live in `src/authenticated_tpe.py`,
-`tests/test_authenticated_tpe.py`, `docs/AUTHENTICATED_TPE.md`, and
-`output/authenticated_tpe/` respectively.
-
-Run the separate prototype validation from this project directory:
-
-```bash
-python -m pytest tests/test_authenticated_tpe.py -q
-python experiments/run_authenticated_tpe.py
-python experiments/check_authenticated_tpe_tampering.py
-```
-
-The method only releases a recovered image after all authentication checks
-pass. ImageIDs generated for production use must be fresh CSPRNG values kept
-privately by the owner; deterministic IDs in test results are public fixtures.
-The authentication tests and image recovery results do not constitute proof
-of overall cryptographic security. See `docs/AUTHENTICATED_TPE.md` for details.
-
 The "dual-mode" concept is handled as two ways of using the encrypted result:
 
 - public/preview mode: the encrypted image preserves the coarse block-average thumbnail after RDH marking;

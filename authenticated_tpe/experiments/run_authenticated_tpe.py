@@ -16,7 +16,7 @@ PROJECT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(PROJECT / "src"))
 import authenticated_tpe as a
 
-OUT = PROJECT / "output" / "authenticated_tpe"
+OUT = PROJECT / "output"
 TEST_KEY = bytes(range(32))  # Public deterministic fixture, never a production key.
 
 
@@ -91,10 +91,15 @@ def attack_rows(image: np.ndarray, protected: a.ProtectResult, image_id: bytes) 
 
 def main() -> None:
     OUT.mkdir(parents=True, exist_ok=True)
+    repo = PROJECT.parent
+    source_commit = subprocess.check_output(["git", "-C", str(repo), "rev-parse", "HEAD"], text=True).strip()
+    source_status = subprocess.check_output(["git", "-C", str(repo), "status", "--porcelain"], text=True)
+    source_worktree = "clean" if not source_status.strip() else "modified"
     clean_rows: list[dict] = []
     cap_rows: list[dict] = []
     attack_results: list[dict] = []
-    fixture_paths = sorted((PROJECT / "input" / "uct_colour").glob("*.tif"))
+    shared_input = PROJECT.parent / "tpe_rdh_reproduction" / "input" / "uct_colour"
+    fixture_paths = sorted(shared_input.glob("*.tif"))
     if not fixture_paths:
         raise RuntimeError("no UCT colour TIFFs were found")
     representative: tuple[np.ndarray, a.ProtectResult, bytes] | None = None
@@ -190,10 +195,6 @@ def main() -> None:
     vectors.append("SHA256 of full 256-byte permutation: 55f272be5c1686f05a22714dba3a2651d79cb11d14df3d66ba715d3e38ba8c38")
     (OUT / "key_derivation_vectors.txt").write_text("\n".join(vectors) + "\n", encoding="utf-8")
 
-    repo = PROJECT.parent
-    commit = subprocess.check_output(["git", "-C", str(repo), "rev-parse", "HEAD"], text=True).strip()
-    status = subprocess.check_output(["git", "-C", str(repo), "status", "--porcelain"], text=True)
-    dirty = bool(status.strip())
     source_hash = hashlib.sha256((PROJECT / "src" / "authenticated_tpe.py").read_bytes()).hexdigest()
     experiment_hash = hashlib.sha256(Path(__file__).read_bytes()).hexdigest()
     tests_hash = hashlib.sha256((PROJECT / "tests" / "test_authenticated_tpe.py").read_bytes()).hexdigest()
@@ -209,7 +210,8 @@ def main() -> None:
         "experiment=paper-specific authenticated TPE/RCM/HMAC validation",
         "specification=professor-supplied Our method.pdf (16 pages)",
         "specification_sha256=f0348a3435259037f53028830f4d00056f8ad58f4c87843f3766c924b1a1607d",
-        f"source_commit={commit}", f"source_worktree={'dirty' if dirty else 'clean'}",
+        f"source_commit={source_commit}", f"source_worktree={source_worktree} (recorded at run start, before regenerating output files)",
+        "shared_input_dependency=../tpe_rdh_reproduction/input/uct_colour; UCT images are read-only inputs",
         f"authenticated_tpe_py_sha256={source_hash}", f"experiment_script_sha256={experiment_hash}",
         f"authenticated_tests_sha256={tests_hash}", f"independent_tamper_script_sha256={tamper_hash}",
         f"input_uct_colour_sha256={input_hashes}",
@@ -219,11 +221,11 @@ def main() -> None:
         "image_id_method=SHA256(domain || ASCII image label)[:16]; explicit deterministic test fixture only",
         "production_image_id=secrets.token_bytes(16); retained by owner outside marked image",
         "dimensions=512x512x3 uint8 RGB; blocks=32x32; groups=4 blocks; tag=256 bits",
-        "commands=../.venv/bin/python -m pytest tests -q ; ../.venv/bin/python experiments/run_authenticated_tpe.py",
-        "independent_tamper_command=../.venv/bin/python experiments/check_authenticated_tpe_tampering.py",
+        "commands=.venv/bin/python -m pytest authenticated_tpe/tests -q ; .venv/bin/python authenticated_tpe/experiments/run_authenticated_tpe.py",
+        "independent_tamper_command=.venv/bin/python authenticated_tpe/experiments/check_authenticated_tpe_tampering.py",
         "test_result=python -m pytest tests -q -> 102 passed, 14 dependency deprecation warnings",
         "ImageID values and test key bytes are not written to the result artifacts.",
-        "The working tree is expected to be dirty until changes are reviewed and committed; outputs must not be represented as generated from a clean committed source revision.",
+        "The source worktree state is captured at run start; generated output files are written after that state is recorded.",
     ]
     (OUT / "provenance.txt").write_text("\n".join(provenance) + "\n", encoding="utf-8")
 
@@ -267,7 +269,7 @@ def main() -> None:
         "", "## Capacity and operating mode", "", "Capacity is the prefix net `A - N` in the required traversal (usable T/O pairs add one; N pairs subtract one). Group mode is all-or-nothing: every group must reach 256 net bits. When any group fails, provisional group marks are discarded and one 256-bit whole-image tag is embedded instead. See `capacity_results.csv` for measured per-group peak net capacities and whole-image totals. In the constructed fallback fixture 3 of 192 groups were below 256 bits, while whole-image capacity was sufficient.",
         "", "RCM overflow/underflow is prevented by restricting transformable T pairs to `D_c`, where both forward coordinates are in [0,255] and the ambiguous odd border pairs are removed. O pairs use the specified odd-pair representation; N pairs are not transformed and their first-pixel LSB is saved and restored. If an image/group cannot reach 256 net bits, group marks are abandoned for whole-image fallback; if the whole image also lacks capacity, `InsufficientCapacity` rejects it without returning a marked result.",
         "", "## Reproduction and provenance", "", "```bash", "../.venv/bin/python -m pytest tests -q", "../.venv/bin/python experiments/run_authenticated_tpe.py", "../.venv/bin/python experiments/check_authenticated_tpe_tampering.py", "```", "",
-        f"Source commit: `{commit}`. Worktree at experiment time: `{'dirty' if dirty else 'clean'}`. Python, NumPy, Pillow, source hashes, deterministic fixture rules, and the exact generation command are in `provenance.txt`. Because the requested workflow says not to commit or push unless explicitly requested, these artifacts were generated from the documented dirty working tree and are not claimed to come from a final clean commit.",
+        f"Source commit: `{source_commit}`. Worktree at run start: `{source_worktree}`. The experiment reads the shared UCT images from `../tpe_rdh_reproduction/input/uct_colour/`. Python, NumPy, Pillow, source hashes, deterministic fixture rules, and the exact generation command are in `provenance.txt`.",
         "", "## Sources and limitations", "",
         "Primary method specification: the professor-supplied *Our method.pdf*, Sections 1–10 (SHA-256 `f0348a3435259037f53028830f4d00056f8ad58f4c87843f3766c924b1a1607d`). The method document cites Coltuc and Chassery (2007) for reversible contrast mapping, [RFC 2104](https://www.rfc-editor.org/rfc/rfc2104) for HMAC, [NIST FIPS 180-4](https://csrc.nist.gov/pubs/fips/180-4/upd1/final) for SHA-256, and [NIST SP 800-90A Rev. 1](https://csrc.nist.gov/pubs/sp/800/90/a/r1/final) for HMAC_DRBG. NIST's [CAVP RNG page](https://csrc.nist.gov/Projects/Cryptographic-Algorithm-Validation-Program/Random-Number-Generators) provides DRBG test vectors for informal checking and states these do not replace CAVP validation. The checked-in DRBG regression uses the professor PDF's exact permutation prefix and a separately calculated full permutation digest; this project did not claim CAVP validation or import NIST's vector archive. This reproduction uses the exact deterministic conventions listed in `docs/AUTHENTICATED_TPE.md` and the known-answer vectors in `key_derivation_vectors.txt`.",
         "", "The implementation is a research prototype, not a claim of cryptographic security. Authentication depends on secrecy and handling of UserKey and a fresh private ImageID, exact lossless pixel preservation, and implementation correctness. ImageID uniqueness is an owner responsibility; the API has no persistent reuse registry. Step 1 preserves adjacent pair sums and leaks them by design, and Step 2's four-value per-block shift is not relied on for confidentiality. No independent cryptanalysis or formal proof was performed. RCM/HMAC tests, exact recovery, and these controlled attack checks do not prove overall security. Group authentication identifies an affected group of four scattered blocks, not the exact altered block; whole-image mode only returns an image-level result.",
@@ -275,7 +277,7 @@ def main() -> None:
     (OUT / "report.md").write_text("\n".join(report) + "\n", encoding="utf-8")
     readme = [
         "# Authenticated TPE experiment outputs", "",
-        "These are project prototype results from `experiments/run_authenticated_tpe.py`; they are not the professor PDF's Colab/reference results.",
+        "These are project prototype results from `authenticated_tpe/experiments/run_authenticated_tpe.py`; they are not the professor PDF's Colab/reference results.",
         "All key/ImageID values are deterministic test fixtures and must not be used in production.",
         "ImageID values are deliberately omitted. Production ImageIDs are generated with a CSPRNG and retained privately by the owner.",
         "See `docs/AUTHENTICATED_TPE.md` for method, encodings, assumptions, and limitations.", "",

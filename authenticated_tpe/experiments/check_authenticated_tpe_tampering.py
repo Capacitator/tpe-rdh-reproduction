@@ -13,7 +13,8 @@ import authenticated_tpe as a
 
 
 def main() -> None:
-    image = np.asarray(Image.open(PROJECT / "input/uct_colour/airplane.tif").convert("RGB").resize((512, 512)), dtype=np.uint8)
+    image_path = PROJECT.parent / "tpe_rdh_reproduction" / "input" / "uct_colour" / "airplane.tif"
+    image = np.asarray(Image.open(image_path).convert("RGB").resize((512, 512)), dtype=np.uint8)
     key = bytes(range(32))
     image_id = bytes(range(16))
     protected = a.protect_image(image, key, image_id)
