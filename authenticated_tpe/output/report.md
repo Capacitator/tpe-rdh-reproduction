@@ -12,13 +12,13 @@ The key hierarchy is `Kch,c = HMAC(UserKey, b'channel'||c)`, `Ktpe,c = HMAC(Kch,
 
 | Case | Mode | Tags | Verified | Exact recovery | Pairs used | Marked vs Step-2 PSNR (dB) | Protect (s) | Verify (s) |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|
-| airplane | group | 192 | True | True | 54314 | 30.200616 | 2.869990 | 3.146256 |
-| baboon | group | 192 | True | True | 57326 | 27.708603 | 2.852495 | 3.141126 |
-| couple | group | 192 | True | True | 80498 | 32.585125 | 2.992568 | 3.437414 |
-| girl | group | 192 | True | True | 61936 | 30.054280 | 2.865778 | 3.204221 |
-| lena | group | 192 | True | True | 54926 | 28.046331 | 2.952922 | 3.473820 |
-| peppers | group | 192 | True | True | 57430 | 28.999219 | 2.892093 | 3.176892 |
-| constructed_capacity_fallback_fixture | whole-image | 1 | True | True | 268 | 50.359641 | 2.427058 | 3.215544 |
+| airplane | group | 192 | True | True | 54314 | 30.200616 | 2.829163 | 3.179332 |
+| baboon | group | 192 | True | True | 57326 | 27.708603 | 2.893875 | 3.142060 |
+| couple | group | 192 | True | True | 80498 | 32.585125 | 2.998788 | 3.442145 |
+| girl | group | 192 | True | True | 61936 | 30.054280 | 2.869511 | 3.300352 |
+| lena | group | 192 | True | True | 54926 | 28.046331 | 2.826731 | 3.117933 |
+| peppers | group | 192 | True | True | 57430 | 28.999219 | 2.875899 | 3.166885 |
+| constructed_capacity_fallback_fixture | whole-image | 1 | True | True | 268 | 50.359641 | 2.417387 | 3.224808 |
 
 All six UCT color images were protected in group mode. Every one of 192 group tags per image verified and each image recovered bit-exactly. A separate constructed capacity case forced the all-or-nothing fallback to whole-image mode; its image-level tag verified and recovery was bit-exact. Marked-image PSNR is measured against the Step-2 encrypted image before RCM marking, as in the method document. It is a fidelity metric, not an authentication or security metric.
 
@@ -52,7 +52,7 @@ RCM overflow/underflow is prevented by restricting transformable T pairs to `D_c
 ../.venv/bin/python experiments/check_authenticated_tpe_tampering.py
 ```
 
-Source commit: `efac40393062e9a22707cb36cadfc778374d20a2`. Worktree at experiment time: `dirty`. Python, NumPy, Pillow, source hashes, deterministic fixture rules, and the exact generation command are in `provenance.txt`. Because the requested workflow says not to commit or push unless explicitly requested, these artifacts were generated from the documented dirty working tree and are not claimed to come from a final clean commit.
+Source commit: `e004bda185b10c5c0a91061e3715e8c3a0248f6b`. Worktree at run start: `clean`. The experiment reads the shared UCT images from `../tpe_rdh_reproduction/input/uct_colour/`. Python, NumPy, Pillow, source hashes, deterministic fixture rules, and the exact generation command are in `provenance.txt`.
 
 ## Sources and limitations
 

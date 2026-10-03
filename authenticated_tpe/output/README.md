@@ -1,6 +1,6 @@
 # Authenticated TPE experiment outputs
 
-These are project prototype results from `experiments/run_authenticated_tpe.py`; they are not the professor PDF's Colab/reference results.
+These are project prototype results from `authenticated_tpe/experiments/run_authenticated_tpe.py`; they are not the professor PDF's Colab/reference results.
 All key/ImageID values are deterministic test fixtures and must not be used in production.
 ImageID values are deliberately omitted. Production ImageIDs are generated with a CSPRNG and retained privately by the owner.
 See `docs/AUTHENTICATED_TPE.md` for method, encodings, assumptions, and limitations.
