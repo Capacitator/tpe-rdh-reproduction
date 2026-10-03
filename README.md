@@ -8,3 +8,11 @@ This repository contains two separate projects:
 The authenticated method does not import or modify the original `pipeline.py`.
 Each project has its own `src/`, `tests/`, `experiments/`, `docs/`, and output
 area so their implementations and results remain distinct.
+
+## Reports
+
+- [Cross-project comparison](reports/COMPARISON.md)
+- [Original-project report](tpe_rdh_reproduction/reports/ORIGINAL_TPE_RDH_REPORT.md)
+- [Original-project executive summary](tpe_rdh_reproduction/reports/EXECUTIVE_SUMMARY.md)
+- [Authenticated-TPE report](authenticated_tpe/reports/AUTHENTICATED_TPE_REPORT.md)
+- [Authenticated-TPE executive summary](authenticated_tpe/reports/EXECUTIVE_SUMMARY.md)

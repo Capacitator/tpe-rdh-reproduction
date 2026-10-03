@@ -10,8 +10,9 @@ TPE/RDH `pipeline.py`.
 Experiments read the six tracked UCT color TIFF files from
 `../tpe_rdh_reproduction/input/uct_colour/`. That directory is a read-only
 fixture dependency; this subproject does not copy or modify those images. The
-two 256x256 images are resized to 512x512 as required by this method, and the
-preprocessing is recorded with each run.
+two 256x256 images are resized to 512x512 by the experiment script; the resize
+filter is not explicitly set by the script. Preprocessing is recorded with each
+run.
 
 ## Setup and commands
 
@@ -39,3 +40,9 @@ and limitations.
 Test and experiment outcomes are under `output/`. They are prototype results,
 not the professor's Colab notebook outputs, and do not constitute a formal
 security proof or independent cryptanalysis.
+
+## Reports
+
+- [Authenticated-TPE report](reports/AUTHENTICATED_TPE_REPORT.md)
+- [Authenticated-TPE executive summary](reports/EXECUTIVE_SUMMARY.md)
+- [Comparison with the original project](../reports/COMPARISON.md)

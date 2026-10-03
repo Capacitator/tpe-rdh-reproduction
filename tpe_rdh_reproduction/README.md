@@ -91,6 +91,12 @@ tpe_rdh_reproduction/
   README.md
 ```
 
+## Reports
+
+- [Original TPE/RDH report](reports/ORIGINAL_TPE_RDH_REPORT.md)
+- [Executive summary](reports/EXECUTIVE_SUMMARY.md)
+- [Comparison with authenticated TPE](../reports/COMPARISON.md)
+
 ## Installation
 
 From inside `tpe_rdh_reproduction/`:
