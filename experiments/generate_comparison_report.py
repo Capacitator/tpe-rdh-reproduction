@@ -31,6 +31,12 @@ def main() -> None:
     auth_rows = read_csv(ROOT / "authenticated_tpe/output/clean_authentication_results.csv")
     old_nist = read_csv(ROOT / "tpe_rdh_reproduction/output/nist_sp800_22/results.csv")
     auth_tamper = read_csv(ROOT / "authenticated_tpe/output/tamper_results.csv")
+    auth_npcr = read_csv(ROOT / "authenticated_tpe/output/npcr_uaci_results.csv") if (ROOT / "authenticated_tpe/output/npcr_uaci_results.csv").exists() else []
+    auth_key = read_csv(ROOT / "authenticated_tpe/output/key_sensitivity_npcr_uaci.csv") if (ROOT / "authenticated_tpe/output/key_sensitivity_npcr_uaci.csv").exists() else []
+    auth_nist_path = ROOT / "authenticated_tpe/output/nist_sp800_22/results.csv"
+    auth_nist = read_csv(auth_nist_path) if auth_nist_path.exists() else []
+    auth_reuse_path = ROOT / "authenticated_tpe/output/same_key_different_image.csv"
+    auth_reuse = read_csv(auth_reuse_path) if auth_reuse_path.exists() else []
     current_hashes = []
     for path in sorted((ROOT / "tpe_rdh_reproduction/input/uct_colour").glob("*.tif")):
         current_hashes.append(f"| `{path.relative_to(ROOT).as_posix()}` | `{digest(path)}` |")
@@ -40,6 +46,10 @@ def main() -> None:
     numpy = importlib.metadata.version("numpy")
     pillow = importlib.metadata.version("pillow")
     pytest = importlib.metadata.version("pytest")
+    plain_agg = next((r for r in auth_npcr if r["image"] == "aggregate_six_images" and r["channel"] == "RGB"), None)
+    key_agg = next((r for r in auth_key if r["image"] == "aggregate_six_images" and r["channel"] == "RGB"), None)
+    nist_summary = "; ".join(f"{category}: " + ", ".join(f"{s}={sum(r['status']==s for r in auth_nist if r['category']==category)}" for s in ("pass", "fail", "not-applicable")) for category in dict.fromkeys(r["category"] for r in auth_nist))
+    reuse_summary = "fixed ImageID and image-specific deterministic ImageID variants are separately recorded" if auth_reuse else "not yet generated"
     content = f"""# Comparison of the two TPE/RDH projects
 
 These are different algorithms. The authenticated method is not the original method with a small patch. The original method must not inherit authentication claims, and the authenticated method must not inherit the original method's NIST or NPCR/UACI claims unless those experiments are independently run. Metrics from separate experiments must not be compared unless images, parameters, and definitions match.
@@ -56,15 +66,18 @@ These are different algorithms. The authenticated method is not the original met
 | HMAC authentication | Not implemented; no authentication claim | HMAC-SHA256 group tags with whole-image fallback |
 | Tamper detection | No authenticated tamper detection | Controlled attack results in `authenticated_tpe/output/tamper_results.csv`; all listed cases are recorded separately in the authenticated report |
 | Wrong-key behavior | No authentication rejection guarantee; original pipeline has no HMAC | Wrong-key rejection is checked in authenticated `tamper_results.csv` |
-| NIST evaluation | Original project's STS 2.1.2 stream evaluation; mixed results from `tpe_rdh_reproduction/output/nist_sp800_22/results.csv` | Not reproduced: required original notebook/data/parameter was unavailable. NIST evaluation is not part of the authenticated project's checked-in experiment |
-| NPCR/UACI | Original Section 6 and key-sensitivity experiments only; source CSVs under original `output/section6/` and `output/key_sensitivity/` | Not reproduced: required original notebook/data/parameter was unavailable. No authenticated-project NPCR/UACI experiment is claimed |
+| Authenticated-TPE NPCR | Not applicable to original-project result; original plaintext-difference metric remains in its own artifacts | {plain_agg['npcr_percent'] + '% pooled RGB aggregate' if plain_agg else 'not yet generated'}; fixed ImageID, six resized-consistent fixtures, separate empirical experiment |
+| Authenticated-TPE UACI | Original values remain in original `output/section6/`; definitions/conditions are project-specific | {plain_agg['uaci_percent'] + '% pooled RGB aggregate' if plain_agg else 'not yet generated'}; not averaged with original result |
+| Authenticated-TPE one-bit-key NPCR/UACI | Original key-sensitivity values remain under original `output/key_sensitivity/` | {key_agg['npcr_percent'] + '% NPCR / ' + key_agg['uaci_percent'] + '% UACI, pooled RGB aggregate' if key_agg else 'not yet generated'}; fixed ImageID, one key bit flipped |
+| Authenticated-TPE NIST SP 800-22 | Original project's STS 2.1.2 stream evaluation; mixed results from `tpe_rdh_reproduction/output/nist_sp800_22/results.csv` | {nist_summary or 'not yet generated'}; separate Step-2 image-intermediate and final marked-RGB categories; no overall pass |
+| Same-key/different-image behavior | Original experiment retains its image-derived identifier and key-reuse behavior | {reuse_summary}; only fixed-ID comparison isolates image dependence, ImageID values represented by hashes |
 | Exact recovery | Original artifact: {sum(r['exact_recovery'].lower() == 'true' for r in old_rows)}/{len(old_rows)} UCT rows exact | Authenticated artifact: {sum(r['verified'].lower() == 'true' and r['exact_recovery'].lower() == 'true' for r in auth_rows)}/{len(auth_rows)} clean cases verified and exact |
 | Group localization | Not applicable; no authentication groups | Failed groups are recorded per controlled attack in authenticated `tamper_results.csv` |
 | Whole-image fallback | Not applicable | Authenticated capacity experiment includes a constructed fallback fixture; see `authenticated_tpe/output/capacity_results.csv` |
 | Security claims | Statistical and functional validation does not establish cryptographic security; original report | Prototype evaluation only; no formal proof or independent cryptanalysis; authenticated report |
 | Limitations | Paper underspecification and experiment-fixture differences; original report | Explicit reconstruction conventions, finite attack set and unavailable external notebook; authenticated report |
 
-The table labels each result with its project and source artifact/report. The shared UCT fixture does not make experiments directly comparable: the projects use different methods, configurations, image preprocessing and metric definitions. The authenticated project resizes the two 256×256 fixtures; the original UCT experiment uses their native dimensions.
+The table labels each result with its project and source artifact/report. Original-project results and authenticated-project results remain separate; no metric values are combined or averaged. The authenticated project resizes only the two 256×256 fixtures to 512×512; the original UCT experiment uses native dimensions. NPCR/UACI are empirical differential metrics and SP 800-22 is a statistical diagnostic; none proves cryptographic security.
 
 ## Separate reports
 

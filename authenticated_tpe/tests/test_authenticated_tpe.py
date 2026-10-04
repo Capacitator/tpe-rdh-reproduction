@@ -13,6 +13,8 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(PROJECT_ROOT / "src"))
 
 import authenticated_tpe as a
+from statistical_eval import (deterministic_test_image_id, flip_first_key_bit,
+                              make_differential_plaintext, npcr_uaci, pack_msb_first)
 
 KEY = bytes(range(32))
 IMAGE_ID = bytes(range(16))
@@ -319,3 +321,99 @@ def test_invalid_image_contract_and_bad_key_inputs_are_rejected():
         a.protect_image(np.zeros((512, 512, 3), dtype=np.uint8), b"short", IMAGE_ID)
     with pytest.raises(ValueError):
         a.protect_image(np.zeros((512, 512, 3), dtype=np.uint8), KEY, b"short")
+
+
+def test_npcr_uaci_formulas_match_original_project_conventions():
+    first = np.zeros((2, 2, 3), dtype=np.uint8)
+    second = first.copy()
+    second[0, 0, 0] = 255
+    got = npcr_uaci(first, second)
+    assert got["R"] == (25.0, 25.0, 1, 4)
+    assert got["G"] == (0.0, 0.0, 0, 4)
+    assert got["B"] == (0.0, 0.0, 0, 4)
+    assert got["RGB"][:2] == pytest.approx((100 / 12, 100 / 12))
+    assert got["RGB"][2:] == (1, 12)
+
+
+def test_original_plaintext_difference_locations_and_saturation_rule():
+    image = np.zeros((64, 64, 3), dtype=np.uint8)
+    image[0, 0, 0] = 255
+    changed = make_differential_plaintext(image, 32)
+    assert np.count_nonzero(changed != image) == 4
+    assert changed[0, 0, 0] == 254
+    assert changed[0, 32, 0] == 1
+    assert changed[32, 0, 0] == 1
+    assert changed[32, 32, 0] == 1
+    assert np.array_equal(changed[:, :, 1:], image[:, :, 1:])
+
+
+def test_nist_serialization_is_msb_first_exact_length_and_deterministic():
+    data = np.asarray([0x80, 0x01, 0xA5], dtype=np.uint8)
+    assert pack_msb_first(data, 20) == "10000000000000011010"
+    assert pack_msb_first(data, 20) == pack_msb_first(data.copy(), 20)
+    with pytest.raises(ValueError):
+        pack_msb_first(data, 25)
+
+
+def test_protect_is_deterministic_and_image_id_does_not_leak(clean_group_case):
+    original, protected = clean_group_case
+    repeat = a.protect_image(original, KEY, IMAGE_ID)
+    assert np.array_equal(repeat.marked_image, protected.marked_image)
+    assert IMAGE_ID not in protected.marked_image.tobytes(order="C")
+    verified = a.verify_and_decrypt(protected.marked_image, KEY, IMAGE_ID)
+    assert verified.accepted and np.array_equal(verified.recovered_image, original)
+
+
+def test_different_image_id_changes_output_but_preserves_recovery(clean_group_case):
+    original, protected = clean_group_case
+    another_id = bytes(reversed(IMAGE_ID))
+    changed = a.protect_image(original, KEY, another_id)
+    assert not np.array_equal(changed.marked_image, protected.marked_image)
+    verified = a.verify_and_decrypt(changed.marked_image, KEY, another_id)
+    assert verified.accepted and np.array_equal(verified.recovered_image, original)
+
+
+def test_different_images_same_key_fixed_image_id_change_intermediate_and_final(clean_group_case):
+    original, protected = clean_group_case
+    different = np.roll(original, 1, axis=1).copy()
+    other = a.protect_image(different, KEY, IMAGE_ID)
+    step1_a = a._step1_image(original, KEY, IMAGE_ID)
+    step1_b = a._step1_image(different, KEY, IMAGE_ID)
+    step2_a = a._step2_image(step1_a, KEY)
+    step2_b = a._step2_image(step1_b, KEY)
+    assert not np.array_equal(step1_a, step1_b)
+    assert not np.array_equal(step2_a, step2_b)
+    assert not np.array_equal(protected.marked_image, other.marked_image)
+    recovered = a.verify_and_decrypt(other.marked_image, KEY, IMAGE_ID)
+    assert recovered.accepted and np.array_equal(recovered.recovered_image, different)
+
+
+def test_one_bit_key_flip_changes_output_and_both_outputs_recover(clean_group_case):
+    original, protected = clean_group_case
+    changed_key = flip_first_key_bit(KEY)
+    assert sum((x ^ y).bit_count() for x, y in zip(KEY, changed_key)) == 1
+    changed = a.protect_image(original, changed_key, IMAGE_ID)
+    assert not np.array_equal(changed.marked_image, protected.marked_image)
+    for result, key in ((protected, KEY), (changed, changed_key)):
+        verified = a.verify_and_decrypt(result.marked_image, key, IMAGE_ID)
+        assert verified.accepted and np.array_equal(verified.recovered_image, original)
+
+
+def test_fixed_image_id_plaintext_difference_outputs_authenticate(clean_group_case):
+    original, _ = clean_group_case
+    modified = make_differential_plaintext(original, 32)
+    base = a.protect_image(original, KEY, IMAGE_ID)
+    changed = a.protect_image(modified, KEY, IMAGE_ID)
+    assert npcr_uaci(base.marked_image, changed.marked_image)["RGB"][2] > 0
+    for marked, plaintext in ((base.marked_image, original), (changed.marked_image, modified)):
+        verified = a.verify_and_decrypt(marked, KEY, IMAGE_ID)
+        assert verified.accepted and np.array_equal(verified.recovered_image, plaintext)
+
+
+def test_fresh_image_id_is_not_embedded_in_marked_pixels(clean_group_case):
+    original, _ = clean_group_case
+    fresh = a.generate_image_id()
+    result = a.protect_image(original, KEY, fresh)
+    assert fresh not in result.marked_image.tobytes(order="C")
+    verified = a.verify_and_decrypt(result.marked_image, KEY, fresh)
+    assert verified.accepted and np.array_equal(verified.recovered_image, original)

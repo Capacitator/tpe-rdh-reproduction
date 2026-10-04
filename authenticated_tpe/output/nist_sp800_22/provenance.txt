@@ -1,0 +1,33 @@
+experiment=authenticated-TPE statistical and differential evaluation
+nist_sts_version=2.1.2
+nist_sts_revision=official NIST STS 2.1.2 distribution
+nist_assess_sha256=960947a1816b9b12b6d3a38f58e4bca3a9ee5439f07dcfc5e31a0a5faa038fe9
+source_commit=aee62653f1e0a6fdea34eff382492b3a7338cd5e
+source_worktree=dirty at run start
+python=3.11.0
+numpy=2.4.4
+pillow=12.0.0
+pytest=8.4.2
+matplotlib=3.10.6
+scikit-image=0.25.2
+scipy=1.17.1
+streams_per_category=10
+stream_length_bits=1000000
+alpha=0.01
+selected_tests=Frequency,BlockFrequency,CumulativeSums,Runs,LongestRun,Rank,FFT,NonOverlappingTemplate,OverlappingTemplate,Universal,ApproximateEntropy,RandomExcursions,RandomExcursionsVariant,Serial,LinearComplexity
+parameters=Block Frequency M=128; non-overlap template m=9; overlap template m=9; approximate entropy m=10; serial m=16; linear complexity M=500; other parameters use STS 2.1.2 defaults
+image_order=airplane,baboon,couple,girl,lena,peppers,airplane,baboon,couple,girl
+key_fixtures=original NIST key schedule; hashes only: stream1:1e61df815c971d8e4350972b4381b38538d3b4dea23a93511d25bda9ab249505,stream2:1e61df815c971d8e4350972b4381b38538d3b4dea23a93511d25bda9ab249505,stream3:5becef96fad89d0345b64a29d08ea68482bef9b040da4f7c7706098ce69dd280,stream4:1f51afa30da4d350024d4c39f7334e0c26ff8e0bf3b070d23dee6726b12d70b8,stream5:1f8ddfd5fc4a80c858bba8b336580899bdc0cc0160efba502c4bf4a6713c63e2,stream6:b1ad1e7fd082865ac2fb2d610b585920aeefe8204c31bdd091b07ed5b9f7e452,stream7:18db4008dea739a9defd377f725d73faa948fc5a8c9dc6b97d5a7dbfe33bbcb3,stream8:c958ab57fd976d4e511de66a50aef172c39f72eba3ecbdbaa231fb7fa3d0af92,stream9:e771c6bc8e783e9ee44cc9f98df35ae58a49a689e1b51932f07a6244497b7c9c,stream10:075dc3b6b314dd3d8c28f5c7ad97a1e806b21808028398139acfab4df0e30f33
+image_id_policy=deterministic public SHA-256 fixture of image label; hashes only in manifest; same ID for repeated image labels
+input_image_file_sha256=airplane:515d0a5105047916be9faed513330046be41a61f4b155e854731e512ce1f4c4a,baboon:cd4456f2562dc352acee627428eb4e2ccaed5f53082ce0838d9fff6b8a3e3517,couple:e1760e29f10762fe60349e2848b01065b69784d04848606dd8644b6a9a893288,girl:d044fcfbea02123efdc167e596f45e839c39c2e1ca2ff841710ef4db15bc4dfb,lena:d5cd280e7e970a31828fe2c91ead6c8ce3ea257d04b6eabbd8e254c6e1cce255,peppers:208e8c6542e91a1b3d7d9457626b7577fc0d21affeb800435858cc83f2537649,airplane:515d0a5105047916be9faed513330046be41a61f4b155e854731e512ce1f4c4a,baboon:cd4456f2562dc352acee627428eb4e2ccaed5f53082ce0838d9fff6b8a3e3517,couple:e1760e29f10762fe60349e2848b01065b69784d04848606dd8644b6a9a893288,girl:d044fcfbea02123efdc167e596f45e839c39c2e1ca2ff841710ef4db15bc4dfb
+step2_conversion=actual Step-2 RGB uint8 image before RCM; C-order row-major RGB bytes; MSB-first; first 1,000,000 bits
+final_conversion=final RCM-marked RGB uint8 output; C-order row-major RGB bytes; MSB-first; first 1,000,000 bits
+step2_is_not_a_chaotic_sequence=true; it is a keyed image intermediate, tested only as the byte stream described above
+grouping_seed=deterministic HMAC_DRBG from channel structure keys; no nondeterministic generator seeds used
+exact_command=python authenticated_tpe/experiments/run_nist_sp800_22.py --sts-dir <NIST_STS_2_1_2_ROOT>
+runner_script_sha256=59f60ed7bbae4eb28aa2c30b544b8edfdf76ae536262cf8b03ed55799b3e17c9
+evaluation_helper_sha256=ba8e657a5e462a785fb0a5a76e61c530ddc5b7702a343a51848a20b64cdfdb77
+authenticated_source_sha256=e082e7b01e3181b5a3f1a9ddecfed4971834617e6f72a37d09782ae185ade594
+stream_manifest_sha256=55a1effa1cb375c6c912f8d88533893919c0b60e80fda34717454948f7163477
+status_interpretation=official workflow: p-value >= alpha is pass; p-value < alpha is fail; unavailable or STS-not-applicable component is not-applicable
+No user key bytes or ImageID bytes are written; only SHA-256 digests are recorded.

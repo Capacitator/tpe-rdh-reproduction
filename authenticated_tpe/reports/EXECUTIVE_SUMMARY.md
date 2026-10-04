@@ -4,7 +4,7 @@
 
 The project implements the professor-specific reversible block-group authentication method using pair-sum-preserving TPE, RCM, HMAC-SHA256, and four-block groups. It is an independent implementation, not an extension of the original chaotic algorithm.
 
-- Authenticated-project tests: **19 passed in 45.42s**.
+- Authenticated-project tests: **28 passed in 82.23s (0:01:22)**.
 - Clean artifact cases that both verify and recover exactly: **7/7**.
 - Tamper/credential cases rejected without plaintext: **7/7**.
 - Whole-image fallback has a sufficient recorded capacity: **True**.
@@ -20,4 +20,4 @@ Final status: documented prototype validation complete; the unavailable external
 
 ## Provenance
 
-Branch `authenticated-tpe-paper`, source commit `ec2661b690fa544b32b4d785fca3da46dc5a9603`; report-generation worktree state: `dirty`. See [the detailed report](AUTHENTICATED_TPE_REPORT.md) for dependencies, input hashes, exact commands, artifact paths, and specification hash.
+Branch `authenticated-tpe-paper`, source commit `aee62653f1e0a6fdea34eff382492b3a7338cd5e`; report-generation worktree state: `dirty`. See [the detailed report](AUTHENTICATED_TPE_REPORT.md) for dependencies, input hashes, exact commands, artifact paths, and specification hash.

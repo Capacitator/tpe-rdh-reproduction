@@ -1,0 +1,48 @@
+NIST SP 800-22 Rev. 1a results from official NIST STS 2.1.2.
+This is a statistical diagnostic of the listed deterministic authenticated-TPE byte streams, not a security proof.
+No overall pass score is computed. Outcomes are reported for every stream/test component.
+Parameters: 10 streams/category; 1000000 bits/stream; alpha=0.01; STS 2.1.2 settings in provenance.txt.
+
+[step2_intermediate] Step-2 authenticated-TPE RGB image before RCM tag embedding; row-major RGB uint8 bytes
+All stream/component outcomes: {'pass': 154, 'fail': 1466, 'not-applicable': 260}
+Test: pass / fail / not-applicable
+| Test | pass | fail | not-applicable |
+|---|---:|---:|---:|
+| Frequency | 0 | 10 | 0 |
+| BlockFrequency | 0 | 10 | 0 |
+| CumulativeSums | 0 | 20 | 0 |
+| Runs | 0 | 10 | 0 |
+| LongestRun | 0 | 10 | 0 |
+| Rank | 0 | 10 | 0 |
+| FFT | 0 | 10 | 0 |
+| NonOverlappingTemplate | 144 | 1336 | 0 |
+| OverlappingTemplate | 0 | 10 | 0 |
+| Universal | 0 | 10 | 0 |
+| ApproximateEntropy | 0 | 10 | 0 |
+| RandomExcursions | 0 | 0 | 80 |
+| RandomExcursionsVariant | 0 | 0 | 180 |
+| Serial | 0 | 20 | 0 |
+| LinearComplexity | 10 | 0 | 0 |
+
+[final_marked_rgb] final RCM-marked authenticated-TPE RGB image; row-major RGB uint8 bytes
+All stream/component outcomes: {'pass': 155, 'fail': 1465, 'not-applicable': 260}
+Test: pass / fail / not-applicable
+| Test | pass | fail | not-applicable |
+|---|---:|---:|---:|
+| Frequency | 0 | 10 | 0 |
+| BlockFrequency | 0 | 10 | 0 |
+| CumulativeSums | 0 | 20 | 0 |
+| Runs | 0 | 10 | 0 |
+| LongestRun | 0 | 10 | 0 |
+| Rank | 0 | 10 | 0 |
+| FFT | 0 | 10 | 0 |
+| NonOverlappingTemplate | 145 | 1335 | 0 |
+| OverlappingTemplate | 0 | 10 | 0 |
+| Universal | 0 | 10 | 0 |
+| ApproximateEntropy | 0 | 10 | 0 |
+| RandomExcursions | 0 | 0 | 80 |
+| RandomExcursionsVariant | 0 | 0 | 180 |
+| Serial | 0 | 20 | 0 |
+| LinearComplexity | 10 | 0 | 0 |
+
+Interpretation: these are statistical diagnostics for the deterministic byte streams described in provenance. Mixed failures and passes neither prove nor disprove cryptographic security; SP 800-22, NPCR, and UACI are not proofs of security.

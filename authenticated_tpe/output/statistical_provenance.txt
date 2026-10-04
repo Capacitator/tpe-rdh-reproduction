@@ -1,0 +1,23 @@
+experiment=authenticated-TPE statistical and differential evaluation
+source_commit=aee62653f1e0a6fdea34eff382492b3a7338cd5e
+source_worktree=dirty at experiment start
+python=3.11.0
+numpy=2.4.4
+pillow=12.0.0
+pytest=8.4.2
+image_order=airplane,baboon,couple,girl,lena,peppers
+input_dependency=../tpe_rdh_reproduction/input/uct_colour
+input_resize=only 256x256 UCT images resized to 512x512 using Pillow Image.resize default; native 512x512 images unchanged
+input_file_sha256=airplane.tif:515d0a5105047916be9faed513330046be41a61f4b155e854731e512ce1f4c4a;baboon.tif:cd4456f2562dc352acee627428eb4e2ccaed5f53082ce0838d9fff6b8a3e3517;couple.tif:e1760e29f10762fe60349e2848b01065b69784d04848606dd8644b6a9a893288;girl.tif:d044fcfbea02123efdc167e596f45e839c39c2e1ca2ff841710ef4db15bc4dfb;lena.tif:d5cd280e7e970a31828fe2c91ead6c8ce3ea257d04b6eabbd8e254c6e1cce255;peppers.tif:208e8c6542e91a1b3d7d9457626b7577fc0d21affeb800435858cc83f2537649
+test_user_key_sha256=630dcd2966c4336691125448bbb25b4ff412a49c732db2c8abc1b8581bd710dd
+flipped_test_user_key_sha256=cac2f595781630e4e929c6f9d5ab3986c861d731b4c6cb868380353c48e80d61
+fixed_test_image_id_sha256=35fad5784126a5377fd10f743335e52d2833e93d23d80fa78a5ce05421a42618
+ImageID values are not recorded; per-image deterministic fixtures are hashed only
+block_size=32; payload=none
+plaintext_delta=top-left R sample per block: +1 unless 255, then -1
+key_flip=first key byte XOR 0x01 (exactly one bit)
+NPCR=100 * changed sample count / sample count; UACI=100 * sum(abs(int16(A)-int16(B))) / (255 * sample count)
+per-channel sample_count=H*W; pooled RGB sample_count=H*W*3 (same pooled formula as original key sensitivity)
+commands=.venv/bin/python authenticated_tpe/experiments/run_authenticated_npcr_uaci.py ; see README/report for tests
+script_sha256=c4221e17b23dc70fda6271a43ddf49dfc6ae3dfd7c9ba3cdb2fb1b5a87f52201
+interpretation=NPCR/UACI are empirical differential metrics and do not prove cryptographic security

@@ -14,15 +14,18 @@ These are different algorithms. The authenticated method is not the original met
 | HMAC authentication | Not implemented; no authentication claim | HMAC-SHA256 group tags with whole-image fallback |
 | Tamper detection | No authenticated tamper detection | Controlled attack results in `authenticated_tpe/output/tamper_results.csv`; all listed cases are recorded separately in the authenticated report |
 | Wrong-key behavior | No authentication rejection guarantee; original pipeline has no HMAC | Wrong-key rejection is checked in authenticated `tamper_results.csv` |
-| NIST evaluation | Original project's STS 2.1.2 stream evaluation; mixed results from `tpe_rdh_reproduction/output/nist_sp800_22/results.csv` | Not reproduced: required original notebook/data/parameter was unavailable. NIST evaluation is not part of the authenticated project's checked-in experiment |
-| NPCR/UACI | Original Section 6 and key-sensitivity experiments only; source CSVs under original `output/section6/` and `output/key_sensitivity/` | Not reproduced: required original notebook/data/parameter was unavailable. No authenticated-project NPCR/UACI experiment is claimed |
+| Authenticated-TPE NPCR | Not applicable to original-project result; original plaintext-difference metric remains in its own artifacts | 1.09905667% pooled RGB aggregate; fixed ImageID, six resized-consistent fixtures, separate empirical experiment |
+| Authenticated-TPE UACI | Original values remain in original `output/section6/`; definitions/conditions are project-specific | 0.00875461% pooled RGB aggregate; not averaged with original result |
+| Authenticated-TPE one-bit-key NPCR/UACI | Original key-sensitivity values remain under original `output/key_sensitivity/` | 94.40517426% NPCR / 8.09181321% UACI, pooled RGB aggregate; fixed ImageID, one key bit flipped |
+| Authenticated-TPE NIST SP 800-22 | Original project's STS 2.1.2 stream evaluation; mixed results from `tpe_rdh_reproduction/output/nist_sp800_22/results.csv` | step2_intermediate: pass=154, fail=1466, not-applicable=260; final_marked_rgb: pass=155, fail=1465, not-applicable=260; separate Step-2 image-intermediate and final marked-RGB categories; no overall pass |
+| Same-key/different-image behavior | Original experiment retains its image-derived identifier and key-reuse behavior | fixed ImageID and image-specific deterministic ImageID variants are separately recorded; only fixed-ID comparison isolates image dependence, ImageID values represented by hashes |
 | Exact recovery | Original artifact: 24/24 UCT rows exact | Authenticated artifact: 7/7 clean cases verified and exact |
 | Group localization | Not applicable; no authentication groups | Failed groups are recorded per controlled attack in authenticated `tamper_results.csv` |
 | Whole-image fallback | Not applicable | Authenticated capacity experiment includes a constructed fallback fixture; see `authenticated_tpe/output/capacity_results.csv` |
 | Security claims | Statistical and functional validation does not establish cryptographic security; original report | Prototype evaluation only; no formal proof or independent cryptanalysis; authenticated report |
 | Limitations | Paper underspecification and experiment-fixture differences; original report | Explicit reconstruction conventions, finite attack set and unavailable external notebook; authenticated report |
 
-The table labels each result with its project and source artifact/report. The shared UCT fixture does not make experiments directly comparable: the projects use different methods, configurations, image preprocessing and metric definitions. The authenticated project resizes the two 256×256 fixtures; the original UCT experiment uses their native dimensions.
+The table labels each result with its project and source artifact/report. Original-project results and authenticated-project results remain separate; no metric values are combined or averaged. The authenticated project resizes only the two 256×256 fixtures to 512×512; the original UCT experiment uses native dimensions. NPCR/UACI are empirical differential metrics and SP 800-22 is a statistical diagnostic; none proves cryptographic security.
 
 ## Separate reports
 
@@ -33,7 +36,7 @@ The table labels each result with its project and source artifact/report. The sh
 
 ## Provenance
 
-- Branch `authenticated-tpe-paper`; source commit `ec2661b690fa544b32b4d785fca3da46dc5a9603`; current worktree state at generation: `dirty`.
+- Branch `authenticated-tpe-paper`; source commit `aee62653f1e0a6fdea34eff382492b3a7338cd5e`; current worktree state at generation: `dirty`.
 - Runtime: Python 3.11.0, NumPy 2.4.4, Pillow 12.0.0, pytest 8.4.2.
 - Shared image paths: `tpe_rdh_reproduction/input/uct_colour/*.tif`.
 - Shared image SHA-256 values:
