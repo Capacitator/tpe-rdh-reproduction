@@ -2,9 +2,9 @@
 
 ## Executive findings
 
-This project is a separate prototype of the professor-supplied reversible block-group authentication method. It combines pair-sum-preserving two-pixel encryption, reversible contrast mapping (RCM), and HMAC-SHA256 tags. It is implemented independently and does not import the original chaotic TPE/RDH pipeline.
+This project is a separate prototype of the professor-supplied reversible block-group authentication method. It combines pair-sum-preserving two-pixel encryption, reversible contrast mapping (RCM), and HMAC-SHA256 tags. It is independently implemented and does not import the original chaotic TPE/RDH pipeline.
 
-On six UCT color-image fixtures, the prototype used group mode, verified all 192 group tags per image, and recovered every image exactly. Seven controlled tampering or credential-mismatch cases were rejected without releasing plaintext. A constructed capacity fixture exercised whole-image fallback successfully. These results establish behavior for the tested cases; they are not a cryptographic security proof or independent cryptanalysis.
+Checked-in outputs record 6/6 natural UCT clean cases with successful verification and exact recovery, and 7/7 controlled tampering or credential cases rejected without plaintext. A constructed capacity fixture exercises whole-image fallback. These observations cover the recorded cases and are not a formal security proof or independent cryptanalysis.
 
 ## Method and scope
 
@@ -18,54 +18,74 @@ For each adjacent pair, Step 1 applies a key-derived reversible transform that p
 
 The six source fixtures are shared, read-only inputs at `../tpe_rdh_reproduction/input/uct_colour/`. The couple and girl source files are 256 × 256 and are resized to 512 × 512 by the experiment script; the other four are already 512 × 512. The experiment uses deterministic public test keys and IDs, which are not production secrets.
 
-## Clean authentication results
+## Clean-image authentication results
 
-| Image | Mode | Tags verified | Exact recovery | Pairs used | Marked vs Step-2 PSNR (dB) | Protect (s) | Verify (s) |
-|---|---:|---:|---:|---:|---:|---:|---:|
-| airplane | group | 192/192 | yes | 54,314 | 30.200616 | 2.829163 | 3.179332 |
-| baboon | group | 192/192 | yes | 57,326 | 27.708603 | 2.893875 | 3.142060 |
-| couple | group | 192/192 | yes | 80,498 | 32.585125 | 2.998788 | 3.442145 |
-| girl | group | 192/192 | yes | 61,936 | 30.054280 | 2.869511 | 3.300352 |
-| lena | group | 192/192 | yes | 54,926 | 28.046331 | 2.826731 | 3.117933 |
-| peppers | group | 192/192 | yes | 57,430 | 28.999219 | 2.875899 | 3.166885 |
+| Image | Mode | Tags | Verified | Exact recovery | Pairs used | Marked vs Step-2 PSNR (dB) | Protect (s) | Verify (s) |
+|---|---|---|---|---|---|---|---|---|
+| airplane | group | 192 | True | True | 54314 | 30.200616 | 2.829163 | 3.179332 |
+| baboon | group | 192 | True | True | 57326 | 27.708603 | 2.893875 | 3.142060 |
+| couple | group | 192 | True | True | 80498 | 32.585125 | 2.998788 | 3.442145 |
+| girl | group | 192 | True | True | 61936 | 30.054280 | 2.869511 | 3.300352 |
+| lena | group | 192 | True | True | 54926 | 28.046331 | 2.826731 | 3.117933 |
+| peppers | group | 192 | True | True | 57430 | 28.999219 | 2.875899 | 3.166885 |
+| constructed_capacity_fallback_fixture | whole-image | 1 | True | True | 268 | 50.359641 | 2.417387 | 3.224808 |
 
-PSNR compares the marked image to the Step-2 encrypted image before RCM marking. It measures marking distortion and is not an authentication or security measure. Timings are measurements from the recorded run and should not be treated as general performance guarantees.
+The checked-in CSV contains 7 clean cases; 7/7 verify and recover exactly. These include the six UCT image cases; modes, tag counts, exact per-image values and timings above are read directly from `output/clean_authentication_results.csv`. Marked-image PSNR compares the marked image with the Step-2 image before RCM marking and is not a security metric.
 
-## Tampering and fallback
+## Tampering and authentication failures
 
-| Controlled case | Rejected | Failed groups reported | Plaintext released |
-|---|---:|---:|---:|
-| Single pixel LSB flip | yes | 1 | no |
-| Same-channel block swap | yes | 2 | no |
-| Cross-channel block swap | yes | 2 | no |
-| Wrong user key | yes | 0 | no |
-| Wrong ImageID | yes | 0 | no |
-| Replacement with another protected image | yes | 0 | no |
-| Single pixel LSB flip in whole-image mode | yes | 0 | no |
+| Attack | Rejected | Failed groups | Plaintext released |
+|---|---|---|---|
+| single_pixel_lsb_flip | True | 1 | False |
+| same_channel_block_swap | True | 2 | False |
+| cross_channel_block_swap | True | 2 | False |
+| wrong_user_key | True | 0 | False |
+| wrong_image_id | True | 0 | False |
+| different_protected_image_replacement | True | 0 | False |
+| single_pixel_lsb_flip_whole_image_mode | True | 0 | False |
 
-All seven controlled cases were rejected, with zero observed false acceptances. The first three group-mode edits were localized to one, two and two affected groups respectively. Wrong credentials and image replacement do not identify a group; whole-image fallback also provides no group localization. A separate tampering script independently checked clean verification and recovery, a one-bit tamper, and wrong credentials.
+The artifact records 7/7 attacks rejected and 7/7 with no plaintext released. Wrong-key, wrong-ImageID, replacement, same-channel block-swap, and cross-channel block-swap outcomes and failed-group counts are shown in the CSV-derived table. Group localization is only reported where verification identifies affected groups; zero means no failed group was attributable in these cases.
 
-All six natural-image cases had sufficient per-group capacity and used group mode. In a constructed fallback fixture, 3 of 192 groups were below the 256-bit target while whole-image capacity was sufficient; the image used one whole-image tag and recovered exactly. Its one-bit tamper was rejected. Capacity and attack fixtures are detailed in [`output/capacity_results.csv`](../output/capacity_results.csv) and [`output/tamper_results.csv`](../output/tamper_results.csv).
+## Capacity and operating modes
 
-Across the six natural images, measured whole-image net capacity ranged from 269,366 to 356,142 bits; minimum group peak capacity ranged from 333 to 1,619 bits. The fallback fixture had 368,912 whole-image net bits. Clean-image protection time ranged from 2.827 to 2.999 seconds and verification time from 3.118 to 3.442 seconds on the recorded environment. These timings are single-run measurements, not performance guarantees.
+| Fixture | Mode | Groups at target | Minimum group peak (bits) | Whole-image capacity (bits) |
+|---|---|---|---|---|
+| airplane | group | 192 | 1619 | 356142 |
+| baboon | group | 192 | 1225 | 337798 |
+| couple | group | 192 | 333 | 269366 |
+| girl | group | 192 | 652 | 324672 |
+| lena | group | 192 | 1392 | 353508 |
+| peppers | group | 192 | 1216 | 338340 |
+| constructed_capacity_fallback_fixture | whole-image | 189 | 0 | 368912 |
 
-## Validation, provenance and limits
+For the 6 group-mode natural-image cases, minimum group peak capacity ranges from 333 to 1619 bits; whole-image net capacity ranges from 269366 to 356142 bits. The separate constructed fixture exercises whole-image fallback: 189 groups meet the group threshold, and its whole-image capacity is 368912 bits. Capacity details are in `output/capacity_results.csv`.
 
-The authenticated-only suite command `.venv/bin/python -m pytest authenticated_tpe/tests -q` passed **19 tests**. The independent tampering command `.venv/bin/python authenticated_tpe/experiments/check_authenticated_tpe_tampering.py` also passed. The saved output report records six clean natural-image cases and one constructed fallback case.
+## Tests, independent check, and provenance
+
+Authenticated-project test command `python -m pytest tests -q` from `authenticated_tpe/` passed **19 passed in 45.42s**. The independent script `python experiments/check_authenticated_tpe_tampering.py` exited successfully; recorded output: `independent_clean_group_mode=PASS; independent_clean_exact_recovery=PASS; independent_single_bit_tamper_rejected=True; independent_failed_groups=1; independent_no_plaintext_on_tamper=PASS; independent_wrong_key_rejected=PASS; independent_wrong_image_id_rejected=PASS`.
 
 ### Artifact provenance
 
-- Branch at report start: `authenticated-tpe-paper`.
-- Report source commit: `7bbe3cf32197b3bba5f5f868df90b9c417c4da66`; worktree was clean before report files were created.
-- Experiment provenance commit: `e004bda185b10c5c0a91061e3715e8c3a0248f6b`; experiment source worktree was clean at run start, before outputs were regenerated.
-- Python 3.11.0; NumPy 2.4.4; Pillow 12.0.0; pytest 8.4.2. The source requirements file and historical experiment metadata may identify other versions; use the run provenance for these measurements.
-- Shared input paths: `../tpe_rdh_reproduction/input/uct_colour/{airplane,baboon,couple,girl,lena,peppers}.tif`.
-- SHA-256 values for each input and source artifact are recorded in [`output/provenance.txt`](../output/provenance.txt).
-- The deterministic public UserKey and ImageID fixtures are specified in the same provenance file; they are not production secrets.
+- Branch `authenticated-tpe-paper`; report source commit `ec2661b690fa544b32b4d785fca3da46dc5a9603`; worktree at report generation: `dirty`.
+- Artifact-generating source commit: `e004bda185b10c5c0a91061e3715e8c3a0248f6b`; artifact source worktree state: `clean (recorded at run start, before regenerating output files)`.
+- Runtime: Python 3.11.0; NumPy 2.4.4; Pillow 12.0.0; pytest 8.4.2.
+- Input paths: `../tpe_rdh_reproduction/input/uct_colour/{airplane,baboon,couple,girl,lena,peppers}.tif` (read-only shared UCT fixtures).
+- Input image SHA-256 values:
 
-Detailed measurements are in [`output/clean_authentication_results.csv`](../output/clean_authentication_results.csv).
+  - `airplane.tif`: `515d0a5105047916be9faed513330046be41a61f4b155e854731e512ce1f4c4a`
+  - `baboon.tif`: `cd4456f2562dc352acee627428eb4e2ccaed5f53082ce0838d9fff6b8a3e3517`
+  - `couple.tif`: `e1760e29f10762fe60349e2848b01065b69784d04848606dd8644b6a9a893288`
+  - `girl.tif`: `d044fcfbea02123efdc167e596f45e839c39c2e1ca2ff841710ef4db15bc4dfb`
+  - `lena.tif`: `d5cd280e7e970a31828fe2c91ead6c8ce3ea257d04b6eabbd8e254c6e1cce255`
+  - `peppers.tif`: `208e8c6542e91a1b3d7d9457626b7577fc0d21affeb800435858cc83f2537649`
+- Specification SHA-256: `f0348a3435259037f53028830f4d00056f8ad58f4c87843f3766c924b1a1607d`.
+- Public deterministic test fixtures only; no secret key or private production ImageID is reproduced here.
+- Report-generation script: `authenticated_tpe/experiments/generate_authenticated_report.py`; exact command: `.venv/bin/python authenticated_tpe/experiments/generate_authenticated_report.py` from repository root.
+- Source/artifact paths: `authenticated_tpe/src/`, `tests/`, `experiments/`, `docs/`, and `output/`; measurements are from `output/clean_authentication_results.csv`, `tamper_results.csv`, `capacity_results.csv`, and `provenance.txt`.
 
-The implementation reproduces the method description with documented explicit conventions; it is not an exact reproduction of the professor's unavailable Colab notebook. The paper's reported images and complete attack study were not reproduced here. The two 256 × 256 fixtures are resized for this method, and the fallback case is constructed. No authenticated-method NIST SP 800-22, NPCR/UACI or independent cryptanalysis result is claimed. HMAC-based acceptance and exact recovery in these tests do not prove confidentiality or overall security. ImageID freshness and secrecy, UserKey protection, lossless pixel integrity, and implementation correctness remain operational requirements.
+## Reproduction status and limitations
+
+The implementation reconstructs the paper description using explicit documented conventions. Not reproduced: required original notebook/data/parameter was unavailable. The reported six UCT fixtures, constructed fallback fixture, and finite attack set are prototype evaluation, not a formal security proof or independent cryptanalysis. No authenticated-project NIST SP 800-22 or NPCR/UACI result is claimed. Lossless image handling, UserKey secrecy, and fresh private production ImageIDs remain operational requirements.
 
 ## Reproduction
 

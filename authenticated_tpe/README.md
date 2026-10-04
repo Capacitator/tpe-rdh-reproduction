@@ -46,3 +46,9 @@ security proof or independent cryptanalysis.
 - [Authenticated-TPE report](reports/AUTHENTICATED_TPE_REPORT.md)
 - [Authenticated-TPE executive summary](reports/EXECUTIVE_SUMMARY.md)
 - [Comparison with the original project](../reports/COMPARISON.md)
+
+Regenerate this report with
+`.venv/bin/python authenticated_tpe/experiments/generate_authenticated_report.py`
+from the repository root. The script runs the authenticated-project tests,
+independent tampering check, and rebuilds result tables from checked-in CSV and
+TXT artifacts.

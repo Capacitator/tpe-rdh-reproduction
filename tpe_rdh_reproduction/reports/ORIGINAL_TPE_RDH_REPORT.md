@@ -31,84 +31,92 @@ Substitution maps each pixel pair to its index among pairs with the same sum, ad
 
 ### Image-derived key-reuse behavior
 
-When no identifier is provided, the pipeline derives `T` from the plaintext RGB image bytes using the documented image-identifier convention. The resolved identifier must be retained for decryption. The fixed-key UCT experiment records different identifiers, `Upsilon_P`/`Upsilon_S` hashes, and ciphertext hashes for airplane and baboon; the final demo separately reports the same-key/different-image check passing. This tests the implementation’s diversification behavior. It is not evidence of cryptographic security.
+The checked-in same-key/different-image artifact reports image-derived identifiers differed: **yes**; Upsilon_P matrices differed: **yes**; Upsilon_S matrices differed: **yes**; ciphertexts differed: **yes**. It also records exact recovery and payload recovery for both demo images. This demonstrates implementation diversification for that fixture and is not evidence of cryptographic security. Source: `output/final_demo/final_demo_report.txt`.
 
 ## Validation results
 
 ### Exact recovery, payload, and capacity
 
-`output/uct_colour_all_blocks/summary.csv` contains 24 UCT image/block-size runs (six images × block sizes 8, 16, 32, and 64). All 24 report exact recovery, zero maximum recovery error, payload recovery, and post-RDH block-sum preservation. The original images retain their native dimensions there: airplane, baboon, lena, and peppers are 512×512; couple and girl are 256×256.
+`output/uct_colour_all_blocks/summary.csv` contains 24 image/block-size runs; 24/24 report exact image recovery and payload recovery. All rows report zero maximum recovery error and post-RDH block-sum preservation. The original images retain their native dimensions in this experiment.
 
-The Section 6-style experiment uses `coffee`, `chelsea`, `rocket`, and `hubble_deep_field` from `skimage.data`, with 512×512 preprocessing, block sizes 8, 16, 32, and 64, and a 64-bit payload. All 16 runs report exact recovery (`PSNR=inf`, `SSIM=1`, maximum error 0). The synthetic demonstration (`results/metrics.txt`) also reports exact recovery and recovery of its 248-bit payload.
+The Section 6-style experiment contains 16 image/block-size cases; 16/16 report exact recovery (PSNR=inf, SSIM=1, maximum error 0). The synthetic demonstration reports exact image recovery and a recovered 248-bit payload.
 
 ### Thumbnail and block sums
 
-The UCT all-block results report preserved post-RDH block sums in all 24 runs. The separate `output/thumbnail_metrics.csv` demo measures stages independently: in that artifact, RDH changed 40 of 255 block/channel sums (maximum absolute difference 10), while substitution changed none (255/255 exact). That is the expected distinction: substitution preserves the sums presented to it, which are the RDH-marked sums.
+The thumbnail stage artifact reports 215/255 block/channel sums unchanged at `rdh`; maximum absolute difference is 10 and mean absolute difference is 0.6118.
+The thumbnail stage artifact reports 255/255 block/channel sums unchanged at `substitution`; maximum absolute difference is 0 and mean absolute difference is 0.0000.
+
+The all-block UCT table separately records post-RDH block-sum preservation for every listed run. This distinction reflects that substitution preserves the RDH-marked sums, while RDH itself may change sums.
 
 ### NPCR and UACI
 
-The Section 6 differential experiment alters the top-left pixel of every block by +1 (or −1 at 255) in the R channel, then lets the default pipeline derive an image identifier from each plaintext. Across its 16 image/block-size RGB-mean rows, NPCR ranges from **96.93% to 99.50%** and UACI from **6.30% to 26.60%**. Across the per-channel rows, NPCR ranges from **96.66% to 99.55%** and UACI from **6.15% to 28.55%**. These values reflect both plaintext changes and identifier-dependent chaotic state; the source experiment explicitly treats them as validation metrics, not a faithful reproduction of the paper’s underspecified differential test.
+Across 16 Section 6 RGB-mean rows, NPCR is 96.93%–99.50% and UACI is 6.30%–26.60%. Across 64 per-channel rows, NPCR is 96.66%–99.55% and UACI is 6.15%–28.55%. The input perturbation is recorded in `output/section6/provenance.txt`; these are implementation diagnostics, not the paper's official security table.
 
-The separate one-bit-key sweep (`output/key_sensitivity/uct_key_sensitivity_npcr_uaci.csv`) covers six UCT images and block sizes 8, 16, 32, and 64, holding the image identifier fixed. Its RGB NPCR range is **95.93%–99.47%**, with RGB UACI **9.70%–27.35%**. Per-channel values are retained in the CSV.
+The separate fixed-identifier one-bit-key sweep contains 24 rows: RGB NPCR 95.93%–99.47% and RGB UACI 9.70%–27.35%. Per-channel values are in `output/key_sensitivity/uct_key_sensitivity_npcr_uaci.csv`.
 
 ### Entropy and adjacent-pixel correlation
 
-The checked-in numerical entropy result is from the deterministic synthetic 512×512 RGB demo only: entropy is **3.8154 bits** for the source and **7.9874 bits** for the final encrypted image, using that report’s image-level histogram calculation. No all-image, per-channel entropy table is present in the original project outputs, so these two values must not be generalized to the UCT or `skimage` sets.
-
-The Section 6 correlation CSV uses 5,000 deterministically sampled adjacent pairs per direction after RGB-to-luminance conversion (not separate R/G/B correlations). Across the four `skimage.data` images and four block sizes, original luminance correlations range from **0.7573 to 0.9905** and encrypted luminance correlations from **−0.2054 to 0.6929**. The synthetic demo reports its own horizontal, vertical, and diagonal values in `results/metrics.txt`; those are a separate fixture and run.
+The checked-in synthetic demo reports image-level entropy 3.815429 bits for the source and 7.987439 bits for ciphertext; no multi-image entropy table is available. Section 6 correlation has 48 sampled luminance rows: original 0.7573–0.9905, encrypted -0.2054–0.6929. The experiment uses 5,000 deterministic adjacent pairs per direction. These are separate fixtures and calculations.
 
 ## NIST SP 800-22 Rev. 1a
 
-`experiments/run_nist_sp800_22.py` drives the official NIST STS 2.1.2 `assess` program. It tests two source categories: quantized `Upsilon_P` followed by `Upsilon_S`, and final encrypted RGB bytes. Each category has 10 streams of 1,000,000 bits, MSB-first, truncated after row-major serialization. The stream image order is airplane, baboon, couple, girl, lena, peppers, airplane, baboon, couple, girl. Streams 1 and 2 share a fixed key; streams 3–10 use distinct fixed fixtures. The pipeline derives image identifiers from plaintext.
+The recorded run uses official NIST STS 2.1.2. Stream construction: 10 streams per category, 1,000,000 bits per stream, alpha 0.01. Full category conversions, key schedule and image order are recorded in `output/nist_sp800_22/provenance.txt`.
 
-The test uses alpha 0.01. Parameters recorded in provenance include Block Frequency M=128; non-overlapping and overlapping template m=9; approximate entropy m=10; serial m=16; linear complexity M=500; other settings use STS 2.1.2 defaults. `results.csv` contains every per-stream/component p-value and pass/fail/not-applicable value. Aggregate row counts are:
+Selected tests: Frequency, BlockFrequency, CumulativeSums, Runs, LongestRun, Rank, FFT, NonOverlappingTemplate, OverlappingTemplate, Universal, ApproximateEntropy, RandomExcursions, RandomExcursionsVariant, Serial, LinearComplexity. Parameters: Block Frequency M=128; Non-overlap template m=9; Overlap template m=9; Approximate Entropy m=10; Serial m=16; Linear Complexity M=500; remaining suite defaults.
 
-| Stream category | Pass | Fail | Not applicable | Total component outcomes |
+Aggregate component outcomes:
+
+| Stream category | Pass | Fail | Not applicable | Total |
 |---|---:|---:|---:|---:|
-| Chaotic matrices | 484 | 1,292 | 104 | 1,880 |
-| Final ciphertext | 410 | 1,210 | 260 | 1,880 |
+| chaotic | 484 | 1292 | 104 | 1880 |
+| ciphertext | 410 | 1210 | 260 | 1880 |
 
-Per-test outcomes from `output/nist_sp800_22/results.csv`:
+Per-test component counts (pass / fail / not applicable):
 
-| Test | Chaotic pass / fail / N/A | Ciphertext pass / fail / N/A |
+| Test | Chaotic matrices | Final ciphertext |
 |---|---:|---:|
 | Frequency | 8 / 2 / 0 | 0 / 10 / 0 |
-| Block Frequency | 0 / 10 / 0 | 0 / 10 / 0 |
-| Cumulative Sums | 16 / 4 / 0 | 0 / 20 / 0 |
+| BlockFrequency | 0 / 10 / 0 | 0 / 10 / 0 |
+| CumulativeSums | 16 / 4 / 0 | 0 / 20 / 0 |
 | Runs | 0 / 10 / 0 | 0 / 10 / 0 |
-| Longest Run | 0 / 10 / 0 | 2 / 8 / 0 |
+| LongestRun | 0 / 10 / 0 | 2 / 8 / 0 |
 | Rank | 10 / 0 / 0 | 3 / 7 / 0 |
 | FFT | 0 / 10 / 0 | 0 / 10 / 0 |
-| Non-overlapping Template | 325 / 1,155 / 0 | 389 / 1,091 / 0 |
-| Overlapping Template | 0 / 10 / 0 | 2 / 8 / 0 |
+| NonOverlappingTemplate | 325 / 1155 / 0 | 389 / 1091 / 0 |
+| OverlappingTemplate | 0 / 10 / 0 | 2 / 8 / 0 |
 | Universal | 0 / 10 / 0 | 0 / 10 / 0 |
-| Approximate Entropy | 0 / 10 / 0 | 0 / 10 / 0 |
-| Random Excursions | 7 / 41 / 32 | 0 / 0 / 80 |
-| Random Excursions Variant | 108 / 0 / 72 | 0 / 0 / 180 |
+| ApproximateEntropy | 0 / 10 / 0 | 0 / 10 / 0 |
+| RandomExcursions | 7 / 41 / 32 | 0 / 0 / 80 |
+| RandomExcursionsVariant | 108 / 0 / 72 | 0 / 0 / 180 |
 | Serial | 0 / 20 / 0 | 4 / 16 / 0 |
-| Linear Complexity | 10 / 0 / 0 | 10 / 0 / 0 |
+| LinearComplexity | 10 / 0 / 0 | 10 / 0 / 0 |
 
-The outcomes are mixed and include substantial failures. “Not applicable” means STS did not apply that component to a stream, not a pass. No algorithm parameters were tuned to improve these outcomes. NIST statistical tests do not establish cryptographic security and are not a substitute for cryptanalysis.
+The results are mixed and contain substantial failures. Not applicable is not a pass. These statistical tests do not establish cryptographic security and are not a substitute for cryptanalysis.
 
 ## Assumptions and limitations
 
+- Not reproduced: required original notebook/data/parameter was unavailable. The project evaluates its documented implementation on the checked-in fixtures and does not claim the paper authors' official experimental tables.
 - Several paper details are underspecified: key-to-chaos conversion, the matrix-generation interpretation, sorting/tie behavior, block/pair order, `vartheta`, RGB payload/metadata layout, no-zero overhead encoding, and the exact Section 6.8 plaintext-change protocol. See `docs/paper_map.md`, `docs/IMPLEMENTATION_NOTES.md`, and `docs/SECTION5_NOTES.md`.
 - The primary validation images differ from the paper’s Helen dataset. The `skimage.data` Section 6 results, UCT results, synthetic demo, key sensitivity sweep, and NIST streams are different experiments with different fixtures and settings.
 - Correlation in the Section 6 output is sampled luminance correlation; it is not the paper’s per-channel table.
 - Wrong-key or wrong-identifier processing has no authentication rejection guarantee. This pipeline has no HMAC authentication layer.
 - NPCR/UACI, entropy, correlation, and NIST outcomes are empirical image/statistical checks only.
 
-## Tests and reproduction status
 
-From the original project directory, the test command is `../.venv/bin/python -m pytest tests -q`; the most recent post-split run passed **83 tests**, with 14 dependency deprecation warnings. `output/uct_colour_all_blocks/summary.csv` reports 24/24 exact UCT image recoveries and payload recoveries. NIST outputs are already generated and retained under `output/nist_sp800_22/`; no new NIST run was performed while preparing this report.
 
-## Artifact provenance
 
-- Report branch: `authenticated-tpe-paper`.
-- Report source commit: `7bbe3cf32197b3bba5f5f868df90b9c417c4da66`.
-- Worktree state at report-generation start: clean; report files were not yet present.
-- Current verification environment: Python 3.11.0, NumPy 2.4.4, Pillow 12.0.0, scikit-image 0.25.2, pytest 8.4.2, Matplotlib 3.10.6.
-- UCT inputs are under `input/uct_colour/`; SHA-256 is over the tracked TIFF file bytes:
+
+
+## Tests, reproduction, and provenance
+
+The original-project suite command `python -m pytest tests -q` from `tpe_rdh_reproduction/` completed successfully: **83 passed, 14 warnings in 2.37s**.
+
+### Artifact provenance
+
+- Branch: `authenticated-tpe-paper`; source commit: `ec2661b690fa544b32b4d785fca3da46dc5a9603`.
+- Source worktree at report generation: `dirty`; this records the actual state, including report-generation edits.
+- Runtime: Python 3.11.0; numpy 2.4.4, pillow 12.0.0, scikit-image 0.25.2, pytest 8.4.2, matplotlib 3.10.6.
+- UCT source inputs are TIFF files under `tpe_rdh_reproduction/input/uct_colour/`; hashes cover file bytes:
 
 | Input | SHA-256 |
 |---|---|
@@ -119,4 +127,8 @@ From the original project directory, the test command is `../.venv/bin/python -m
 | `input/uct_colour/lena.tif` | `d5cd280e7e970a31828fe2c91ead6c8ce3ea257d04b6eabbd8e254c6e1cce255` |
 | `input/uct_colour/peppers.tif` | `208e8c6542e91a1b3d7d9457626b7577fc0d21affeb800435858cc83f2537649` |
 
-Generated artifact groups have separate historical provenance: NIST STS 2.1.2 results were generated from source commit `55e99abf0693b1b5fd74ea34583091f27e5dbe19` with Python 3.11.0; Section 6 results from `3aafb0fa048953131424e2110166d26b602c73f7` with Python 3.13.9; the synthetic submission metrics from `8ec4bccef50d72ad4ae036d086914c480661a95f` with Python 3.13.9. The respective artifact provenance files under `output/nist_sp800_22/`, `output/section6/`, and `results/metrics.txt` provide run-specific settings. These different source revisions and fixtures are not one combined run.
+- Report-generation script: `tpe_rdh_reproduction/experiments/generate_original_report.py`.
+- Exact generation command from repository root: `.venv/bin/python tpe_rdh_reproduction/experiments/generate_original_report.py`.
+- Artifact paths: `tpe_rdh_reproduction/results/metrics.txt`; `tpe_rdh_reproduction/output/{uct_colour_all_blocks,section6,key_sensitivity,nist_sp800_22}/`; thumbnail sums: `tpe_rdh_reproduction/output/thumbnail_metrics.csv`.
+- Historical run commits and runtime versions remain recorded separately in `output/nist_sp800_22/provenance.txt`, `output/section6/provenance.txt`, and `results/metrics.txt`. Those records are not represented as current clean-source runs.
+- Paper source and documented assumptions: `tpe_rdh_reproduction/docs/paper_map.md`, `docs/IMPLEMENTATION_NOTES.md`, and `docs/SECTION5_NOTES.md`.

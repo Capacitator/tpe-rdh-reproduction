@@ -97,6 +97,11 @@ tpe_rdh_reproduction/
 - [Executive summary](reports/EXECUTIVE_SUMMARY.md)
 - [Comparison with authenticated TPE](../reports/COMPARISON.md)
 
+Regenerate this report and run this project's tests with
+`../.venv/bin/python experiments/generate_original_report.py` from the
+repository root. The script runs `python -m pytest tests -q` from this project
+and derives result tables from checked-in CSV and TXT artifacts.
+
 ## Installation
 
 From inside `tpe_rdh_reproduction/`:

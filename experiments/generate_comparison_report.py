@@ -1,4 +1,46 @@
-# Comparison of the two TPE/RDH projects
+"""Generate the cross-project comparison and its provenance from project artifacts."""
+
+from __future__ import annotations
+
+import csv
+import hashlib
+import importlib.metadata
+import subprocess
+import sys
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+OUTPUT = ROOT / "reports/COMPARISON.md"
+
+
+def read_csv(path: Path) -> list[dict[str, str]]:
+    with path.open(newline="", encoding="utf-8") as stream:
+        return list(csv.DictReader(stream))
+
+
+def git(*args: str) -> str:
+    return subprocess.check_output(["git", *args], cwd=ROOT, text=True).strip()
+
+
+def digest(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def main() -> None:
+    old_rows = read_csv(ROOT / "tpe_rdh_reproduction/output/uct_colour_all_blocks/summary.csv")
+    auth_rows = read_csv(ROOT / "authenticated_tpe/output/clean_authentication_results.csv")
+    old_nist = read_csv(ROOT / "tpe_rdh_reproduction/output/nist_sp800_22/results.csv")
+    auth_tamper = read_csv(ROOT / "authenticated_tpe/output/tamper_results.csv")
+    current_hashes = []
+    for path in sorted((ROOT / "tpe_rdh_reproduction/input/uct_colour").glob("*.tif")):
+        current_hashes.append(f"| `{path.relative_to(ROOT).as_posix()}` | `{digest(path)}` |")
+    branch = git("branch", "--show-current")
+    commit = git("rev-parse", "HEAD")
+    dirty = bool(git("status", "--porcelain"))
+    numpy = importlib.metadata.version("numpy")
+    pillow = importlib.metadata.version("pillow")
+    pytest = importlib.metadata.version("pytest")
+    content = f"""# Comparison of the two TPE/RDH projects
 
 These are different algorithms. The authenticated method is not the original method with a small patch. The original method must not inherit authentication claims, and the authenticated method must not inherit the original method's NIST or NPCR/UACI claims unless those experiments are independently run. Metrics from separate experiments must not be compared unless images, parameters, and definitions match.
 
@@ -16,7 +58,7 @@ These are different algorithms. The authenticated method is not the original met
 | Wrong-key behavior | No authentication rejection guarantee; original pipeline has no HMAC | Wrong-key rejection is checked in authenticated `tamper_results.csv` |
 | NIST evaluation | Original project's STS 2.1.2 stream evaluation; mixed results from `tpe_rdh_reproduction/output/nist_sp800_22/results.csv` | Not reproduced: required original notebook/data/parameter was unavailable. NIST evaluation is not part of the authenticated project's checked-in experiment |
 | NPCR/UACI | Original Section 6 and key-sensitivity experiments only; source CSVs under original `output/section6/` and `output/key_sensitivity/` | Not reproduced: required original notebook/data/parameter was unavailable. No authenticated-project NPCR/UACI experiment is claimed |
-| Exact recovery | Original artifact: 24/24 UCT rows exact | Authenticated artifact: 7/7 clean cases verified and exact |
+| Exact recovery | Original artifact: {sum(r['exact_recovery'].lower() == 'true' for r in old_rows)}/{len(old_rows)} UCT rows exact | Authenticated artifact: {sum(r['verified'].lower() == 'true' and r['exact_recovery'].lower() == 'true' for r in auth_rows)}/{len(auth_rows)} clean cases verified and exact |
 | Group localization | Not applicable; no authentication groups | Failed groups are recorded per controlled attack in authenticated `tamper_results.csv` |
 | Whole-image fallback | Not applicable | Authenticated capacity experiment includes a constructed fallback fixture; see `authenticated_tpe/output/capacity_results.csv` |
 | Security claims | Statistical and functional validation does not establish cryptographic security; original report | Prototype evaluation only; no formal proof or independent cryptanalysis; authenticated report |
@@ -33,22 +75,23 @@ The table labels each result with its project and source artifact/report. The sh
 
 ## Provenance
 
-- Branch `authenticated-tpe-paper`; source commit `ec2661b690fa544b32b4d785fca3da46dc5a9603`; current worktree state at generation: `dirty`.
-- Runtime: Python 3.11.0, NumPy 2.4.4, Pillow 12.0.0, pytest 8.4.2.
+- Branch `{branch}`; source commit `{commit}`; current worktree state at generation: `{'dirty' if dirty else 'clean'}`.
+- Runtime: Python {sys.version.split()[0]}, NumPy {numpy}, Pillow {pillow}, pytest {pytest}.
 - Shared image paths: `tpe_rdh_reproduction/input/uct_colour/*.tif`.
 - Shared image SHA-256 values:
 
 | Input | SHA-256 |
 |---|---|
-| `tpe_rdh_reproduction/input/uct_colour/airplane.tif` | `515d0a5105047916be9faed513330046be41a61f4b155e854731e512ce1f4c4a` |
-| `tpe_rdh_reproduction/input/uct_colour/baboon.tif` | `cd4456f2562dc352acee627428eb4e2ccaed5f53082ce0838d9fff6b8a3e3517` |
-| `tpe_rdh_reproduction/input/uct_colour/couple.tif` | `e1760e29f10762fe60349e2848b01065b69784d04848606dd8644b6a9a893288` |
-| `tpe_rdh_reproduction/input/uct_colour/girl.tif` | `d044fcfbea02123efdc167e596f45e839c39c2e1ca2ff841710ef4db15bc4dfb` |
-| `tpe_rdh_reproduction/input/uct_colour/lena.tif` | `d5cd280e7e970a31828fe2c91ead6c8ce3ea257d04b6eabbd8e254c6e1cce255` |
-| `tpe_rdh_reproduction/input/uct_colour/peppers.tif` | `208e8c6542e91a1b3d7d9457626b7577fc0d21affeb800435858cc83f2537649` |
+{chr(10).join(current_hashes)}
 
 - Exact project validation commands: `cd tpe_rdh_reproduction && python -m pytest tests -q`; `cd authenticated_tpe && python -m pytest tests -q`; `python experiments/check_authenticated_tpe_tampering.py` from `authenticated_tpe/`.
 - Report-generation script and command: `experiments/generate_comparison_report.py`; `.venv/bin/python experiments/generate_comparison_report.py` from repository root.
 - Artifact paths: original `tpe_rdh_reproduction/output/`, `results/`, and `docs/`; authenticated `authenticated_tpe/output/`, `docs/`, `src/`, and `tests/`.
-- Specification SHA-256: authenticated method specification `f0348a3435259037f53028830f4d00056f8ad58f4c87843f3766c924b1a1607d`. The original paper DOI is identified in the original project's paper map and report.
+- Specification SHA-256: authenticated method specification `{dict(line.split('=', 1) for line in (ROOT / 'authenticated_tpe/output/provenance.txt').read_text().splitlines() if '=' in line)['specification_sha256']}`. The original paper DOI is identified in the original project's paper map and report.
 - This comparison summarizes the cited project artifacts; it does not combine metric values or assert a winner.
+"""
+    OUTPUT.write_text(content, encoding="utf-8")
+
+
+if __name__ == "__main__":
+    main()

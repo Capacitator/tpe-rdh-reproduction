@@ -16,3 +16,12 @@ area so their implementations and results remain distinct.
 - [Original-project executive summary](tpe_rdh_reproduction/reports/EXECUTIVE_SUMMARY.md)
 - [Authenticated-TPE report](authenticated_tpe/reports/AUTHENTICATED_TPE_REPORT.md)
 - [Authenticated-TPE executive summary](authenticated_tpe/reports/EXECUTIVE_SUMMARY.md)
+
+Regenerate all reports from checked-in experiment artifacts and rerun the
+project-specific validation suites with:
+
+```bash
+.venv/bin/python tpe_rdh_reproduction/experiments/generate_original_report.py
+.venv/bin/python authenticated_tpe/experiments/generate_authenticated_report.py
+.venv/bin/python experiments/generate_comparison_report.py
+```
