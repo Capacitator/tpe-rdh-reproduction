@@ -1,5 +1,5 @@
 experiment=authenticated-TPE statistical and differential evaluation
-source_commit=aee62653f1e0a6fdea34eff382492b3a7338cd5e
+source_commit=08b16e6c03c84f3bf5b3175c1648413bc38d461f
 source_worktree=dirty at experiment start
 python=3.11.0
 numpy=2.4.4
@@ -19,5 +19,5 @@ key_flip=first key byte XOR 0x01 (exactly one bit)
 NPCR=100 * changed sample count / sample count; UACI=100 * sum(abs(int16(A)-int16(B))) / (255 * sample count)
 per-channel sample_count=H*W; pooled RGB sample_count=H*W*3 (same pooled formula as original key sensitivity)
 commands=.venv/bin/python authenticated_tpe/experiments/run_authenticated_npcr_uaci.py ; see README/report for tests
-script_sha256=c4221e17b23dc70fda6271a43ddf49dfc6ae3dfd7c9ba3cdb2fb1b5a87f52201
+script_sha256=b6210923beba4179ee2fe899a062f66b9b1cd54ac4ac9fca531b1c304714e69d
 interpretation=NPCR/UACI are empirical differential metrics and do not prove cryptographic security

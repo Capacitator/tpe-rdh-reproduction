@@ -1,0 +1,1 @@
+Six public UCT images (airplane, baboon, couple, girl, lena, peppers) were used because the exact eight CelebA-HQ files were unavailable. 100 unique deterministic UserKey and ImageID fixtures were used. Step-2 is an image-derived keyed intermediate, not chaotic. No overall NIST pass is claimed. SP 800-22 is a statistical diagnostic, not a cryptographic proof.

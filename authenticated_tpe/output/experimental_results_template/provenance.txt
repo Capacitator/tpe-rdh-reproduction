@@ -1,0 +1,97 @@
+experiment=independent authenticated TPE/RCM/HMAC method adapted experimental-results-template data
+source_repository=https://github.com/Capacitator/tpe-rdh-reproduction
+branch=authenticated-tpe-paper
+source_commit=08b16e6c03c84f3bf5b3175c1648413bc38d461f
+worktree_state=dirty at generation; pre-existing untracked Experimental_results.docx plus generated datasets and experiment/finalizer scripts; no tracked method source modified
+python=3.11.0
+numpy=2.4.4
+pillow=12.0.0
+scikit_image=0.25.2
+image_source=checked-in UCT colour fixtures under tpe_rdh_reproduction/input/uct_colour; exact requested CelebA-HQ JPEGs were not found in the repo or Downloads
+template_id_mapping=experimental_results_template/image_mapping.csv; non-equivalent locator only, two fixture names reused; experiment rows retain actual UCT names
+template_field_audit=experimental_results_template/template_slot_map.csv; records image grids, captions, column labels, row IDs, and unavailable exact-data notes
+image_facts:
+tpe_rdh_reproduction/input/uct_colour/airplane.tif | 512x512 RGB | file_sha256=515d0a5105047916be9faed513330046be41a61f4b155e854731e512ce1f4c4a
+tpe_rdh_reproduction/input/uct_colour/baboon.tif | 512x512 RGB | file_sha256=cd4456f2562dc352acee627428eb4e2ccaed5f53082ce0838d9fff6b8a3e3517
+tpe_rdh_reproduction/input/uct_colour/couple.tif | 256x256 RGB | file_sha256=e1760e29f10762fe60349e2848b01065b69784d04848606dd8644b6a9a893288
+tpe_rdh_reproduction/input/uct_colour/girl.tif | 256x256 RGB | file_sha256=d044fcfbea02123efdc167e596f45e839c39c2e1ca2ff841710ef4db15bc4dfb
+tpe_rdh_reproduction/input/uct_colour/lena.tif | 512x512 RGB | file_sha256=d5cd280e7e970a31828fe2c91ead6c8ce3ea257d04b6eabbd8e254c6e1cce255
+tpe_rdh_reproduction/input/uct_colour/peppers.tif | 512x512 RGB | file_sha256=208e8c6542e91a1b3d7d9457626b7577fc0d21affeb800435858cc83f2537649
+authenticated_resize=only 256x256 couple.tif and girl.tif resized to 512x512 with Pillow default resize; all other sources unchanged
+block_sizes=fixed 32x32; b=8/16 unsupported
+payload=192 group HMAC tags x 256-bit per natural image in this run; user payload/recovery is not applicable
+key_fixture_sha256=630dcd2966c4336691125448bbb25b4ff412a49c732db2c8abc1b8581bd710dd
+image_id_fixture_sha256=0c121f7dfa0a7b47598c1286e9c94c68fc37f9b70af26de822dd89a62e2f3afd,4bf7e9d5d5fc87486b8dc6cb260099f55b8921302127c8f2cfbb7144159fe6f6,7152b91b6e156fcdf5a94aad147f67eb5240650897f9f55cf8ea0c48f992372b,a2bbaf1c0727fd94c070d96f45056cae9c5444a844567090d0188203afe886c2,a5242a73ea647fe2a692bf37139d0c6ecb756737f2650a1296aac6315b84cc90,f89e7350eedf528814f905068170ca47d04b427b001065b0e2e4f9b10d856862
+random_seeds=correlation sampling seed 20261006; method encryption fixtures deterministic; no stochastic encryption seed
+correlation=5,000 neighboring RGB per-channel pairs per direction (horizontal/vertical/diagonal), same seed and 5,000 sampled coordinates with replacement for source/output; zero variance => NaN/not applicable
+entropy=Shannon -sum(p*log2(p)) over uint8 histogram; 256 bins; per-channel and RGB pooled scalar intensities; final encrypted/marked stage
+NPCR=100*count(I1!=I2)/number_of_scalar_RGB_samples; UACI=100*sum(abs(int16(I1-I2)))/(255*number_of_scalar_RGB_samples)
+NPCR/UACI conditions=one top-left R sample per supported block changed by +1 or -1 at 255; fixed-ImageID and different-ImageID authenticated variants stored separately; method block-size limits retained
+quality=MSE over all RGB uint8 samples; PSNR=10*log10(255^2/MSE), infinity at exact equality; SSIM scikit-image channel_axis=2, data_range=255
+timing=perf_counter around method call; file I/O excluded; environment-specific measured wall time
+nist_sts=2.1.2 (copied historical checked-in artifacts; not rerun in this task); ten streams/category, 1,000,000 bits each, alpha=.01, selected tests/parameters in copied nist/provenance.txt
+NIST caution=historical checked-in streams/results with original run provenance and source commits; not generated per current b values; no overall pass claimed
+generator_script=experiments/generate_template_experimental_data.py sha256=7612f6d5459b647726943aeaf72f0b3b2f3fd2aed76e36236f74bb00eeaf8564
+finalizer_script=experiments/finalize_template_experimental_data.py sha256=ba3a15f2850b9f1201c16470c4bc02e4d36573737b93df4255a85dfaeb867714
+generation_command=./.venv/bin/python -u experiments/generate_template_experimental_data.py
+finalization_command=./.venv/bin/python -u experiments/finalize_template_experimental_data.py
+validation_commands=./.venv/bin/python -m pytest tpe_rdh_reproduction/tests -q ; ./.venv/bin/python -m pytest authenticated_tpe/tests -q ; ./.venv/bin/python authenticated_tpe/experiments/check_authenticated_tpe_tampering.py
+no production secret key or private ImageID bytes recorded; deterministic test fixtures are identified by label and SHA-256 only
+output_files:
+authenticated_tpe/output/experimental_results_template/averages.csv
+authenticated_tpe/output/experimental_results_template/clean_results.csv
+authenticated_tpe/output/experimental_results_template/comparisons/airplane_b32_comparison.png
+authenticated_tpe/output/experimental_results_template/comparisons/baboon_b32_comparison.png
+authenticated_tpe/output/experimental_results_template/comparisons/couple_b32_comparison.png
+authenticated_tpe/output/experimental_results_template/comparisons/girl_b32_comparison.png
+authenticated_tpe/output/experimental_results_template/comparisons/lena_b32_comparison.png
+authenticated_tpe/output/experimental_results_template/comparisons/peppers_b32_comparison.png
+authenticated_tpe/output/experimental_results_template/correlation_results.csv
+authenticated_tpe/output/experimental_results_template/entropy_results.csv
+authenticated_tpe/output/experimental_results_template/images/airplane/b32/airplane_b32_final_marked_image.png
+authenticated_tpe/output/experimental_results_template/images/airplane/b32/airplane_b32_recovered_image.png
+authenticated_tpe/output/experimental_results_template/images/airplane/b32/airplane_b32_source_image.png
+authenticated_tpe/output/experimental_results_template/images/airplane/b32/airplane_b32_step1_image.png
+authenticated_tpe/output/experimental_results_template/images/airplane/b32/airplane_b32_step2_intermediate.png
+authenticated_tpe/output/experimental_results_template/images/airplane/b32/airplane_b32_thumbnail_display.png
+authenticated_tpe/output/experimental_results_template/images/baboon/b32/baboon_b32_final_marked_image.png
+authenticated_tpe/output/experimental_results_template/images/baboon/b32/baboon_b32_recovered_image.png
+authenticated_tpe/output/experimental_results_template/images/baboon/b32/baboon_b32_source_image.png
+authenticated_tpe/output/experimental_results_template/images/baboon/b32/baboon_b32_step1_image.png
+authenticated_tpe/output/experimental_results_template/images/baboon/b32/baboon_b32_step2_intermediate.png
+authenticated_tpe/output/experimental_results_template/images/baboon/b32/baboon_b32_thumbnail_display.png
+authenticated_tpe/output/experimental_results_template/images/couple/b32/couple_b32_final_marked_image.png
+authenticated_tpe/output/experimental_results_template/images/couple/b32/couple_b32_recovered_image.png
+authenticated_tpe/output/experimental_results_template/images/couple/b32/couple_b32_source_image.png
+authenticated_tpe/output/experimental_results_template/images/couple/b32/couple_b32_step1_image.png
+authenticated_tpe/output/experimental_results_template/images/couple/b32/couple_b32_step2_intermediate.png
+authenticated_tpe/output/experimental_results_template/images/couple/b32/couple_b32_thumbnail_display.png
+authenticated_tpe/output/experimental_results_template/images/girl/b32/girl_b32_final_marked_image.png
+authenticated_tpe/output/experimental_results_template/images/girl/b32/girl_b32_recovered_image.png
+authenticated_tpe/output/experimental_results_template/images/girl/b32/girl_b32_source_image.png
+authenticated_tpe/output/experimental_results_template/images/girl/b32/girl_b32_step1_image.png
+authenticated_tpe/output/experimental_results_template/images/girl/b32/girl_b32_step2_intermediate.png
+authenticated_tpe/output/experimental_results_template/images/girl/b32/girl_b32_thumbnail_display.png
+authenticated_tpe/output/experimental_results_template/images/lena/b32/lena_b32_final_marked_image.png
+authenticated_tpe/output/experimental_results_template/images/lena/b32/lena_b32_recovered_image.png
+authenticated_tpe/output/experimental_results_template/images/lena/b32/lena_b32_source_image.png
+authenticated_tpe/output/experimental_results_template/images/lena/b32/lena_b32_step1_image.png
+authenticated_tpe/output/experimental_results_template/images/lena/b32/lena_b32_step2_intermediate.png
+authenticated_tpe/output/experimental_results_template/images/lena/b32/lena_b32_thumbnail_display.png
+authenticated_tpe/output/experimental_results_template/images/peppers/b32/peppers_b32_final_marked_image.png
+authenticated_tpe/output/experimental_results_template/images/peppers/b32/peppers_b32_recovered_image.png
+authenticated_tpe/output/experimental_results_template/images/peppers/b32/peppers_b32_source_image.png
+authenticated_tpe/output/experimental_results_template/images/peppers/b32/peppers_b32_step1_image.png
+authenticated_tpe/output/experimental_results_template/images/peppers/b32/peppers_b32_step2_intermediate.png
+authenticated_tpe/output/experimental_results_template/images/peppers/b32/peppers_b32_thumbnail_display.png
+authenticated_tpe/output/experimental_results_template/nist/ADAPTED_EXPERIMENT_NOTE.txt
+authenticated_tpe/output/experimental_results_template/nist/README.md
+authenticated_tpe/output/experimental_results_template/nist/final_marked_rgb_finalAnalysisReport.txt
+authenticated_tpe/output/experimental_results_template/nist/final_marked_rgb_input_ascii.txt
+authenticated_tpe/output/experimental_results_template/nist/results.csv
+authenticated_tpe/output/experimental_results_template/nist/step2_intermediate_finalAnalysisReport.txt
+authenticated_tpe/output/experimental_results_template/nist/step2_intermediate_input_ascii.txt
+authenticated_tpe/output/experimental_results_template/nist/stream_manifest.csv
+authenticated_tpe/output/experimental_results_template/nist/summary.txt
+authenticated_tpe/output/experimental_results_template/security_recovery_results.csv
+authenticated_tpe/output/experimental_results_template/security_recovery_summary.csv

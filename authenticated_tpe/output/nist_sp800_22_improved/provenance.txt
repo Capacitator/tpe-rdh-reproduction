@@ -1,0 +1,15 @@
+experiment=authenticated-TPE-only improved NIST evaluation
+nist_sts_version=2.1.2
+nist_assess_sha256=960947a1816b9b12b6d3a38f58e4bca3a9ee5439f07dcfc5e31a0a5faa038fe9
+runner_script_sha256=4699e31f8909683b99c6df02ac580871b5d837de3b74279d5a316169bf5bbc38
+source_commit=08b16e6c03c84f3bf5b3175c1648413bc38d461f
+streams_per_category=100
+stream_length_bits=1000000
+alpha=0.01
+image_selection=round-robin airplane,baboon,couple,girl,lena,peppers
+fixture_derivation=domain-separated SHA-256 deterministic fixtures; only digests recorded
+serialization=row-major C-order RGB uint8; MSB-first; first 1000000 bits
+categories=step2_image_derived_keyed_intermediate,final_marked_rgb
+tests=Frequency,BlockFrequency,CumulativeSums,Runs,LongestRun,Rank,FFT,NonOverlappingTemplate,OverlappingTemplate,Universal,ApproximateEntropy,RandomExcursions,RandomExcursionsVariant,Serial,LinearComplexity
+exact_command=./.venv/bin/python authenticated_tpe/experiments/run_nist_sp800_22_improved.py --sts-dir ../sts-2.1.2/sts-2.1.2
+No key or ImageID bytes are written; SHA-256 digests only.

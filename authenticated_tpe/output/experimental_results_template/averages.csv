@@ -1,0 +1,16 @@
+method,block_size,image_set,metric,average_or_count,aggregation,n,variant
+authenticated_tpe,32,"six repository UCT fixtures; adapted, not CelebA-HQ",encryption_or_protection_seconds,1.8059603613333335,arithmetic mean across images,6,fixed_image_id only for NPCR/UACI; otherwise not applicable
+authenticated_tpe,32,"six repository UCT fixtures; adapted, not CelebA-HQ",decryption_or_verification_seconds,1.9948618889999998,arithmetic mean across images,6,fixed_image_id only for NPCR/UACI; otherwise not applicable
+authenticated_tpe,32,"six repository UCT fixtures; adapted, not CelebA-HQ",encrypted_or_marked_psnr_db,20.180630072,arithmetic mean across images,6,fixed_image_id only for NPCR/UACI; otherwise not applicable
+authenticated_tpe,32,"six repository UCT fixtures; adapted, not CelebA-HQ",encrypted_or_marked_ssim,0.44717753583333325,arithmetic mean across images,6,fixed_image_id only for NPCR/UACI; otherwise not applicable
+authenticated_tpe,32,"six repository UCT fixtures; adapted, not CelebA-HQ",recovered_mse,0.0,arithmetic mean across images,6,fixed_image_id only for NPCR/UACI; otherwise not applicable
+authenticated_tpe,32,"six repository UCT fixtures; adapted, not CelebA-HQ",recovered_psnr_db,inf,arithmetic mean across images,6,fixed_image_id only for NPCR/UACI; otherwise not applicable
+authenticated_tpe,32,"six repository UCT fixtures; adapted, not CelebA-HQ",recovered_ssim,1.0,arithmetic mean across images,6,fixed_image_id only for NPCR/UACI; otherwise not applicable
+authenticated_tpe,32,"six repository UCT fixtures; adapted, not CelebA-HQ",npcr_fixed_image_id_percent,1.1071946885,arithmetic mean across images; same perturbation policy; not pixel-pooled,6,fixed_image_id only for NPCR/UACI; otherwise not applicable
+authenticated_tpe,32,"six repository UCT fixtures; adapted, not CelebA-HQ",uaci_fixed_image_id_percent,0.0093247325,arithmetic mean across images; same denominator policy; not pixel-pooled,6,fixed_image_id only for NPCR/UACI; otherwise not applicable
+authenticated_tpe,32,"six repository UCT fixtures; adapted, not CelebA-HQ",entropy_rgb_pooled_bits,7.3728761915000005,arithmetic mean across images; pooled scalar intensity histogram per image,6,fixed_image_id only for NPCR/UACI; otherwise not applicable
+authenticated_tpe,32,"six repository UCT fixtures; adapted, not CelebA-HQ",correlation_sampled_per_channel_mean,0.6873538889814816,"arithmetic mean across image x direction x channel; sampled, not pooled pixels",54,fixed_image_id only for NPCR/UACI; otherwise not applicable
+authenticated_tpe,32,"six repository UCT fixtures; adapted, not CelebA-HQ",exact_recovery_count,1.0,count across images,6,fixed_image_id only for NPCR/UACI; otherwise not applicable
+authenticated_tpe,32,"six repository UCT fixtures; adapted, not CelebA-HQ",payload_recovery_count,0.0,count across images,6,fixed_image_id only for NPCR/UACI; otherwise not applicable
+authenticated_tpe,32,"six repository UCT fixtures; adapted, not CelebA-HQ",npcr_percent,93.5375849405,arithmetic mean across images; separate different-ImageID variant,6,image_specific_different_id_changed_plaintext
+authenticated_tpe,32,"six repository UCT fixtures; adapted, not CelebA-HQ",uaci_percent,8.035010709666667,arithmetic mean across images; separate different-ImageID variant,6,image_specific_different_id_changed_plaintext

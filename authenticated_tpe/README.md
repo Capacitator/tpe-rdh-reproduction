@@ -5,6 +5,13 @@ block-group authentication method using pair-sum-preserving TPE, reversible
 contrast mapping, and HMAC-SHA256. It does not import the original chaotic
 TPE/RDH `pipeline.py`.
 
+## Evaluation scope
+
+The evaluation uses six public UCT images because the eight CelebA-HQ source
+files were unavailable. Authenticated-TPE is implemented with a fixed 32×32
+block size; authenticated 8×8 and 16×16 results are therefore not reported.
+The evaluated images are airplane, baboon, couple, girl, lena, and peppers.
+
 ## Shared image fixtures
 
 Experiments read the six tracked UCT color TIFF files from
