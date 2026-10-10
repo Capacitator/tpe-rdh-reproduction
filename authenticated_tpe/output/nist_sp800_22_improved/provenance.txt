@@ -1,15 +1,27 @@
-experiment=authenticated-TPE-only improved NIST evaluation
-nist_sts_version=2.1.2
-nist_assess_sha256=960947a1816b9b12b6d3a38f58e4bca3a9ee5439f07dcfc5e31a0a5faa038fe9
-runner_script_sha256=4699e31f8909683b99c6df02ac580871b5d837de3b74279d5a316169bf5bbc38
-source_commit=08b16e6c03c84f3bf5b3175c1648413bc38d461f
-streams_per_category=100
-stream_length_bits=1000000
-alpha=0.01
-image_selection=round-robin airplane,baboon,couple,girl,lena,peppers
-fixture_derivation=domain-separated SHA-256 deterministic fixtures; only digests recorded
-serialization=row-major C-order RGB uint8; MSB-first; first 1000000 bits
-categories=step2_image_derived_keyed_intermediate,final_marked_rgb
-tests=Frequency,BlockFrequency,CumulativeSums,Runs,LongestRun,Rank,FFT,NonOverlappingTemplate,OverlappingTemplate,Universal,ApproximateEntropy,RandomExcursions,RandomExcursionsVariant,Serial,LinearComplexity
-exact_command=./.venv/bin/python authenticated_tpe/experiments/run_nist_sp800_22_improved.py --sts-dir ../sts-2.1.2/sts-2.1.2
-No key or ImageID bytes are written; SHA-256 digests only.
+Evaluation: authenticated-TPE-only NIST SP 800-22 Rev. 1a statistical diagnostics.
+NIST STS version: 2.1.2, downloaded from the NIST CSRC SP 800-22 Documentation and Software page.
+NIST assess executable SHA-256: 960947a1816b9b12b6d3a38f58e4bca3a9ee5439f07dcfc5e31a0a5faa038fe9
+NIST STS extracted tree SHA-256: ac59156ad523a32cb780199939a9e4154f132f95e8a8e91f542e0d2ed38988ac (see nist_sts_source_manifest.csv)
+Runner SHA-256: 05b71983fdf97dc0c566bcb056bf10bf165bd1e70472b3a1a7a45eb306845262
+Authenticated-TPE implementation SHA-256: e082e7b01e3181b5a3f1a9ddecfed4971834617e6f72a37d09782ae185ade594
+Authenticated-TPE source baseline commit: e789a3d81d4378657b5891b66077cc90e03b0e12
+Python: 3.11.0 (v3.11.0:deaf509e8f, Oct 24 2022, 14:43:23) [Clang 13.0.0 (clang-1300.0.29.30)]
+NumPy: 2.4.4
+Pillow: 12.0.0
+Platform: macOS-14.6.1-arm64-arm-64bit
+Command: /Users/sufal/Documents/Codex/2026-09-28/files-pasted-by-the-user-work/work/tpe-rdh-reproduction/.venv/bin/python authenticated_tpe/experiments/run_nist_sp800_22_comprehensive.py --sts-dir <official sts-2.1.2 extraction> --streams 100 --bits 1000000 --alpha 0.01
+STS interaction: generator choice 0 (input file); all 15 tests; default parameters; 100 bitstreams; binary input mode 1.
+NIST defaults: block-frequency M=128; non-overlapping template m=9 (148 templates); overlapping template m=9; approximate entropy m=10; serial m=16; linear complexity M=500.
+STS input serialization: packed binary bytes; each byte consumed most-significant bit first; one 125,000-byte chunk per 1,000,000-bit stream.
+Alpha=0.01 is the NIST STS default compiled threshold; unchanged.
+The STS native results.txt and stats.txt print individual p-values to six decimal places. 0.000000 is retained as native rounded output; it is not replaced with zero precision or called missing.
+Uniformity p-values and pass proportions are the separate second-level results reported by STS finalAnalysisReport.txt.
+Key and ImageID bytes are deterministic public test fixtures. Only SHA-256 digests are recorded; no production secret is used or emitted.
+The six source images are public UCT airplane, baboon, couple, girl, lena, peppers. Source image hashes and all stream hashes are in stream_manifest.csv.
+Authentication-tag stream key/ImageID provenance: 2,100 independent fixture pairs, with each 1,000,000-bit sequence taking raw HMAC group tags from 21 contexts; see component_contexts.csv.
+cryptographic_hmac_drbg input sha256: b78606525b5f00d5d0e688037e595b473d13c17c01c112d1bc69c3eae0b7bd6c
+cryptographic_pair_shift_words input sha256: 227116ae95c7dfda23533dcb7878747506a9d30a6031a2b263cbebc141850892
+cryptographic_block_r1_values input sha256: a936c8d0cb187e141386049bf6af053f8ffd30ec96d4b36cf8832b779d172f5d
+authentication_tag_stream input sha256: 6ae632aa530bde2a044f57deffaf3ae0bf3a3bd3df4c263ad6ec4ca224747225
+image_output_step2 input sha256: cd9c6185e47681051da376e366fdb893ca16e9bb1091cb9522a61b5acbd575f8
+image_output_final_marked input sha256: a6265bc66afb71bf4a6baf0c51254c52153a369ac38fae71b414f468fe98c8e3

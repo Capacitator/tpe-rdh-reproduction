@@ -1,31 +1,1129 @@
-category,test_name,component_count,pass_count,fail_count,not_applicable_count,uniformity_p_values,pass_proportions,alpha
-step2_image_derived_keyed_intermediate,Frequency,1,0,100,0,0.000000,0/100,0.01
-step2_image_derived_keyed_intermediate,BlockFrequency,1,0,100,0,0.000000,0/100,0.01
-step2_image_derived_keyed_intermediate,CumulativeSums,2,0,200,0,0.000000|0.000000,0/100|0/100,0.01
-step2_image_derived_keyed_intermediate,Runs,1,0,100,0,0.000000,0/100,0.01
-step2_image_derived_keyed_intermediate,LongestRun,1,0,100,0,0.000000,0/100,0.01
-step2_image_derived_keyed_intermediate,Rank,1,0,100,0,0.000000,0/100,0.01
-step2_image_derived_keyed_intermediate,FFT,1,0,100,0,0.000000,0/100,0.01
-step2_image_derived_keyed_intermediate,NonOverlappingTemplate,148,1741,13059,0,0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000,8/100|8/100|11/100|0/100|0/100|18/100|15/100|0/100|0/100|7/100|9/100|29/100|10/100|44/100|14/100|0/100|2/100|3/100|0/100|11/100|1/100|36/100|0/100|33/100|29/100|17/100|14/100|27/100|0/100|0/100|5/100|1/100|48/100|11/100|24/100|1/100|5/100|0/100|8/100|0/100|20/100|0/100|23/100|45/100|0/100|2/100|2/100|5/100|9/100|10/100|0/100|0/100|0/100|0/100|52/100|0/100|26/100|25/100|21/100|0/100|17/100|19/100|0/100|25/100|2/100|4/100|0/100|0/100|21/100|26/100|1/100|0/100|0/100|0/100|8/100|0/100|1/100|0/100|1/100|50/100|8/100|15/100|4/100|18/100|36/100|7/100|9/100|6/100|19/100|45/100|55/100|0/100|38/100|31/100|3/100|13/100|11/100|13/100|8/100|7/100|0/100|16/100|0/100|12/100|36/100|13/100|6/100|0/100|32/100|35/100|0/100|2/100|31/100|14/100|16/100|9/100|15/100|12/100|5/100|0/100|1/100|43/100|4/100|37/100|25/100|4/100|45/100|43/100|0/100|6/100|10/100|11/100|1/100|1/100|0/100|12/100|0/100|32/100|1/100|0/100|0/100|1/100|0/100|0/100|0/100|0/100|0/100|0/100,0.01
-step2_image_derived_keyed_intermediate,OverlappingTemplate,1,0,100,0,0.000000,0/100,0.01
-step2_image_derived_keyed_intermediate,Universal,1,0,100,0,0.000000,0/100,0.01
-step2_image_derived_keyed_intermediate,ApproximateEntropy,1,0,100,0,0.000000,0/100,0.01
-step2_image_derived_keyed_intermediate,RandomExcursions,8,0,0,800,----|----|----|----|----|----|----|----,------|------|------|------|------|------|------|------,0.01
-step2_image_derived_keyed_intermediate,RandomExcursionsVariant,18,0,0,1800,----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----,------|------|------|------|------|------|------|------|------|------|------|------|------|------|------|------|------|------,0.01
-step2_image_derived_keyed_intermediate,Serial,2,0,200,0,0.000000|0.000000,0/100|0/100,0.01
-step2_image_derived_keyed_intermediate,LinearComplexity,1,97,3,0,0.616305,97/100,0.01
-final_marked_rgb,Frequency,1,0,100,0,0.000000,0/100,0.01
-final_marked_rgb,BlockFrequency,1,0,100,0,0.000000,0/100,0.01
-final_marked_rgb,CumulativeSums,2,0,200,0,0.000000|0.000000,0/100|0/100,0.01
-final_marked_rgb,Runs,1,0,100,0,0.000000,0/100,0.01
-final_marked_rgb,LongestRun,1,0,100,0,0.000000,0/100,0.01
-final_marked_rgb,Rank,1,0,100,0,0.000000,0/100,0.01
-final_marked_rgb,FFT,1,0,100,0,0.000000,0/100,0.01
-final_marked_rgb,NonOverlappingTemplate,148,1839,12961,0,0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000|0.000000,4/100|9/100|11/100|0/100|0/100|18/100|16/100|0/100|0/100|10/100|12/100|36/100|2/100|36/100|13/100|0/100|1/100|4/100|2/100|17/100|5/100|40/100|0/100|26/100|37/100|24/100|14/100|26/100|0/100|0/100|5/100|2/100|46/100|12/100|19/100|0/100|8/100|0/100|10/100|0/100|21/100|0/100|25/100|44/100|0/100|2/100|11/100|5/100|18/100|17/100|2/100|0/100|0/100|0/100|59/100|0/100|26/100|24/100|19/100|0/100|23/100|26/100|0/100|23/100|6/100|6/100|0/100|0/100|24/100|27/100|1/100|0/100|0/100|0/100|4/100|0/100|1/100|0/100|1/100|51/100|5/100|13/100|6/100|6/100|32/100|8/100|14/100|7/100|17/100|35/100|57/100|0/100|40/100|33/100|15/100|10/100|12/100|13/100|5/100|10/100|0/100|18/100|1/100|15/100|33/100|16/100|7/100|1/100|32/100|39/100|0/100|4/100|30/100|14/100|16/100|10/100|16/100|13/100|3/100|0/100|1/100|40/100|5/100|42/100|29/100|3/100|49/100|42/100|1/100|5/100|9/100|15/100|1/100|3/100|0/100|16/100|0/100|32/100|1/100|4/100|0/100|2/100|1/100|0/100|0/100|1/100|0/100|0/100,0.01
-final_marked_rgb,OverlappingTemplate,1,0,100,0,0.000000,0/100,0.01
-final_marked_rgb,Universal,1,0,100,0,0.000000,0/100,0.01
-final_marked_rgb,ApproximateEntropy,1,0,100,0,0.000000,0/100,0.01
-final_marked_rgb,RandomExcursions,8,0,0,800,----|----|----|----|----|----|----|----,------|------|------|------|------|------|------|------,0.01
-final_marked_rgb,RandomExcursionsVariant,18,0,0,1800,----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----,------|------|------|------|------|------|------|------|------|------|------|------|------|------|------|------|------|------,0.01
-final_marked_rgb,Serial,2,0,200,0,0.000000|0.000000,0/100|0/100,0.01
-final_marked_rgb,LinearComplexity,1,99,1,0,0.419021,99/100,0.01
+category,test_name,component,valid_streams,pass_count,fail_count,not_applicable_count,uniformity_p_value,pass_proportion,alpha,stream_length_bits,nist_version
+cryptographic_hmac_drbg,Frequency,single,100,99,1,0,0.304126,99/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,BlockFrequency,single,100,99,1,0,0.153763,99/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,CumulativeSums,forward,100,99,1,0,0.051942,99/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,CumulativeSums,reverse,100,99,1,0,0.289667,99/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,Runs,single,100,98,2,0,0.181557,98/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,LongestRun,single,100,97,3,0,0.971699,97/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,Rank,single,100,100,0,0,0.883171,100/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,FFT,single,100,100,0,0,0.224821,100/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=0 0 0 0 0 0 0 0 1,100,100,0,0,0.213309,100/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=0 0 0 0 0 0 0 1 1,100,100,0,0,0.994250,100/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=0 0 0 0 0 0 1 0 1,100,99,1,0,0.534146,99/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=0 0 0 0 0 0 1 1 1,100,98,2,0,0.319084,98/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=0 0 0 0 0 1 0 0 1,100,100,0,0,0.045675,100/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=0 0 0 0 0 1 0 1 1,100,97,3,0,0.987896,97/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=0 0 0 0 0 1 1 0 1,100,99,1,0,0.964295,99/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=0 0 0 0 0 1 1 1 1,100,100,0,0,0.145326,100/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=0 0 0 0 1 0 0 0 1,100,99,1,0,0.153763,99/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=0 0 0 0 1 0 0 1 1,100,97,3,0,0.236810,97/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=0 0 0 0 1 0 1 0 1,100,99,1,0,0.595549,99/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=0 0 0 0 1 0 1 1 1,100,100,0,0,0.383827,100/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=0 0 0 0 1 1 0 0 1,100,99,1,0,0.924076,99/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=0 0 0 0 1 1 0 1 1,100,100,0,0,0.366918,100/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=0 0 0 0 1 1 1 0 1,100,99,1,0,0.739918,99/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=0 0 0 0 1 1 1 1 1,100,98,2,0,0.678686,98/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=0 0 0 1 0 0 0 1 1,100,99,1,0,0.534146,99/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=0 0 0 1 0 0 1 0 1,100,99,1,0,0.055361,99/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=0 0 0 1 0 0 1 1 1,100,99,1,0,0.987896,99/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=0 0 0 1 0 1 0 0 1,100,100,0,0,0.042808,100/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=0 0 0 1 0 1 0 1 1,100,100,0,0,0.678686,100/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=0 0 0 1 0 1 1 0 1,100,98,2,0,0.514124,98/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=0 0 0 1 0 1 1 1 1,100,100,0,0,0.289667,100/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=0 0 0 1 1 0 0 1 1,100,98,2,0,0.129620,98/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=0 0 0 1 1 0 1 0 1,100,98,2,0,0.262249,98/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=0 0 0 1 1 0 1 1 1,100,98,2,0,0.494392,98/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=0 0 0 1 1 1 0 0 1,100,99,1,0,0.897763,99/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=0 0 0 1 1 1 0 1 1,100,99,1,0,0.883171,99/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=0 0 0 1 1 1 1 0 1,100,100,0,0,0.249284,100/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=0 0 0 1 1 1 1 1 1,100,100,0,0,0.739918,100/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=0 0 1 0 0 0 0 1 1,100,99,1,0,0.991468,99/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=0 0 1 0 0 0 1 0 1,100,100,0,0,0.213309,100/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=0 0 1 0 0 0 1 1 1,100,99,1,0,0.115387,99/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=0 0 1 0 0 1 0 1 1,100,100,0,0,0.319084,100/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=0 0 1 0 0 1 1 0 1,100,99,1,0,0.851383,99/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=0 0 1 0 0 1 1 1 1,100,98,2,0,0.779188,98/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=0 0 1 0 1 0 0 1 1,100,99,1,0,0.759756,99/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=0 0 1 0 1 0 1 0 1,100,100,0,0,0.455937,100/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=0 0 1 0 1 0 1 1 1,100,100,0,0,0.224821,100/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=0 0 1 0 1 1 0 1 1,100,98,2,0,0.699313,98/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=0 0 1 0 1 1 1 0 1,100,99,1,0,0.115387,99/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=0 0 1 0 1 1 1 1 1,100,98,2,0,0.637119,98/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=0 0 1 1 0 0 1 0 1,100,97,3,0,0.616305,97/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=0 0 1 1 0 0 1 1 1,100,98,2,0,0.289667,98/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=0 0 1 1 0 1 0 1 1,100,99,1,0,0.514124,99/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=0 0 1 1 0 1 1 0 1,100,100,0,0,0.040108,100/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=0 0 1 1 0 1 1 1 1,100,100,0,0,0.058984,100/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=0 0 1 1 1 0 1 0 1,100,100,0,0,0.798139,100/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=0 0 1 1 1 0 1 1 1,100,100,0,0,0.699313,100/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=0 0 1 1 1 1 0 1 1,100,99,1,0,0.867692,99/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=0 0 1 1 1 1 1 0 1,100,100,0,0,0.867692,100/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=0 0 1 1 1 1 1 1 1,100,100,0,0,0.249284,100/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=0 1 0 0 0 0 0 1 1,100,99,1,0,0.191687,99/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=0 1 0 0 0 0 1 1 1,100,100,0,0,0.657933,100/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=0 1 0 0 0 1 0 1 1,100,100,0,0,0.554420,100/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=0 1 0 0 0 1 1 1 1,100,100,0,0,0.275709,100/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=0 1 0 0 1 0 0 1 1,100,99,1,0,0.678686,99/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=0 1 0 0 1 0 1 1 1,100,100,0,0,0.437274,100/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=0 1 0 0 1 1 0 1 1,100,98,2,0,0.122325,98/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=0 1 0 0 1 1 1 1 1,100,99,1,0,0.437274,99/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=0 1 0 1 0 0 0 1 1,100,100,0,0,0.048716,100/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=0 1 0 1 0 0 1 1 1,100,100,0,0,0.816537,100/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=0 1 0 1 0 1 0 1 1,100,97,3,0,0.897763,97/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=0 1 0 1 0 1 1 1 1,100,100,0,0,0.739918,100/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=0 1 0 1 1 0 0 1 1,100,100,0,0,0.851383,100/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=0 1 0 1 1 0 1 1 1,100,100,0,0,0.319084,100/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=0 1 0 1 1 1 0 1 1,100,98,2,0,0.334538,98/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=0 1 0 1 1 1 1 1 1,100,99,1,0,0.955835,99/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=0 1 1 0 0 0 1 1 1,100,97,3,0,0.334538,97/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=0 1 1 0 0 1 1 1 1,100,99,1,0,0.897763,99/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=0 1 1 0 1 0 1 1 1,100,100,0,0,0.851383,100/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=0 1 1 0 1 1 1 1 1,100,99,1,0,0.494392,99/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=0 1 1 1 0 1 1 1 1,100,99,1,0,0.249284,99/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=0 1 1 1 1 1 1 1 1,100,100,0,0,0.779188,100/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=1 0 0 0 0 0 0 0 0,100,100,0,0,0.213309,100/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=1 0 0 0 1 0 0 0 0,100,99,1,0,0.739918,99/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=1 0 0 1 0 0 0 0 0,100,97,3,0,0.304126,97/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=1 0 0 1 0 1 0 0 0,100,98,2,0,0.534146,98/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=1 0 0 1 1 0 0 0 0,100,98,2,0,0.971699,98/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=1 0 0 1 1 1 0 0 0,100,100,0,0,0.554420,100/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=1 0 1 0 0 0 0 0 0,100,98,2,0,0.534146,98/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=1 0 1 0 0 0 1 0 0,100,100,0,0,0.474986,100/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=1 0 1 0 0 1 0 0 0,100,98,2,0,0.289667,98/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=1 0 1 0 0 1 1 0 0,100,98,2,0,0.236810,98/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=1 0 1 0 1 0 0 0 0,100,99,1,0,0.437274,99/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=1 0 1 0 1 0 1 0 0,100,99,1,0,0.739918,99/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=1 0 1 0 1 1 0 0 0,100,99,1,0,0.202268,99/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=1 0 1 0 1 1 1 0 0,100,98,2,0,0.678686,98/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=1 0 1 1 0 0 0 0 0,100,99,1,0,0.334538,99/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=1 0 1 1 0 0 1 0 0,100,100,0,0,0.224821,100/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=1 0 1 1 0 1 0 0 0,100,100,0,0,0.319084,100/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=1 0 1 1 0 1 1 0 0,100,100,0,0,0.678686,100/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=1 0 1 1 1 0 0 0 0,100,100,0,0,0.153763,100/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=1 0 1 1 1 0 1 0 0,100,100,0,0,0.102526,100/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=1 0 1 1 1 1 0 0 0,100,96,4,0,0.678686,96/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=1 0 1 1 1 1 1 0 0,100,97,3,0,0.162606,97/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=1 1 0 0 0 0 0 0 0,100,100,0,0,0.514124,100/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=1 1 0 0 0 0 0 1 0,100,99,1,0,0.971699,99/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=1 1 0 0 0 0 1 0 0,100,99,1,0,0.366918,99/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=1 1 0 0 0 1 0 0 0,100,100,0,0,0.122325,100/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=1 1 0 0 0 1 0 1 0,100,100,0,0,0.249284,100/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=1 1 0 0 1 0 0 0 0,100,99,1,0,0.455937,99/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=1 1 0 0 1 0 0 1 0,100,100,0,0,0.883171,100/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=1 1 0 0 1 0 1 0 0,100,98,2,0,0.924076,98/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=1 1 0 0 1 1 0 0 0,100,99,1,0,0.419021,99/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=1 1 0 0 1 1 0 1 0,100,100,0,0,0.419021,100/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=1 1 0 1 0 0 0 0 0,100,100,0,0,0.494392,100/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=1 1 0 1 0 0 0 1 0,100,97,3,0,0.554420,97/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=1 1 0 1 0 0 1 0 0,100,99,1,0,0.236810,99/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=1 1 0 1 0 1 0 0 0,100,99,1,0,0.075719,99/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=1 1 0 1 0 1 0 1 0,100,98,2,0,0.080519,98/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=1 1 0 1 0 1 1 0 0,100,98,2,0,0.401199,98/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=1 1 0 1 1 0 0 0 0,100,99,1,0,0.023545,99/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=1 1 0 1 1 0 0 1 0,100,98,2,0,0.042808,98/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=1 1 0 1 1 0 1 0 0,100,100,0,0,0.035174,100/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=1 1 0 1 1 1 0 0 0,100,99,1,0,0.019188,99/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=1 1 0 1 1 1 0 1 0,100,99,1,0,0.616305,99/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=1 1 0 1 1 1 1 0 0,100,99,1,0,0.334538,99/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=1 1 1 0 0 0 0 0 0,100,100,0,0,0.051942,100/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=1 1 1 0 0 0 0 1 0,100,99,1,0,0.334538,99/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=1 1 1 0 0 0 1 0 0,100,99,1,0,0.474986,99/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=1 1 1 0 0 0 1 1 0,100,99,1,0,0.350485,99/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=1 1 1 0 0 1 0 0 0,100,100,0,0,0.911413,100/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=1 1 1 0 0 1 0 1 0,100,98,2,0,0.474986,98/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=1 1 1 0 0 1 1 0 0,100,98,2,0,0.319084,98/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=1 1 1 0 1 0 0 0 0,100,99,1,0,0.040108,99/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=1 1 1 0 1 0 0 1 0,100,100,0,0,0.162606,100/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=1 1 1 0 1 0 1 0 0,100,98,2,0,0.096578,98/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=1 1 1 0 1 0 1 1 0,100,99,1,0,0.719747,99/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=1 1 1 0 1 1 0 0 0,100,100,0,0,0.080519,100/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=1 1 1 0 1 1 0 1 0,100,99,1,0,0.289667,99/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=1 1 1 0 1 1 1 0 0,100,97,3,0,0.275709,97/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=1 1 1 1 0 0 0 0 0,100,99,1,0,0.009535,99/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=1 1 1 1 0 0 0 1 0,100,98,2,0,0.924076,98/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=1 1 1 1 0 0 1 0 0,100,99,1,0,0.066882,99/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=1 1 1 1 0 0 1 1 0,100,100,0,0,0.058984,100/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=1 1 1 1 0 1 0 0 0,100,98,2,0,0.102526,98/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=1 1 1 1 0 1 0 1 0,100,100,0,0,0.514124,100/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=1 1 1 1 0 1 1 0 0,100,98,2,0,0.996335,98/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=1 1 1 1 0 1 1 1 0,100,98,2,0,0.115387,98/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=1 1 1 1 1 0 0 0 0,100,98,2,0,0.834308,98/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=1 1 1 1 1 0 0 1 0,100,99,1,0,0.595549,99/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=1 1 1 1 1 0 1 0 0,100,98,2,0,0.657933,98/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=1 1 1 1 1 0 1 1 0,100,100,0,0,0.000474,100/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=1 1 1 1 1 1 0 0 0,100,100,0,0,0.383827,100/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=1 1 1 1 1 1 0 1 0,100,99,1,0,0.739918,99/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=1 1 1 1 1 1 1 0 0,100,99,1,0,0.090936,99/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,NonOverlappingTemplate,m=9 template=1 1 1 1 1 1 1 1 0,100,100,0,0,0.816537,100/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,OverlappingTemplate,single,100,96,4,0,0.911413,96/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,Universal,single,100,97,3,0,0.514124,97/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,ApproximateEntropy,single,100,99,1,0,0.129620,99/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,RandomExcursions,state=-4,50,50,0,50,0.699313,50/50,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,RandomExcursions,state=-3,50,49,1,50,0.935716,49/50,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,RandomExcursions,state=-2,50,50,0,50,0.262249,50/50,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,RandomExcursions,state=-1,50,50,0,50,0.971699,50/50,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,RandomExcursions,state=1,50,50,0,50,0.137282,50/50,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,RandomExcursions,state=2,50,50,0,50,0.383827,50/50,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,RandomExcursions,state=3,50,50,0,50,0.494392,50/50,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,RandomExcursions,state=4,50,50,0,50,0.096578,50/50,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,RandomExcursionsVariant,state=-9,50,49,1,50,0.236810,49/50,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,RandomExcursionsVariant,state=-8,50,49,1,50,0.108791,49/50,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,RandomExcursionsVariant,state=-7,50,49,1,50,0.013569,49/50,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,RandomExcursionsVariant,state=-6,50,49,1,50,0.350485,49/50,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,RandomExcursionsVariant,state=-5,50,49,1,50,0.289667,49/50,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,RandomExcursionsVariant,state=-4,50,49,1,50,0.494392,49/50,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,RandomExcursionsVariant,state=-3,50,49,1,50,0.616305,49/50,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,RandomExcursionsVariant,state=-2,50,50,0,50,0.699313,50/50,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,RandomExcursionsVariant,state=-1,50,49,1,50,0.236810,49/50,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,RandomExcursionsVariant,state=1,50,49,1,50,0.494392,49/50,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,RandomExcursionsVariant,state=2,50,50,0,50,0.262249,50/50,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,RandomExcursionsVariant,state=3,50,50,0,50,0.699313,50/50,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,RandomExcursionsVariant,state=4,50,50,0,50,0.213309,50/50,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,RandomExcursionsVariant,state=5,50,50,0,50,0.383827,50/50,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,RandomExcursionsVariant,state=6,50,50,0,50,0.191687,50/50,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,RandomExcursionsVariant,state=7,50,50,0,50,0.699313,50/50,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,RandomExcursionsVariant,state=8,50,50,0,50,0.494392,50/50,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,RandomExcursionsVariant,state=9,50,50,0,50,0.153763,50/50,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,Serial,p_value1 (delta_1),100,100,0,0,0.224821,100/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,Serial,p_value2 (delta_2),100,100,0,0,0.080519,100/100,0.01,1000000,2.1.2
+cryptographic_hmac_drbg,LinearComplexity,single,100,99,1,0,0.401199,99/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,Frequency,single,100,99,1,0,0.191687,99/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,BlockFrequency,single,100,98,2,0,0.191687,98/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,CumulativeSums,forward,100,98,2,0,0.851383,98/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,CumulativeSums,reverse,100,98,2,0,0.946308,98/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,Runs,single,100,99,1,0,0.883171,99/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,LongestRun,single,100,99,1,0,0.249284,99/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,Rank,single,100,100,0,0,0.514124,100/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,FFT,single,100,99,1,0,0.122325,99/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=0 0 0 0 0 0 0 0 1,100,98,2,0,0.494392,98/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=0 0 0 0 0 0 0 1 1,100,99,1,0,0.574903,99/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=0 0 0 0 0 0 1 0 1,100,99,1,0,0.534146,99/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=0 0 0 0 0 0 1 1 1,100,99,1,0,0.236810,99/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=0 0 0 0 0 1 0 0 1,100,99,1,0,0.739918,99/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=0 0 0 0 0 1 0 1 1,100,99,1,0,0.637119,99/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=0 0 0 0 0 1 1 0 1,100,98,2,0,0.798139,98/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=0 0 0 0 0 1 1 1 1,100,98,2,0,0.137282,98/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=0 0 0 0 1 0 0 0 1,100,97,3,0,0.494392,97/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=0 0 0 0 1 0 0 1 1,100,98,2,0,0.289667,98/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=0 0 0 0 1 0 1 0 1,100,98,2,0,0.071177,98/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=0 0 0 0 1 0 1 1 1,100,100,0,0,0.437274,100/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=0 0 0 0 1 1 0 0 1,100,100,0,0,0.911413,100/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=0 0 0 0 1 1 0 1 1,100,99,1,0,0.055361,99/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=0 0 0 0 1 1 1 0 1,100,99,1,0,0.334538,99/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=0 0 0 0 1 1 1 1 1,100,97,3,0,0.798139,97/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=0 0 0 1 0 0 0 1 1,100,100,0,0,0.162606,100/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=0 0 0 1 0 0 1 0 1,100,100,0,0,0.162606,100/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=0 0 0 1 0 0 1 1 1,100,97,3,0,0.616305,97/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=0 0 0 1 0 1 0 0 1,100,99,1,0,0.319084,99/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=0 0 0 1 0 1 0 1 1,100,98,2,0,0.262249,98/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=0 0 0 1 0 1 1 0 1,100,98,2,0,0.419021,98/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=0 0 0 1 0 1 1 1 1,100,99,1,0,0.699313,99/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=0 0 0 1 1 0 0 1 1,100,100,0,0,0.202268,100/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=0 0 0 1 1 0 1 0 1,100,100,0,0,0.657933,100/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=0 0 0 1 1 0 1 1 1,100,99,1,0,0.719747,99/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=0 0 0 1 1 1 0 0 1,100,97,3,0,0.455937,97/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=0 0 0 1 1 1 0 1 1,100,99,1,0,0.657933,99/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=0 0 0 1 1 1 1 0 1,100,100,0,0,0.719747,100/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=0 0 0 1 1 1 1 1 1,100,96,4,0,0.437274,96/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=0 0 1 0 0 0 0 1 1,100,98,2,0,0.021999,98/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=0 0 1 0 0 0 1 0 1,100,98,2,0,0.978072,98/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=0 0 1 0 0 0 1 1 1,100,99,1,0,0.304126,99/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=0 0 1 0 0 1 0 1 1,100,98,2,0,0.678686,98/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=0 0 1 0 0 1 1 0 1,100,98,2,0,0.115387,98/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=0 0 1 0 0 1 1 1 1,100,100,0,0,0.883171,100/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=0 0 1 0 1 0 0 1 1,100,99,1,0,0.014550,99/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=0 0 1 0 1 0 1 0 1,100,99,1,0,0.350485,99/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=0 0 1 0 1 0 1 1 1,100,99,1,0,0.834308,99/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=0 0 1 0 1 1 0 1 1,100,100,0,0,0.366918,100/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=0 0 1 0 1 1 1 0 1,100,99,1,0,0.249284,99/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=0 0 1 0 1 1 1 1 1,100,99,1,0,0.401199,99/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=0 0 1 1 0 0 1 0 1,100,99,1,0,0.334538,99/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=0 0 1 1 0 0 1 1 1,100,100,0,0,0.090936,100/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=0 0 1 1 0 1 0 1 1,100,100,0,0,0.319084,100/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=0 0 1 1 0 1 1 0 1,100,100,0,0,0.955835,100/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=0 0 1 1 0 1 1 1 1,100,100,0,0,0.637119,100/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=0 0 1 1 1 0 1 0 1,100,97,3,0,0.275709,97/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=0 0 1 1 1 0 1 1 1,100,99,1,0,0.554420,99/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=0 0 1 1 1 1 0 1 1,100,100,0,0,0.657933,100/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=0 0 1 1 1 1 1 0 1,100,100,0,0,0.137282,100/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=0 0 1 1 1 1 1 1 1,100,99,1,0,0.971699,99/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=0 1 0 0 0 0 0 1 1,100,99,1,0,0.162606,99/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=0 1 0 0 0 0 1 1 1,100,100,0,0,0.851383,100/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=0 1 0 0 0 1 0 1 1,100,99,1,0,0.304126,99/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=0 1 0 0 0 1 1 1 1,100,98,2,0,0.883171,98/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=0 1 0 0 1 0 0 1 1,100,99,1,0,0.236810,99/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=0 1 0 0 1 0 1 1 1,100,99,1,0,0.911413,99/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=0 1 0 0 1 1 0 1 1,100,99,1,0,0.574903,99/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=0 1 0 0 1 1 1 1 1,100,99,1,0,0.071177,99/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=0 1 0 1 0 0 0 1 1,100,97,3,0,0.983453,97/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=0 1 0 1 0 0 1 1 1,100,99,1,0,0.275709,99/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=0 1 0 1 0 1 0 1 1,100,100,0,0,0.383827,100/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=0 1 0 1 0 1 1 1 1,100,97,3,0,0.759756,97/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=0 1 0 1 1 0 0 1 1,100,100,0,0,0.534146,100/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=0 1 0 1 1 0 1 1 1,100,99,1,0,0.494392,99/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=0 1 0 1 1 1 0 1 1,100,99,1,0,0.595549,99/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=0 1 0 1 1 1 1 1 1,100,100,0,0,0.851383,100/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=0 1 1 0 0 0 1 1 1,100,98,2,0,0.334538,98/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=0 1 1 0 0 1 1 1 1,100,100,0,0,0.401199,100/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=0 1 1 0 1 0 1 1 1,100,100,0,0,0.851383,100/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=0 1 1 0 1 1 1 1 1,100,100,0,0,0.334538,100/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=0 1 1 1 0 1 1 1 1,100,97,3,0,0.334538,97/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=0 1 1 1 1 1 1 1 1,100,98,2,0,0.236810,98/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=1 0 0 0 0 0 0 0 0,100,98,2,0,0.494392,98/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=1 0 0 0 1 0 0 0 0,100,98,2,0,0.383827,98/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=1 0 0 1 0 0 0 0 0,100,100,0,0,0.897763,100/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=1 0 0 1 0 1 0 0 0,100,100,0,0,0.202268,100/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=1 0 0 1 1 0 0 0 0,100,100,0,0,0.383827,100/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=1 0 0 1 1 1 0 0 0,100,97,3,0,0.514124,97/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=1 0 1 0 0 0 0 0 0,100,98,2,0,0.935716,98/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=1 0 1 0 0 0 1 0 0,100,97,3,0,0.096578,97/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=1 0 1 0 0 1 0 0 0,100,99,1,0,0.987896,99/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=1 0 1 0 0 1 1 0 0,100,98,2,0,0.987896,98/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=1 0 1 0 1 0 0 0 0,100,99,1,0,0.419021,99/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=1 0 1 0 1 0 1 0 0,100,99,1,0,0.779188,99/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=1 0 1 0 1 1 0 0 0,100,97,3,0,0.040108,97/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=1 0 1 0 1 1 1 0 0,100,100,0,0,0.494392,100/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=1 0 1 1 0 0 0 0 0,100,100,0,0,0.987896,100/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=1 0 1 1 0 0 1 0 0,100,100,0,0,0.145326,100/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=1 0 1 1 0 1 0 0 0,100,98,2,0,0.289667,98/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=1 0 1 1 0 1 1 0 0,100,98,2,0,0.366918,98/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=1 0 1 1 1 0 0 0 0,100,99,1,0,0.798139,99/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=1 0 1 1 1 0 1 0 0,100,100,0,0,0.455937,100/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=1 0 1 1 1 1 0 0 0,100,99,1,0,0.514124,99/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=1 0 1 1 1 1 1 0 0,100,99,1,0,0.007694,99/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=1 1 0 0 0 0 0 0 0,100,99,1,0,0.474986,99/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=1 1 0 0 0 0 0 1 0,100,100,0,0,0.883171,100/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=1 1 0 0 0 0 1 0 0,100,100,0,0,0.249284,100/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=1 1 0 0 0 1 0 0 0,100,100,0,0,0.455937,100/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=1 1 0 0 0 1 0 1 0,100,100,0,0,0.678686,100/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=1 1 0 0 1 0 0 0 0,100,100,0,0,0.911413,100/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=1 1 0 0 1 0 0 1 0,100,100,0,0,0.213309,100/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=1 1 0 0 1 0 1 0 0,100,100,0,0,0.401199,100/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=1 1 0 0 1 1 0 0 0,100,100,0,0,0.867692,100/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=1 1 0 0 1 1 0 1 0,100,98,2,0,0.032923,98/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=1 1 0 1 0 0 0 0 0,100,98,2,0,0.798139,98/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=1 1 0 1 0 0 0 1 0,100,99,1,0,0.366918,99/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=1 1 0 1 0 0 1 0 0,100,99,1,0,0.851383,99/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=1 1 0 1 0 1 0 0 0,100,99,1,0,0.924076,99/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=1 1 0 1 0 1 0 1 0,100,98,2,0,0.115387,98/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=1 1 0 1 0 1 1 0 0,100,99,1,0,0.637119,99/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=1 1 0 1 1 0 0 0 0,100,100,0,0,0.045675,100/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=1 1 0 1 1 0 0 1 0,100,100,0,0,0.366918,100/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=1 1 0 1 1 0 1 0 0,100,100,0,0,0.657933,100/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=1 1 0 1 1 1 0 0 0,100,99,1,0,0.366918,99/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=1 1 0 1 1 1 0 1 0,100,99,1,0,0.494392,99/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=1 1 0 1 1 1 1 0 0,100,100,0,0,0.304126,100/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=1 1 1 0 0 0 0 0 0,100,98,2,0,0.816537,98/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=1 1 1 0 0 0 0 1 0,100,100,0,0,0.739918,100/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=1 1 1 0 0 0 1 0 0,100,100,0,0,0.401199,100/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=1 1 1 0 0 0 1 1 0,100,98,2,0,0.883171,98/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=1 1 1 0 0 1 0 0 0,100,98,2,0,0.719747,98/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=1 1 1 0 0 1 0 1 0,100,99,1,0,0.350485,99/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=1 1 1 0 0 1 1 0 0,100,98,2,0,0.494392,98/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=1 1 1 0 1 0 0 0 0,100,100,0,0,0.699313,100/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=1 1 1 0 1 0 0 1 0,100,99,1,0,0.534146,99/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=1 1 1 0 1 0 1 0 0,100,99,1,0,0.897763,99/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=1 1 1 0 1 0 1 1 0,100,98,2,0,0.437274,98/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=1 1 1 0 1 1 0 0 0,100,100,0,0,0.383827,100/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=1 1 1 0 1 1 0 1 0,100,99,1,0,0.574903,99/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=1 1 1 0 1 1 1 0 0,100,99,1,0,0.010988,99/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=1 1 1 1 0 0 0 0 0,100,99,1,0,0.062821,99/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=1 1 1 1 0 0 0 1 0,100,100,0,0,0.236810,100/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=1 1 1 1 0 0 1 0 0,100,100,0,0,0.350485,100/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=1 1 1 1 0 0 1 1 0,100,100,0,0,0.955835,100/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=1 1 1 1 0 1 0 0 0,100,99,1,0,0.035174,99/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=1 1 1 1 0 1 0 1 0,100,98,2,0,0.574903,98/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=1 1 1 1 0 1 1 0 0,100,99,1,0,0.616305,99/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=1 1 1 1 0 1 1 1 0,100,98,2,0,0.419021,98/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=1 1 1 1 1 0 0 0 0,100,100,0,0,0.657933,100/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=1 1 1 1 1 0 0 1 0,100,97,3,0,0.883171,97/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=1 1 1 1 1 0 1 0 0,100,99,1,0,0.096578,99/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=1 1 1 1 1 0 1 1 0,100,99,1,0,0.122325,99/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=1 1 1 1 1 1 0 0 0,100,99,1,0,0.191687,99/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=1 1 1 1 1 1 0 1 0,100,99,1,0,0.494392,99/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=1 1 1 1 1 1 1 0 0,100,99,1,0,0.474986,99/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,NonOverlappingTemplate,m=9 template=1 1 1 1 1 1 1 1 0,100,98,2,0,0.236810,98/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,OverlappingTemplate,single,100,100,0,0,0.145326,100/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,Universal,single,100,100,0,0,0.289667,100/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,ApproximateEntropy,single,100,100,0,0,0.020548,100/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,RandomExcursions,state=-4,58,56,2,42,0.066882,56/58,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,RandomExcursions,state=-3,58,57,1,42,0.657933,57/58,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,RandomExcursions,state=-2,58,58,0,42,0.001509,58/58,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,RandomExcursions,state=-1,58,58,0,42,0.383827,58/58,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,RandomExcursions,state=1,58,58,0,42,0.013569,58/58,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,RandomExcursions,state=2,58,58,0,42,0.383827,58/58,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,RandomExcursions,state=3,58,58,0,42,0.236810,58/58,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,RandomExcursions,state=4,58,58,0,42,0.350485,58/58,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,RandomExcursionsVariant,state=-9,58,58,0,42,0.739918,58/58,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,RandomExcursionsVariant,state=-8,58,57,1,42,0.236810,57/58,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,RandomExcursionsVariant,state=-7,58,58,0,42,0.011791,58/58,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,RandomExcursionsVariant,state=-6,58,58,0,42,0.816537,58/58,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,RandomExcursionsVariant,state=-5,58,58,0,42,0.657933,58/58,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,RandomExcursionsVariant,state=-4,58,58,0,42,0.534146,58/58,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,RandomExcursionsVariant,state=-3,58,58,0,42,0.236810,58/58,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,RandomExcursionsVariant,state=-2,58,58,0,42,0.419021,58/58,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,RandomExcursionsVariant,state=-1,58,58,0,42,0.045675,58/58,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,RandomExcursionsVariant,state=1,58,58,0,42,0.051942,58/58,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,RandomExcursionsVariant,state=2,58,58,0,42,0.289667,58/58,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,RandomExcursionsVariant,state=3,58,58,0,42,0.075719,58/58,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,RandomExcursionsVariant,state=4,58,58,0,42,0.262249,58/58,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,RandomExcursionsVariant,state=5,58,58,0,42,0.030806,58/58,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,RandomExcursionsVariant,state=6,58,58,0,42,0.213309,58/58,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,RandomExcursionsVariant,state=7,58,58,0,42,0.699313,58/58,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,RandomExcursionsVariant,state=8,58,58,0,42,0.419021,58/58,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,RandomExcursionsVariant,state=9,58,58,0,42,0.213309,58/58,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,Serial,p_value1 (delta_1),100,100,0,0,0.289667,100/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,Serial,p_value2 (delta_2),100,100,0,0,0.534146,100/100,0.01,1000000,2.1.2
+cryptographic_pair_shift_words,LinearComplexity,single,100,100,0,0,0.102526,100/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,Frequency,single,100,99,1,0,0.574903,99/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,BlockFrequency,single,100,98,2,0,0.595549,98/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,CumulativeSums,forward,100,99,1,0,0.005762,99/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,CumulativeSums,reverse,100,99,1,0,0.955835,99/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,Runs,single,100,99,1,0,0.236810,99/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,LongestRun,single,100,99,1,0,0.096578,99/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,Rank,single,100,98,2,0,0.798139,98/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,FFT,single,100,99,1,0,0.213309,99/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=0 0 0 0 0 0 0 0 1,100,99,1,0,0.779188,99/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=0 0 0 0 0 0 0 1 1,100,99,1,0,0.935716,99/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=0 0 0 0 0 0 1 0 1,100,100,0,0,0.946308,100/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=0 0 0 0 0 0 1 1 1,100,100,0,0,0.062821,100/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=0 0 0 0 0 1 0 0 1,100,98,2,0,0.202268,98/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=0 0 0 0 0 1 0 1 1,100,98,2,0,0.554420,98/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=0 0 0 0 0 1 1 0 1,100,100,0,0,0.834308,100/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=0 0 0 0 0 1 1 1 1,100,98,2,0,0.897763,98/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=0 0 0 0 1 0 0 0 1,100,99,1,0,0.554420,99/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=0 0 0 0 1 0 0 1 1,100,99,1,0,0.657933,99/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=0 0 0 0 1 0 1 0 1,100,100,0,0,0.834308,100/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=0 0 0 0 1 0 1 1 1,100,98,2,0,0.304126,98/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=0 0 0 0 1 1 0 0 1,100,99,1,0,0.595549,99/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=0 0 0 0 1 1 0 1 1,100,97,3,0,0.851383,97/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=0 0 0 0 1 1 1 0 1,100,98,2,0,0.574903,98/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=0 0 0 0 1 1 1 1 1,100,99,1,0,0.851383,99/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=0 0 0 1 0 0 0 1 1,100,99,1,0,0.883171,99/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=0 0 0 1 0 0 1 0 1,100,100,0,0,0.366918,100/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=0 0 0 1 0 0 1 1 1,100,100,0,0,0.554420,100/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=0 0 0 1 0 1 0 0 1,100,100,0,0,0.494392,100/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=0 0 0 1 0 1 0 1 1,100,99,1,0,0.494392,99/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=0 0 0 1 0 1 1 0 1,100,99,1,0,0.867692,99/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=0 0 0 1 0 1 1 1 1,100,98,2,0,0.867692,98/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=0 0 0 1 1 0 0 1 1,100,98,2,0,0.350485,98/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=0 0 0 1 1 0 1 0 1,100,100,0,0,0.289667,100/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=0 0 0 1 1 0 1 1 1,100,99,1,0,0.108791,99/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=0 0 0 1 1 1 0 0 1,100,100,0,0,0.946308,100/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=0 0 0 1 1 1 0 1 1,100,98,2,0,0.964295,98/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=0 0 0 1 1 1 1 0 1,100,100,0,0,0.181557,100/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=0 0 0 1 1 1 1 1 1,100,100,0,0,0.971699,100/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=0 0 1 0 0 0 0 1 1,100,100,0,0,0.978072,100/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=0 0 1 0 0 0 1 0 1,100,96,4,0,0.779188,96/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=0 0 1 0 0 0 1 1 1,100,100,0,0,0.171867,100/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=0 0 1 0 0 1 0 1 1,100,99,1,0,0.048716,99/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=0 0 1 0 0 1 1 0 1,100,98,2,0,0.851383,98/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=0 0 1 0 0 1 1 1 1,100,99,1,0,0.145326,99/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=0 0 1 0 1 0 0 1 1,100,100,0,0,0.978072,100/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=0 0 1 0 1 0 1 0 1,100,98,2,0,0.657933,98/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=0 0 1 0 1 0 1 1 1,100,100,0,0,0.224821,100/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=0 0 1 0 1 1 0 1 1,100,98,2,0,0.419021,98/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=0 0 1 0 1 1 1 0 1,100,99,1,0,0.554420,99/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=0 0 1 0 1 1 1 1 1,100,99,1,0,0.924076,99/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=0 0 1 1 0 0 1 0 1,100,99,1,0,0.334538,99/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=0 0 1 1 0 0 1 1 1,100,100,0,0,0.401199,100/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=0 0 1 1 0 1 0 1 1,100,99,1,0,0.419021,99/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=0 0 1 1 0 1 1 0 1,100,100,0,0,0.108791,100/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=0 0 1 1 0 1 1 1 1,100,100,0,0,0.595549,100/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=0 0 1 1 1 0 1 0 1,100,100,0,0,0.851383,100/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=0 0 1 1 1 0 1 1 1,100,99,1,0,0.719747,99/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=0 0 1 1 1 1 0 1 1,100,98,2,0,0.262249,98/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=0 0 1 1 1 1 1 0 1,100,100,0,0,0.595549,100/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=0 0 1 1 1 1 1 1 1,100,97,3,0,0.911413,97/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=0 1 0 0 0 0 0 1 1,100,98,2,0,0.334538,98/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=0 1 0 0 0 0 1 1 1,100,99,1,0,0.350485,99/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=0 1 0 0 0 1 0 1 1,100,99,1,0,0.122325,99/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=0 1 0 0 0 1 1 1 1,100,100,0,0,0.015598,100/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=0 1 0 0 1 0 0 1 1,100,97,3,0,0.935716,97/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=0 1 0 0 1 0 1 1 1,100,99,1,0,0.637119,99/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=0 1 0 0 1 1 0 1 1,100,97,3,0,0.236810,97/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=0 1 0 0 1 1 1 1 1,100,97,3,0,0.759756,97/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=0 1 0 1 0 0 0 1 1,100,99,1,0,0.062821,99/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=0 1 0 1 0 0 1 1 1,100,100,0,0,0.798139,100/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=0 1 0 1 0 1 0 1 1,100,100,0,0,0.554420,100/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=0 1 0 1 0 1 1 1 1,100,99,1,0,0.191687,99/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=0 1 0 1 1 0 0 1 1,100,99,1,0,0.699313,99/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=0 1 0 1 1 0 1 1 1,100,98,2,0,0.419021,98/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=0 1 0 1 1 1 0 1 1,100,99,1,0,0.574903,99/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=0 1 0 1 1 1 1 1 1,100,98,2,0,0.616305,98/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=0 1 1 0 0 0 1 1 1,100,97,3,0,0.401199,97/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=0 1 1 0 0 1 1 1 1,100,98,2,0,0.759756,98/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=0 1 1 0 1 0 1 1 1,100,99,1,0,0.678686,99/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=0 1 1 0 1 1 1 1 1,100,100,0,0,0.350485,100/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=0 1 1 1 0 1 1 1 1,100,99,1,0,0.935716,99/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=0 1 1 1 1 1 1 1 1,100,99,1,0,0.657933,99/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=1 0 0 0 0 0 0 0 0,100,99,1,0,0.779188,99/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=1 0 0 0 1 0 0 0 0,100,100,0,0,0.037566,100/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=1 0 0 1 0 0 0 0 0,100,98,2,0,0.554420,98/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=1 0 0 1 0 1 0 0 0,100,100,0,0,0.383827,100/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=1 0 0 1 1 0 0 0 0,100,100,0,0,0.383827,100/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=1 0 0 1 1 1 0 0 0,100,100,0,0,0.171867,100/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=1 0 1 0 0 0 0 0 0,100,99,1,0,0.249284,99/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=1 0 1 0 0 0 1 0 0,100,99,1,0,0.058984,99/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=1 0 1 0 0 1 0 0 0,100,96,4,0,0.816537,96/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=1 0 1 0 0 1 1 0 0,100,99,1,0,0.334538,99/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=1 0 1 0 1 0 0 0 0,100,99,1,0,0.383827,99/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=1 0 1 0 1 0 1 0 0,100,96,4,0,0.108791,96/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=1 0 1 0 1 1 0 0 0,100,100,0,0,0.090936,100/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=1 0 1 0 1 1 1 0 0,100,98,2,0,0.236810,98/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=1 0 1 1 0 0 0 0 0,100,100,0,0,0.319084,100/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=1 0 1 1 0 0 1 0 0,100,100,0,0,0.595549,100/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=1 0 1 1 0 1 0 0 0,100,97,3,0,0.719747,97/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=1 0 1 1 0 1 1 0 0,100,99,1,0,0.062821,99/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=1 0 1 1 1 0 0 0 0,100,99,1,0,0.366918,99/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=1 0 1 1 1 0 1 0 0,100,98,2,0,0.554420,98/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=1 0 1 1 1 1 0 0 0,100,100,0,0,0.964295,100/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=1 0 1 1 1 1 1 0 0,100,100,0,0,0.350485,100/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=1 1 0 0 0 0 0 0 0,100,100,0,0,0.971699,100/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=1 1 0 0 0 0 0 1 0,100,99,1,0,0.637119,99/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=1 1 0 0 0 0 1 0 0,100,99,1,0,0.534146,99/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=1 1 0 0 0 1 0 0 0,100,99,1,0,0.616305,99/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=1 1 0 0 0 1 0 1 0,100,99,1,0,0.924076,99/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=1 1 0 0 1 0 0 0 0,100,98,2,0,0.366918,98/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=1 1 0 0 1 0 0 1 0,100,98,2,0,0.383827,98/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=1 1 0 0 1 0 1 0 0,100,97,3,0,0.350485,97/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=1 1 0 0 1 1 0 0 0,100,100,0,0,0.616305,100/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=1 1 0 0 1 1 0 1 0,100,100,0,0,0.455937,100/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=1 1 0 1 0 0 0 0 0,100,100,0,0,0.574903,100/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=1 1 0 1 0 0 0 1 0,100,99,1,0,0.719747,99/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=1 1 0 1 0 0 1 0 0,100,99,1,0,0.213309,99/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=1 1 0 1 0 1 0 0 0,100,97,3,0,0.759756,97/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=1 1 0 1 0 1 0 1 0,100,100,0,0,0.249284,100/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=1 1 0 1 0 1 1 0 0,100,100,0,0,0.401199,100/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=1 1 0 1 1 0 0 0 0,100,99,1,0,0.759756,99/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=1 1 0 1 1 0 0 1 0,100,98,2,0,0.236810,98/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=1 1 0 1 1 0 1 0 0,100,100,0,0,0.739918,100/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=1 1 0 1 1 1 0 0 0,100,99,1,0,0.759756,99/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=1 1 0 1 1 1 0 1 0,100,97,3,0,0.759756,97/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=1 1 0 1 1 1 1 0 0,100,99,1,0,0.014550,99/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=1 1 1 0 0 0 0 0 0,100,98,2,0,0.798139,98/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=1 1 1 0 0 0 0 1 0,100,99,1,0,0.946308,99/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=1 1 1 0 0 0 1 0 0,100,99,1,0,0.924076,99/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=1 1 1 0 0 0 1 1 0,100,99,1,0,0.474986,99/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=1 1 1 0 0 1 0 0 0,100,95,5,0,0.437274,95/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=1 1 1 0 0 1 0 1 0,100,98,2,0,0.202268,98/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=1 1 1 0 0 1 1 0 0,100,99,1,0,0.657933,99/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=1 1 1 0 1 0 0 0 0,100,100,0,0,0.739918,100/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=1 1 1 0 1 0 0 1 0,100,100,0,0,0.319084,100/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=1 1 1 0 1 0 1 0 0,100,97,3,0,0.834308,97/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=1 1 1 0 1 0 1 1 0,100,99,1,0,0.534146,99/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=1 1 1 0 1 1 0 0 0,100,99,1,0,0.924076,99/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=1 1 1 0 1 1 0 1 0,100,99,1,0,0.437274,99/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=1 1 1 0 1 1 1 0 0,100,98,2,0,0.319084,98/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=1 1 1 1 0 0 0 0 0,100,97,3,0,0.474986,97/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=1 1 1 1 0 0 0 1 0,100,98,2,0,0.319084,98/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=1 1 1 1 0 0 1 0 0,100,100,0,0,0.514124,100/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=1 1 1 1 0 0 1 1 0,100,99,1,0,0.319084,99/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=1 1 1 1 0 1 0 0 0,100,100,0,0,0.401199,100/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=1 1 1 1 0 1 0 1 0,100,100,0,0,0.911413,100/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=1 1 1 1 0 1 1 0 0,100,100,0,0,0.999777,100/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=1 1 1 1 0 1 1 1 0,100,100,0,0,0.657933,100/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=1 1 1 1 1 0 0 0 0,100,99,1,0,0.437274,99/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=1 1 1 1 1 0 0 1 0,100,100,0,0,0.236810,100/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=1 1 1 1 1 0 1 0 0,100,99,1,0,0.657933,99/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=1 1 1 1 1 0 1 1 0,100,100,0,0,0.401199,100/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=1 1 1 1 1 1 0 0 0,100,99,1,0,0.040108,99/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=1 1 1 1 1 1 0 1 0,100,100,0,0,0.236810,100/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=1 1 1 1 1 1 1 0 0,100,98,2,0,0.366918,98/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,NonOverlappingTemplate,m=9 template=1 1 1 1 1 1 1 1 0,100,99,1,0,0.719747,99/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,OverlappingTemplate,single,100,100,0,0,0.779188,100/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,Universal,single,100,100,0,0,0.554420,100/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,ApproximateEntropy,single,100,99,1,0,0.759756,99/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,RandomExcursions,state=-4,65,65,0,35,0.204076,65/65,0.01,1000000,2.1.2
+cryptographic_block_r1_values,RandomExcursions,state=-3,65,65,0,35,0.242986,65/65,0.01,1000000,2.1.2
+cryptographic_block_r1_values,RandomExcursions,state=-2,65,63,2,35,0.264458,63/65,0.01,1000000,2.1.2
+cryptographic_block_r1_values,RandomExcursions,state=-1,65,64,1,35,0.922036,64/65,0.01,1000000,2.1.2
+cryptographic_block_r1_values,RandomExcursions,state=1,65,64,1,35,0.186566,64/65,0.01,1000000,2.1.2
+cryptographic_block_r1_values,RandomExcursions,state=2,65,65,0,35,0.585209,65/65,0.01,1000000,2.1.2
+cryptographic_block_r1_values,RandomExcursions,state=3,65,63,2,35,0.585209,63/65,0.01,1000000,2.1.2
+cryptographic_block_r1_values,RandomExcursions,state=4,65,65,0,35,0.170294,65/65,0.01,1000000,2.1.2
+cryptographic_block_r1_values,RandomExcursionsVariant,state=-9,65,64,1,35,0.551026,64/65,0.01,1000000,2.1.2
+cryptographic_block_r1_values,RandomExcursionsVariant,state=-8,65,64,1,35,0.051391,64/65,0.01,1000000,2.1.2
+cryptographic_block_r1_values,RandomExcursionsVariant,state=-7,65,64,1,35,0.689019,64/65,0.01,1000000,2.1.2
+cryptographic_block_r1_values,RandomExcursionsVariant,state=-6,65,64,1,35,0.551026,64/65,0.01,1000000,2.1.2
+cryptographic_block_r1_values,RandomExcursionsVariant,state=-5,65,64,1,35,0.689019,64/65,0.01,1000000,2.1.2
+cryptographic_block_r1_values,RandomExcursionsVariant,state=-4,65,64,1,35,0.392456,64/65,0.01,1000000,2.1.2
+cryptographic_block_r1_values,RandomExcursionsVariant,state=-3,65,64,1,35,0.170294,64/65,0.01,1000000,2.1.2
+cryptographic_block_r1_values,RandomExcursionsVariant,state=-2,65,63,2,35,0.452799,63/65,0.01,1000000,2.1.2
+cryptographic_block_r1_values,RandomExcursionsVariant,state=-1,65,65,0,35,0.013411,65/65,0.01,1000000,2.1.2
+cryptographic_block_r1_values,RandomExcursionsVariant,state=1,65,65,0,35,0.941144,65/65,0.01,1000000,2.1.2
+cryptographic_block_r1_values,RandomExcursionsVariant,state=2,65,65,0,35,0.585209,65/65,0.01,1000000,2.1.2
+cryptographic_block_r1_values,RandomExcursionsVariant,state=3,65,65,0,35,0.392456,65/65,0.01,1000000,2.1.2
+cryptographic_block_r1_values,RandomExcursionsVariant,state=4,65,65,0,35,0.756476,65/65,0.01,1000000,2.1.2
+cryptographic_block_r1_values,RandomExcursionsVariant,state=5,65,65,0,35,0.585209,65/65,0.01,1000000,2.1.2
+cryptographic_block_r1_values,RandomExcursionsVariant,state=6,65,65,0,35,0.585209,65/65,0.01,1000000,2.1.2
+cryptographic_block_r1_values,RandomExcursionsVariant,state=7,65,65,0,35,0.517442,65/65,0.01,1000000,2.1.2
+cryptographic_block_r1_values,RandomExcursionsVariant,state=8,65,65,0,35,0.452799,65/65,0.01,1000000,2.1.2
+cryptographic_block_r1_values,RandomExcursionsVariant,state=9,65,65,0,35,0.010606,65/65,0.01,1000000,2.1.2
+cryptographic_block_r1_values,Serial,p_value1 (delta_1),100,98,2,0,0.699313,98/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,Serial,p_value2 (delta_2),100,98,2,0,0.971699,98/100,0.01,1000000,2.1.2
+cryptographic_block_r1_values,LinearComplexity,single,100,100,0,0,0.739918,100/100,0.01,1000000,2.1.2
+authentication_tag_stream,Frequency,single,100,99,1,0,0.514124,99/100,0.01,1000000,2.1.2
+authentication_tag_stream,BlockFrequency,single,100,100,0,0,0.574903,100/100,0.01,1000000,2.1.2
+authentication_tag_stream,CumulativeSums,forward,100,100,0,0,0.534146,100/100,0.01,1000000,2.1.2
+authentication_tag_stream,CumulativeSums,reverse,100,98,2,0,0.595549,98/100,0.01,1000000,2.1.2
+authentication_tag_stream,Runs,single,100,99,1,0,0.759756,99/100,0.01,1000000,2.1.2
+authentication_tag_stream,LongestRun,single,100,100,0,0,0.595549,100/100,0.01,1000000,2.1.2
+authentication_tag_stream,Rank,single,100,96,4,0,0.137282,96/100,0.01,1000000,2.1.2
+authentication_tag_stream,FFT,single,100,100,0,0,0.289667,100/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=0 0 0 0 0 0 0 0 1,100,99,1,0,0.574903,99/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=0 0 0 0 0 0 0 1 1,100,99,1,0,0.162606,99/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=0 0 0 0 0 0 1 0 1,100,99,1,0,0.383827,99/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=0 0 0 0 0 0 1 1 1,100,99,1,0,0.983453,99/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=0 0 0 0 0 1 0 0 1,100,100,0,0,0.657933,100/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=0 0 0 0 0 1 0 1 1,100,99,1,0,0.262249,99/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=0 0 0 0 0 1 1 0 1,100,99,1,0,0.494392,99/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=0 0 0 0 0 1 1 1 1,100,99,1,0,0.010988,99/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=0 0 0 0 1 0 0 0 1,100,100,0,0,0.137282,100/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=0 0 0 0 1 0 0 1 1,100,99,1,0,0.071177,99/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=0 0 0 0 1 0 1 0 1,100,100,0,0,0.494392,100/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=0 0 0 0 1 0 1 1 1,100,99,1,0,0.010237,99/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=0 0 0 0 1 1 0 0 1,100,100,0,0,0.637119,100/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=0 0 0 0 1 1 0 1 1,100,99,1,0,0.883171,99/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=0 0 0 0 1 1 1 0 1,100,100,0,0,0.304126,100/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=0 0 0 0 1 1 1 1 1,100,100,0,0,0.350485,100/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=0 0 0 1 0 0 0 1 1,100,97,3,0,0.213309,97/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=0 0 0 1 0 0 1 0 1,100,97,3,0,0.779188,97/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=0 0 0 1 0 0 1 1 1,100,98,2,0,0.637119,98/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=0 0 0 1 0 1 0 0 1,100,99,1,0,0.883171,99/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=0 0 0 1 0 1 0 1 1,100,96,4,0,0.534146,96/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=0 0 0 1 0 1 1 0 1,100,99,1,0,0.851383,99/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=0 0 0 1 0 1 1 1 1,100,99,1,0,0.759756,99/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=0 0 0 1 1 0 0 1 1,100,97,3,0,0.657933,97/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=0 0 0 1 1 0 1 0 1,100,100,0,0,0.678686,100/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=0 0 0 1 1 0 1 1 1,100,100,0,0,0.224821,100/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=0 0 0 1 1 1 0 0 1,100,100,0,0,0.574903,100/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=0 0 0 1 1 1 0 1 1,100,98,2,0,0.096578,98/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=0 0 0 1 1 1 1 0 1,100,99,1,0,0.678686,99/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=0 0 0 1 1 1 1 1 1,100,99,1,0,0.678686,99/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=0 0 1 0 0 0 0 1 1,100,99,1,0,0.075719,99/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=0 0 1 0 0 0 1 0 1,100,98,2,0,0.719747,98/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=0 0 1 0 0 0 1 1 1,100,99,1,0,0.699313,99/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=0 0 1 0 0 1 0 1 1,100,98,2,0,0.574903,98/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=0 0 1 0 0 1 1 0 1,100,99,1,0,0.554420,99/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=0 0 1 0 0 1 1 1 1,100,99,1,0,0.366918,99/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=0 0 1 0 1 0 0 1 1,100,98,2,0,0.514124,98/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=0 0 1 0 1 0 1 0 1,100,100,0,0,0.816537,100/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=0 0 1 0 1 0 1 1 1,100,98,2,0,0.213309,98/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=0 0 1 0 1 1 0 1 1,100,99,1,0,0.719747,99/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=0 0 1 0 1 1 1 0 1,100,100,0,0,0.616305,100/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=0 0 1 0 1 1 1 1 1,100,100,0,0,0.514124,100/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=0 0 1 1 0 0 1 0 1,100,99,1,0,0.739918,99/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=0 0 1 1 0 0 1 1 1,100,98,2,0,0.401199,98/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=0 0 1 1 0 1 0 1 1,100,100,0,0,0.474986,100/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=0 0 1 1 0 1 1 0 1,100,99,1,0,0.304126,99/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=0 0 1 1 0 1 1 1 1,100,100,0,0,0.935716,100/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=0 0 1 1 1 0 1 0 1,100,100,0,0,0.224821,100/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=0 0 1 1 1 0 1 1 1,100,100,0,0,0.366918,100/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=0 0 1 1 1 1 0 1 1,100,100,0,0,0.574903,100/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=0 0 1 1 1 1 1 0 1,100,99,1,0,0.946308,99/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=0 0 1 1 1 1 1 1 1,100,100,0,0,0.062821,100/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=0 1 0 0 0 0 0 1 1,100,100,0,0,0.494392,100/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=0 1 0 0 0 0 1 1 1,100,99,1,0,0.637119,99/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=0 1 0 0 0 1 0 1 1,100,99,1,0,0.474986,99/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=0 1 0 0 0 1 1 1 1,100,99,1,0,0.759756,99/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=0 1 0 0 1 0 0 1 1,100,99,1,0,0.987896,99/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=0 1 0 0 1 0 1 1 1,100,100,0,0,0.474986,100/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=0 1 0 0 1 1 0 1 1,100,100,0,0,0.002374,100/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=0 1 0 0 1 1 1 1 1,100,100,0,0,0.657933,100/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=0 1 0 1 0 0 0 1 1,100,98,2,0,0.739918,98/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=0 1 0 1 0 0 1 1 1,100,100,0,0,0.350485,100/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=0 1 0 1 0 1 0 1 1,100,99,1,0,0.023545,99/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=0 1 0 1 0 1 1 1 1,100,100,0,0,0.249284,100/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=0 1 0 1 1 0 0 1 1,100,100,0,0,0.137282,100/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=0 1 0 1 1 0 1 1 1,100,95,5,0,0.554420,95/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=0 1 0 1 1 1 0 1 1,100,99,1,0,0.924076,99/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=0 1 0 1 1 1 1 1 1,100,100,0,0,0.115387,100/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=0 1 1 0 0 0 1 1 1,100,99,1,0,0.867692,99/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=0 1 1 0 0 1 1 1 1,100,99,1,0,0.262249,99/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=0 1 1 0 1 0 1 1 1,100,99,1,0,0.262249,99/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=0 1 1 0 1 1 1 1 1,100,100,0,0,0.616305,100/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=0 1 1 1 0 1 1 1 1,100,99,1,0,0.637119,99/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=0 1 1 1 1 1 1 1 1,100,99,1,0,0.554420,99/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=1 0 0 0 0 0 0 0 0,100,99,1,0,0.574903,99/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=1 0 0 0 1 0 0 0 0,100,99,1,0,0.319084,99/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=1 0 0 1 0 0 0 0 0,100,99,1,0,0.719747,99/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=1 0 0 1 0 1 0 0 0,100,100,0,0,0.437274,100/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=1 0 0 1 1 0 0 0 0,100,98,2,0,0.554420,98/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=1 0 0 1 1 1 0 0 0,100,99,1,0,0.153763,99/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=1 0 1 0 0 0 0 0 0,100,100,0,0,0.719747,100/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=1 0 1 0 0 0 1 0 0,100,99,1,0,0.145326,99/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=1 0 1 0 0 1 0 0 0,100,98,2,0,0.534146,98/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=1 0 1 0 0 1 1 0 0,100,100,0,0,0.911413,100/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=1 0 1 0 1 0 0 0 0,100,100,0,0,0.145326,100/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=1 0 1 0 1 0 1 0 0,100,99,1,0,0.366918,99/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=1 0 1 0 1 1 0 0 0,100,98,2,0,0.334538,98/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=1 0 1 0 1 1 1 0 0,100,100,0,0,0.090936,100/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=1 0 1 1 0 0 0 0 0,100,100,0,0,0.137282,100/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=1 0 1 1 0 0 1 0 0,100,100,0,0,0.401199,100/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=1 0 1 1 0 1 0 0 0,100,97,3,0,0.474986,97/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=1 0 1 1 0 1 1 0 0,100,97,3,0,0.401199,97/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=1 0 1 1 1 0 0 0 0,100,98,2,0,0.719747,98/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=1 0 1 1 1 0 1 0 0,100,98,2,0,0.851383,98/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=1 0 1 1 1 1 0 0 0,100,100,0,0,0.816537,100/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=1 0 1 1 1 1 1 0 0,100,97,3,0,0.816537,97/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=1 1 0 0 0 0 0 0 0,100,99,1,0,0.637119,99/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=1 1 0 0 0 0 0 1 0,100,99,1,0,0.071177,99/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=1 1 0 0 0 0 1 0 0,100,100,0,0,0.040108,100/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=1 1 0 0 0 1 0 0 0,100,99,1,0,0.991468,99/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=1 1 0 0 0 1 0 1 0,100,99,1,0,0.637119,99/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=1 1 0 0 1 0 0 0 0,100,100,0,0,0.987896,100/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=1 1 0 0 1 0 0 1 0,100,98,2,0,0.554420,98/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=1 1 0 0 1 0 1 0 0,100,99,1,0,0.699313,99/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=1 1 0 0 1 1 0 0 0,100,98,2,0,0.383827,98/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=1 1 0 0 1 1 0 1 0,100,100,0,0,0.048716,100/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=1 1 0 1 0 0 0 0 0,100,99,1,0,0.366918,99/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=1 1 0 1 0 0 0 1 0,100,99,1,0,0.657933,99/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=1 1 0 1 0 0 1 0 0,100,99,1,0,0.779188,99/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=1 1 0 1 0 1 0 0 0,100,99,1,0,0.779188,99/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=1 1 0 1 0 1 0 1 0,100,98,2,0,0.759756,98/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=1 1 0 1 0 1 1 0 0,100,100,0,0,0.935716,100/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=1 1 0 1 1 0 0 0 0,100,99,1,0,0.080519,99/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=1 1 0 1 1 0 0 1 0,100,99,1,0,0.202268,99/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=1 1 0 1 1 0 1 0 0,100,98,2,0,0.419021,98/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=1 1 0 1 1 1 0 0 0,100,98,2,0,0.514124,98/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=1 1 0 1 1 1 0 1 0,100,100,0,0,0.534146,100/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=1 1 0 1 1 1 1 0 0,100,99,1,0,0.162606,99/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=1 1 1 0 0 0 0 0 0,100,99,1,0,0.851383,99/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=1 1 1 0 0 0 0 1 0,100,100,0,0,0.834308,100/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=1 1 1 0 0 0 1 0 0,100,98,2,0,0.137282,98/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=1 1 1 0 0 0 1 1 0,100,100,0,0,0.595549,100/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=1 1 1 0 0 1 0 0 0,100,99,1,0,0.236810,99/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=1 1 1 0 0 1 0 1 0,100,98,2,0,0.759756,98/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=1 1 1 0 0 1 1 0 0,100,98,2,0,0.213309,98/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=1 1 1 0 1 0 0 0 0,100,97,3,0,0.759756,97/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=1 1 1 0 1 0 0 1 0,100,99,1,0,0.595549,99/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=1 1 1 0 1 0 1 0 0,100,99,1,0,0.383827,99/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=1 1 1 0 1 0 1 1 0,100,99,1,0,0.289667,99/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=1 1 1 0 1 1 0 0 0,100,99,1,0,0.202268,99/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=1 1 1 0 1 1 0 1 0,100,97,3,0,0.350485,97/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=1 1 1 0 1 1 1 0 0,100,100,0,0,0.816537,100/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=1 1 1 1 0 0 0 0 0,100,100,0,0,0.883171,100/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=1 1 1 1 0 0 0 1 0,100,100,0,0,0.213309,100/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=1 1 1 1 0 0 1 0 0,100,100,0,0,0.304126,100/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=1 1 1 1 0 0 1 1 0,100,100,0,0,0.739918,100/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=1 1 1 1 0 1 0 0 0,100,99,1,0,0.419021,99/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=1 1 1 1 0 1 0 1 0,100,100,0,0,0.213309,100/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=1 1 1 1 0 1 1 0 0,100,97,3,0,0.739918,97/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=1 1 1 1 0 1 1 1 0,100,99,1,0,0.474986,99/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=1 1 1 1 1 0 0 0 0,100,99,1,0,0.699313,99/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=1 1 1 1 1 0 0 1 0,100,100,0,0,0.181557,100/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=1 1 1 1 1 0 1 0 0,100,99,1,0,0.350485,99/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=1 1 1 1 1 0 1 1 0,100,100,0,0,0.051942,100/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=1 1 1 1 1 1 0 0 0,100,100,0,0,0.366918,100/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=1 1 1 1 1 1 0 1 0,100,97,3,0,0.816537,97/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=1 1 1 1 1 1 1 0 0,100,100,0,0,0.129620,100/100,0.01,1000000,2.1.2
+authentication_tag_stream,NonOverlappingTemplate,m=9 template=1 1 1 1 1 1 1 1 0,100,99,1,0,0.554420,99/100,0.01,1000000,2.1.2
+authentication_tag_stream,OverlappingTemplate,single,100,98,2,0,0.108791,98/100,0.01,1000000,2.1.2
+authentication_tag_stream,Universal,single,100,99,1,0,0.616305,99/100,0.01,1000000,2.1.2
+authentication_tag_stream,ApproximateEntropy,single,100,98,2,0,0.924076,98/100,0.01,1000000,2.1.2
+authentication_tag_stream,RandomExcursions,state=-4,62,60,2,38,0.534146,60/62,0.01,1000000,2.1.2
+authentication_tag_stream,RandomExcursions,state=-3,62,57,5,38,0.028181,57/62,0.01,1000000,2.1.2
+authentication_tag_stream,RandomExcursions,state=-2,62,62,0,38,0.706149,62/62,0.01,1000000,2.1.2
+authentication_tag_stream,RandomExcursions,state=-1,62,62,0,38,0.834308,62/62,0.01,1000000,2.1.2
+authentication_tag_stream,RandomExcursions,state=1,62,61,1,38,0.275709,61/62,0.01,1000000,2.1.2
+authentication_tag_stream,RandomExcursions,state=2,62,62,0,38,0.671779,62/62,0.01,1000000,2.1.2
+authentication_tag_stream,RandomExcursions,state=3,62,62,0,38,0.407091,62/62,0.01,1000000,2.1.2
+authentication_tag_stream,RandomExcursions,state=4,62,62,0,38,0.964295,62/62,0.01,1000000,2.1.2
+authentication_tag_stream,RandomExcursionsVariant,state=-9,62,61,1,38,0.671779,61/62,0.01,1000000,2.1.2
+authentication_tag_stream,RandomExcursionsVariant,state=-8,62,61,1,38,0.862344,61/62,0.01,1000000,2.1.2
+authentication_tag_stream,RandomExcursionsVariant,state=-7,62,60,2,38,0.834308,60/62,0.01,1000000,2.1.2
+authentication_tag_stream,RandomExcursionsVariant,state=-6,62,61,1,38,0.739918,61/62,0.01,1000000,2.1.2
+authentication_tag_stream,RandomExcursionsVariant,state=-5,62,61,1,38,0.253551,61/62,0.01,1000000,2.1.2
+authentication_tag_stream,RandomExcursionsVariant,state=-4,62,62,0,38,0.534146,62/62,0.01,1000000,2.1.2
+authentication_tag_stream,RandomExcursionsVariant,state=-3,62,60,2,38,0.110952,60/62,0.01,1000000,2.1.2
+authentication_tag_stream,RandomExcursionsVariant,state=-2,62,60,2,38,0.500934,60/62,0.01,1000000,2.1.2
+authentication_tag_stream,RandomExcursionsVariant,state=-1,62,60,2,38,0.054199,60/62,0.01,1000000,2.1.2
+authentication_tag_stream,RandomExcursionsVariant,state=1,62,62,0,38,0.888137,62/62,0.01,1000000,2.1.2
+authentication_tag_stream,RandomExcursionsVariant,state=2,62,62,0,38,0.637119,62/62,0.01,1000000,2.1.2
+authentication_tag_stream,RandomExcursionsVariant,state=3,62,62,0,38,0.054199,62/62,0.01,1000000,2.1.2
+authentication_tag_stream,RandomExcursionsVariant,state=4,62,62,0,38,0.437274,62/62,0.01,1000000,2.1.2
+authentication_tag_stream,RandomExcursionsVariant,state=5,62,62,0,38,0.350485,62/62,0.01,1000000,2.1.2
+authentication_tag_stream,RandomExcursionsVariant,state=6,62,62,0,38,0.437274,62/62,0.01,1000000,2.1.2
+authentication_tag_stream,RandomExcursionsVariant,state=7,62,62,0,38,0.706149,62/62,0.01,1000000,2.1.2
+authentication_tag_stream,RandomExcursionsVariant,state=8,62,62,0,38,0.602458,62/62,0.01,1000000,2.1.2
+authentication_tag_stream,RandomExcursionsVariant,state=9,62,62,0,38,0.991468,62/62,0.01,1000000,2.1.2
+authentication_tag_stream,Serial,p_value1 (delta_1),100,97,3,0,0.978072,97/100,0.01,1000000,2.1.2
+authentication_tag_stream,Serial,p_value2 (delta_2),100,100,0,0,0.657933,100/100,0.01,1000000,2.1.2
+authentication_tag_stream,LinearComplexity,single,100,99,1,0,0.699313,99/100,0.01,1000000,2.1.2
+image_output_step2,Frequency,single,100,0,100,0,0.000000,0/100,0.01,1000000,2.1.2
+image_output_step2,BlockFrequency,single,100,0,100,0,0.000000,0/100,0.01,1000000,2.1.2
+image_output_step2,CumulativeSums,forward,100,0,100,0,0.000000,0/100,0.01,1000000,2.1.2
+image_output_step2,CumulativeSums,reverse,100,0,100,0,0.000000,0/100,0.01,1000000,2.1.2
+image_output_step2,Runs,single,100,0,100,0,0.000000,0/100,0.01,1000000,2.1.2
+image_output_step2,LongestRun,single,100,0,100,0,0.000000,0/100,0.01,1000000,2.1.2
+image_output_step2,Rank,single,100,0,100,0,0.000000,0/100,0.01,1000000,2.1.2
+image_output_step2,FFT,single,100,0,100,0,0.000000,0/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=0 0 0 0 0 0 0 0 1,100,8,92,0,0.000000,8/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=0 0 0 0 0 0 0 1 1,100,8,92,0,0.000000,8/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=0 0 0 0 0 0 1 0 1,100,11,89,0,0.000000,11/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=0 0 0 0 0 0 1 1 1,100,0,100,0,0.000000,0/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=0 0 0 0 0 1 0 0 1,100,0,100,0,0.000000,0/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=0 0 0 0 0 1 0 1 1,100,18,82,0,0.000000,18/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=0 0 0 0 0 1 1 0 1,100,15,85,0,0.000000,15/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=0 0 0 0 0 1 1 1 1,100,0,100,0,0.000000,0/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=0 0 0 0 1 0 0 0 1,100,0,100,0,0.000000,0/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=0 0 0 0 1 0 0 1 1,100,7,93,0,0.000000,7/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=0 0 0 0 1 0 1 0 1,100,9,91,0,0.000000,9/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=0 0 0 0 1 0 1 1 1,100,29,71,0,0.000000,29/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=0 0 0 0 1 1 0 0 1,100,10,90,0,0.000000,10/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=0 0 0 0 1 1 0 1 1,100,44,56,0,0.000000,44/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=0 0 0 0 1 1 1 0 1,100,14,86,0,0.000000,14/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=0 0 0 0 1 1 1 1 1,100,0,100,0,0.000000,0/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=0 0 0 1 0 0 0 1 1,100,2,98,0,0.000000,2/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=0 0 0 1 0 0 1 0 1,100,3,97,0,0.000000,3/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=0 0 0 1 0 0 1 1 1,100,0,100,0,0.000000,0/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=0 0 0 1 0 1 0 0 1,100,11,89,0,0.000000,11/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=0 0 0 1 0 1 0 1 1,100,1,99,0,0.000000,1/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=0 0 0 1 0 1 1 0 1,100,36,64,0,0.000000,36/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=0 0 0 1 0 1 1 1 1,100,0,100,0,0.000000,0/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=0 0 0 1 1 0 0 1 1,100,33,67,0,0.000000,33/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=0 0 0 1 1 0 1 0 1,100,29,71,0,0.000000,29/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=0 0 0 1 1 0 1 1 1,100,17,83,0,0.000000,17/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=0 0 0 1 1 1 0 0 1,100,14,86,0,0.000000,14/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=0 0 0 1 1 1 0 1 1,100,27,73,0,0.000000,27/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=0 0 0 1 1 1 1 0 1,100,0,100,0,0.000000,0/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=0 0 0 1 1 1 1 1 1,100,0,100,0,0.000000,0/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=0 0 1 0 0 0 0 1 1,100,5,95,0,0.000000,5/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=0 0 1 0 0 0 1 0 1,100,1,99,0,0.000000,1/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=0 0 1 0 0 0 1 1 1,100,48,52,0,0.000000,48/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=0 0 1 0 0 1 0 1 1,100,11,89,0,0.000000,11/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=0 0 1 0 0 1 1 0 1,100,24,76,0,0.000000,24/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=0 0 1 0 0 1 1 1 1,100,1,99,0,0.000000,1/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=0 0 1 0 1 0 0 1 1,100,5,95,0,0.000000,5/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=0 0 1 0 1 0 1 0 1,100,0,100,0,0.000000,0/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=0 0 1 0 1 0 1 1 1,100,8,92,0,0.000000,8/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=0 0 1 0 1 1 0 1 1,100,0,100,0,0.000000,0/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=0 0 1 0 1 1 1 0 1,100,20,80,0,0.000000,20/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=0 0 1 0 1 1 1 1 1,100,0,100,0,0.000000,0/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=0 0 1 1 0 0 1 0 1,100,23,77,0,0.000000,23/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=0 0 1 1 0 0 1 1 1,100,45,55,0,0.000000,45/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=0 0 1 1 0 1 0 1 1,100,0,100,0,0.000000,0/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=0 0 1 1 0 1 1 0 1,100,2,98,0,0.000000,2/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=0 0 1 1 0 1 1 1 1,100,2,98,0,0.000000,2/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=0 0 1 1 1 0 1 0 1,100,5,95,0,0.000000,5/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=0 0 1 1 1 0 1 1 1,100,9,91,0,0.000000,9/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=0 0 1 1 1 1 0 1 1,100,10,90,0,0.000000,10/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=0 0 1 1 1 1 1 0 1,100,0,100,0,0.000000,0/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=0 0 1 1 1 1 1 1 1,100,0,100,0,0.000000,0/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=0 1 0 0 0 0 0 1 1,100,0,100,0,0.000000,0/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=0 1 0 0 0 0 1 1 1,100,0,100,0,0.000000,0/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=0 1 0 0 0 1 0 1 1,100,52,48,0,0.000000,52/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=0 1 0 0 0 1 1 1 1,100,0,100,0,0.000000,0/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=0 1 0 0 1 0 0 1 1,100,26,74,0,0.000000,26/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=0 1 0 0 1 0 1 1 1,100,25,75,0,0.000000,25/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=0 1 0 0 1 1 0 1 1,100,21,79,0,0.000000,21/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=0 1 0 0 1 1 1 1 1,100,0,100,0,0.000000,0/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=0 1 0 1 0 0 0 1 1,100,17,83,0,0.000000,17/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=0 1 0 1 0 0 1 1 1,100,19,81,0,0.000000,19/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=0 1 0 1 0 1 0 1 1,100,0,100,0,0.000000,0/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=0 1 0 1 0 1 1 1 1,100,25,75,0,0.000000,25/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=0 1 0 1 1 0 0 1 1,100,2,98,0,0.000000,2/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=0 1 0 1 1 0 1 1 1,100,4,96,0,0.000000,4/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=0 1 0 1 1 1 0 1 1,100,0,100,0,0.000000,0/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=0 1 0 1 1 1 1 1 1,100,0,100,0,0.000000,0/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=0 1 1 0 0 0 1 1 1,100,21,79,0,0.000000,21/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=0 1 1 0 0 1 1 1 1,100,26,74,0,0.000000,26/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=0 1 1 0 1 0 1 1 1,100,1,99,0,0.000000,1/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=0 1 1 0 1 1 1 1 1,100,0,100,0,0.000000,0/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=0 1 1 1 0 1 1 1 1,100,0,100,0,0.000000,0/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=0 1 1 1 1 1 1 1 1,100,0,100,0,0.000000,0/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=1 0 0 0 0 0 0 0 0,100,8,92,0,0.000000,8/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=1 0 0 0 1 0 0 0 0,100,0,100,0,0.000000,0/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=1 0 0 1 0 0 0 0 0,100,1,99,0,0.000000,1/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=1 0 0 1 0 1 0 0 0,100,0,100,0,0.000000,0/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=1 0 0 1 1 0 0 0 0,100,1,99,0,0.000000,1/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=1 0 0 1 1 1 0 0 0,100,50,50,0,0.000000,50/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=1 0 1 0 0 0 0 0 0,100,8,92,0,0.000000,8/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=1 0 1 0 0 0 1 0 0,100,15,85,0,0.000000,15/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=1 0 1 0 0 1 0 0 0,100,4,96,0,0.000000,4/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=1 0 1 0 0 1 1 0 0,100,18,82,0,0.000000,18/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=1 0 1 0 1 0 0 0 0,100,36,64,0,0.000000,36/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=1 0 1 0 1 0 1 0 0,100,7,93,0,0.000000,7/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=1 0 1 0 1 1 0 0 0,100,9,91,0,0.000000,9/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=1 0 1 0 1 1 1 0 0,100,6,94,0,0.000000,6/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=1 0 1 1 0 0 0 0 0,100,19,81,0,0.000000,19/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=1 0 1 1 0 0 1 0 0,100,45,55,0,0.000000,45/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=1 0 1 1 0 1 0 0 0,100,55,45,0,0.000000,55/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=1 0 1 1 0 1 1 0 0,100,0,100,0,0.000000,0/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=1 0 1 1 1 0 0 0 0,100,38,62,0,0.000000,38/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=1 0 1 1 1 0 1 0 0,100,31,69,0,0.000000,31/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=1 0 1 1 1 1 0 0 0,100,3,97,0,0.000000,3/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=1 0 1 1 1 1 1 0 0,100,13,87,0,0.000000,13/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=1 1 0 0 0 0 0 0 0,100,11,89,0,0.000000,11/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=1 1 0 0 0 0 0 1 0,100,13,87,0,0.000000,13/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=1 1 0 0 0 0 1 0 0,100,8,92,0,0.000000,8/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=1 1 0 0 0 1 0 0 0,100,7,93,0,0.000000,7/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=1 1 0 0 0 1 0 1 0,100,0,100,0,0.000000,0/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=1 1 0 0 1 0 0 0 0,100,16,84,0,0.000000,16/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=1 1 0 0 1 0 0 1 0,100,0,100,0,0.000000,0/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=1 1 0 0 1 0 1 0 0,100,12,88,0,0.000000,12/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=1 1 0 0 1 1 0 0 0,100,36,64,0,0.000000,36/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=1 1 0 0 1 1 0 1 0,100,13,87,0,0.000000,13/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=1 1 0 1 0 0 0 0 0,100,6,94,0,0.000000,6/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=1 1 0 1 0 0 0 1 0,100,0,100,0,0.000000,0/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=1 1 0 1 0 0 1 0 0,100,32,68,0,0.000000,32/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=1 1 0 1 0 1 0 0 0,100,35,65,0,0.000000,35/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=1 1 0 1 0 1 0 1 0,100,0,100,0,0.000000,0/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=1 1 0 1 0 1 1 0 0,100,2,98,0,0.000000,2/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=1 1 0 1 1 0 0 0 0,100,31,69,0,0.000000,31/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=1 1 0 1 1 0 0 1 0,100,14,86,0,0.000000,14/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=1 1 0 1 1 0 1 0 0,100,16,84,0,0.000000,16/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=1 1 0 1 1 1 0 0 0,100,9,91,0,0.000000,9/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=1 1 0 1 1 1 0 1 0,100,15,85,0,0.000000,15/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=1 1 0 1 1 1 1 0 0,100,12,88,0,0.000000,12/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=1 1 1 0 0 0 0 0 0,100,5,95,0,0.000000,5/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=1 1 1 0 0 0 0 1 0,100,0,100,0,0.000000,0/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=1 1 1 0 0 0 1 0 0,100,1,99,0,0.000000,1/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=1 1 1 0 0 0 1 1 0,100,43,57,0,0.000000,43/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=1 1 1 0 0 1 0 0 0,100,4,96,0,0.000000,4/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=1 1 1 0 0 1 0 1 0,100,37,63,0,0.000000,37/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=1 1 1 0 0 1 1 0 0,100,25,75,0,0.000000,25/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=1 1 1 0 1 0 0 0 0,100,4,96,0,0.000000,4/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=1 1 1 0 1 0 0 1 0,100,45,55,0,0.000000,45/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=1 1 1 0 1 0 1 0 0,100,43,57,0,0.000000,43/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=1 1 1 0 1 0 1 1 0,100,0,100,0,0.000000,0/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=1 1 1 0 1 1 0 0 0,100,6,94,0,0.000000,6/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=1 1 1 0 1 1 0 1 0,100,10,90,0,0.000000,10/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=1 1 1 0 1 1 1 0 0,100,11,89,0,0.000000,11/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=1 1 1 1 0 0 0 0 0,100,1,99,0,0.000000,1/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=1 1 1 1 0 0 0 1 0,100,1,99,0,0.000000,1/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=1 1 1 1 0 0 1 0 0,100,0,100,0,0.000000,0/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=1 1 1 1 0 0 1 1 0,100,12,88,0,0.000000,12/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=1 1 1 1 0 1 0 0 0,100,0,100,0,0.000000,0/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=1 1 1 1 0 1 0 1 0,100,32,68,0,0.000000,32/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=1 1 1 1 0 1 1 0 0,100,1,99,0,0.000000,1/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=1 1 1 1 0 1 1 1 0,100,0,100,0,0.000000,0/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=1 1 1 1 1 0 0 0 0,100,0,100,0,0.000000,0/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=1 1 1 1 1 0 0 1 0,100,1,99,0,0.000000,1/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=1 1 1 1 1 0 1 0 0,100,0,100,0,0.000000,0/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=1 1 1 1 1 0 1 1 0,100,0,100,0,0.000000,0/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=1 1 1 1 1 1 0 0 0,100,0,100,0,0.000000,0/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=1 1 1 1 1 1 0 1 0,100,0,100,0,0.000000,0/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=1 1 1 1 1 1 1 0 0,100,0,100,0,0.000000,0/100,0.01,1000000,2.1.2
+image_output_step2,NonOverlappingTemplate,m=9 template=1 1 1 1 1 1 1 1 0,100,0,100,0,0.000000,0/100,0.01,1000000,2.1.2
+image_output_step2,OverlappingTemplate,single,100,0,100,0,0.000000,0/100,0.01,1000000,2.1.2
+image_output_step2,Universal,single,100,0,100,0,0.000000,0/100,0.01,1000000,2.1.2
+image_output_step2,ApproximateEntropy,single,100,0,100,0,0.000000,0/100,0.01,1000000,2.1.2
+image_output_step2,RandomExcursions,state=-4,0,0,0,100,----,------,0.01,1000000,2.1.2
+image_output_step2,RandomExcursions,state=-3,0,0,0,100,----,------,0.01,1000000,2.1.2
+image_output_step2,RandomExcursions,state=-2,0,0,0,100,----,------,0.01,1000000,2.1.2
+image_output_step2,RandomExcursions,state=-1,0,0,0,100,----,------,0.01,1000000,2.1.2
+image_output_step2,RandomExcursions,state=1,0,0,0,100,----,------,0.01,1000000,2.1.2
+image_output_step2,RandomExcursions,state=2,0,0,0,100,----,------,0.01,1000000,2.1.2
+image_output_step2,RandomExcursions,state=3,0,0,0,100,----,------,0.01,1000000,2.1.2
+image_output_step2,RandomExcursions,state=4,0,0,0,100,----,------,0.01,1000000,2.1.2
+image_output_step2,RandomExcursionsVariant,state=-9,0,0,0,100,----,------,0.01,1000000,2.1.2
+image_output_step2,RandomExcursionsVariant,state=-8,0,0,0,100,----,------,0.01,1000000,2.1.2
+image_output_step2,RandomExcursionsVariant,state=-7,0,0,0,100,----,------,0.01,1000000,2.1.2
+image_output_step2,RandomExcursionsVariant,state=-6,0,0,0,100,----,------,0.01,1000000,2.1.2
+image_output_step2,RandomExcursionsVariant,state=-5,0,0,0,100,----,------,0.01,1000000,2.1.2
+image_output_step2,RandomExcursionsVariant,state=-4,0,0,0,100,----,------,0.01,1000000,2.1.2
+image_output_step2,RandomExcursionsVariant,state=-3,0,0,0,100,----,------,0.01,1000000,2.1.2
+image_output_step2,RandomExcursionsVariant,state=-2,0,0,0,100,----,------,0.01,1000000,2.1.2
+image_output_step2,RandomExcursionsVariant,state=-1,0,0,0,100,----,------,0.01,1000000,2.1.2
+image_output_step2,RandomExcursionsVariant,state=1,0,0,0,100,----,------,0.01,1000000,2.1.2
+image_output_step2,RandomExcursionsVariant,state=2,0,0,0,100,----,------,0.01,1000000,2.1.2
+image_output_step2,RandomExcursionsVariant,state=3,0,0,0,100,----,------,0.01,1000000,2.1.2
+image_output_step2,RandomExcursionsVariant,state=4,0,0,0,100,----,------,0.01,1000000,2.1.2
+image_output_step2,RandomExcursionsVariant,state=5,0,0,0,100,----,------,0.01,1000000,2.1.2
+image_output_step2,RandomExcursionsVariant,state=6,0,0,0,100,----,------,0.01,1000000,2.1.2
+image_output_step2,RandomExcursionsVariant,state=7,0,0,0,100,----,------,0.01,1000000,2.1.2
+image_output_step2,RandomExcursionsVariant,state=8,0,0,0,100,----,------,0.01,1000000,2.1.2
+image_output_step2,RandomExcursionsVariant,state=9,0,0,0,100,----,------,0.01,1000000,2.1.2
+image_output_step2,Serial,p_value1 (delta_1),100,0,100,0,0.000000,0/100,0.01,1000000,2.1.2
+image_output_step2,Serial,p_value2 (delta_2),100,0,100,0,0.000000,0/100,0.01,1000000,2.1.2
+image_output_step2,LinearComplexity,single,100,97,3,0,0.616305,97/100,0.01,1000000,2.1.2
+image_output_final_marked,Frequency,single,100,0,100,0,0.000000,0/100,0.01,1000000,2.1.2
+image_output_final_marked,BlockFrequency,single,100,0,100,0,0.000000,0/100,0.01,1000000,2.1.2
+image_output_final_marked,CumulativeSums,forward,100,0,100,0,0.000000,0/100,0.01,1000000,2.1.2
+image_output_final_marked,CumulativeSums,reverse,100,0,100,0,0.000000,0/100,0.01,1000000,2.1.2
+image_output_final_marked,Runs,single,100,0,100,0,0.000000,0/100,0.01,1000000,2.1.2
+image_output_final_marked,LongestRun,single,100,0,100,0,0.000000,0/100,0.01,1000000,2.1.2
+image_output_final_marked,Rank,single,100,0,100,0,0.000000,0/100,0.01,1000000,2.1.2
+image_output_final_marked,FFT,single,100,0,100,0,0.000000,0/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=0 0 0 0 0 0 0 0 1,100,4,96,0,0.000000,4/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=0 0 0 0 0 0 0 1 1,100,9,91,0,0.000000,9/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=0 0 0 0 0 0 1 0 1,100,11,89,0,0.000000,11/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=0 0 0 0 0 0 1 1 1,100,0,100,0,0.000000,0/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=0 0 0 0 0 1 0 0 1,100,0,100,0,0.000000,0/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=0 0 0 0 0 1 0 1 1,100,18,82,0,0.000000,18/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=0 0 0 0 0 1 1 0 1,100,16,84,0,0.000000,16/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=0 0 0 0 0 1 1 1 1,100,0,100,0,0.000000,0/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=0 0 0 0 1 0 0 0 1,100,0,100,0,0.000000,0/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=0 0 0 0 1 0 0 1 1,100,10,90,0,0.000000,10/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=0 0 0 0 1 0 1 0 1,100,12,88,0,0.000000,12/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=0 0 0 0 1 0 1 1 1,100,36,64,0,0.000000,36/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=0 0 0 0 1 1 0 0 1,100,2,98,0,0.000000,2/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=0 0 0 0 1 1 0 1 1,100,36,64,0,0.000000,36/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=0 0 0 0 1 1 1 0 1,100,13,87,0,0.000000,13/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=0 0 0 0 1 1 1 1 1,100,0,100,0,0.000000,0/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=0 0 0 1 0 0 0 1 1,100,1,99,0,0.000000,1/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=0 0 0 1 0 0 1 0 1,100,4,96,0,0.000000,4/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=0 0 0 1 0 0 1 1 1,100,2,98,0,0.000000,2/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=0 0 0 1 0 1 0 0 1,100,17,83,0,0.000000,17/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=0 0 0 1 0 1 0 1 1,100,5,95,0,0.000000,5/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=0 0 0 1 0 1 1 0 1,100,40,60,0,0.000000,40/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=0 0 0 1 0 1 1 1 1,100,0,100,0,0.000000,0/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=0 0 0 1 1 0 0 1 1,100,26,74,0,0.000000,26/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=0 0 0 1 1 0 1 0 1,100,37,63,0,0.000000,37/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=0 0 0 1 1 0 1 1 1,100,24,76,0,0.000000,24/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=0 0 0 1 1 1 0 0 1,100,14,86,0,0.000000,14/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=0 0 0 1 1 1 0 1 1,100,26,74,0,0.000000,26/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=0 0 0 1 1 1 1 0 1,100,0,100,0,0.000000,0/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=0 0 0 1 1 1 1 1 1,100,0,100,0,0.000000,0/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=0 0 1 0 0 0 0 1 1,100,5,95,0,0.000000,5/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=0 0 1 0 0 0 1 0 1,100,2,98,0,0.000000,2/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=0 0 1 0 0 0 1 1 1,100,46,54,0,0.000000,46/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=0 0 1 0 0 1 0 1 1,100,12,88,0,0.000000,12/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=0 0 1 0 0 1 1 0 1,100,19,81,0,0.000000,19/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=0 0 1 0 0 1 1 1 1,100,0,100,0,0.000000,0/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=0 0 1 0 1 0 0 1 1,100,8,92,0,0.000000,8/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=0 0 1 0 1 0 1 0 1,100,0,100,0,0.000000,0/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=0 0 1 0 1 0 1 1 1,100,10,90,0,0.000000,10/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=0 0 1 0 1 1 0 1 1,100,0,100,0,0.000000,0/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=0 0 1 0 1 1 1 0 1,100,21,79,0,0.000000,21/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=0 0 1 0 1 1 1 1 1,100,0,100,0,0.000000,0/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=0 0 1 1 0 0 1 0 1,100,25,75,0,0.000000,25/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=0 0 1 1 0 0 1 1 1,100,44,56,0,0.000000,44/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=0 0 1 1 0 1 0 1 1,100,0,100,0,0.000000,0/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=0 0 1 1 0 1 1 0 1,100,2,98,0,0.000000,2/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=0 0 1 1 0 1 1 1 1,100,11,89,0,0.000000,11/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=0 0 1 1 1 0 1 0 1,100,5,95,0,0.000000,5/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=0 0 1 1 1 0 1 1 1,100,18,82,0,0.000000,18/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=0 0 1 1 1 1 0 1 1,100,17,83,0,0.000000,17/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=0 0 1 1 1 1 1 0 1,100,2,98,0,0.000000,2/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=0 0 1 1 1 1 1 1 1,100,0,100,0,0.000000,0/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=0 1 0 0 0 0 0 1 1,100,0,100,0,0.000000,0/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=0 1 0 0 0 0 1 1 1,100,0,100,0,0.000000,0/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=0 1 0 0 0 1 0 1 1,100,59,41,0,0.000000,59/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=0 1 0 0 0 1 1 1 1,100,0,100,0,0.000000,0/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=0 1 0 0 1 0 0 1 1,100,26,74,0,0.000000,26/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=0 1 0 0 1 0 1 1 1,100,24,76,0,0.000000,24/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=0 1 0 0 1 1 0 1 1,100,19,81,0,0.000000,19/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=0 1 0 0 1 1 1 1 1,100,0,100,0,0.000000,0/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=0 1 0 1 0 0 0 1 1,100,23,77,0,0.000000,23/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=0 1 0 1 0 0 1 1 1,100,26,74,0,0.000000,26/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=0 1 0 1 0 1 0 1 1,100,0,100,0,0.000000,0/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=0 1 0 1 0 1 1 1 1,100,23,77,0,0.000000,23/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=0 1 0 1 1 0 0 1 1,100,6,94,0,0.000000,6/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=0 1 0 1 1 0 1 1 1,100,6,94,0,0.000000,6/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=0 1 0 1 1 1 0 1 1,100,0,100,0,0.000000,0/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=0 1 0 1 1 1 1 1 1,100,0,100,0,0.000000,0/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=0 1 1 0 0 0 1 1 1,100,24,76,0,0.000000,24/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=0 1 1 0 0 1 1 1 1,100,27,73,0,0.000000,27/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=0 1 1 0 1 0 1 1 1,100,1,99,0,0.000000,1/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=0 1 1 0 1 1 1 1 1,100,0,100,0,0.000000,0/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=0 1 1 1 0 1 1 1 1,100,0,100,0,0.000000,0/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=0 1 1 1 1 1 1 1 1,100,0,100,0,0.000000,0/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=1 0 0 0 0 0 0 0 0,100,4,96,0,0.000000,4/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=1 0 0 0 1 0 0 0 0,100,0,100,0,0.000000,0/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=1 0 0 1 0 0 0 0 0,100,1,99,0,0.000000,1/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=1 0 0 1 0 1 0 0 0,100,0,100,0,0.000000,0/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=1 0 0 1 1 0 0 0 0,100,1,99,0,0.000000,1/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=1 0 0 1 1 1 0 0 0,100,51,49,0,0.000000,51/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=1 0 1 0 0 0 0 0 0,100,5,95,0,0.000000,5/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=1 0 1 0 0 0 1 0 0,100,13,87,0,0.000000,13/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=1 0 1 0 0 1 0 0 0,100,6,94,0,0.000000,6/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=1 0 1 0 0 1 1 0 0,100,6,94,0,0.000000,6/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=1 0 1 0 1 0 0 0 0,100,32,68,0,0.000000,32/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=1 0 1 0 1 0 1 0 0,100,8,92,0,0.000000,8/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=1 0 1 0 1 1 0 0 0,100,14,86,0,0.000000,14/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=1 0 1 0 1 1 1 0 0,100,7,93,0,0.000000,7/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=1 0 1 1 0 0 0 0 0,100,17,83,0,0.000000,17/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=1 0 1 1 0 0 1 0 0,100,35,65,0,0.000000,35/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=1 0 1 1 0 1 0 0 0,100,57,43,0,0.000000,57/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=1 0 1 1 0 1 1 0 0,100,0,100,0,0.000000,0/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=1 0 1 1 1 0 0 0 0,100,40,60,0,0.000000,40/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=1 0 1 1 1 0 1 0 0,100,33,67,0,0.000000,33/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=1 0 1 1 1 1 0 0 0,100,15,85,0,0.000000,15/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=1 0 1 1 1 1 1 0 0,100,10,90,0,0.000000,10/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=1 1 0 0 0 0 0 0 0,100,12,88,0,0.000000,12/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=1 1 0 0 0 0 0 1 0,100,13,87,0,0.000000,13/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=1 1 0 0 0 0 1 0 0,100,5,95,0,0.000000,5/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=1 1 0 0 0 1 0 0 0,100,10,90,0,0.000000,10/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=1 1 0 0 0 1 0 1 0,100,0,100,0,0.000000,0/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=1 1 0 0 1 0 0 0 0,100,18,82,0,0.000000,18/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=1 1 0 0 1 0 0 1 0,100,1,99,0,0.000000,1/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=1 1 0 0 1 0 1 0 0,100,15,85,0,0.000000,15/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=1 1 0 0 1 1 0 0 0,100,33,67,0,0.000000,33/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=1 1 0 0 1 1 0 1 0,100,16,84,0,0.000000,16/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=1 1 0 1 0 0 0 0 0,100,7,93,0,0.000000,7/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=1 1 0 1 0 0 0 1 0,100,1,99,0,0.000000,1/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=1 1 0 1 0 0 1 0 0,100,32,68,0,0.000000,32/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=1 1 0 1 0 1 0 0 0,100,39,61,0,0.000000,39/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=1 1 0 1 0 1 0 1 0,100,0,100,0,0.000000,0/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=1 1 0 1 0 1 1 0 0,100,4,96,0,0.000000,4/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=1 1 0 1 1 0 0 0 0,100,30,70,0,0.000000,30/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=1 1 0 1 1 0 0 1 0,100,14,86,0,0.000000,14/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=1 1 0 1 1 0 1 0 0,100,16,84,0,0.000000,16/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=1 1 0 1 1 1 0 0 0,100,10,90,0,0.000000,10/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=1 1 0 1 1 1 0 1 0,100,16,84,0,0.000000,16/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=1 1 0 1 1 1 1 0 0,100,13,87,0,0.000000,13/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=1 1 1 0 0 0 0 0 0,100,3,97,0,0.000000,3/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=1 1 1 0 0 0 0 1 0,100,0,100,0,0.000000,0/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=1 1 1 0 0 0 1 0 0,100,1,99,0,0.000000,1/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=1 1 1 0 0 0 1 1 0,100,40,60,0,0.000000,40/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=1 1 1 0 0 1 0 0 0,100,5,95,0,0.000000,5/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=1 1 1 0 0 1 0 1 0,100,42,58,0,0.000000,42/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=1 1 1 0 0 1 1 0 0,100,29,71,0,0.000000,29/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=1 1 1 0 1 0 0 0 0,100,3,97,0,0.000000,3/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=1 1 1 0 1 0 0 1 0,100,49,51,0,0.000000,49/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=1 1 1 0 1 0 1 0 0,100,42,58,0,0.000000,42/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=1 1 1 0 1 0 1 1 0,100,1,99,0,0.000000,1/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=1 1 1 0 1 1 0 0 0,100,5,95,0,0.000000,5/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=1 1 1 0 1 1 0 1 0,100,9,91,0,0.000000,9/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=1 1 1 0 1 1 1 0 0,100,15,85,0,0.000000,15/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=1 1 1 1 0 0 0 0 0,100,1,99,0,0.000000,1/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=1 1 1 1 0 0 0 1 0,100,3,97,0,0.000000,3/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=1 1 1 1 0 0 1 0 0,100,0,100,0,0.000000,0/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=1 1 1 1 0 0 1 1 0,100,16,84,0,0.000000,16/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=1 1 1 1 0 1 0 0 0,100,0,100,0,0.000000,0/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=1 1 1 1 0 1 0 1 0,100,32,68,0,0.000000,32/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=1 1 1 1 0 1 1 0 0,100,1,99,0,0.000000,1/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=1 1 1 1 0 1 1 1 0,100,4,96,0,0.000000,4/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=1 1 1 1 1 0 0 0 0,100,0,100,0,0.000000,0/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=1 1 1 1 1 0 0 1 0,100,2,98,0,0.000000,2/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=1 1 1 1 1 0 1 0 0,100,1,99,0,0.000000,1/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=1 1 1 1 1 0 1 1 0,100,0,100,0,0.000000,0/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=1 1 1 1 1 1 0 0 0,100,0,100,0,0.000000,0/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=1 1 1 1 1 1 0 1 0,100,1,99,0,0.000000,1/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=1 1 1 1 1 1 1 0 0,100,0,100,0,0.000000,0/100,0.01,1000000,2.1.2
+image_output_final_marked,NonOverlappingTemplate,m=9 template=1 1 1 1 1 1 1 1 0,100,0,100,0,0.000000,0/100,0.01,1000000,2.1.2
+image_output_final_marked,OverlappingTemplate,single,100,0,100,0,0.000000,0/100,0.01,1000000,2.1.2
+image_output_final_marked,Universal,single,100,0,100,0,0.000000,0/100,0.01,1000000,2.1.2
+image_output_final_marked,ApproximateEntropy,single,100,0,100,0,0.000000,0/100,0.01,1000000,2.1.2
+image_output_final_marked,RandomExcursions,state=-4,0,0,0,100,----,------,0.01,1000000,2.1.2
+image_output_final_marked,RandomExcursions,state=-3,0,0,0,100,----,------,0.01,1000000,2.1.2
+image_output_final_marked,RandomExcursions,state=-2,0,0,0,100,----,------,0.01,1000000,2.1.2
+image_output_final_marked,RandomExcursions,state=-1,0,0,0,100,----,------,0.01,1000000,2.1.2
+image_output_final_marked,RandomExcursions,state=1,0,0,0,100,----,------,0.01,1000000,2.1.2
+image_output_final_marked,RandomExcursions,state=2,0,0,0,100,----,------,0.01,1000000,2.1.2
+image_output_final_marked,RandomExcursions,state=3,0,0,0,100,----,------,0.01,1000000,2.1.2
+image_output_final_marked,RandomExcursions,state=4,0,0,0,100,----,------,0.01,1000000,2.1.2
+image_output_final_marked,RandomExcursionsVariant,state=-9,0,0,0,100,----,------,0.01,1000000,2.1.2
+image_output_final_marked,RandomExcursionsVariant,state=-8,0,0,0,100,----,------,0.01,1000000,2.1.2
+image_output_final_marked,RandomExcursionsVariant,state=-7,0,0,0,100,----,------,0.01,1000000,2.1.2
+image_output_final_marked,RandomExcursionsVariant,state=-6,0,0,0,100,----,------,0.01,1000000,2.1.2
+image_output_final_marked,RandomExcursionsVariant,state=-5,0,0,0,100,----,------,0.01,1000000,2.1.2
+image_output_final_marked,RandomExcursionsVariant,state=-4,0,0,0,100,----,------,0.01,1000000,2.1.2
+image_output_final_marked,RandomExcursionsVariant,state=-3,0,0,0,100,----,------,0.01,1000000,2.1.2
+image_output_final_marked,RandomExcursionsVariant,state=-2,0,0,0,100,----,------,0.01,1000000,2.1.2
+image_output_final_marked,RandomExcursionsVariant,state=-1,0,0,0,100,----,------,0.01,1000000,2.1.2
+image_output_final_marked,RandomExcursionsVariant,state=1,0,0,0,100,----,------,0.01,1000000,2.1.2
+image_output_final_marked,RandomExcursionsVariant,state=2,0,0,0,100,----,------,0.01,1000000,2.1.2
+image_output_final_marked,RandomExcursionsVariant,state=3,0,0,0,100,----,------,0.01,1000000,2.1.2
+image_output_final_marked,RandomExcursionsVariant,state=4,0,0,0,100,----,------,0.01,1000000,2.1.2
+image_output_final_marked,RandomExcursionsVariant,state=5,0,0,0,100,----,------,0.01,1000000,2.1.2
+image_output_final_marked,RandomExcursionsVariant,state=6,0,0,0,100,----,------,0.01,1000000,2.1.2
+image_output_final_marked,RandomExcursionsVariant,state=7,0,0,0,100,----,------,0.01,1000000,2.1.2
+image_output_final_marked,RandomExcursionsVariant,state=8,0,0,0,100,----,------,0.01,1000000,2.1.2
+image_output_final_marked,RandomExcursionsVariant,state=9,0,0,0,100,----,------,0.01,1000000,2.1.2
+image_output_final_marked,Serial,p_value1 (delta_1),100,0,100,0,0.000000,0/100,0.01,1000000,2.1.2
+image_output_final_marked,Serial,p_value2 (delta_2),100,0,100,0,0.000000,0/100,0.01,1000000,2.1.2
+image_output_final_marked,LinearComplexity,single,100,99,1,0,0.419021,99/100,0.01,1000000,2.1.2
