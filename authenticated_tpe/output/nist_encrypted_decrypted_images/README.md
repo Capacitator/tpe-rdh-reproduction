@@ -1,0 +1,9 @@
+# NIST evaluation of actual encrypted and recovered images
+
+The professor-supplied specification (Section 4, p. 5) defines the encrypted block E as the output of Step 1 followed by Step 2. RCM authentication marking is subsequent; no tag or authentication payload is included in the encrypted or decrypted tested arrays. The actual protected marked image is passed through `verify_and_decrypt`; only its recovered image is used as the decrypted NIST input. All six recoveries were byte-exact.
+
+Each category contains one 1,000,000-bit prefix from each of the six fixed UCT images, RGB row-major bytes packed MSB-first. Images are normalized as 512x512 RGB uint8. Blocks are 32x32; groups contain four distinct blocks per channel, 64 groups per channel. The same deterministic public fixture rule used in the previous authenticated-TPE NIST experiment supplies one UserKey and ImageID context per image (indices 1 through 6). No image, key, or identifier was replicated to increase the sample count. These are six distinct image outputs; independence as random observations is not established.
+
+STS 2.1.2 was run with its default 15-test suite, alpha=0.01, six streams/category, and 1,000,000 bits/stream. An individual result passes when STS reports SUCCESS and p >= 0.01. Second-level uniformity is not computed by STS at n=6 (below 55); the official `----` values are preserved. `first_level_p_values.csv` contains one row per image and test component; `second_level_uniformity.csv` preserves official second-level output. A numerical zero emitted after the double-precision STS calculation is labeled `<1e-300` with an explicit underflow status; a Runs-test estimator-criterion zero is labeled separately.
+
+Files: `stream_manifest.csv`, `raw_streams/`, `raw_reports/`, `first_level_p_values.csv`, `second_level_uniformity.csv`, `summary.json`.

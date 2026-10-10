@@ -1,0 +1,28 @@
+{
+  "alpha": 0.01,
+  "pass_criterion": "STS SUCCESS and individual p-value >= 0.01",
+  "images": [
+    "airplane",
+    "baboon",
+    "couple",
+    "girl",
+    "lena",
+    "peppers"
+  ],
+  "unique_image_streams_per_category": 6,
+  "claimed_independent_random_streams": 0,
+  "independence_note": "Six distinct public source images and one fixed key/ImageID context per image. The image streams are not claimed to be independent draws from a random generator; second-level uniformity is N/A because STS requires at least 55 streams.",
+  "bits_per_stream": 1000000,
+  "counts": {
+    "encrypted": {
+      "pass": 108,
+      "fail": 864,
+      "N/A": 156
+    },
+    "decrypted": {
+      "pass": 33,
+      "fail": 939,
+      "N/A": 156
+    }
+  }
+}

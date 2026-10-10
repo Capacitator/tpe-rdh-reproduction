@@ -1,0 +1,96 @@
+		UNIVERSAL STATISTICAL TEST
+		--------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		--------------------------------------------
+		(a) L         = 7
+		(b) Q         = 1280
+		(c) K         = 141577
+		(d) sum       = 842025.77344986121
+		(e) sigma     = 0.0027684313228659081
+		(f) variance  = 3.125
+		(g) exp_value = 6.1962507000000002
+		(h) phi       = 5.9474757442936435
+		(i) WARNING:  1 bits were discarded.
+		-----------------------------------------
+FAILURE		p_value = 0
+
+		UNIVERSAL STATISTICAL TEST
+		--------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		--------------------------------------------
+		(a) L         = 7
+		(b) Q         = 1280
+		(c) K         = 141577
+		(d) sum       = 870291.34249820665
+		(e) sigma     = 0.0027684313228659081
+		(f) variance  = 3.125
+		(g) exp_value = 6.1962507000000002
+		(h) phi       = 6.147123773622881
+		(i) WARNING:  1 bits were discarded.
+		-----------------------------------------
+FAILURE		p_value = 1.8705717732705882e-70
+
+		UNIVERSAL STATISTICAL TEST
+		--------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		--------------------------------------------
+		(a) L         = 7
+		(b) Q         = 1280
+		(c) K         = 141577
+		(d) sum       = 838161.94200646132
+		(e) sigma     = 0.0027684313228659081
+		(f) variance  = 3.125
+		(g) exp_value = 6.1962507000000002
+		(h) phi       = 5.920184366150302
+		(i) WARNING:  1 bits were discarded.
+		-----------------------------------------
+FAILURE		p_value = 0
+
+		UNIVERSAL STATISTICAL TEST
+		--------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		--------------------------------------------
+		(a) L         = 7
+		(b) Q         = 1280
+		(c) K         = 141577
+		(d) sum       = 854513.4023874728
+		(e) sigma     = 0.0027684313228659081
+		(f) variance  = 3.125
+		(g) exp_value = 6.1962507000000002
+		(h) phi       = 6.0356795410799267
+		(i) WARNING:  1 bits were discarded.
+		-----------------------------------------
+FAILURE		p_value = 0
+
+		UNIVERSAL STATISTICAL TEST
+		--------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		--------------------------------------------
+		(a) L         = 7
+		(b) Q         = 1280
+		(c) K         = 141577
+		(d) sum       = 856658.25995626964
+		(e) sigma     = 0.0027684313228659081
+		(f) variance  = 3.125
+		(g) exp_value = 6.1962507000000002
+		(h) phi       = 6.0508293010606922
+		(i) WARNING:  1 bits were discarded.
+		-----------------------------------------
+FAILURE		p_value = 0
+
+		UNIVERSAL STATISTICAL TEST
+		--------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		--------------------------------------------
+		(a) L         = 7
+		(b) Q         = 1280
+		(c) K         = 141577
+		(d) sum       = 858256.81242089416
+		(e) sigma     = 0.0027684313228659081
+		(f) variance  = 3.125
+		(g) exp_value = 6.1962507000000002
+		(h) phi       = 6.0621203473791239
+		(i) WARNING:  1 bits were discarded.
+		-----------------------------------------
+FAILURE		p_value = 0
+

@@ -1,0 +1,22 @@
+Experiment: NIST SP 800-22 on actual authenticated-TPE encrypted and recovered image outputs
+
+Repository branch: authenticated-tpe-paper
+Source images: tpe_rdh_reproduction/input/uct_colour/{airplane,baboon,couple,girl,lena,peppers}.tif
+Image normalization: convert to RGB; resize to 512x512 only when source dimensions differ; uint8 contiguous row-major arrays.
+Encryption definition: per the supplied paper, Section 4 (page 5), Step 1 followed by Step 2. The tested encrypted image is the Step-2 output. RCM tag embedding is subsequent and excluded.
+Decryption definition: recovered_image returned by verify_and_decrypt(actual marked output, same key, same ImageID), after successful authentication. Every recovered array equals the original normalized source byte-for-byte.
+Block/group parameters: 32x32; 256 raster-order blocks per channel; 512 adjacent horizontal pairs per block; 4 distinct key-grouped blocks per group; 64 groups per channel.
+Key/ImageID: deterministic public fixture rule inherited from the prior authenticated-TPE NIST experiment; one unique fixture key and ImageID per image, fixture indices 1 through 6. SHA-256 digests are recorded in stream_manifest.csv. They are reproducibility fixtures and are not production secrets.
+Stream construction: first 125,000 row-major RGB bytes of each actual encrypted/recovered 512x512x3 image; MSB-first binary input; 1,000,000 bits per stream; no duplication, arbitrary mutation, authentication payload, or padding.
+Sample count: six distinct image streams per category. These are not claimed to be independent random draws. STS second-level uniformity is N/A because STS requires at least 55 streams.
+STS: NIST Statistical Test Suite 2.1.2, complete default suite of 15 tests, alpha=0.01, binary mode, six sequences, n=1,000,000 bits. Individual result is a pass when STS reports SUCCESS and p>=0.01; otherwise fail. N/A for components not applicable to that sequence.
+Precision: official STS source was patched only for higher-precision p-value serialization and double-precision assess parsing; no test algorithm, parameter, alpha, or input was changed. Patch, source hashes, raw reports, and exact p-value strings are preserved in this folder.
+
+Exact experiment command:
+  ./.venv/bin/python authenticated_tpe/experiments/run_nist_encrypted_decrypted_images.py --sts-source /tmp/authenticated-tpe-sts-precision-latest
+
+Exact report-generation command:
+  /Users/sufal/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3 authenticated_tpe/experiments/update_authenticated_tpe_completed_nist_table.py --docx /Users/sufal/Downloads/authenticated_tpe_completed.docx --results authenticated_tpe/output/nist_encrypted_decrypted_images/first_level_p_values.csv --summary authenticated_tpe/output/nist_encrypted_decrypted_images/summary.json --uniformity authenticated_tpe/output/nist_encrypted_decrypted_images/second_level_uniformity.csv
+
+The first-level table has 188 official STS components per category (including all 148 non-overlapping templates), six streams per component. Aggregate outcomes: encrypted 108 pass / 864 fail / 156 N/A; decrypted 33 pass / 939 fail / 156 N/A.
+Interpretation: very small values on the encrypted image reflect retained adjacent-pair sums and image structure; decrypted outputs are original images and retain their natural spatial structure. SP 800-22 outcomes do not establish or disprove cryptographic security. Authentication tags, RCM authentication payload, and authentication-stream category are excluded from this encrypted/decrypted comparison.
