@@ -1,0 +1,1300 @@
+			  LONGEST RUNS OF ONES TEST
+		---------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		---------------------------------------------
+		(a) N (# of substrings)  = 100
+		(b) M (Substring Length) = 10000
+		(c) Chi^2                = 800.151815
+		---------------------------------------------
+		      F R E Q U E N C Y
+		---------------------------------------------
+		<=10  11  12  13  14  15 >=16 P-value  Assignment
+		  89   1   3   2   4   0    1 FAILURE		p_value = 0.000000
+
+			  LONGEST RUNS OF ONES TEST
+		---------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		---------------------------------------------
+		(a) N (# of substrings)  = 100
+		(b) M (Substring Length) = 10000
+		(c) Chi^2                = 77.504521
+		---------------------------------------------
+		      F R E Q U E N C Y
+		---------------------------------------------
+		<=10  11  12  13  14  15 >=16 P-value  Assignment
+		  20   8  14   9  14  10   25 FAILURE		p_value = 0.000000
+
+			  LONGEST RUNS OF ONES TEST
+		---------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		---------------------------------------------
+		(a) N (# of substrings)  = 100
+		(b) M (Substring Length) = 10000
+		(c) Chi^2                = 519.633185
+		---------------------------------------------
+		      F R E Q U E N C Y
+		---------------------------------------------
+		<=10  11  12  13  14  15 >=16 P-value  Assignment
+		   7   3   6   3   8   7   66 FAILURE		p_value = 0.000000
+
+			  LONGEST RUNS OF ONES TEST
+		---------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		---------------------------------------------
+		(a) N (# of substrings)  = 100
+		(b) M (Substring Length) = 10000
+		(c) Chi^2                = 1221.245273
+		---------------------------------------------
+		      F R E Q U E N C Y
+		---------------------------------------------
+		<=10  11  12  13  14  15 >=16 P-value  Assignment
+		   0   0   0   1   0   1   98 FAILURE		p_value = 0.000000
+
+			  LONGEST RUNS OF ONES TEST
+		---------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		---------------------------------------------
+		(a) N (# of substrings)  = 100
+		(b) M (Substring Length) = 10000
+		(c) Chi^2                = 1275.515818
+		---------------------------------------------
+		      F R E Q U E N C Y
+		---------------------------------------------
+		<=10  11  12  13  14  15 >=16 P-value  Assignment
+		   0   0   0   0   0   0  100 FAILURE		p_value = 0.000000
+
+			  LONGEST RUNS OF ONES TEST
+		---------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		---------------------------------------------
+		(a) N (# of substrings)  = 100
+		(b) M (Substring Length) = 10000
+		(c) Chi^2                = 595.494435
+		---------------------------------------------
+		      F R E Q U E N C Y
+		---------------------------------------------
+		<=10  11  12  13  14  15 >=16 P-value  Assignment
+		   5   1   1   5  11   7   70 FAILURE		p_value = 0.000000
+
+			  LONGEST RUNS OF ONES TEST
+		---------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		---------------------------------------------
+		(a) N (# of substrings)  = 100
+		(b) M (Substring Length) = 10000
+		(c) Chi^2                = 54.956843
+		---------------------------------------------
+		      F R E Q U E N C Y
+		---------------------------------------------
+		<=10  11  12  13  14  15 >=16 P-value  Assignment
+		  28  26  10  12  10   7    7 FAILURE		p_value = 0.000000
+
+			  LONGEST RUNS OF ONES TEST
+		---------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		---------------------------------------------
+		(a) N (# of substrings)  = 100
+		(b) M (Substring Length) = 10000
+		(c) Chi^2                = 722.382519
+		---------------------------------------------
+		      F R E Q U E N C Y
+		---------------------------------------------
+		<=10  11  12  13  14  15 >=16 P-value  Assignment
+		  85   2   5   5   0   2    1 FAILURE		p_value = 0.000000
+
+			  LONGEST RUNS OF ONES TEST
+		---------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		---------------------------------------------
+		(a) N (# of substrings)  = 100
+		(b) M (Substring Length) = 10000
+		(c) Chi^2                = 1248.291202
+		---------------------------------------------
+		      F R E Q U E N C Y
+		---------------------------------------------
+		<=10  11  12  13  14  15 >=16 P-value  Assignment
+		   0   0   0   0   0   1   99 FAILURE		p_value = 0.000000
+
+			  LONGEST RUNS OF ONES TEST
+		---------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		---------------------------------------------
+		(a) N (# of substrings)  = 100
+		(b) M (Substring Length) = 10000
+		(c) Chi^2                = 486.411221
+		---------------------------------------------
+		      F R E Q U E N C Y
+		---------------------------------------------
+		<=10  11  12  13  14  15 >=16 P-value  Assignment
+		  70   5   7   1   1   2   14 FAILURE		p_value = 0.000000
+
+			  LONGEST RUNS OF ONES TEST
+		---------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		---------------------------------------------
+		(a) N (# of substrings)  = 100
+		(b) M (Substring Length) = 10000
+		(c) Chi^2                = 56.036456
+		---------------------------------------------
+		      F R E Q U E N C Y
+		---------------------------------------------
+		<=10  11  12  13  14  15 >=16 P-value  Assignment
+		  29  25  16  11   9   6    4 FAILURE		p_value = 0.000000
+
+			  LONGEST RUNS OF ONES TEST
+		---------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		---------------------------------------------
+		(a) N (# of substrings)  = 100
+		(b) M (Substring Length) = 10000
+		(c) Chi^2                = 1275.515818
+		---------------------------------------------
+		      F R E Q U E N C Y
+		---------------------------------------------
+		<=10  11  12  13  14  15 >=16 P-value  Assignment
+		   0   0   0   0   0   0  100 FAILURE		p_value = 0.000000
+
+			  LONGEST RUNS OF ONES TEST
+		---------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		---------------------------------------------
+		(a) N (# of substrings)  = 100
+		(b) M (Substring Length) = 10000
+		(c) Chi^2                = 705.479268
+		---------------------------------------------
+		      F R E Q U E N C Y
+		---------------------------------------------
+		<=10  11  12  13  14  15 >=16 P-value  Assignment
+		  84  10   2   2   2   0    0 FAILURE		p_value = 0.000000
+
+			  LONGEST RUNS OF ONES TEST
+		---------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		---------------------------------------------
+		(a) N (# of substrings)  = 100
+		(b) M (Substring Length) = 10000
+		(c) Chi^2                = 925.380410
+		---------------------------------------------
+		      F R E Q U E N C Y
+		---------------------------------------------
+		<=10  11  12  13  14  15 >=16 P-value  Assignment
+		   8   3   3   0   0   0   86 FAILURE		p_value = 0.000000
+
+			  LONGEST RUNS OF ONES TEST
+		---------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		---------------------------------------------
+		(a) N (# of substrings)  = 100
+		(b) M (Substring Length) = 10000
+		(c) Chi^2                = 1275.515818
+		---------------------------------------------
+		      F R E Q U E N C Y
+		---------------------------------------------
+		<=10  11  12  13  14  15 >=16 P-value  Assignment
+		   0   0   0   0   0   0  100 FAILURE		p_value = 0.000000
+
+			  LONGEST RUNS OF ONES TEST
+		---------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		---------------------------------------------
+		(a) N (# of substrings)  = 100
+		(b) M (Substring Length) = 10000
+		(c) Chi^2                = 1275.515818
+		---------------------------------------------
+		      F R E Q U E N C Y
+		---------------------------------------------
+		<=10  11  12  13  14  15 >=16 P-value  Assignment
+		   0   0   0   0   0   0  100 FAILURE		p_value = 0.000000
+
+			  LONGEST RUNS OF ONES TEST
+		---------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		---------------------------------------------
+		(a) N (# of substrings)  = 100
+		(b) M (Substring Length) = 10000
+		(c) Chi^2                = 1275.515818
+		---------------------------------------------
+		      F R E Q U E N C Y
+		---------------------------------------------
+		<=10  11  12  13  14  15 >=16 P-value  Assignment
+		   0   0   0   0   0   0  100 FAILURE		p_value = 0.000000
+
+			  LONGEST RUNS OF ONES TEST
+		---------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		---------------------------------------------
+		(a) N (# of substrings)  = 100
+		(b) M (Substring Length) = 10000
+		(c) Chi^2                = 310.372555
+		---------------------------------------------
+		      F R E Q U E N C Y
+		---------------------------------------------
+		<=10  11  12  13  14  15 >=16 P-value  Assignment
+		   1  17  10   2  21  49    0 FAILURE		p_value = 0.000000
+
+			  LONGEST RUNS OF ONES TEST
+		---------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		---------------------------------------------
+		(a) N (# of substrings)  = 100
+		(b) M (Substring Length) = 10000
+		(c) Chi^2                = 1021.623930
+		---------------------------------------------
+		      F R E Q U E N C Y
+		---------------------------------------------
+		<=10  11  12  13  14  15 >=16 P-value  Assignment
+		   8   0   0   1   0   1   90 FAILURE		p_value = 0.000000
+
+			  LONGEST RUNS OF ONES TEST
+		---------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		---------------------------------------------
+		(a) N (# of substrings)  = 100
+		(b) M (Substring Length) = 10000
+		(c) Chi^2                = 1275.515818
+		---------------------------------------------
+		      F R E Q U E N C Y
+		---------------------------------------------
+		<=10  11  12  13  14  15 >=16 P-value  Assignment
+		   0   0   0   0   0   0  100 FAILURE		p_value = 0.000000
+
+			  LONGEST RUNS OF ONES TEST
+		---------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		---------------------------------------------
+		(a) N (# of substrings)  = 100
+		(b) M (Substring Length) = 10000
+		(c) Chi^2                = 703.657584
+		---------------------------------------------
+		      F R E Q U E N C Y
+		---------------------------------------------
+		<=10  11  12  13  14  15 >=16 P-value  Assignment
+		  84   4   5   5   0   2    0 FAILURE		p_value = 0.000000
+
+			  LONGEST RUNS OF ONES TEST
+		---------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		---------------------------------------------
+		(a) N (# of substrings)  = 100
+		(b) M (Substring Length) = 10000
+		(c) Chi^2                = 1042.231743
+		---------------------------------------------
+		      F R E Q U E N C Y
+		---------------------------------------------
+		<=10  11  12  13  14  15 >=16 P-value  Assignment
+		   0   0   0   3   2   4   91 FAILURE		p_value = 0.000000
+
+			  LONGEST RUNS OF ONES TEST
+		---------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		---------------------------------------------
+		(a) N (# of substrings)  = 100
+		(b) M (Substring Length) = 10000
+		(c) Chi^2                = 322.245924
+		---------------------------------------------
+		      F R E Q U E N C Y
+		---------------------------------------------
+		<=10  11  12  13  14  15 >=16 P-value  Assignment
+		  50   1   6   3   7   2   31 FAILURE		p_value = 0.000000
+
+			  LONGEST RUNS OF ONES TEST
+		---------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		---------------------------------------------
+		(a) N (# of substrings)  = 100
+		(b) M (Substring Length) = 10000
+		(c) Chi^2                = 1033.786848
+		---------------------------------------------
+		      F R E Q U E N C Y
+		---------------------------------------------
+		<=10  11  12  13  14  15 >=16 P-value  Assignment
+		 100   0   0   0   0   0    0 FAILURE		p_value = 0.000000
+
+			  LONGEST RUNS OF ONES TEST
+		---------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		---------------------------------------------
+		(a) N (# of substrings)  = 100
+		(b) M (Substring Length) = 10000
+		(c) Chi^2                = 501.544658
+		---------------------------------------------
+		      F R E Q U E N C Y
+		---------------------------------------------
+		<=10  11  12  13  14  15 >=16 P-value  Assignment
+		   7   5   6   2  10   5   65 FAILURE		p_value = 0.000000
+
+			  LONGEST RUNS OF ONES TEST
+		---------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		---------------------------------------------
+		(a) N (# of substrings)  = 100
+		(b) M (Substring Length) = 10000
+		(c) Chi^2                = 991.339142
+		---------------------------------------------
+		      F R E Q U E N C Y
+		---------------------------------------------
+		<=10  11  12  13  14  15 >=16 P-value  Assignment
+		   2   1   2   2   2   2   89 FAILURE		p_value = 0.000000
+
+			  LONGEST RUNS OF ONES TEST
+		---------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		---------------------------------------------
+		(a) N (# of substrings)  = 100
+		(b) M (Substring Length) = 10000
+		(c) Chi^2                = 538.063883
+		---------------------------------------------
+		      F R E Q U E N C Y
+		---------------------------------------------
+		<=10  11  12  13  14  15 >=16 P-value  Assignment
+		   9   5   1   6   6   6   67 FAILURE		p_value = 0.000000
+
+			  LONGEST RUNS OF ONES TEST
+		---------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		---------------------------------------------
+		(a) N (# of substrings)  = 100
+		(b) M (Substring Length) = 10000
+		(c) Chi^2                = 1194.898208
+		---------------------------------------------
+		      F R E Q U E N C Y
+		---------------------------------------------
+		<=10  11  12  13  14  15 >=16 P-value  Assignment
+		   0   0   0   0   1   2   97 FAILURE		p_value = 0.000000
+
+			  LONGEST RUNS OF ONES TEST
+		---------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		---------------------------------------------
+		(a) N (# of substrings)  = 100
+		(b) M (Substring Length) = 10000
+		(c) Chi^2                = 1033.786848
+		---------------------------------------------
+		      F R E Q U E N C Y
+		---------------------------------------------
+		<=10  11  12  13  14  15 >=16 P-value  Assignment
+		 100   0   0   0   0   0    0 FAILURE		p_value = 0.000000
+
+			  LONGEST RUNS OF ONES TEST
+		---------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		---------------------------------------------
+		(a) N (# of substrings)  = 100
+		(b) M (Substring Length) = 10000
+		(c) Chi^2                = 819.777293
+		---------------------------------------------
+		      F R E Q U E N C Y
+		---------------------------------------------
+		<=10  11  12  13  14  15 >=16 P-value  Assignment
+		  90   4   3   1   1   1    0 FAILURE		p_value = 0.000000
+
+			  LONGEST RUNS OF ONES TEST
+		---------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		---------------------------------------------
+		(a) N (# of substrings)  = 100
+		(b) M (Substring Length) = 10000
+		(c) Chi^2                = 19.141597
+		---------------------------------------------
+		      F R E Q U E N C Y
+		---------------------------------------------
+		<=10  11  12  13  14  15 >=16 P-value  Assignment
+		  18  15  18  21  19   5    4 FAILURE		p_value = 0.003931
+
+			  LONGEST RUNS OF ONES TEST
+		---------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		---------------------------------------------
+		(a) N (# of substrings)  = 100
+		(b) M (Substring Length) = 10000
+		(c) Chi^2                = 796.765835
+		---------------------------------------------
+		      F R E Q U E N C Y
+		---------------------------------------------
+		<=10  11  12  13  14  15 >=16 P-value  Assignment
+		   0   1   3   3   3  10   80 FAILURE		p_value = 0.000000
+
+			  LONGEST RUNS OF ONES TEST
+		---------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		---------------------------------------------
+		(a) N (# of substrings)  = 100
+		(b) M (Substring Length) = 10000
+		(c) Chi^2                = 1091.186734
+		---------------------------------------------
+		      F R E Q U E N C Y
+		---------------------------------------------
+		<=10  11  12  13  14  15 >=16 P-value  Assignment
+		   0   0   0   4   1   2   93 FAILURE		p_value = 0.000000
+
+			  LONGEST RUNS OF ONES TEST
+		---------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		---------------------------------------------
+		(a) N (# of substrings)  = 100
+		(b) M (Substring Length) = 10000
+		(c) Chi^2                = 989.049984
+		---------------------------------------------
+		      F R E Q U E N C Y
+		---------------------------------------------
+		<=10  11  12  13  14  15 >=16 P-value  Assignment
+		  98   0   2   0   0   0    0 FAILURE		p_value = 0.000000
+
+			  LONGEST RUNS OF ONES TEST
+		---------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		---------------------------------------------
+		(a) N (# of substrings)  = 100
+		(b) M (Substring Length) = 10000
+		(c) Chi^2                = 923.879773
+		---------------------------------------------
+		      F R E Q U E N C Y
+		---------------------------------------------
+		<=10  11  12  13  14  15 >=16 P-value  Assignment
+		  95   3   0   2   0   0    0 FAILURE		p_value = 0.000000
+
+			  LONGEST RUNS OF ONES TEST
+		---------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		---------------------------------------------
+		(a) N (# of substrings)  = 100
+		(b) M (Substring Length) = 10000
+		(c) Chi^2                = 927.962846
+		---------------------------------------------
+		      F R E Q U E N C Y
+		---------------------------------------------
+		<=10  11  12  13  14  15 >=16 P-value  Assignment
+		   0   0   0   0   8   6   86 FAILURE		p_value = 0.000000
+
+			  LONGEST RUNS OF ONES TEST
+		---------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		---------------------------------------------
+		(a) N (# of substrings)  = 100
+		(b) M (Substring Length) = 10000
+		(c) Chi^2                = 780.133659
+		---------------------------------------------
+		      F R E Q U E N C Y
+		---------------------------------------------
+		<=10  11  12  13  14  15 >=16 P-value  Assignment
+		  88   5   4   2   1   0    0 FAILURE		p_value = 0.000000
+
+			  LONGEST RUNS OF ONES TEST
+		---------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		---------------------------------------------
+		(a) N (# of substrings)  = 100
+		(b) M (Substring Length) = 10000
+		(c) Chi^2                = 250.577485
+		---------------------------------------------
+		      F R E Q U E N C Y
+		---------------------------------------------
+		<=10  11  12  13  14  15 >=16 P-value  Assignment
+		  46   7   6   4   5   5   27 FAILURE		p_value = 0.000000
+
+			  LONGEST RUNS OF ONES TEST
+		---------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		---------------------------------------------
+		(a) N (# of substrings)  = 100
+		(b) M (Substring Length) = 10000
+		(c) Chi^2                = 127.170050
+		---------------------------------------------
+		      F R E Q U E N C Y
+		---------------------------------------------
+		<=10  11  12  13  14  15 >=16 P-value  Assignment
+		  37  17   7  10   7   4   18 FAILURE		p_value = 0.000000
+
+			  LONGEST RUNS OF ONES TEST
+		---------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		---------------------------------------------
+		(a) N (# of substrings)  = 100
+		(b) M (Substring Length) = 10000
+		(c) Chi^2                = 1275.515818
+		---------------------------------------------
+		      F R E Q U E N C Y
+		---------------------------------------------
+		<=10  11  12  13  14  15 >=16 P-value  Assignment
+		   0   0   0   0   0   0  100 FAILURE		p_value = 0.000000
+
+			  LONGEST RUNS OF ONES TEST
+		---------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		---------------------------------------------
+		(a) N (# of substrings)  = 100
+		(b) M (Substring Length) = 10000
+		(c) Chi^2                = 310.971243
+		---------------------------------------------
+		      F R E Q U E N C Y
+		---------------------------------------------
+		<=10  11  12  13  14  15 >=16 P-value  Assignment
+		  47   5   2   1   2  11   32 FAILURE		p_value = 0.000000
+
+			  LONGEST RUNS OF ONES TEST
+		---------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		---------------------------------------------
+		(a) N (# of substrings)  = 100
+		(b) M (Substring Length) = 10000
+		(c) Chi^2                = 1011.307271
+		---------------------------------------------
+		      F R E Q U E N C Y
+		---------------------------------------------
+		<=10  11  12  13  14  15 >=16 P-value  Assignment
+		  99   0   0   0   1   0    0 FAILURE		p_value = 0.000000
+
+			  LONGEST RUNS OF ONES TEST
+		---------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		---------------------------------------------
+		(a) N (# of substrings)  = 100
+		(b) M (Substring Length) = 10000
+		(c) Chi^2                = 547.816164
+		---------------------------------------------
+		      F R E Q U E N C Y
+		---------------------------------------------
+		<=10  11  12  13  14  15 >=16 P-value  Assignment
+		  27   0   3   1   3   2   64 FAILURE		p_value = 0.000000
+
+			  LONGEST RUNS OF ONES TEST
+		---------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		---------------------------------------------
+		(a) N (# of substrings)  = 100
+		(b) M (Substring Length) = 10000
+		(c) Chi^2                = 206.801116
+		---------------------------------------------
+		      F R E Q U E N C Y
+		---------------------------------------------
+		<=10  11  12  13  14  15 >=16 P-value  Assignment
+		  43   9   7   6   3   8   24 FAILURE		p_value = 0.000000
+
+			  LONGEST RUNS OF ONES TEST
+		---------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		---------------------------------------------
+		(a) N (# of substrings)  = 100
+		(b) M (Substring Length) = 10000
+		(c) Chi^2                = 537.270863
+		---------------------------------------------
+		      F R E Q U E N C Y
+		---------------------------------------------
+		<=10  11  12  13  14  15 >=16 P-value  Assignment
+		  73   4   5   2   0   1   15 FAILURE		p_value = 0.000000
+
+			  LONGEST RUNS OF ONES TEST
+		---------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		---------------------------------------------
+		(a) N (# of substrings)  = 100
+		(b) M (Substring Length) = 10000
+		(c) Chi^2                = 438.699847
+		---------------------------------------------
+		      F R E Q U E N C Y
+		---------------------------------------------
+		<=10  11  12  13  14  15 >=16 P-value  Assignment
+		  68  12  11   1   3   3    2 FAILURE		p_value = 0.000000
+
+			  LONGEST RUNS OF ONES TEST
+		---------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		---------------------------------------------
+		(a) N (# of substrings)  = 100
+		(b) M (Substring Length) = 10000
+		(c) Chi^2                = 1275.515818
+		---------------------------------------------
+		      F R E Q U E N C Y
+		---------------------------------------------
+		<=10  11  12  13  14  15 >=16 P-value  Assignment
+		   0   0   0   0   0   0  100 FAILURE		p_value = 0.000000
+
+			  LONGEST RUNS OF ONES TEST
+		---------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		---------------------------------------------
+		(a) N (# of substrings)  = 100
+		(b) M (Substring Length) = 10000
+		(c) Chi^2                = 520.017571
+		---------------------------------------------
+		      F R E Q U E N C Y
+		---------------------------------------------
+		<=10  11  12  13  14  15 >=16 P-value  Assignment
+		  65   1   1   1   0   0   32 FAILURE		p_value = 0.000000
+
+			  LONGEST RUNS OF ONES TEST
+		---------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		---------------------------------------------
+		(a) N (# of substrings)  = 100
+		(b) M (Substring Length) = 10000
+		(c) Chi^2                = 988.980896
+		---------------------------------------------
+		      F R E Q U E N C Y
+		---------------------------------------------
+		<=10  11  12  13  14  15 >=16 P-value  Assignment
+		  98   0   1   1   0   0    0 FAILURE		p_value = 0.000000
+
+			  LONGEST RUNS OF ONES TEST
+		---------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		---------------------------------------------
+		(a) N (# of substrings)  = 100
+		(b) M (Substring Length) = 10000
+		(c) Chi^2                = 268.680718
+		---------------------------------------------
+		      F R E Q U E N C Y
+		---------------------------------------------
+		<=10  11  12  13  14  15 >=16 P-value  Assignment
+		  30   3   7   4   9   4   43 FAILURE		p_value = 0.000000
+
+			  LONGEST RUNS OF ONES TEST
+		---------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		---------------------------------------------
+		(a) N (# of substrings)  = 100
+		(b) M (Substring Length) = 10000
+		(c) Chi^2                = 228.092328
+		---------------------------------------------
+		      F R E Q U E N C Y
+		---------------------------------------------
+		<=10  11  12  13  14  15 >=16 P-value  Assignment
+		  51  14  11   7   5   2   10 FAILURE		p_value = 0.000000
+
+			  LONGEST RUNS OF ONES TEST
+		---------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		---------------------------------------------
+		(a) N (# of substrings)  = 100
+		(b) M (Substring Length) = 10000
+		(c) Chi^2                = 20.710078
+		---------------------------------------------
+		      F R E Q U E N C Y
+		---------------------------------------------
+		<=10  11  12  13  14  15 >=16 P-value  Assignment
+		   5   6  27  22  20   9   11 FAILURE		p_value = 0.002068
+
+			  LONGEST RUNS OF ONES TEST
+		---------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		---------------------------------------------
+		(a) N (# of substrings)  = 100
+		(b) M (Substring Length) = 10000
+		(c) Chi^2                = 37.463873
+		---------------------------------------------
+		      F R E Q U E N C Y
+		---------------------------------------------
+		<=10  11  12  13  14  15 >=16 P-value  Assignment
+		   3   4  39  29   8   4   13 FAILURE		p_value = 0.000001
+
+			  LONGEST RUNS OF ONES TEST
+		---------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		---------------------------------------------
+		(a) N (# of substrings)  = 100
+		(b) M (Substring Length) = 10000
+		(c) Chi^2                = 507.205068
+		---------------------------------------------
+		      F R E Q U E N C Y
+		---------------------------------------------
+		<=10  11  12  13  14  15 >=16 P-value  Assignment
+		  72  19   7   0   1   0    1 FAILURE		p_value = 0.000000
+
+			  LONGEST RUNS OF ONES TEST
+		---------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		---------------------------------------------
+		(a) N (# of substrings)  = 100
+		(b) M (Substring Length) = 10000
+		(c) Chi^2                = 419.989418
+		---------------------------------------------
+		      F R E Q U E N C Y
+		---------------------------------------------
+		<=10  11  12  13  14  15 >=16 P-value  Assignment
+		  59   2   4   2   2   1   30 FAILURE		p_value = 0.000000
+
+			  LONGEST RUNS OF ONES TEST
+		---------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		---------------------------------------------
+		(a) N (# of substrings)  = 100
+		(b) M (Substring Length) = 10000
+		(c) Chi^2                = 347.657926
+		---------------------------------------------
+		      F R E Q U E N C Y
+		---------------------------------------------
+		<=10  11  12  13  14  15 >=16 P-value  Assignment
+		  21   2   5   2   6  12   52 FAILURE		p_value = 0.000000
+
+			  LONGEST RUNS OF ONES TEST
+		---------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		---------------------------------------------
+		(a) N (# of substrings)  = 100
+		(b) M (Substring Length) = 10000
+		(c) Chi^2                = 881.456653
+		---------------------------------------------
+		      F R E Q U E N C Y
+		---------------------------------------------
+		<=10  11  12  13  14  15 >=16 P-value  Assignment
+		  93   3   3   1   0   0    0 FAILURE		p_value = 0.000000
+
+			  LONGEST RUNS OF ONES TEST
+		---------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		---------------------------------------------
+		(a) N (# of substrings)  = 100
+		(b) M (Substring Length) = 10000
+		(c) Chi^2                = 54.158467
+		---------------------------------------------
+		      F R E Q U E N C Y
+		---------------------------------------------
+		<=10  11  12  13  14  15 >=16 P-value  Assignment
+		  16  28  46   4   4   1    1 FAILURE		p_value = 0.000000
+
+			  LONGEST RUNS OF ONES TEST
+		---------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		---------------------------------------------
+		(a) N (# of substrings)  = 100
+		(b) M (Substring Length) = 10000
+		(c) Chi^2                = 515.262930
+		---------------------------------------------
+		      F R E Q U E N C Y
+		---------------------------------------------
+		<=10  11  12  13  14  15 >=16 P-value  Assignment
+		  73  10   8   0   6   2    1 FAILURE		p_value = 0.000000
+
+			  LONGEST RUNS OF ONES TEST
+		---------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		---------------------------------------------
+		(a) N (# of substrings)  = 100
+		(b) M (Substring Length) = 10000
+		(c) Chi^2                = 800.326309
+		---------------------------------------------
+		      F R E Q U E N C Y
+		---------------------------------------------
+		<=10  11  12  13  14  15 >=16 P-value  Assignment
+		  89   6   1   2   0   1    1 FAILURE		p_value = 0.000000
+
+			  LONGEST RUNS OF ONES TEST
+		---------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		---------------------------------------------
+		(a) N (# of substrings)  = 100
+		(b) M (Substring Length) = 10000
+		(c) Chi^2                = 989.080093
+		---------------------------------------------
+		      F R E Q U E N C Y
+		---------------------------------------------
+		<=10  11  12  13  14  15 >=16 P-value  Assignment
+		  98   2   0   0   0   0    0 FAILURE		p_value = 0.000000
+
+			  LONGEST RUNS OF ONES TEST
+		---------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		---------------------------------------------
+		(a) N (# of substrings)  = 100
+		(b) M (Substring Length) = 10000
+		(c) Chi^2                = 780.037692
+		---------------------------------------------
+		      F R E Q U E N C Y
+		---------------------------------------------
+		<=10  11  12  13  14  15 >=16 P-value  Assignment
+		  88   2   2   2   2   2    2 FAILURE		p_value = 0.000000
+
+			  LONGEST RUNS OF ONES TEST
+		---------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		---------------------------------------------
+		(a) N (# of substrings)  = 100
+		(b) M (Substring Length) = 10000
+		(c) Chi^2                = 967.011524
+		---------------------------------------------
+		      F R E Q U E N C Y
+		---------------------------------------------
+		<=10  11  12  13  14  15 >=16 P-value  Assignment
+		  97   2   1   0   0   0    0 FAILURE		p_value = 0.000000
+
+			  LONGEST RUNS OF ONES TEST
+		---------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		---------------------------------------------
+		(a) N (# of substrings)  = 100
+		(b) M (Substring Length) = 10000
+		(c) Chi^2                = 800.585934
+		---------------------------------------------
+		      F R E Q U E N C Y
+		---------------------------------------------
+		<=10  11  12  13  14  15 >=16 P-value  Assignment
+		  89   6   4   0   0   1    0 FAILURE		p_value = 0.000000
+
+			  LONGEST RUNS OF ONES TEST
+		---------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		---------------------------------------------
+		(a) N (# of substrings)  = 100
+		(b) M (Substring Length) = 10000
+		(c) Chi^2                = 840.465346
+		---------------------------------------------
+		      F R E Q U E N C Y
+		---------------------------------------------
+		<=10  11  12  13  14  15 >=16 P-value  Assignment
+		  91   5   2   0   1   0    1 FAILURE		p_value = 0.000000
+
+			  LONGEST RUNS OF ONES TEST
+		---------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		---------------------------------------------
+		(a) N (# of substrings)  = 100
+		(b) M (Substring Length) = 10000
+		(c) Chi^2                = 989.080093
+		---------------------------------------------
+		      F R E Q U E N C Y
+		---------------------------------------------
+		<=10  11  12  13  14  15 >=16 P-value  Assignment
+		  98   2   0   0   0   0    0 FAILURE		p_value = 0.000000
+
+			  LONGEST RUNS OF ONES TEST
+		---------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		---------------------------------------------
+		(a) N (# of substrings)  = 100
+		(b) M (Substring Length) = 10000
+		(c) Chi^2                = 703.279343
+		---------------------------------------------
+		      F R E Q U E N C Y
+		---------------------------------------------
+		<=10  11  12  13  14  15 >=16 P-value  Assignment
+		  84   4   2   3   3   2    2 FAILURE		p_value = 0.000000
+
+			  LONGEST RUNS OF ONES TEST
+		---------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		---------------------------------------------
+		(a) N (# of substrings)  = 100
+		(b) M (Substring Length) = 10000
+		(c) Chi^2                = 1275.515818
+		---------------------------------------------
+		      F R E Q U E N C Y
+		---------------------------------------------
+		<=10  11  12  13  14  15 >=16 P-value  Assignment
+		   0   0   0   0   0   0  100 FAILURE		p_value = 0.000000
+
+			  LONGEST RUNS OF ONES TEST
+		---------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		---------------------------------------------
+		(a) N (# of substrings)  = 100
+		(b) M (Substring Length) = 10000
+		(c) Chi^2                = 800.045512
+		---------------------------------------------
+		      F R E Q U E N C Y
+		---------------------------------------------
+		<=10  11  12  13  14  15 >=16 P-value  Assignment
+		  89   5   2   0   2   1    1 FAILURE		p_value = 0.000000
+
+			  LONGEST RUNS OF ONES TEST
+		---------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		---------------------------------------------
+		(a) N (# of substrings)  = 100
+		(b) M (Substring Length) = 10000
+		(c) Chi^2                = 799.908987
+		---------------------------------------------
+		      F R E Q U E N C Y
+		---------------------------------------------
+		<=10  11  12  13  14  15 >=16 P-value  Assignment
+		  89   4   2   4   1   0    0 FAILURE		p_value = 0.000000
+
+			  LONGEST RUNS OF ONES TEST
+		---------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		---------------------------------------------
+		(a) N (# of substrings)  = 100
+		(b) M (Substring Length) = 10000
+		(c) Chi^2                = 840.104516
+		---------------------------------------------
+		      F R E Q U E N C Y
+		---------------------------------------------
+		<=10  11  12  13  14  15 >=16 P-value  Assignment
+		  91   4   2   2   1   0    0 FAILURE		p_value = 0.000000
+
+			  LONGEST RUNS OF ONES TEST
+		---------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		---------------------------------------------
+		(a) N (# of substrings)  = 100
+		(b) M (Substring Length) = 10000
+		(c) Chi^2                = 1275.515818
+		---------------------------------------------
+		      F R E Q U E N C Y
+		---------------------------------------------
+		<=10  11  12  13  14  15 >=16 P-value  Assignment
+		   0   0   0   0   0   0  100 FAILURE		p_value = 0.000000
+
+			  LONGEST RUNS OF ONES TEST
+		---------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		---------------------------------------------
+		(a) N (# of substrings)  = 100
+		(b) M (Substring Length) = 10000
+		(c) Chi^2                = 976.698414
+		---------------------------------------------
+		      F R E Q U E N C Y
+		---------------------------------------------
+		<=10  11  12  13  14  15 >=16 P-value  Assignment
+		  10   0   2   0   0   0   88 FAILURE		p_value = 0.000000
+
+			  LONGEST RUNS OF ONES TEST
+		---------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		---------------------------------------------
+		(a) N (# of substrings)  = 100
+		(b) M (Substring Length) = 10000
+		(c) Chi^2                = 800.860065
+		---------------------------------------------
+		      F R E Q U E N C Y
+		---------------------------------------------
+		<=10  11  12  13  14  15 >=16 P-value  Assignment
+		  89   7   3   0   1   0    0 FAILURE		p_value = 0.000000
+
+			  LONGEST RUNS OF ONES TEST
+		---------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		---------------------------------------------
+		(a) N (# of substrings)  = 100
+		(b) M (Substring Length) = 10000
+		(c) Chi^2                = 1275.515818
+		---------------------------------------------
+		      F R E Q U E N C Y
+		---------------------------------------------
+		<=10  11  12  13  14  15 >=16 P-value  Assignment
+		   0   0   0   0   0   0  100 FAILURE		p_value = 0.000000
+
+			  LONGEST RUNS OF ONES TEST
+		---------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		---------------------------------------------
+		(a) N (# of substrings)  = 100
+		(b) M (Substring Length) = 10000
+		(c) Chi^2                = 506.131210
+		---------------------------------------------
+		      F R E Q U E N C Y
+		---------------------------------------------
+		<=10  11  12  13  14  15 >=16 P-value  Assignment
+		  44   1   0   1   0   1   53 FAILURE		p_value = 0.000000
+
+			  LONGEST RUNS OF ONES TEST
+		---------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		---------------------------------------------
+		(a) N (# of substrings)  = 100
+		(b) M (Substring Length) = 10000
+		(c) Chi^2                = 289.288095
+		---------------------------------------------
+		      F R E Q U E N C Y
+		---------------------------------------------
+		<=10  11  12  13  14  15 >=16 P-value  Assignment
+		  12   2   1   1  29   9   46 FAILURE		p_value = 0.000000
+
+			  LONGEST RUNS OF ONES TEST
+		---------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		---------------------------------------------
+		(a) N (# of substrings)  = 100
+		(b) M (Substring Length) = 10000
+		(c) Chi^2                = 1033.786848
+		---------------------------------------------
+		      F R E Q U E N C Y
+		---------------------------------------------
+		<=10  11  12  13  14  15 >=16 P-value  Assignment
+		 100   0   0   0   0   0    0 FAILURE		p_value = 0.000000
+
+			  LONGEST RUNS OF ONES TEST
+		---------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		---------------------------------------------
+		(a) N (# of substrings)  = 100
+		(b) M (Substring Length) = 10000
+		(c) Chi^2                = 276.326410
+		---------------------------------------------
+		      F R E Q U E N C Y
+		---------------------------------------------
+		<=10  11  12  13  14  15 >=16 P-value  Assignment
+		   0   0   0  23  63   2   12 FAILURE		p_value = 0.000000
+
+			  LONGEST RUNS OF ONES TEST
+		---------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		---------------------------------------------
+		(a) N (# of substrings)  = 100
+		(b) M (Substring Length) = 10000
+		(c) Chi^2                = 1194.867159
+		---------------------------------------------
+		      F R E Q U E N C Y
+		---------------------------------------------
+		<=10  11  12  13  14  15 >=16 P-value  Assignment
+		   0   0   0   1   0   2   97 FAILURE		p_value = 0.000000
+
+			  LONGEST RUNS OF ONES TEST
+		---------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		---------------------------------------------
+		(a) N (# of substrings)  = 100
+		(b) M (Substring Length) = 10000
+		(c) Chi^2                = 1275.515818
+		---------------------------------------------
+		      F R E Q U E N C Y
+		---------------------------------------------
+		<=10  11  12  13  14  15 >=16 P-value  Assignment
+		   0   0   0   0   0   0  100 FAILURE		p_value = 0.000000
+
+			  LONGEST RUNS OF ONES TEST
+		---------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		---------------------------------------------
+		(a) N (# of substrings)  = 100
+		(b) M (Substring Length) = 10000
+		(c) Chi^2                = 1142.515441
+		---------------------------------------------
+		      F R E Q U E N C Y
+		---------------------------------------------
+		<=10  11  12  13  14  15 >=16 P-value  Assignment
+		   3   0   1   1   0   0   95 FAILURE		p_value = 0.000000
+
+			  LONGEST RUNS OF ONES TEST
+		---------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		---------------------------------------------
+		(a) N (# of substrings)  = 100
+		(b) M (Substring Length) = 10000
+		(c) Chi^2                = 1275.515818
+		---------------------------------------------
+		      F R E Q U E N C Y
+		---------------------------------------------
+		<=10  11  12  13  14  15 >=16 P-value  Assignment
+		   0   0   0   0   0   0  100 FAILURE		p_value = 0.000000
+
+			  LONGEST RUNS OF ONES TEST
+		---------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		---------------------------------------------
+		(a) N (# of substrings)  = 100
+		(b) M (Substring Length) = 10000
+		(c) Chi^2                = 118.087795
+		---------------------------------------------
+		      F R E Q U E N C Y
+		---------------------------------------------
+		<=10  11  12  13  14  15 >=16 P-value  Assignment
+		   0   6   9  15  23  22   25 FAILURE		p_value = 0.000000
+
+			  LONGEST RUNS OF ONES TEST
+		---------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		---------------------------------------------
+		(a) N (# of substrings)  = 100
+		(b) M (Substring Length) = 10000
+		(c) Chi^2                = 1275.515818
+		---------------------------------------------
+		      F R E Q U E N C Y
+		---------------------------------------------
+		<=10  11  12  13  14  15 >=16 P-value  Assignment
+		   0   0   0   0   0   0  100 FAILURE		p_value = 0.000000
+
+			  LONGEST RUNS OF ONES TEST
+		---------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		---------------------------------------------
+		(a) N (# of substrings)  = 100
+		(b) M (Substring Length) = 10000
+		(c) Chi^2                = 668.476308
+		---------------------------------------------
+		      F R E Q U E N C Y
+		---------------------------------------------
+		<=10  11  12  13  14  15 >=16 P-value  Assignment
+		  82  10   3   1   2   2    0 FAILURE		p_value = 0.000000
+
+			  LONGEST RUNS OF ONES TEST
+		---------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		---------------------------------------------
+		(a) N (# of substrings)  = 100
+		(b) M (Substring Length) = 10000
+		(c) Chi^2                = 902.491475
+		---------------------------------------------
+		      F R E Q U E N C Y
+		---------------------------------------------
+		<=10  11  12  13  14  15 >=16 P-value  Assignment
+		  94   3   1   2   0   0    0 FAILURE		p_value = 0.000000
+
+			  LONGEST RUNS OF ONES TEST
+		---------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		---------------------------------------------
+		(a) N (# of substrings)  = 100
+		(b) M (Substring Length) = 10000
+		(c) Chi^2                = 49.271356
+		---------------------------------------------
+		      F R E Q U E N C Y
+		---------------------------------------------
+		<=10  11  12  13  14  15 >=16 P-value  Assignment
+		  28  17  15  14  10   6   10 FAILURE		p_value = 0.000000
+
+			  LONGEST RUNS OF ONES TEST
+		---------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		---------------------------------------------
+		(a) N (# of substrings)  = 100
+		(b) M (Substring Length) = 10000
+		(c) Chi^2                = 1275.515818
+		---------------------------------------------
+		      F R E Q U E N C Y
+		---------------------------------------------
+		<=10  11  12  13  14  15 >=16 P-value  Assignment
+		   0   0   0   0   0   0  100 FAILURE		p_value = 0.000000
+
+			  LONGEST RUNS OF ONES TEST
+		---------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		---------------------------------------------
+		(a) N (# of substrings)  = 100
+		(b) M (Substring Length) = 10000
+		(c) Chi^2                = 232.927907
+		---------------------------------------------
+		      F R E Q U E N C Y
+		---------------------------------------------
+		<=10  11  12  13  14  15 >=16 P-value  Assignment
+		  41   5   2   6  13   3   30 FAILURE		p_value = 0.000000
+
+			  LONGEST RUNS OF ONES TEST
+		---------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		---------------------------------------------
+		(a) N (# of substrings)  = 100
+		(b) M (Substring Length) = 10000
+		(c) Chi^2                = 799.708475
+		---------------------------------------------
+		      F R E Q U E N C Y
+		---------------------------------------------
+		<=10  11  12  13  14  15 >=16 P-value  Assignment
+		  89   2   5   2   1   1    0 FAILURE		p_value = 0.000000
+
+			  LONGEST RUNS OF ONES TEST
+		---------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		---------------------------------------------
+		(a) N (# of substrings)  = 100
+		(b) M (Substring Length) = 10000
+		(c) Chi^2                = 898.068640
+		---------------------------------------------
+		      F R E Q U E N C Y
+		---------------------------------------------
+		<=10  11  12  13  14  15 >=16 P-value  Assignment
+		   4   4   0   2   4   1   85 FAILURE		p_value = 0.000000
+
+			  LONGEST RUNS OF ONES TEST
+		---------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		---------------------------------------------
+		(a) N (# of substrings)  = 100
+		(b) M (Substring Length) = 10000
+		(c) Chi^2                = 222.768193
+		---------------------------------------------
+		      F R E Q U E N C Y
+		---------------------------------------------
+		<=10  11  12  13  14  15 >=16 P-value  Assignment
+		  43   9   5   5   6   5   27 FAILURE		p_value = 0.000000
+
+			  LONGEST RUNS OF ONES TEST
+		---------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		---------------------------------------------
+		(a) N (# of substrings)  = 100
+		(b) M (Substring Length) = 10000
+		(c) Chi^2                = 1275.515818
+		---------------------------------------------
+		      F R E Q U E N C Y
+		---------------------------------------------
+		<=10  11  12  13  14  15 >=16 P-value  Assignment
+		   0   0   0   0   0   0  100 FAILURE		p_value = 0.000000
+
+			  LONGEST RUNS OF ONES TEST
+		---------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		---------------------------------------------
+		(a) N (# of substrings)  = 100
+		(b) M (Substring Length) = 10000
+		(c) Chi^2                = 1194.536093
+		---------------------------------------------
+		      F R E Q U E N C Y
+		---------------------------------------------
+		<=10  11  12  13  14  15 >=16 P-value  Assignment
+		   1   0   0   1   0   1   97 FAILURE		p_value = 0.000000
+
+			  LONGEST RUNS OF ONES TEST
+		---------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		---------------------------------------------
+		(a) N (# of substrings)  = 100
+		(b) M (Substring Length) = 10000
+		(c) Chi^2                = 924.437659
+		---------------------------------------------
+		      F R E Q U E N C Y
+		---------------------------------------------
+		<=10  11  12  13  14  15 >=16 P-value  Assignment
+		  95   5   0   0   0   0    0 FAILURE		p_value = 0.000000
+
+			  LONGEST RUNS OF ONES TEST
+		---------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		---------------------------------------------
+		(a) N (# of substrings)  = 100
+		(b) M (Substring Length) = 10000
+		(c) Chi^2                = 194.163535
+		---------------------------------------------
+		      F R E Q U E N C Y
+		---------------------------------------------
+		<=10  11  12  13  14  15 >=16 P-value  Assignment
+		  48   8  14  13   5   4    8 FAILURE		p_value = 0.000000
+
+			  LONGEST RUNS OF ONES TEST
+		---------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		---------------------------------------------
+		(a) N (# of substrings)  = 100
+		(b) M (Substring Length) = 10000
+		(c) Chi^2                = 881.899280
+		---------------------------------------------
+		      F R E Q U E N C Y
+		---------------------------------------------
+		<=10  11  12  13  14  15 >=16 P-value  Assignment
+		  93   5   1   1   0   0    0 FAILURE		p_value = 0.000000
+
+			  LONGEST RUNS OF ONES TEST
+		---------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		---------------------------------------------
+		(a) N (# of substrings)  = 100
+		(b) M (Substring Length) = 10000
+		(c) Chi^2                = 1248.256432
+		---------------------------------------------
+		      F R E Q U E N C Y
+		---------------------------------------------
+		<=10  11  12  13  14  15 >=16 P-value  Assignment
+		   1   0   0   0   0   0   99 FAILURE		p_value = 0.000000
+
+			  LONGEST RUNS OF ONES TEST
+		---------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		---------------------------------------------
+		(a) N (# of substrings)  = 100
+		(b) M (Substring Length) = 10000
+		(c) Chi^2                = 422.616187
+		---------------------------------------------
+		      F R E Q U E N C Y
+		---------------------------------------------
+		<=10  11  12  13  14  15 >=16 P-value  Assignment
+		  67  10  11   3   5   3    1 FAILURE		p_value = 0.000000
+

@@ -1,0 +1,336 @@
+				RUNS TEST
+		------------------------------------------
+		PI ESTIMATOR CRITERIA NOT MET! PI = 0.552704
+				RUNS TEST
+		------------------------------------------
+		PI ESTIMATOR CRITERIA NOT MET! PI = 0.403282
+				RUNS TEST
+		------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		------------------------------------------
+		(a) Pi                        = 0.501120
+		(b) V_n_obs (Total # of runs) = 506083
+		(c) V_n_obs - 2 n pi (1-pi)
+		    -----------------------   = 8.606252
+		      2 sqrt(2n) pi (1-pi)
+		------------------------------------------
+FAILURE		p_value = 0.000000
+
+				RUNS TEST
+		------------------------------------------
+		PI ESTIMATOR CRITERIA NOT MET! PI = 0.533760
+				RUNS TEST
+		------------------------------------------
+		PI ESTIMATOR CRITERIA NOT MET! PI = 0.636909
+				RUNS TEST
+		------------------------------------------
+		PI ESTIMATOR CRITERIA NOT MET! PI = 0.462306
+				RUNS TEST
+		------------------------------------------
+		PI ESTIMATOR CRITERIA NOT MET! PI = 0.485766
+				RUNS TEST
+		------------------------------------------
+		PI ESTIMATOR CRITERIA NOT MET! PI = 0.558713
+				RUNS TEST
+		------------------------------------------
+		PI ESTIMATOR CRITERIA NOT MET! PI = 0.619206
+				RUNS TEST
+		------------------------------------------
+		PI ESTIMATOR CRITERIA NOT MET! PI = 0.509678
+				RUNS TEST
+		------------------------------------------
+		PI ESTIMATOR CRITERIA NOT MET! PI = 0.566518
+				RUNS TEST
+		------------------------------------------
+		PI ESTIMATOR CRITERIA NOT MET! PI = 0.612180
+				RUNS TEST
+		------------------------------------------
+		PI ESTIMATOR CRITERIA NOT MET! PI = 0.470132
+				RUNS TEST
+		------------------------------------------
+		PI ESTIMATOR CRITERIA NOT MET! PI = 0.538402
+				RUNS TEST
+		------------------------------------------
+		PI ESTIMATOR CRITERIA NOT MET! PI = 0.999432
+				RUNS TEST
+		------------------------------------------
+		PI ESTIMATOR CRITERIA NOT MET! PI = 0.835050
+				RUNS TEST
+		------------------------------------------
+		PI ESTIMATOR CRITERIA NOT MET! PI = 0.608239
+				RUNS TEST
+		------------------------------------------
+		PI ESTIMATOR CRITERIA NOT MET! PI = 0.615550
+				RUNS TEST
+		------------------------------------------
+		PI ESTIMATOR CRITERIA NOT MET! PI = 0.486424
+				RUNS TEST
+		------------------------------------------
+		PI ESTIMATOR CRITERIA NOT MET! PI = 0.555180
+				RUNS TEST
+		------------------------------------------
+		PI ESTIMATOR CRITERIA NOT MET! PI = 0.454896
+				RUNS TEST
+		------------------------------------------
+		PI ESTIMATOR CRITERIA NOT MET! PI = 0.559420
+				RUNS TEST
+		------------------------------------------
+		PI ESTIMATOR CRITERIA NOT MET! PI = 0.472396
+				RUNS TEST
+		------------------------------------------
+		PI ESTIMATOR CRITERIA NOT MET! PI = 0.395968
+				RUNS TEST
+		------------------------------------------
+		PI ESTIMATOR CRITERIA NOT MET! PI = 0.459841
+				RUNS TEST
+		------------------------------------------
+		PI ESTIMATOR CRITERIA NOT MET! PI = 0.557245
+				RUNS TEST
+		------------------------------------------
+		PI ESTIMATOR CRITERIA NOT MET! PI = 0.369994
+				RUNS TEST
+		------------------------------------------
+		PI ESTIMATOR CRITERIA NOT MET! PI = 0.640740
+				RUNS TEST
+		------------------------------------------
+		PI ESTIMATOR CRITERIA NOT MET! PI = 0.416862
+				RUNS TEST
+		------------------------------------------
+		PI ESTIMATOR CRITERIA NOT MET! PI = 0.446318
+				RUNS TEST
+		------------------------------------------
+		PI ESTIMATOR CRITERIA NOT MET! PI = 0.528112
+				RUNS TEST
+		------------------------------------------
+		PI ESTIMATOR CRITERIA NOT MET! PI = 0.534011
+				RUNS TEST
+		------------------------------------------
+		PI ESTIMATOR CRITERIA NOT MET! PI = 0.617836
+				RUNS TEST
+		------------------------------------------
+		PI ESTIMATOR CRITERIA NOT MET! PI = 0.348208
+				RUNS TEST
+		------------------------------------------
+		PI ESTIMATOR CRITERIA NOT MET! PI = 0.432753
+				RUNS TEST
+		------------------------------------------
+		PI ESTIMATOR CRITERIA NOT MET! PI = 0.619038
+				RUNS TEST
+		------------------------------------------
+		PI ESTIMATOR CRITERIA NOT MET! PI = 0.516128
+				RUNS TEST
+		------------------------------------------
+		PI ESTIMATOR CRITERIA NOT MET! PI = 0.486059
+				RUNS TEST
+		------------------------------------------
+		PI ESTIMATOR CRITERIA NOT MET! PI = 0.474750
+				RUNS TEST
+		------------------------------------------
+		PI ESTIMATOR CRITERIA NOT MET! PI = 0.783756
+				RUNS TEST
+		------------------------------------------
+		PI ESTIMATOR CRITERIA NOT MET! PI = 0.487708
+				RUNS TEST
+		------------------------------------------
+		PI ESTIMATOR CRITERIA NOT MET! PI = 0.433991
+				RUNS TEST
+		------------------------------------------
+		PI ESTIMATOR CRITERIA NOT MET! PI = 0.529764
+				RUNS TEST
+		------------------------------------------
+		PI ESTIMATOR CRITERIA NOT MET! PI = 0.517843
+				RUNS TEST
+		------------------------------------------
+		PI ESTIMATOR CRITERIA NOT MET! PI = 0.463714
+				RUNS TEST
+		------------------------------------------
+		PI ESTIMATOR CRITERIA NOT MET! PI = 0.507515
+				RUNS TEST
+		------------------------------------------
+		PI ESTIMATOR CRITERIA NOT MET! PI = 0.698513
+				RUNS TEST
+		------------------------------------------
+		PI ESTIMATOR CRITERIA NOT MET! PI = 0.490304
+				RUNS TEST
+		------------------------------------------
+		PI ESTIMATOR CRITERIA NOT MET! PI = 0.469322
+				RUNS TEST
+		------------------------------------------
+		PI ESTIMATOR CRITERIA NOT MET! PI = 0.576227
+				RUNS TEST
+		------------------------------------------
+		PI ESTIMATOR CRITERIA NOT MET! PI = 0.513361
+				RUNS TEST
+		------------------------------------------
+		PI ESTIMATOR CRITERIA NOT MET! PI = 0.524444
+				RUNS TEST
+		------------------------------------------
+		PI ESTIMATOR CRITERIA NOT MET! PI = 0.536794
+				RUNS TEST
+		------------------------------------------
+		PI ESTIMATOR CRITERIA NOT MET! PI = 0.491659
+				RUNS TEST
+		------------------------------------------
+		PI ESTIMATOR CRITERIA NOT MET! PI = 0.458566
+				RUNS TEST
+		------------------------------------------
+		PI ESTIMATOR CRITERIA NOT MET! PI = 0.465429
+				RUNS TEST
+		------------------------------------------
+		PI ESTIMATOR CRITERIA NOT MET! PI = 0.477173
+				RUNS TEST
+		------------------------------------------
+		PI ESTIMATOR CRITERIA NOT MET! PI = 0.505866
+				RUNS TEST
+		------------------------------------------
+		PI ESTIMATOR CRITERIA NOT MET! PI = 0.482064
+				RUNS TEST
+		------------------------------------------
+		PI ESTIMATOR CRITERIA NOT MET! PI = 0.487139
+				RUNS TEST
+		------------------------------------------
+		PI ESTIMATOR CRITERIA NOT MET! PI = 0.421251
+				RUNS TEST
+		------------------------------------------
+		PI ESTIMATOR CRITERIA NOT MET! PI = 0.580800
+				RUNS TEST
+		------------------------------------------
+		PI ESTIMATOR CRITERIA NOT MET! PI = 0.463257
+				RUNS TEST
+		------------------------------------------
+		PI ESTIMATOR CRITERIA NOT MET! PI = 0.491969
+				RUNS TEST
+		------------------------------------------
+		PI ESTIMATOR CRITERIA NOT MET! PI = 0.528923
+				RUNS TEST
+		------------------------------------------
+		PI ESTIMATOR CRITERIA NOT MET! PI = 0.469342
+				RUNS TEST
+		------------------------------------------
+		PI ESTIMATOR CRITERIA NOT MET! PI = 0.562562
+				RUNS TEST
+		------------------------------------------
+		PI ESTIMATOR CRITERIA NOT MET! PI = 0.759647
+				RUNS TEST
+		------------------------------------------
+		PI ESTIMATOR CRITERIA NOT MET! PI = 0.567768
+				RUNS TEST
+		------------------------------------------
+		PI ESTIMATOR CRITERIA NOT MET! PI = 0.520976
+				RUNS TEST
+		------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		------------------------------------------
+		(a) Pi                        = 0.498182
+		(b) V_n_obs (Total # of runs) = 536724
+		(c) V_n_obs - 2 n pi (1-pi)
+		    -----------------------   = 51.945614
+		      2 sqrt(2n) pi (1-pi)
+		------------------------------------------
+FAILURE		p_value = 0.000000
+
+				RUNS TEST
+		------------------------------------------
+		PI ESTIMATOR CRITERIA NOT MET! PI = 0.721490
+				RUNS TEST
+		------------------------------------------
+		PI ESTIMATOR CRITERIA NOT MET! PI = 0.531613
+				RUNS TEST
+		------------------------------------------
+		PI ESTIMATOR CRITERIA NOT MET! PI = 0.457774
+				RUNS TEST
+		------------------------------------------
+		PI ESTIMATOR CRITERIA NOT MET! PI = 0.562567
+				RUNS TEST
+		------------------------------------------
+		PI ESTIMATOR CRITERIA NOT MET! PI = 0.433114
+				RUNS TEST
+		------------------------------------------
+		PI ESTIMATOR CRITERIA NOT MET! PI = 0.646767
+				RUNS TEST
+		------------------------------------------
+		PI ESTIMATOR CRITERIA NOT MET! PI = 0.322717
+				RUNS TEST
+		------------------------------------------
+		PI ESTIMATOR CRITERIA NOT MET! PI = 0.692214
+				RUNS TEST
+		------------------------------------------
+		PI ESTIMATOR CRITERIA NOT MET! PI = 0.717407
+				RUNS TEST
+		------------------------------------------
+		PI ESTIMATOR CRITERIA NOT MET! PI = 0.698081
+				RUNS TEST
+		------------------------------------------
+		PI ESTIMATOR CRITERIA NOT MET! PI = 0.580139
+				RUNS TEST
+		------------------------------------------
+		PI ESTIMATOR CRITERIA NOT MET! PI = 0.730927
+				RUNS TEST
+		------------------------------------------
+		PI ESTIMATOR CRITERIA NOT MET! PI = 0.516261
+				RUNS TEST
+		------------------------------------------
+		PI ESTIMATOR CRITERIA NOT MET! PI = 0.701251
+				RUNS TEST
+		------------------------------------------
+		PI ESTIMATOR CRITERIA NOT MET! PI = 0.448744
+				RUNS TEST
+		------------------------------------------
+		PI ESTIMATOR CRITERIA NOT MET! PI = 0.449540
+				RUNS TEST
+		------------------------------------------
+		PI ESTIMATOR CRITERIA NOT MET! PI = 0.564887
+				RUNS TEST
+		------------------------------------------
+		PI ESTIMATOR CRITERIA NOT MET! PI = 0.646277
+				RUNS TEST
+		------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		------------------------------------------
+		(a) Pi                        = 0.501156
+		(b) V_n_obs (Total # of runs) = 528088
+		(c) V_n_obs - 2 n pi (1-pi)
+		    -----------------------   = 39.726423
+		      2 sqrt(2n) pi (1-pi)
+		------------------------------------------
+FAILURE		p_value = 0.000000
+
+				RUNS TEST
+		------------------------------------------
+		PI ESTIMATOR CRITERIA NOT MET! PI = 0.474027
+				RUNS TEST
+		------------------------------------------
+		PI ESTIMATOR CRITERIA NOT MET! PI = 0.549867
+				RUNS TEST
+		------------------------------------------
+		PI ESTIMATOR CRITERIA NOT MET! PI = 0.504202
+				RUNS TEST
+		------------------------------------------
+		PI ESTIMATOR CRITERIA NOT MET! PI = 0.699768
+				RUNS TEST
+		------------------------------------------
+		PI ESTIMATOR CRITERIA NOT MET! PI = 0.534210
+				RUNS TEST
+		------------------------------------------
+		PI ESTIMATOR CRITERIA NOT MET! PI = 0.476146
+				RUNS TEST
+		------------------------------------------
+		PI ESTIMATOR CRITERIA NOT MET! PI = 0.625613
+				RUNS TEST
+		------------------------------------------
+		COMPUTATIONAL INFORMATION:
+		------------------------------------------
+		(a) Pi                        = 0.498694
+		(b) V_n_obs (Total # of runs) = 525103
+		(c) V_n_obs - 2 n pi (1-pi)
+		    -----------------------   = 35.506070
+		      2 sqrt(2n) pi (1-pi)
+		------------------------------------------
+FAILURE		p_value = 0.000000
+
+				RUNS TEST
+		------------------------------------------
+		PI ESTIMATOR CRITERIA NOT MET! PI = 0.699880
+				RUNS TEST
+		------------------------------------------
+		PI ESTIMATOR CRITERIA NOT MET! PI = 0.535819

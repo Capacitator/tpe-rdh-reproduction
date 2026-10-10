@@ -1,0 +1,8 @@
+case,case_kind,rejected,mode_reported,failed_groups_reported,plaintext_released,reason
+single_pixel_lsb_flip,forgery,True,none,1,False,authentication failed; no plaintext released
+same_channel_block_swap,forgery,True,none,2,False,authentication failed; no plaintext released
+cross_channel_block_swap,forgery,True,none,2,False,authentication failed; no plaintext released
+wrong_user_key,wrong credential,True,none,0,False,authentication failed; no plaintext released
+wrong_image_id,wrong credential,True,none,0,False,authentication failed; no plaintext released
+valid_ciphertext_of_another_image_same_key_and_id,valid substitution,False,group,0,True,all 192 groups verified
+positive_control_clean,positive control,False,group,0,True,all 192 groups verified

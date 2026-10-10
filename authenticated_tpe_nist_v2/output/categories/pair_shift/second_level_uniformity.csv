@@ -1,0 +1,189 @@
+test_name,test_label,component,C1,C2,C3,C4,C5,C6,C7,C8,C9,C10,suite_p_value,suite_pass_proportion,recomputed_chi_square,recomputed_uniformity_p_value
+Frequency,Frequency Test,1,8,7,6,12,8,13,14,12,8,12,0.595549,100/100,7.4,0.595548507284
+BlockFrequency,Block Frequency Test,1,9,14,10,8,6,12,9,12,9,11,0.851383,98/100,4.8,0.851382575357
+CumulativeSums,Cumulative Sums Test,1,7,6,12,11,14,13,8,7,13,9,0.554420,100/100,7.8,0.554420435873
+CumulativeSums,Cumulative Sums Test,2,6,9,10,10,10,10,16,10,8,11,0.759756,100/100,5.8,0.759756278872
+Runs,Runs Test,1,5,14,10,11,8,9,14,8,8,13,0.534146,100/100,8,0.53414621691
+LongestRun,Longest Run of Ones Test,1,14,10,7,8,9,10,12,8,12,10,0.897763,97/100,4.2,0.897762597121
+Rank,Binary Matrix Rank Test,1,12,7,7,6,10,8,11,16,8,15,0.289667,98/100,10.8,0.289667490388
+FFT,Discrete Fourier Transform Test,1,8,12,8,7,5,14,9,11,14,12,0.494392,100/100,8.4,0.494391686482
+NonOverlappingTemplate,Non-overlapping Template Matching Test,1,8,12,7,9,5,10,14,8,15,12,0.419021,99/100,9.2,0.41902116661
+NonOverlappingTemplate,Non-overlapping Template Matching Test,2,12,6,11,11,14,7,3,9,12,15,0.181557,98/100,12.6,0.181556631981
+NonOverlappingTemplate,Non-overlapping Template Matching Test,3,13,7,6,8,9,14,17,12,9,5,0.145326,99/100,13.4,0.14532611575
+NonOverlappingTemplate,Non-overlapping Template Matching Test,4,8,9,9,13,11,20,6,7,9,8,0.102526,99/100,14.6,0.102525680214
+NonOverlappingTemplate,Non-overlapping Template Matching Test,5,14,12,12,9,12,7,5,5,8,16,0.171867,97/100,12.8,0.171866837467
+NonOverlappingTemplate,Non-overlapping Template Matching Test,6,7,5,13,10,9,15,17,7,8,9,0.153763,99/100,13.2,0.153763337796
+NonOverlappingTemplate,Non-overlapping Template Matching Test,7,9,10,11,11,12,8,6,13,12,8,0.883171,99/100,4.4,0.883171378424
+NonOverlappingTemplate,Non-overlapping Template Matching Test,8,13,12,8,10,12,7,6,8,8,16,0.437274,98/100,9,0.437274188914
+NonOverlappingTemplate,Non-overlapping Template Matching Test,9,9,10,13,9,11,13,11,8,7,9,0.935716,100/100,3.6,0.935716410914
+NonOverlappingTemplate,Non-overlapping Template Matching Test,10,11,16,9,7,10,10,10,13,8,6,0.574903,99/100,7.6,0.574903423864
+NonOverlappingTemplate,Non-overlapping Template Matching Test,11,14,15,5,10,14,12,8,7,4,11,0.137282,98/100,13.6,0.137282353127
+NonOverlappingTemplate,Non-overlapping Template Matching Test,12,11,12,8,9,9,5,11,12,8,15,0.637119,100/100,7,0.637119407169
+NonOverlappingTemplate,Non-overlapping Template Matching Test,13,13,13,12,12,5,10,6,7,11,11,0.554420,100/100,7.8,0.554420435873
+NonOverlappingTemplate,Non-overlapping Template Matching Test,14,8,9,8,9,5,14,13,13,13,8,0.514124,98/100,8.2,0.514123620231
+NonOverlappingTemplate,Non-overlapping Template Matching Test,15,4,15,10,4,7,11,13,10,12,14,0.137282,100/100,13.6,0.137282353127
+NonOverlappingTemplate,Non-overlapping Template Matching Test,16,12,11,8,9,9,9,8,9,13,12,0.964295,100/100,3,0.964294972685
+NonOverlappingTemplate,Non-overlapping Template Matching Test,17,7,12,11,10,9,11,9,13,12,6,0.867692,99/100,4.6,0.867691671498
+NonOverlappingTemplate,Non-overlapping Template Matching Test,18,9,8,13,11,8,8,10,6,12,15,0.657933,99/100,6.8,0.657933306214
+NonOverlappingTemplate,Non-overlapping Template Matching Test,19,6,17,5,9,15,9,7,13,10,9,0.137282,100/100,13.6,0.137282353127
+NonOverlappingTemplate,Non-overlapping Template Matching Test,20,16,9,7,8,10,12,12,11,9,6,0.574903,97/100,7.6,0.574903423864
+NonOverlappingTemplate,Non-overlapping Template Matching Test,21,10,12,8,10,6,15,10,10,7,12,0.719747,99/100,6.2,0.719746574824
+NonOverlappingTemplate,Non-overlapping Template Matching Test,22,12,11,10,11,3,11,7,14,5,16,0.115387,100/100,14.2,0.115386582589
+NonOverlappingTemplate,Non-overlapping Template Matching Test,23,9,9,2,10,14,13,15,7,12,9,0.162606,100/100,13,0.16260626219
+NonOverlappingTemplate,Non-overlapping Template Matching Test,24,10,10,13,8,12,13,4,8,11,11,0.657933,97/100,6.8,0.657933306214
+NonOverlappingTemplate,Non-overlapping Template Matching Test,25,12,10,12,11,15,9,10,8,8,5,0.657933,98/100,6.8,0.657933306214
+NonOverlappingTemplate,Non-overlapping Template Matching Test,26,11,8,10,10,10,8,13,9,11,10,0.991468,100/100,2,0.991467606629
+NonOverlappingTemplate,Non-overlapping Template Matching Test,27,12,9,9,7,14,8,10,12,8,11,0.883171,99/100,4.4,0.883171378424
+NonOverlappingTemplate,Non-overlapping Template Matching Test,28,11,9,5,5,13,6,13,12,13,13,0.289667,99/100,10.8,0.289667490388
+NonOverlappingTemplate,Non-overlapping Template Matching Test,29,13,8,12,8,10,12,11,10,4,12,0.678686,99/100,6.6,0.678685785296
+NonOverlappingTemplate,Non-overlapping Template Matching Test,30,9,2,13,8,11,18,8,14,7,10,0.045675,100/100,17.2,0.0456745744118
+NonOverlappingTemplate,Non-overlapping Template Matching Test,31,10,8,10,8,10,8,12,10,13,11,0.978072,99/100,2.6,0.978072067712
+NonOverlappingTemplate,Non-overlapping Template Matching Test,32,7,9,12,13,7,10,14,12,9,7,0.719747,99/100,6.2,0.719746574824
+NonOverlappingTemplate,Non-overlapping Template Matching Test,33,9,13,7,9,7,7,11,16,10,11,0.574903,100/100,7.6,0.574903423864
+NonOverlappingTemplate,Non-overlapping Template Matching Test,34,5,10,14,8,17,10,9,12,9,6,0.236810,100/100,11.6,0.236809815218
+NonOverlappingTemplate,Non-overlapping Template Matching Test,35,10,8,8,7,10,11,9,13,11,13,0.924076,99/100,3.8,0.924075930127
+NonOverlappingTemplate,Non-overlapping Template Matching Test,36,16,9,10,11,6,12,8,11,10,7,0.616305,100/100,7.2,0.616305224983
+NonOverlappingTemplate,Non-overlapping Template Matching Test,37,6,6,8,8,12,13,8,14,15,10,0.366918,99/100,9.8,0.366917799113
+NonOverlappingTemplate,Non-overlapping Template Matching Test,38,10,12,6,7,9,9,9,11,17,10,0.514124,100/100,8.2,0.514123620231
+NonOverlappingTemplate,Non-overlapping Template Matching Test,39,6,10,15,16,13,6,13,6,4,11,0.058984,100/100,16.4,0.0589840305444
+NonOverlappingTemplate,Non-overlapping Template Matching Test,40,11,10,6,8,12,13,7,9,14,10,0.739918,99/100,6,0.739918292095
+NonOverlappingTemplate,Non-overlapping Template Matching Test,41,14,16,7,9,13,9,7,14,7,4,0.115387,98/100,14.2,0.115386582589
+NonOverlappingTemplate,Non-overlapping Template Matching Test,42,9,14,9,11,9,13,11,7,6,11,0.779188,99/100,5.6,0.779187716165
+NonOverlappingTemplate,Non-overlapping Template Matching Test,43,16,5,6,8,12,10,10,11,9,13,0.383827,97/100,9.6,0.383826517371
+NonOverlappingTemplate,Non-overlapping Template Matching Test,44,10,7,10,9,11,14,14,5,11,9,0.637119,99/100,7,0.637119407169
+NonOverlappingTemplate,Non-overlapping Template Matching Test,45,9,13,9,12,10,9,11,14,7,6,0.759756,100/100,5.8,0.759756278872
+NonOverlappingTemplate,Non-overlapping Template Matching Test,46,5,8,9,14,10,8,5,10,13,18,0.096578,100/100,14.8,0.0965781738518
+NonOverlappingTemplate,Non-overlapping Template Matching Test,47,12,11,12,6,6,16,11,9,12,5,0.289667,100/100,10.8,0.289667490388
+NonOverlappingTemplate,Non-overlapping Template Matching Test,48,5,7,16,10,9,16,10,10,8,9,0.262249,100/100,11.2,0.262248754595
+NonOverlappingTemplate,Non-overlapping Template Matching Test,49,6,8,10,12,11,11,10,10,14,8,0.867692,100/100,4.6,0.867691671498
+NonOverlappingTemplate,Non-overlapping Template Matching Test,50,7,12,11,6,8,10,10,9,14,13,0.739918,100/100,6,0.739918292095
+NonOverlappingTemplate,Non-overlapping Template Matching Test,51,10,11,9,14,7,10,11,3,12,13,0.437274,100/100,9,0.437274188914
+NonOverlappingTemplate,Non-overlapping Template Matching Test,52,13,10,13,11,12,8,6,13,10,4,0.455937,96/100,8.8,0.455937195221
+NonOverlappingTemplate,Non-overlapping Template Matching Test,53,8,10,8,14,15,9,7,9,11,9,0.719747,100/100,6.2,0.719746574824
+NonOverlappingTemplate,Non-overlapping Template Matching Test,54,11,11,9,8,7,8,9,12,8,17,0.554420,99/100,7.8,0.554420435873
+NonOverlappingTemplate,Non-overlapping Template Matching Test,55,11,7,9,11,10,12,8,9,8,15,0.834308,98/100,5,0.834308260193
+NonOverlappingTemplate,Non-overlapping Template Matching Test,56,7,8,6,15,17,9,4,7,16,11,0.028817,100/100,18.6,0.0288171732613
+NonOverlappingTemplate,Non-overlapping Template Matching Test,57,9,11,7,14,12,8,6,12,11,10,0.779188,99/100,5.6,0.779187716165
+NonOverlappingTemplate,Non-overlapping Template Matching Test,58,11,12,8,12,8,8,7,9,12,13,0.883171,99/100,4.4,0.883171378424
+NonOverlappingTemplate,Non-overlapping Template Matching Test,59,9,10,11,9,13,11,6,9,16,6,0.514124,99/100,8.2,0.514123620231
+NonOverlappingTemplate,Non-overlapping Template Matching Test,60,12,13,14,10,6,11,7,7,4,16,0.137282,99/100,13.6,0.137282353127
+NonOverlappingTemplate,Non-overlapping Template Matching Test,61,9,15,8,10,10,3,14,8,13,10,0.289667,99/100,10.8,0.289667490388
+NonOverlappingTemplate,Non-overlapping Template Matching Test,62,9,12,12,15,10,6,10,10,9,7,0.739918,99/100,6,0.739918292095
+NonOverlappingTemplate,Non-overlapping Template Matching Test,63,7,12,10,12,10,6,9,14,12,8,0.759756,100/100,5.8,0.759756278872
+NonOverlappingTemplate,Non-overlapping Template Matching Test,64,14,7,20,6,7,7,8,12,7,12,0.035174,99/100,18,0.035173539467
+NonOverlappingTemplate,Non-overlapping Template Matching Test,65,8,9,13,9,11,12,11,13,8,6,0.834308,99/100,5,0.834308260193
+NonOverlappingTemplate,Non-overlapping Template Matching Test,66,8,11,8,10,4,14,12,6,14,13,0.304126,100/100,10.6,0.304125816412
+NonOverlappingTemplate,Non-overlapping Template Matching Test,67,7,11,10,7,9,11,14,12,12,7,0.798139,98/100,5.4,0.798139062395
+NonOverlappingTemplate,Non-overlapping Template Matching Test,68,16,8,5,9,9,10,16,12,4,11,0.108791,98/100,14.4,0.108790955194
+NonOverlappingTemplate,Non-overlapping Template Matching Test,69,8,5,7,16,9,7,12,8,11,17,0.115387,99/100,14.2,0.115386582589
+NonOverlappingTemplate,Non-overlapping Template Matching Test,70,10,12,9,10,11,10,4,14,11,9,0.739918,100/100,6,0.739918292095
+NonOverlappingTemplate,Non-overlapping Template Matching Test,71,11,12,3,10,12,7,6,12,12,15,0.236810,100/100,11.6,0.236809815218
+NonOverlappingTemplate,Non-overlapping Template Matching Test,72,11,10,10,10,11,7,5,12,12,12,0.851383,100/100,4.8,0.851382575357
+NonOverlappingTemplate,Non-overlapping Template Matching Test,73,12,9,10,5,11,10,12,6,10,15,0.574903,100/100,7.6,0.574903423864
+NonOverlappingTemplate,Non-overlapping Template Matching Test,74,13,9,8,11,10,12,14,8,7,8,0.816537,99/100,5.2,0.816536797597
+NonOverlappingTemplate,Non-overlapping Template Matching Test,75,8,12,7,9,5,10,13,9,15,12,0.514124,99/100,8.2,0.514123620231
+NonOverlappingTemplate,Non-overlapping Template Matching Test,76,10,5,8,9,9,12,15,10,11,11,0.719747,100/100,6.2,0.719746574824
+NonOverlappingTemplate,Non-overlapping Template Matching Test,77,9,4,13,15,10,8,9,10,13,9,0.474986,97/100,8.6,0.474985686648
+NonOverlappingTemplate,Non-overlapping Template Matching Test,78,4,9,12,13,7,13,14,12,7,9,0.366918,99/100,9.8,0.366917799113
+NonOverlappingTemplate,Non-overlapping Template Matching Test,79,12,12,13,9,8,10,9,11,8,8,0.955835,99/100,3.2,0.9558347256
+NonOverlappingTemplate,Non-overlapping Template Matching Test,80,10,6,11,14,9,15,14,10,7,4,0.213309,100/100,12,0.213309305083
+NonOverlappingTemplate,Non-overlapping Template Matching Test,81,10,11,15,2,9,13,6,12,7,15,0.080519,97/100,15.4,0.0805185128188
+NonOverlappingTemplate,Non-overlapping Template Matching Test,82,10,12,10,13,7,12,7,6,11,12,0.779188,98/100,5.6,0.779187716165
+NonOverlappingTemplate,Non-overlapping Template Matching Test,83,12,9,11,13,7,6,11,10,11,10,0.897763,100/100,4.2,0.897762597121
+NonOverlappingTemplate,Non-overlapping Template Matching Test,84,10,11,11,12,4,15,15,5,12,5,0.102526,98/100,14.6,0.102525680214
+NonOverlappingTemplate,Non-overlapping Template Matching Test,85,10,4,14,9,15,6,6,12,9,15,0.122325,99/100,14,0.122325228039
+NonOverlappingTemplate,Non-overlapping Template Matching Test,86,4,11,10,6,18,7,12,6,19,7,0.004981,100/100,23.6,0.00498057463817
+NonOverlappingTemplate,Non-overlapping Template Matching Test,87,10,9,12,12,10,11,12,10,6,8,0.946308,99/100,3.4,0.946307673764
+NonOverlappingTemplate,Non-overlapping Template Matching Test,88,8,7,15,12,5,11,10,10,13,9,0.554420,99/100,7.8,0.554420435873
+NonOverlappingTemplate,Non-overlapping Template Matching Test,89,13,17,7,16,10,9,6,8,10,4,0.066882,97/100,16,0.0668815877741
+NonOverlappingTemplate,Non-overlapping Template Matching Test,90,9,11,13,9,6,6,11,12,15,8,0.554420,99/100,7.8,0.554420435873
+NonOverlappingTemplate,Non-overlapping Template Matching Test,91,8,10,12,7,11,15,7,14,6,10,0.494392,98/100,8.4,0.494391686482
+NonOverlappingTemplate,Non-overlapping Template Matching Test,92,10,7,10,9,8,11,10,13,11,11,0.978072,99/100,2.6,0.978072067712
+NonOverlappingTemplate,Non-overlapping Template Matching Test,93,12,5,7,9,14,14,7,7,15,10,0.249284,99/100,11.4,0.249283893977
+NonOverlappingTemplate,Non-overlapping Template Matching Test,94,11,7,15,11,7,12,9,4,16,8,0.181557,98/100,12.6,0.181556631981
+NonOverlappingTemplate,Non-overlapping Template Matching Test,95,9,15,6,7,13,9,9,11,7,14,0.455937,98/100,8.8,0.455937195221
+NonOverlappingTemplate,Non-overlapping Template Matching Test,96,14,8,12,16,11,8,13,6,7,5,0.191687,98/100,12.4,0.191686740847
+NonOverlappingTemplate,Non-overlapping Template Matching Test,97,7,7,16,6,13,16,7,8,8,12,0.137282,99/100,13.6,0.137282353127
+NonOverlappingTemplate,Non-overlapping Template Matching Test,98,13,11,10,11,11,6,10,9,14,5,0.637119,97/100,7,0.637119407169
+NonOverlappingTemplate,Non-overlapping Template Matching Test,99,18,8,14,10,5,11,6,10,12,6,0.102526,97/100,14.6,0.102525680214
+NonOverlappingTemplate,Non-overlapping Template Matching Test,100,12,11,6,13,6,7,14,6,12,13,0.350485,100/100,10,0.350485212323
+NonOverlappingTemplate,Non-overlapping Template Matching Test,101,14,7,6,8,14,6,12,12,11,10,0.474986,100/100,8.6,0.474985686648
+NonOverlappingTemplate,Non-overlapping Template Matching Test,102,11,5,13,6,9,12,11,8,10,15,0.474986,99/100,8.6,0.474985686648
+NonOverlappingTemplate,Non-overlapping Template Matching Test,103,13,12,6,13,9,6,15,7,11,8,0.401199,98/100,9.4,0.40119928658
+NonOverlappingTemplate,Non-overlapping Template Matching Test,104,9,10,10,12,7,5,10,13,13,11,0.759756,100/100,5.8,0.759756278872
+NonOverlappingTemplate,Non-overlapping Template Matching Test,105,12,12,10,16,10,5,9,8,10,8,0.554420,100/100,7.8,0.554420435873
+NonOverlappingTemplate,Non-overlapping Template Matching Test,106,11,7,11,9,15,11,8,15,7,6,0.419021,99/100,9.2,0.41902116661
+NonOverlappingTemplate,Non-overlapping Template Matching Test,107,9,10,10,4,13,12,4,12,17,9,0.122325,98/100,14,0.122325228039
+NonOverlappingTemplate,Non-overlapping Template Matching Test,108,10,13,13,11,6,8,10,11,12,6,0.739918,99/100,6,0.739918292095
+NonOverlappingTemplate,Non-overlapping Template Matching Test,109,16,9,8,6,12,12,9,10,9,9,0.657933,98/100,6.8,0.657933306214
+NonOverlappingTemplate,Non-overlapping Template Matching Test,110,15,3,10,8,12,11,9,9,10,13,0.401199,100/100,9.4,0.40119928658
+NonOverlappingTemplate,Non-overlapping Template Matching Test,111,6,7,7,19,8,10,5,12,14,12,0.051942,100/100,16.8,0.0519416397955
+NonOverlappingTemplate,Non-overlapping Template Matching Test,112,8,11,11,11,11,7,13,6,10,12,0.867692,100/100,4.6,0.867691671498
+NonOverlappingTemplate,Non-overlapping Template Matching Test,113,10,6,8,15,10,13,9,9,11,9,0.759756,99/100,5.8,0.759756278872
+NonOverlappingTemplate,Non-overlapping Template Matching Test,114,10,14,9,6,11,7,10,10,7,16,0.455937,98/100,8.8,0.455937195221
+NonOverlappingTemplate,Non-overlapping Template Matching Test,115,13,6,11,11,8,8,12,12,9,10,0.883171,99/100,4.4,0.883171378424
+NonOverlappingTemplate,Non-overlapping Template Matching Test,116,12,7,15,6,11,5,5,15,9,15,0.075719,98/100,15.6,0.0757192631686
+NonOverlappingTemplate,Non-overlapping Template Matching Test,117,15,7,9,8,7,14,4,9,17,10,0.090936,97/100,15,0.0909359765798
+NonOverlappingTemplate,Non-overlapping Template Matching Test,118,6,6,11,10,12,13,9,10,8,15,0.574903,99/100,7.6,0.574903423864
+NonOverlappingTemplate,Non-overlapping Template Matching Test,119,8,9,8,19,7,11,9,9,7,13,0.213309,99/100,12,0.213309305083
+NonOverlappingTemplate,Non-overlapping Template Matching Test,120,12,6,8,13,12,7,5,9,14,14,0.319084,100/100,10.4,0.319083502143
+NonOverlappingTemplate,Non-overlapping Template Matching Test,121,17,13,9,5,8,12,6,11,10,9,0.275709,98/100,11,0.275708936772
+NonOverlappingTemplate,Non-overlapping Template Matching Test,122,8,10,11,10,10,8,10,7,12,14,0.924076,99/100,3.8,0.924075930127
+NonOverlappingTemplate,Non-overlapping Template Matching Test,123,7,9,8,14,6,9,14,7,11,15,0.366918,100/100,9.8,0.366917799113
+NonOverlappingTemplate,Non-overlapping Template Matching Test,124,7,9,9,7,11,13,18,11,9,6,0.262249,99/100,11.2,0.262248754595
+NonOverlappingTemplate,Non-overlapping Template Matching Test,125,7,9,13,6,6,14,9,16,7,13,0.202268,99/100,12.2,0.202267685406
+NonOverlappingTemplate,Non-overlapping Template Matching Test,126,12,9,6,7,14,10,9,10,10,13,0.779188,98/100,5.6,0.779187716165
+NonOverlappingTemplate,Non-overlapping Template Matching Test,127,9,11,11,10,13,6,11,10,7,12,0.897763,99/100,4.2,0.897762597121
+NonOverlappingTemplate,Non-overlapping Template Matching Test,128,15,13,5,8,7,11,9,5,17,10,0.096578,99/100,14.8,0.0965781738518
+NonOverlappingTemplate,Non-overlapping Template Matching Test,129,4,15,4,12,11,12,11,8,11,12,0.236810,99/100,11.6,0.236809815218
+NonOverlappingTemplate,Non-overlapping Template Matching Test,130,15,10,10,11,8,10,7,9,12,8,0.851383,100/100,4.8,0.851382575357
+NonOverlappingTemplate,Non-overlapping Template Matching Test,131,8,12,9,13,9,10,9,10,10,10,0.991468,100/100,2,0.991467606629
+NonOverlappingTemplate,Non-overlapping Template Matching Test,132,8,9,16,10,14,12,11,6,10,4,0.249284,98/100,11.4,0.249283893977
+NonOverlappingTemplate,Non-overlapping Template Matching Test,133,13,8,11,5,9,10,13,13,8,10,0.719747,100/100,6.2,0.719746574824
+NonOverlappingTemplate,Non-overlapping Template Matching Test,134,15,7,15,15,12,8,6,7,7,8,0.162606,98/100,13,0.16260626219
+NonOverlappingTemplate,Non-overlapping Template Matching Test,135,8,12,10,8,8,8,6,10,10,20,0.137282,100/100,13.6,0.137282353127
+NonOverlappingTemplate,Non-overlapping Template Matching Test,136,7,11,7,5,11,14,10,10,17,8,0.249284,99/100,11.4,0.249283893977
+NonOverlappingTemplate,Non-overlapping Template Matching Test,137,10,10,9,13,9,13,13,9,4,10,0.678686,99/100,6.6,0.678685785296
+NonOverlappingTemplate,Non-overlapping Template Matching Test,138,11,13,10,9,13,7,7,12,10,8,0.867692,100/100,4.6,0.867691671498
+NonOverlappingTemplate,Non-overlapping Template Matching Test,139,3,10,5,15,10,10,15,9,11,12,0.162606,100/100,13,0.16260626219
+NonOverlappingTemplate,Non-overlapping Template Matching Test,140,5,8,13,12,13,5,14,12,11,7,0.304126,100/100,10.6,0.304125816412
+NonOverlappingTemplate,Non-overlapping Template Matching Test,141,9,9,8,8,11,4,18,7,14,12,0.122325,99/100,14,0.122325228039
+NonOverlappingTemplate,Non-overlapping Template Matching Test,142,14,14,17,5,5,3,14,10,9,9,0.019188,99/100,19.8,0.019187597983
+NonOverlappingTemplate,Non-overlapping Template Matching Test,143,13,10,11,9,8,9,8,10,12,10,0.983453,99/100,2.4,0.98345295123
+NonOverlappingTemplate,Non-overlapping Template Matching Test,144,11,9,7,12,10,11,13,9,6,12,0.867692,100/100,4.6,0.867691671498
+NonOverlappingTemplate,Non-overlapping Template Matching Test,145,12,9,10,10,14,10,14,10,5,6,0.554420,100/100,7.8,0.554420435873
+NonOverlappingTemplate,Non-overlapping Template Matching Test,146,9,11,9,9,8,10,11,8,10,15,0.924076,100/100,3.8,0.924075930127
+NonOverlappingTemplate,Non-overlapping Template Matching Test,147,10,9,6,11,19,9,8,13,9,6,0.162606,99/100,13,0.16260626219
+NonOverlappingTemplate,Non-overlapping Template Matching Test,148,13,9,8,11,10,12,14,8,7,8,0.816537,99/100,5.2,0.816536797597
+OverlappingTemplate,Overlapping Template Matching Test,1,10,8,12,2,8,10,11,10,18,11,0.115387,100/100,14.2,0.115386582589
+Universal,Maurer's Universal Statistical Test,1,10,10,11,6,14,8,12,15,9,5,0.419021,98/100,9.2,0.41902116661
+ApproximateEntropy,Approximate Entropy Test,1,10,11,11,9,13,7,9,13,13,4,0.574903,99/100,7.6,0.574903423864
+RandomExcursions,Random Excursions Test,1,3,8,7,8,6,9,10,6,7,5,0.585209,68/69,7.5,0.585208769383
+RandomExcursions,Random Excursions Test,2,9,4,1,9,9,7,9,13,3,5,0.013411,67/69,20.8333333333,0.0134113576966
+RandomExcursions,Random Excursions Test,3,9,4,4,4,4,10,11,7,10,6,0.128379,69/69,13.8333333333,0.128378622707
+RandomExcursions,Random Excursions Test,4,11,2,7,7,2,8,7,6,10,9,0.095617,67/69,14.8333333333,0.0956169399252
+RandomExcursions,Random Excursions Test,5,8,14,4,6,5,13,2,8,4,5,0.003577,68/69,24.5,0.00357703092676
+RandomExcursions,Random Excursions Test,6,7,10,4,2,9,6,4,10,10,7,0.128379,68/69,13.8333333333,0.128378622707
+RandomExcursions,Random Excursions Test,7,9,5,8,6,4,6,14,4,8,5,0.086458,69/69,15.1666666667,0.0864584898647
+RandomExcursions,Random Excursions Test,8,10,9,3,9,6,5,7,7,7,6,0.551026,67/69,7.83333333333,0.551025696885
+RandomExcursionsVariant,Random Excursions Variant Test,1,9,7,7,6,6,4,7,7,10,6,0.788728,68/69,5.5,0.788728005521
+RandomExcursionsVariant,Random Excursions Variant Test,2,8,7,9,3,9,11,9,2,8,3,0.070445,69/69,15.8333333333,0.0704446563457
+RandomExcursionsVariant,Random Excursions Variant Test,3,8,9,6,12,9,4,4,6,3,8,0.155209,68/69,13.1666666667,0.155208657984
+RandomExcursionsVariant,Random Excursions Variant Test,4,6,12,7,7,7,5,5,8,9,3,0.311542,68/69,10.5,0.311542340562
+RandomExcursionsVariant,Random Excursions Variant Test,5,4,10,8,6,9,8,5,5,8,6,0.619772,69/69,7.16666666667,0.619771780873
+RandomExcursionsVariant,Random Excursions Variant Test,6,5,9,7,7,5,8,7,7,10,4,0.689019,69/69,6.5,0.689019021088
+RandomExcursionsVariant,Random Excursions Variant Test,7,4,9,11,3,7,6,6,7,8,8,0.392456,69/69,9.5,0.392455760335
+RandomExcursionsVariant,Random Excursions Variant Test,8,7,5,6,10,7,6,6,12,3,7,0.287306,69/69,10.8333333333,0.287306374651
+RandomExcursionsVariant,Random Excursions Variant Test,9,6,8,5,4,10,6,4,9,9,8,0.484646,68/69,8.5,0.484645885826
+RandomExcursionsVariant,Random Excursions Variant Test,10,9,7,5,8,8,7,7,5,5,8,0.875539,68/69,4.5,0.875539025298
+RandomExcursionsVariant,Random Excursions Variant Test,11,12,5,11,3,7,4,4,5,12,6,0.021262,66/69,19.5,0.0212616594993
+RandomExcursionsVariant,Random Excursions Variant Test,12,8,10,7,9,5,5,6,6,6,7,0.788728,65/69,5.5,0.788728005521
+RandomExcursionsVariant,Random Excursions Variant Test,13,6,10,7,6,13,5,8,4,5,5,0.170294,67/69,12.8333333333,0.17029390844
+RandomExcursionsVariant,Random Excursions Variant Test,14,8,5,7,10,10,6,6,6,4,7,0.619772,68/69,7.16666666667,0.619771780873
+RandomExcursionsVariant,Random Excursions Variant Test,15,8,5,14,2,6,8,6,4,8,8,0.051391,68/69,16.8333333333,0.0513908347462
+RandomExcursionsVariant,Random Excursions Variant Test,16,7,8,11,6,8,6,5,7,6,5,0.723129,69/69,6.16666666667,0.723128650284
+RandomExcursionsVariant,Random Excursions Variant Test,17,7,8,10,9,5,12,6,7,4,1,0.063482,69/69,16.1666666667,0.0634816767064
+RandomExcursionsVariant,Random Excursions Variant Test,18,7,8,11,5,11,5,5,8,3,6,0.222869,69/69,11.8333333333,0.222869109337
+Serial,Serial Test,1,9,13,7,11,11,12,6,13,11,7,0.739918,99/100,6,0.739918292095
+Serial,Serial Test,2,11,9,9,11,10,6,13,11,10,10,0.964295,98/100,3,0.964294972685
+LinearComplexity,Linear Complexity Test,1,12,5,10,10,9,6,14,12,11,11,0.657933,97/100,6.8,0.657933306214

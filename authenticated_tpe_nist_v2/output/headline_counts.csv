@@ -1,0 +1,8 @@
+category,kind,title,streams,bits_per_stream,first_level_tests,first_level_values,pass,fail,not_applicable
+hmac_drbg,cryptographic-component,HMAC_DRBG (HMAC-SHA256) output,100,1000000,15,18800,17758,184,858
+pair_shift,cryptographic-component,Step-1 pair-shift keystream (HMAC-SHA256 PRF digests),100,1000000,15,18800,17811,183,806
+block_r1,cryptographic-component,Step-2 block-r1 keystream (HMAC-SHA256 PRF digests),100,1000000,15,18800,17684,180,936
+auth_tag,cryptographic-component,HMAC-SHA256 authentication tags (192 per instance),100,1000000,15,18800,17439,217,1144
+reduced_shift_diag,diagnostic,diagnostic: reduced pair-shift offsets packed as bytes,100,1000000,15,18800,220,15980,2600
+ciphertext_diag,diagnostic,diagnostic: actual encrypted (marked) images,100,1000000,15,18800,1339,14861,2600
+recovered_diag,diagnostic,diagnostic: recovered/decrypted images (plaintext),100,1000000,15,18800,470,15730,2600

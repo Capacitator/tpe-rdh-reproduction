@@ -1,0 +1,10 @@
+# Large, fully regenerable artifacts.
+# Every one of them is covered by a SHA-256 in output/SHA256SUMS.txt and in the
+# per-category manifests, and regenerating the deterministic pipeline reproduces
+# those digests bit for bit (verified: STREAMS IDENTICAL ACROSS TWO INDEPENDENT RUNS).
+output/streams/*.bin
+output/nist_input/
+input/images_512/*.png
+__pycache__/
+*.pyc
+output/categories/*/raw_report_manifest.csv.tmp

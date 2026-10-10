@@ -1,0 +1,91 @@
+{
+  "revision": {
+    "revision_id": "atpe-v2.1",
+    "prototype_pair_shift_is_revised": true,
+    "original_pair_shift": "authenticated_tpe.pair_shift",
+    "rejection_probability_upper_bound": 5.9371814131736755e-08
+  },
+  "uct_images_evaluated": 6,
+  "exact_recovery_all": true,
+  "authentication_all_accepted": true,
+  "modes": {
+    "airplane": "group",
+    "baboon": "group",
+    "couple": "group",
+    "girl": "group",
+    "lena": "group",
+    "peppers": "group"
+  },
+  "npcr_mean_percent": 91.4754295349121,
+  "uaci_mean_percent": 8.161947911081752,
+  "npcr_ideal_percent": 99.6094,
+  "uaci_ideal_percent": 33.4635,
+  "diffusion_note": "NPCR/UACI cannot reach their ideal values here: a thumbnail-preserving ciphertext preserves every adjacent pair sum, so the two ciphertexts of one plaintext differ only by rotations inside the sum classes.",
+  "legacy_plaintext_vs_marked_npcr_mean_percent": 90.992488861084,
+  "legacy_plaintext_vs_marked_uaci_mean_percent": 6.302706824408636,
+  "forgery_cases": 5,
+  "forgery_rejected_all": true,
+  "forgery_plaintext_leaked": false,
+  "valid_substitution_accepted": true,
+  "valid_substitution_note": "a valid ciphertext of another image, produced under the same UserKey and ImageID, verifies: the tag authenticates ciphertext content and the scheme does not bind image identity, which is why a fresh ImageID per image is required",
+  "clean_control_accepted": true,
+  "same_key_cases": [
+    {
+      "case": "different ImageID, different image",
+      "image_id_a_sha256": "c977d6a6004cdd0d17deee383594151912c49a3e1e13bf706e0fc34570b799f3",
+      "image_id_b_sha256": "5fe48ed27852ef886701a0994f63dec9e1f43d75ab1984a4a17e7754bdd343e4",
+      "step1_identical": false,
+      "keystream_offset_a": 116,
+      "keystream_offset_b": 22,
+      "keystream_identical": false,
+      "first_tag_identical": false,
+      "ciphertext_identical": false,
+      "ciphertext_sha256_a": "799de546d8e29b038477698d1319406a4d1c2fb93311fd9e561cf1065e5442ae",
+      "ciphertext_sha256_b": "76621adb378c81b618231bcbfbdeafd6b55fffe19df679c6c50d65b3ea349177"
+    },
+    {
+      "case": "different ImageID, same image",
+      "image_id_a_sha256": "c977d6a6004cdd0d17deee383594151912c49a3e1e13bf706e0fc34570b799f3",
+      "image_id_b_sha256": "5fe48ed27852ef886701a0994f63dec9e1f43d75ab1984a4a17e7754bdd343e4",
+      "step1_identical": false,
+      "keystream_offset_a": 116,
+      "keystream_offset_b": 22,
+      "keystream_identical": false,
+      "first_tag_identical": false,
+      "ciphertext_identical": false,
+      "ciphertext_sha256_a": "799de546d8e29b038477698d1319406a4d1c2fb93311fd9e561cf1065e5442ae",
+      "ciphertext_sha256_b": "9ae3d3c40c7b42d8b57f6e4f4952d9d55de650c963a20a14cd535b4fe3dd467c"
+    },
+    {
+      "case": "same ImageID, different image",
+      "image_id_a_sha256": "c977d6a6004cdd0d17deee383594151912c49a3e1e13bf706e0fc34570b799f3",
+      "image_id_b_sha256": "c977d6a6004cdd0d17deee383594151912c49a3e1e13bf706e0fc34570b799f3",
+      "step1_identical": false,
+      "keystream_offset_a": 116,
+      "keystream_offset_b": 116,
+      "keystream_identical": true,
+      "first_tag_identical": false,
+      "ciphertext_identical": false,
+      "ciphertext_sha256_a": "799de546d8e29b038477698d1319406a4d1c2fb93311fd9e561cf1065e5442ae",
+      "ciphertext_sha256_b": "1ca836a7046fbea0eadcd729e8f0c86d8a2aba8ed2b090e79d694517627aa0cd"
+    },
+    {
+      "case": "same ImageID, same image",
+      "image_id_a_sha256": "c977d6a6004cdd0d17deee383594151912c49a3e1e13bf706e0fc34570b799f3",
+      "image_id_b_sha256": "c977d6a6004cdd0d17deee383594151912c49a3e1e13bf706e0fc34570b799f3",
+      "step1_identical": true,
+      "keystream_offset_a": 116,
+      "keystream_offset_b": 116,
+      "keystream_identical": true,
+      "first_tag_identical": true,
+      "ciphertext_identical": true,
+      "ciphertext_sha256_a": "799de546d8e29b038477698d1319406a4d1c2fb93311fd9e561cf1065e5442ae",
+      "ciphertext_sha256_b": "799de546d8e29b038477698d1319406a4d1c2fb93311fd9e561cf1065e5442ae"
+    }
+  ],
+  "class_uniformity_sizes": 128,
+  "class_uniformity_uncorrected_failures": 2,
+  "class_uniformity_expectation": 1.28,
+  "class_uniformity_holm_rejections": 0,
+  "reduction_detail_all_uniform": false
+}
