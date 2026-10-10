@@ -1,0 +1,441 @@
+--- a/src/approximateEntropy.c
++++ b/src/approximateEntropy.c
+@@ -69,11 +69,11 @@
+ 	p_value = cephes_igamc(pow(2, m-1), chi_squared/2.0);
+ 	
+ 	fprintf(stats[TEST_APEN], "\t\t(b) n (sequence length) = %d\n", seqLength);
+-	fprintf(stats[TEST_APEN], "\t\t(c) Chi^2               = %f\n", chi_squared);
+-	fprintf(stats[TEST_APEN], "\t\t(d) Phi(m)	       = %f\n", ApEn[0]);
+-	fprintf(stats[TEST_APEN], "\t\t(e) Phi(m+1)	       = %f\n", ApEn[1]);
+-	fprintf(stats[TEST_APEN], "\t\t(f) ApEn                = %f\n", apen);
+-	fprintf(stats[TEST_APEN], "\t\t(g) Log(2)              = %f\n", log(2.0));
++	fprintf(stats[TEST_APEN], "\t\t(c) Chi^2               = %.17g\n", chi_squared);
++	fprintf(stats[TEST_APEN], "\t\t(d) Phi(m)	       = %.17g\n", ApEn[0]);
++	fprintf(stats[TEST_APEN], "\t\t(e) Phi(m+1)	       = %.17g\n", ApEn[1]);
++	fprintf(stats[TEST_APEN], "\t\t(f) ApEn                = %.17g\n", apen);
++	fprintf(stats[TEST_APEN], "\t\t(g) Log(2)              = %.17g\n", log(2.0));
+ 	fprintf(stats[TEST_APEN], "\t\t--------------------------------------------\n");
+ 
+ 	if ( m > (int)(log(seqLength)/log(2)-5) ) {
+@@ -83,6 +83,6 @@
+ 		fprintf(stats[TEST_APEN], "\t\t--------------------------------------------\n");
+ 	}
+ 	
+-	fprintf(stats[TEST_APEN], "%s\t\tp_value = %f\n\n", p_value < ALPHA ? "FAILURE" : "SUCCESS", p_value); fflush(stats[TEST_APEN]);
+-	fprintf(results[TEST_APEN], "%f\n", p_value); fflush(results[TEST_APEN]);
++	fprintf(stats[TEST_APEN], "%s\t\tp_value = %.17g\n\n", p_value < ALPHA ? "FAILURE" : "SUCCESS", p_value); fflush(stats[TEST_APEN]);
++	fprintf(results[TEST_APEN], "%.17g\n", p_value); fflush(results[TEST_APEN]);
+ }--- a/src/assess.c
++++ b/src/assess.c
+@@ -116,7 +116,7 @@
+ partitionResultFile(int numOfFiles, int numOfSequences, int option, int testNameID)
+ { 
+ 	int		i, k, m, j, start, end, num, numread;
+-	float	c;
++	double	c;
+ 	FILE	**fp = (FILE **)calloc(numOfFiles+1, sizeof(FILE *));
+ 	int		*results = (int *)calloc(numOfFiles, sizeof(int *));
+ 	char	*s[MAXFILESPERMITTEDFORPARTITION];
+@@ -170,8 +170,8 @@
+ 			}
+ 			
+ 			for ( j=start; j<=end; j++ ) {		/* POPULATE FILE */
+-				fscanf(fp[numOfFiles], "%f", &c);
+-				fprintf(fp[j], "%f\n", c);
++				fscanf(fp[numOfFiles], "%lf", &c);
++				fprintf(fp[j], "%.17g\n", c);
+ 				numread++;
+ 			}
+ 
+@@ -285,7 +285,7 @@
+ 	int		j, pos, count, passCount, sampleSize, expCount, proportion_threshold_min, proportion_threshold_max;
+ 	int		freqPerBin[10] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+ 	double	*A, *T, chi2, proportion, uniformity, p_hat, tmp;
+-	float	c;
++	double	c;
+ 	FILE	*fp;
+ 	
+ 	if ( (fp = fopen(s, "r")) == NULL ) {
+@@ -310,7 +310,7 @@
+ 			return 0;
+ 		}
+ 		for ( j=0; j<sampleSize; j++ ) {
+-			fscanf(fp, "%f", &c);
++			fscanf(fp, "%lf", &c);
+ 			if ( c > 0.000000 )
+ 				T[count++] = c;
+ 		}
+@@ -336,7 +336,7 @@
+ 			return 0;
+ 		}
+ 		for ( j=0; j<sampleSize; j++ ) {
+-			fscanf(fp, "%f", &c);
++			fscanf(fp, "%lf", &c);
+ 			if ( c < ALPHA )
+ 				count++;
+ 			A[j] = c;
+@@ -376,9 +376,9 @@
+ 	if ( expCount == 0 )
+ 		fprintf(summary, "    ----    ");
+ 	else if ( uniformity < 0.0001 )
+-		fprintf(summary, " %8.6f * ", uniformity);
++		fprintf(summary, " %.17g * ", uniformity);
+ 	else
+-		fprintf(summary, " %8.6f   ", uniformity);
++		fprintf(summary, " %.17g   ", uniformity);
+ 	
+ 	if ( sampleSize == 0 )
+ 		fprintf(summary, " ------     %s\n", testNames[test]);
+--- a/src/blockFrequency.c
++++ b/src/blockFrequency.c
+@@ -32,12 +32,12 @@
+ 	fprintf(stats[TEST_BLOCK_FREQUENCY], "\t\t---------------------------------------------\n");
+ 	fprintf(stats[TEST_BLOCK_FREQUENCY], "\t\tCOMPUTATIONAL INFORMATION:\n");
+ 	fprintf(stats[TEST_BLOCK_FREQUENCY], "\t\t---------------------------------------------\n");
+-	fprintf(stats[TEST_BLOCK_FREQUENCY], "\t\t(a) Chi^2           = %f\n", chi_squared);
++	fprintf(stats[TEST_BLOCK_FREQUENCY], "\t\t(a) Chi^2           = %.17g\n", chi_squared);
+ 	fprintf(stats[TEST_BLOCK_FREQUENCY], "\t\t(b) # of substrings = %d\n", N);
+ 	fprintf(stats[TEST_BLOCK_FREQUENCY], "\t\t(c) block length    = %d\n", M);
+ 	fprintf(stats[TEST_BLOCK_FREQUENCY], "\t\t(d) Note: %d bits were discarded.\n", n % M);
+ 	fprintf(stats[TEST_BLOCK_FREQUENCY], "\t\t---------------------------------------------\n");
+ 
+-	fprintf(stats[TEST_BLOCK_FREQUENCY], "%s\t\tp_value = %f\n\n", p_value < ALPHA ? "FAILURE" : "SUCCESS", p_value); fflush(stats[TEST_BLOCK_FREQUENCY]);
+-	fprintf(results[TEST_BLOCK_FREQUENCY], "%f\n", p_value); fflush(results[TEST_BLOCK_FREQUENCY]);
++	fprintf(stats[TEST_BLOCK_FREQUENCY], "%s\t\tp_value = %.17g\n\n", p_value < ALPHA ? "FAILURE" : "SUCCESS", p_value); fflush(stats[TEST_BLOCK_FREQUENCY]);
++	fprintf(results[TEST_BLOCK_FREQUENCY], "%.17g\n", p_value); fflush(results[TEST_BLOCK_FREQUENCY]);
+ }
+--- a/src/cusum.c
++++ b/src/cusum.c
+@@ -52,8 +52,8 @@
+ 	if ( isNegative(p_value) || isGreaterThanOne(p_value) )
+ 		fprintf(stats[TEST_CUSUM], "\t\tWARNING:  P_VALUE IS OUT OF RANGE\n");
+ 
+-	fprintf(stats[TEST_CUSUM], "%s\t\tp_value = %f\n\n", p_value < ALPHA ? "FAILURE" : "SUCCESS", p_value);
+-	fprintf(results[TEST_CUSUM], "%f\n", p_value);
++	fprintf(stats[TEST_CUSUM], "%s\t\tp_value = %.17g\n\n", p_value < ALPHA ? "FAILURE" : "SUCCESS", p_value);
++	fprintf(results[TEST_CUSUM], "%.17g\n", p_value);
+ 		
+ 	// backwards
+ 	sum1 = 0.0;
+@@ -78,6 +78,6 @@
+ 	if ( isNegative(p_value) || isGreaterThanOne(p_value) )
+ 		fprintf(stats[TEST_CUSUM], "\t\tWARNING:  P_VALUE IS OUT OF RANGE\n");
+ 
+-	fprintf(stats[TEST_CUSUM], "%s\t\tp_value = %f\n\n", p_value < ALPHA ? "FAILURE" : "SUCCESS", p_value); fflush(stats[TEST_CUSUM]);
+-	fprintf(results[TEST_CUSUM], "%f\n", p_value); fflush(results[TEST_CUSUM]);
++	fprintf(stats[TEST_CUSUM], "%s\t\tp_value = %.17g\n\n", p_value < ALPHA ? "FAILURE" : "SUCCESS", p_value); fflush(stats[TEST_CUSUM]);
++	fprintf(results[TEST_CUSUM], "%.17g\n", p_value); fflush(results[TEST_CUSUM]);
+ }--- a/src/discreteFourierTransform.c
++++ b/src/discreteFourierTransform.c
+@@ -55,14 +55,14 @@
+ 	fprintf(stats[TEST_FFT], "\t\t-------------------------------------------\n");
+ 	fprintf(stats[TEST_FFT], "\t\tCOMPUTATIONAL INFORMATION:\n");
+ 	fprintf(stats[TEST_FFT], "\t\t-------------------------------------------\n");
+-	fprintf(stats[TEST_FFT], "\t\t(a) Percentile = %f\n", percentile);
+-	fprintf(stats[TEST_FFT], "\t\t(b) N_l        = %f\n", N_l);
+-	fprintf(stats[TEST_FFT], "\t\t(c) N_o        = %f\n", N_o);
+-	fprintf(stats[TEST_FFT], "\t\t(d) d          = %f\n", d);
++	fprintf(stats[TEST_FFT], "\t\t(a) Percentile = %.17g\n", percentile);
++	fprintf(stats[TEST_FFT], "\t\t(b) N_l        = %.17g\n", N_l);
++	fprintf(stats[TEST_FFT], "\t\t(c) N_o        = %.17g\n", N_o);
++	fprintf(stats[TEST_FFT], "\t\t(d) d          = %.17g\n", d);
+ 	fprintf(stats[TEST_FFT], "\t\t-------------------------------------------\n");
+ 
+-	fprintf(stats[TEST_FFT], "%s\t\tp_value = %f\n\n", p_value < ALPHA ? "FAILURE" : "SUCCESS", p_value);
+-	fprintf(results[TEST_FFT], "%f\n", p_value);
++	fprintf(stats[TEST_FFT], "%s\t\tp_value = %.17g\n\n", p_value < ALPHA ? "FAILURE" : "SUCCESS", p_value);
++	fprintf(results[TEST_FFT], "%.17g\n", p_value);
+ 
+ 	free(X);
+ 	free(wsave);
+--- a/src/frequency.c
++++ b/src/frequency.c
+@@ -25,9 +25,9 @@
+ 	fprintf(stats[TEST_FREQUENCY], "\t\tCOMPUTATIONAL INFORMATION:\n");
+ 	fprintf(stats[TEST_FREQUENCY], "\t\t---------------------------------------------\n");
+ 	fprintf(stats[TEST_FREQUENCY], "\t\t(a) The nth partial sum = %d\n", (int)sum);
+-	fprintf(stats[TEST_FREQUENCY], "\t\t(b) S_n/n               = %f\n", sum/n);
++	fprintf(stats[TEST_FREQUENCY], "\t\t(b) S_n/n               = %.17g\n", sum/n);
+ 	fprintf(stats[TEST_FREQUENCY], "\t\t---------------------------------------------\n");
+ 
+-	fprintf(stats[TEST_FREQUENCY], "%s\t\tp_value = %f\n\n", p_value < ALPHA ? "FAILURE" : "SUCCESS", p_value); fflush(stats[TEST_FREQUENCY]);
+-	fprintf(results[TEST_FREQUENCY], "%f\n", p_value); fflush(results[TEST_FREQUENCY]);
++	fprintf(stats[TEST_FREQUENCY], "%s\t\tp_value = %.17g\n\n", p_value < ALPHA ? "FAILURE" : "SUCCESS", p_value); fflush(stats[TEST_FREQUENCY]);
++	fprintf(results[TEST_FREQUENCY], "%.17g\n", p_value); fflush(results[TEST_FREQUENCY]);
+ }
+--- a/src/linearComplexity.c
++++ b/src/linearComplexity.c
+@@ -117,8 +117,8 @@
+ 		chi2 += pow(nu[i]-N*pi[i], 2) / (N*pi[i]);
+ 	p_value = cephes_igamc(K/2.0, chi2/2.0);
+ 
+-	fprintf(stats[TEST_LINEARCOMPLEXITY], "%9.6f%9.6f\n", chi2, p_value); fflush(stats[TEST_LINEARCOMPLEXITY]);
+-	fprintf(results[TEST_LINEARCOMPLEXITY], "%f\n", p_value); fflush(results[TEST_LINEARCOMPLEXITY]);
++	fprintf(stats[TEST_LINEARCOMPLEXITY], "%.17g %.17g\n", chi2, p_value); fflush(stats[TEST_LINEARCOMPLEXITY]);
++	fprintf(results[TEST_LINEARCOMPLEXITY], "%.17g\n", p_value); fflush(results[TEST_LINEARCOMPLEXITY]);
+ 
+ 	free(B_);
+ 	free(P);
+--- a/src/longestRunOfOnes.c
++++ b/src/longestRunOfOnes.c
+@@ -91,7 +91,7 @@
+ 	fprintf(stats[TEST_LONGEST_RUN], "\t\t---------------------------------------------\n");
+ 	fprintf(stats[TEST_LONGEST_RUN], "\t\t(a) N (# of substrings)  = %d\n", N);
+ 	fprintf(stats[TEST_LONGEST_RUN], "\t\t(b) M (Substring Length) = %d\n", M);
+-	fprintf(stats[TEST_LONGEST_RUN], "\t\t(c) Chi^2                = %f\n", chi2);
++	fprintf(stats[TEST_LONGEST_RUN], "\t\t(c) Chi^2                = %.17g\n", chi2);
+ 	fprintf(stats[TEST_LONGEST_RUN], "\t\t---------------------------------------------\n");
+ 	fprintf(stats[TEST_LONGEST_RUN], "\t\t      F R E Q U E N C Y\n");
+ 	fprintf(stats[TEST_LONGEST_RUN], "\t\t---------------------------------------------\n");
+@@ -113,6 +113,6 @@
+ 	if ( isNegative(pval) || isGreaterThanOne(pval) )
+ 		fprintf(stats[TEST_LONGEST_RUN], "WARNING:  P_VALUE IS OUT OF RANGE.\n");
+ 
+-	fprintf(stats[TEST_LONGEST_RUN], "%s\t\tp_value = %f\n\n", pval < ALPHA ? "FAILURE" : "SUCCESS", pval); fflush(stats[TEST_LONGEST_RUN]);
+-	fprintf(results[TEST_LONGEST_RUN], "%f\n", pval); fflush(results[TEST_LONGEST_RUN]);
++	fprintf(stats[TEST_LONGEST_RUN], "%s\t\tp_value = %.17g\n\n", pval < ALPHA ? "FAILURE" : "SUCCESS", pval); fflush(stats[TEST_LONGEST_RUN]);
++	fprintf(results[TEST_LONGEST_RUN], "%.17g\n", pval); fflush(results[TEST_LONGEST_RUN]);
+ }
+--- a/src/nonOverlappingTemplateMatchings.c
++++ b/src/nonOverlappingTemplateMatchings.c
+@@ -44,7 +44,7 @@
+ 		 ((fp = fopen(directory, "r")) == NULL) ||
+ 		 ((sequence = (BitSequence *) calloc(m, sizeof(BitSequence))) == NULL) ) {
+ 		fprintf(stats[TEST_NONPERIODIC], "\tNONOVERLAPPING TEMPLATES TESTS ABORTED DUE TO ONE OF THE FOLLOWING : \n");
+-		fprintf(stats[TEST_NONPERIODIC], "\tLambda (%f) not being positive!\n", lambda);
++		fprintf(stats[TEST_NONPERIODIC], "\tLambda (%.17g) not being positive!\n", lambda);
+ 		fprintf(stats[TEST_NONPERIODIC], "\tTemplate file <%s> not existing\n", directory);
+ 		fprintf(stats[TEST_NONPERIODIC], "\tInsufficient memory for required work space.\n");
+ 		if ( sequence != NULL )
+@@ -55,7 +55,7 @@
+ 		fprintf(stats[TEST_NONPERIODIC], "-------------------------------------------------------------------------------------\n");
+ 		fprintf(stats[TEST_NONPERIODIC], "\t\t  COMPUTATIONAL INFORMATION\n");
+ 		fprintf(stats[TEST_NONPERIODIC], "-------------------------------------------------------------------------------------\n");
+-		fprintf(stats[TEST_NONPERIODIC], "\tLAMBDA = %f\tM = %d\tN = %d\tm = %d\tn = %d\n", lambda, M, N, m, n);
++		fprintf(stats[TEST_NONPERIODIC], "\tLAMBDA = %.17g\tM = %d\tN = %d\tm = %d\tn = %d\n", lambda, M, N, m, n);
+ 		fprintf(stats[TEST_NONPERIODIC], "-------------------------------------------------------------------------------------\n");
+ 		fprintf(stats[TEST_NONPERIODIC], "\t\tF R E Q U E N C Y\n");
+ 		fprintf(stats[TEST_NONPERIODIC], "Template   W_1  W_2  W_3  W_4  W_5  W_6  W_7  W_8    Chi^2   P_value Assignment Index\n");
+@@ -121,10 +121,10 @@
+ 			if ( isNegative(p_value) || isGreaterThanOne(p_value) )
+ 				fprintf(stats[TEST_NONPERIODIC], "\t\tWARNING:  P_VALUE IS OUT OF RANGE.\n");
+ 
+-			fprintf(stats[TEST_NONPERIODIC], "%9.6f %f %s %3d\n", chi2, p_value, p_value < ALPHA ? "FAILURE" : "SUCCESS", jj);
++			fprintf(stats[TEST_NONPERIODIC], "%.17g %.17g %s %3d\n", chi2, p_value, p_value < ALPHA ? "FAILURE" : "SUCCESS", jj);
+ 			if ( SKIP > 1 )
+ 				fseek(fp, (long)(SKIP-1)*2*m, SEEK_CUR);
+-			fprintf(results[TEST_NONPERIODIC], "%f\n", p_value); fflush(results[TEST_NONPERIODIC]);
++			fprintf(results[TEST_NONPERIODIC], "%.17g\n", p_value); fflush(results[TEST_NONPERIODIC]);
+ 		}
+ 	}
+ 	
+--- a/src/overlappingTemplateMatchings.c
++++ b/src/overlappingTemplateMatchings.c
+@@ -75,21 +75,21 @@
+ 	fprintf(stats[TEST_OVERLAPPING], "\t\t(b) m (block length of 1s)   = %d\n", m);
+ 	fprintf(stats[TEST_OVERLAPPING], "\t\t(c) M (length of substring)  = %d\n", M);
+ 	fprintf(stats[TEST_OVERLAPPING], "\t\t(d) N (number of substrings) = %d\n", N);
+-	fprintf(stats[TEST_OVERLAPPING], "\t\t(e) lambda [(M-m+1)/2^m]     = %f\n", lambda);
+-	fprintf(stats[TEST_OVERLAPPING], "\t\t(f) eta                      = %f\n", eta);
++	fprintf(stats[TEST_OVERLAPPING], "\t\t(e) lambda [(M-m+1)/2^m]     = %.17g\n", lambda);
++	fprintf(stats[TEST_OVERLAPPING], "\t\t(f) eta                      = %.17g\n", eta);
+ 	fprintf(stats[TEST_OVERLAPPING], "\t\t-----------------------------------------------\n");
+ 	fprintf(stats[TEST_OVERLAPPING], "\t\t   F R E Q U E N C Y\n");
+ 	fprintf(stats[TEST_OVERLAPPING], "\t\t  0   1   2   3   4 >=5   Chi^2   P-value  Assignment\n");
+ 	fprintf(stats[TEST_OVERLAPPING], "\t\t-----------------------------------------------\n");
+-	fprintf(stats[TEST_OVERLAPPING], "\t\t%3d %3d %3d %3d %3d %3d  %f ",
++	fprintf(stats[TEST_OVERLAPPING], "\t\t%3d %3d %3d %3d %3d %3d  %.17g ",
+ 		nu[0], nu[1], nu[2], nu[3], nu[4], nu[5], chi2);
+ 
+ 	if ( isNegative(p_value) || isGreaterThanOne(p_value) )
+ 		fprintf(stats[TEST_OVERLAPPING], "WARNING:  P_VALUE IS OUT OF RANGE.\n");
+ 
+ 	free(sequence);
+-	fprintf(stats[TEST_OVERLAPPING], "%f %s\n\n", p_value, p_value < ALPHA ? "FAILURE" : "SUCCESS"); fflush(stats[TEST_OVERLAPPING]);
+-	fprintf(results[TEST_OVERLAPPING], "%f\n", p_value); fflush(results[TEST_OVERLAPPING]);
++	fprintf(stats[TEST_OVERLAPPING], "%.17g %s\n\n", p_value, p_value < ALPHA ? "FAILURE" : "SUCCESS"); fflush(stats[TEST_OVERLAPPING]);
++	fprintf(results[TEST_OVERLAPPING], "%.17g\n", p_value); fflush(results[TEST_OVERLAPPING]);
+ }
+ 
+ double
+--- a/src/randomExcursions.c
++++ b/src/randomExcursions.c
+@@ -66,10 +66,10 @@
+ 		fprintf(stats[TEST_RND_EXCURSION], "\t\t\t  INSUFFICIENT NUMBER OF CYCLES.\n");
+ 		fprintf(stats[TEST_RND_EXCURSION], "\t\t---------------------------------------------\n");
+ 		for(i = 0; i < 8; i++)
+-			fprintf(results[TEST_RND_EXCURSION], "%f\n", 0.0);
++			fprintf(results[TEST_RND_EXCURSION], "%.17g\n", 0.0);
+ 	}
+ 	else {
+-		fprintf(stats[TEST_RND_EXCURSION], "\t\t(c) Rejection Constraint = %f\n", constraint);
++		fprintf(stats[TEST_RND_EXCURSION], "\t\t(c) Rejection Constraint = %.17g\n", constraint);
+ 		fprintf(stats[TEST_RND_EXCURSION], "\t\t-------------------------------------------\n");
+ 
+ 		cycleStart = 0;
+@@ -111,9 +111,9 @@
+ 			if ( isNegative(p_value) || isGreaterThanOne(p_value) )
+ 				fprintf(stats[TEST_RND_EXCURSION], "WARNING:  P_VALUE IS OUT OF RANGE.\n");
+ 
+-			fprintf(stats[TEST_RND_EXCURSION], "%s\t\tx = %2d chi^2 = %9.6f p_value = %f\n",
++			fprintf(stats[TEST_RND_EXCURSION], "%s\t\tx = %2d chi^2 = %.17g p_value = %.17g\n",
+ 					p_value < ALPHA ? "FAILURE" : "SUCCESS", x, sum, p_value);
+-			fprintf(results[TEST_RND_EXCURSION], "%f\n", p_value); fflush(results[TEST_RND_EXCURSION]);
++			fprintf(results[TEST_RND_EXCURSION], "%.17g\n", p_value); fflush(results[TEST_RND_EXCURSION]);
+ 		}
+ 	} 
+ 	fprintf(stats[TEST_RND_EXCURSION], "\n"); fflush(stats[TEST_RND_EXCURSION]);
+--- a/src/randomExcursionsVariant.c
++++ b/src/randomExcursionsVariant.c
+@@ -44,7 +44,7 @@
+ 		fprintf(stats[TEST_RND_EXCURSION_VAR], "\t\t\t  INSUFFICIENT NUMBER OF CYCLES.\n");
+ 		fprintf(stats[TEST_RND_EXCURSION_VAR], "\t\t---------------------------------------------\n");
+ 		for ( i=0; i<18; i++ )
+-			fprintf(results[TEST_RND_EXCURSION_VAR], "%f\n", 0.0);
++			fprintf(results[TEST_RND_EXCURSION_VAR], "%.17g\n", 0.0);
+ 	}
+ 	else {
+ 		for ( p=0; p<=17; p++ ) {
+@@ -58,8 +58,8 @@
+ 			if ( isNegative(p_value) || isGreaterThanOne(p_value) )
+ 				fprintf(stats[TEST_RND_EXCURSION_VAR], "\t\t(b) WARNING: P_VALUE IS OUT OF RANGE.\n");
+ 			fprintf(stats[TEST_RND_EXCURSION_VAR], "%s\t\t", p_value < ALPHA ? "FAILURE" : "SUCCESS");
+-			fprintf(stats[TEST_RND_EXCURSION_VAR], "(x = %2d) Total visits = %4d; p-value = %f\n", x, count, p_value);
+-			fprintf(results[TEST_RND_EXCURSION_VAR], "%f\n", p_value); fflush(results[TEST_RND_EXCURSION_VAR]);
++			fprintf(stats[TEST_RND_EXCURSION_VAR], "(x = %2d) Total visits = %4d; p-value = %.17g\n", x, count, p_value);
++			fprintf(results[TEST_RND_EXCURSION_VAR], "%.17g\n", p_value); fflush(results[TEST_RND_EXCURSION_VAR]);
+ 		}
+ 	}
+ 	fprintf(stats[TEST_RND_EXCURSION_VAR], "\n"); fflush(stats[TEST_RND_EXCURSION_VAR]);
+--- a/src/rank.c
++++ b/src/rank.c
+@@ -63,14 +63,14 @@
+ 		fprintf(stats[TEST_RANK], "\t\t---------------------------------------------\n");
+ 		fprintf(stats[TEST_RANK], "\t\tCOMPUTATIONAL INFORMATION:\n");
+ 		fprintf(stats[TEST_RANK], "\t\t---------------------------------------------\n");
+-		fprintf(stats[TEST_RANK], "\t\t(a) Probability P_%d = %f\n", 32,p_32);
+-		fprintf(stats[TEST_RANK], "\t\t(b)             P_%d = %f\n", 31,p_31);
+-		fprintf(stats[TEST_RANK], "\t\t(c)             P_%d = %f\n", 30,p_30);
++		fprintf(stats[TEST_RANK], "\t\t(a) Probability P_%d = %.17g\n", 32,p_32);
++		fprintf(stats[TEST_RANK], "\t\t(b)             P_%d = %.17g\n", 31,p_31);
++		fprintf(stats[TEST_RANK], "\t\t(c)             P_%d = %.17g\n", 30,p_30);
+ 		fprintf(stats[TEST_RANK], "\t\t(d) Frequency   F_%d = %d\n", 32,(int)F_32);
+ 		fprintf(stats[TEST_RANK], "\t\t(e)             F_%d = %d\n", 31,(int)F_31);
+ 		fprintf(stats[TEST_RANK], "\t\t(f)             F_%d = %d\n", 30,(int)F_30);
+ 		fprintf(stats[TEST_RANK], "\t\t(g) # of matrices    = %d\n", N);
+-		fprintf(stats[TEST_RANK], "\t\t(h) Chi^2            = %f\n", chi_squared);
++		fprintf(stats[TEST_RANK], "\t\t(h) Chi^2            = %.17g\n", chi_squared);
+ 		fprintf(stats[TEST_RANK], "\t\t(i) NOTE: %d BITS WERE DISCARDED.\n", n%(32*32));
+ 		fprintf(stats[TEST_RANK], "\t\t---------------------------------------------\n");
+ 
+@@ -82,6 +82,6 @@
+ 			free(matrix[i]);
+ 		free(matrix);
+ 	}
+-	fprintf(stats[TEST_RANK], "%s\t\tp_value = %f\n\n", p_value < ALPHA ? "FAILURE" : "SUCCESS", p_value); fflush(stats[TEST_RANK]);
+-	fprintf(results[TEST_RANK], "%f\n", p_value); fflush(results[TEST_RANK]);
++	fprintf(stats[TEST_RANK], "%s\t\tp_value = %.17g\n\n", p_value < ALPHA ? "FAILURE" : "SUCCESS", p_value); fflush(stats[TEST_RANK]);
++	fprintf(results[TEST_RANK], "%.17g\n", p_value); fflush(results[TEST_RANK]);
+ }
+--- a/src/runs.c
++++ b/src/runs.c
+@@ -24,7 +24,7 @@
+ 	if ( fabs(pi - 0.5) > (2.0 / sqrt(n)) ) {
+ 		fprintf(stats[TEST_RUNS], "\t\t\t\tRUNS TEST\n");
+ 		fprintf(stats[TEST_RUNS], "\t\t------------------------------------------\n");
+-		fprintf(stats[TEST_RUNS], "\t\tPI ESTIMATOR CRITERIA NOT MET! PI = %f\n", pi);
++		fprintf(stats[TEST_RUNS], "\t\tPI ESTIMATOR CRITERIA NOT MET! PI = %.17g\n", pi);
+ 		p_value = 0.0;
+ 	}
+ 	else {
+@@ -41,17 +41,17 @@
+ 		fprintf(stats[TEST_RUNS], "\t\t------------------------------------------\n");
+ 		fprintf(stats[TEST_RUNS], "\t\tCOMPUTATIONAL INFORMATION:\n");
+ 		fprintf(stats[TEST_RUNS], "\t\t------------------------------------------\n");
+-		fprintf(stats[TEST_RUNS], "\t\t(a) Pi                        = %f\n", pi);
++		fprintf(stats[TEST_RUNS], "\t\t(a) Pi                        = %.17g\n", pi);
+ 		fprintf(stats[TEST_RUNS], "\t\t(b) V_n_obs (Total # of runs) = %d\n", (int)V);
+ 		fprintf(stats[TEST_RUNS], "\t\t(c) V_n_obs - 2 n pi (1-pi)\n");
+-		fprintf(stats[TEST_RUNS], "\t\t    -----------------------   = %f\n", erfc_arg);
++		fprintf(stats[TEST_RUNS], "\t\t    -----------------------   = %.17g\n", erfc_arg);
+ 		fprintf(stats[TEST_RUNS], "\t\t      2 sqrt(2n) pi (1-pi)\n");
+ 		fprintf(stats[TEST_RUNS], "\t\t------------------------------------------\n");
+ 		if ( isNegative(p_value) || isGreaterThanOne(p_value) )
+ 			fprintf(stats[TEST_RUNS], "WARNING:  P_VALUE IS OUT OF RANGE.\n");
+ 
+-		fprintf(stats[TEST_RUNS], "%s\t\tp_value = %f\n\n", p_value < ALPHA ? "FAILURE" : "SUCCESS", p_value); fflush(stats[TEST_RUNS]);
++		fprintf(stats[TEST_RUNS], "%s\t\tp_value = %.17g\n\n", p_value < ALPHA ? "FAILURE" : "SUCCESS", p_value); fflush(stats[TEST_RUNS]);
+ 	}
+ 
+-	fprintf(results[TEST_RUNS], "%f\n", p_value); fflush(results[TEST_RUNS]);
++	fprintf(results[TEST_RUNS], "%.17g\n", p_value); fflush(results[TEST_RUNS]);
+ }
+--- a/src/serial.c
++++ b/src/serial.c
+@@ -26,18 +26,18 @@
+ 	fprintf(stats[TEST_SERIAL], "\t\t---------------------------------------------\n");
+ 	fprintf(stats[TEST_SERIAL], "\t\t(a) Block length    (m) = %d\n", m);
+ 	fprintf(stats[TEST_SERIAL], "\t\t(b) Sequence length (n) = %d\n", n);
+-	fprintf(stats[TEST_SERIAL], "\t\t(c) Psi_m               = %f\n", psim0);
+-	fprintf(stats[TEST_SERIAL], "\t\t(d) Psi_m-1             = %f\n", psim1);
+-	fprintf(stats[TEST_SERIAL], "\t\t(e) Psi_m-2             = %f\n", psim2);
+-	fprintf(stats[TEST_SERIAL], "\t\t(f) Del_1               = %f\n", del1);
+-	fprintf(stats[TEST_SERIAL], "\t\t(g) Del_2               = %f\n", del2);
++	fprintf(stats[TEST_SERIAL], "\t\t(c) Psi_m               = %.17g\n", psim0);
++	fprintf(stats[TEST_SERIAL], "\t\t(d) Psi_m-1             = %.17g\n", psim1);
++	fprintf(stats[TEST_SERIAL], "\t\t(e) Psi_m-2             = %.17g\n", psim2);
++	fprintf(stats[TEST_SERIAL], "\t\t(f) Del_1               = %.17g\n", del1);
++	fprintf(stats[TEST_SERIAL], "\t\t(g) Del_2               = %.17g\n", del2);
+ 	fprintf(stats[TEST_SERIAL], "\t\t---------------------------------------------\n");
+ 
+-	fprintf(stats[TEST_SERIAL], "%s\t\tp_value1 = %f\n", p_value1 < ALPHA ? "FAILURE" : "SUCCESS", p_value1);
+-	fprintf(results[TEST_SERIAL], "%f\n", p_value1);
++	fprintf(stats[TEST_SERIAL], "%s\t\tp_value1 = %.17g\n", p_value1 < ALPHA ? "FAILURE" : "SUCCESS", p_value1);
++	fprintf(results[TEST_SERIAL], "%.17g\n", p_value1);
+ 
+-	fprintf(stats[TEST_SERIAL], "%s\t\tp_value2 = %f\n\n", p_value2 < ALPHA ? "FAILURE" : "SUCCESS", p_value2); fflush(stats[TEST_SERIAL]);
+-	fprintf(results[TEST_SERIAL], "%f\n", p_value2); fflush(results[TEST_SERIAL]);
++	fprintf(stats[TEST_SERIAL], "%s\t\tp_value2 = %.17g\n\n", p_value2 < ALPHA ? "FAILURE" : "SUCCESS", p_value2); fflush(stats[TEST_SERIAL]);
++	fprintf(results[TEST_SERIAL], "%.17g\n", p_value2); fflush(results[TEST_SERIAL]);
+ }
+ 
+ double
+--- a/src/universal.c
++++ b/src/universal.c
+@@ -48,7 +48,7 @@
+ 		fprintf(stats[TEST_UNIVERSAL], "\t\tUNIVERSAL STATISTICAL TEST\n");
+ 		fprintf(stats[TEST_UNIVERSAL], "\t\t---------------------------------------------\n");
+ 		fprintf(stats[TEST_UNIVERSAL], "\t\tERROR:  L IS OUT OF RANGE.\n");
+-		fprintf(stats[TEST_UNIVERSAL], "\t\t-OR- :  Q IS LESS THAN %f.\n", 10*pow(2, L));
++		fprintf(stats[TEST_UNIVERSAL], "\t\t-OR- :  Q IS LESS THAN %.17g.\n", 10*pow(2, L));
+ 		fprintf(stats[TEST_UNIVERSAL], "\t\t-OR- :  Unable to allocate T.\n");
+ 		return;
+ 	}
+@@ -82,11 +82,11 @@
+ 	fprintf(stats[TEST_UNIVERSAL], "\t\t(a) L         = %d\n", L);
+ 	fprintf(stats[TEST_UNIVERSAL], "\t\t(b) Q         = %d\n", Q);
+ 	fprintf(stats[TEST_UNIVERSAL], "\t\t(c) K         = %d\n", K);
+-	fprintf(stats[TEST_UNIVERSAL], "\t\t(d) sum       = %f\n", sum);
+-	fprintf(stats[TEST_UNIVERSAL], "\t\t(e) sigma     = %f\n", sigma);
+-	fprintf(stats[TEST_UNIVERSAL], "\t\t(f) variance  = %f\n", variance[L]);
+-	fprintf(stats[TEST_UNIVERSAL], "\t\t(g) exp_value = %f\n", expected_value[L]);
+-	fprintf(stats[TEST_UNIVERSAL], "\t\t(h) phi       = %f\n", phi);
++	fprintf(stats[TEST_UNIVERSAL], "\t\t(d) sum       = %.17g\n", sum);
++	fprintf(stats[TEST_UNIVERSAL], "\t\t(e) sigma     = %.17g\n", sigma);
++	fprintf(stats[TEST_UNIVERSAL], "\t\t(f) variance  = %.17g\n", variance[L]);
++	fprintf(stats[TEST_UNIVERSAL], "\t\t(g) exp_value = %.17g\n", expected_value[L]);
++	fprintf(stats[TEST_UNIVERSAL], "\t\t(h) phi       = %.17g\n", phi);
+ 	fprintf(stats[TEST_UNIVERSAL], "\t\t(i) WARNING:  %d bits were discarded.\n", n-(Q+K)*L);
+ 	fprintf(stats[TEST_UNIVERSAL], "\t\t-----------------------------------------\n");
+ 
+@@ -95,8 +95,8 @@
+ 	if ( isNegative(p_value) || isGreaterThanOne(p_value) )
+ 		fprintf(stats[TEST_UNIVERSAL], "\t\tWARNING:  P_VALUE IS OUT OF RANGE\n");
+ 
+-	fprintf(stats[TEST_UNIVERSAL], "%s\t\tp_value = %f\n\n", p_value < ALPHA ? "FAILURE" : "SUCCESS", p_value); fflush(stats[TEST_UNIVERSAL]);
+-	fprintf(results[TEST_UNIVERSAL], "%f\n", p_value); fflush(results[TEST_UNIVERSAL]);
++	fprintf(stats[TEST_UNIVERSAL], "%s\t\tp_value = %.17g\n\n", p_value < ALPHA ? "FAILURE" : "SUCCESS", p_value); fflush(stats[TEST_UNIVERSAL]);
++	fprintf(results[TEST_UNIVERSAL], "%.17g\n", p_value); fflush(results[TEST_UNIVERSAL]);
+ 	
+ 	free(T);
+ }

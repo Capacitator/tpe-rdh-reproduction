@@ -4,7 +4,7 @@
 		-------------------------------------------
 		(a) The maximum partial sum = 99210
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (REVERSE) TEST
 		-------------------------------------------
@@ -12,7 +12,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 99210
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (FORWARD) TEST
 		-------------------------------------------
@@ -20,7 +20,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 62955
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (REVERSE) TEST
 		-------------------------------------------
@@ -28,7 +28,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 62956
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (FORWARD) TEST
 		-------------------------------------------
@@ -36,7 +36,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 207563
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (REVERSE) TEST
 		-------------------------------------------
@@ -44,7 +44,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 207554
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (FORWARD) TEST
 		-------------------------------------------
@@ -52,7 +52,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 135060
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (REVERSE) TEST
 		-------------------------------------------
@@ -60,7 +60,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 135057
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (FORWARD) TEST
 		-------------------------------------------
@@ -68,7 +68,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 13035
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (REVERSE) TEST
 		-------------------------------------------
@@ -76,7 +76,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 12733
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (FORWARD) TEST
 		-------------------------------------------
@@ -84,7 +84,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 51364
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (REVERSE) TEST
 		-------------------------------------------
@@ -92,7 +92,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 51363
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (FORWARD) TEST
 		-------------------------------------------
@@ -100,7 +100,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 97272
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (REVERSE) TEST
 		-------------------------------------------
@@ -108,7 +108,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 97272
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (FORWARD) TEST
 		-------------------------------------------
@@ -116,7 +116,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 60886
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (REVERSE) TEST
 		-------------------------------------------
@@ -124,7 +124,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 60890
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (FORWARD) TEST
 		-------------------------------------------
@@ -132,7 +132,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 208006
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (REVERSE) TEST
 		-------------------------------------------
@@ -140,7 +140,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 208006
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (FORWARD) TEST
 		-------------------------------------------
@@ -148,7 +148,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 135656
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (REVERSE) TEST
 		-------------------------------------------
@@ -156,7 +156,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 135650
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (FORWARD) TEST
 		-------------------------------------------
@@ -164,7 +164,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 14025
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (REVERSE) TEST
 		-------------------------------------------
@@ -172,7 +172,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 13590
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (FORWARD) TEST
 		-------------------------------------------
@@ -180,7 +180,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 50855
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (REVERSE) TEST
 		-------------------------------------------
@@ -188,7 +188,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 50855
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (FORWARD) TEST
 		-------------------------------------------
@@ -196,7 +196,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 95474
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (REVERSE) TEST
 		-------------------------------------------
@@ -204,7 +204,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 95470
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (FORWARD) TEST
 		-------------------------------------------
@@ -212,7 +212,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 61962
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (REVERSE) TEST
 		-------------------------------------------
@@ -220,7 +220,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 61967
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (FORWARD) TEST
 		-------------------------------------------
@@ -228,7 +228,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 205077
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (REVERSE) TEST
 		-------------------------------------------
@@ -236,7 +236,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 205068
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (FORWARD) TEST
 		-------------------------------------------
@@ -244,7 +244,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 132746
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (REVERSE) TEST
 		-------------------------------------------
@@ -252,7 +252,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 132747
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (FORWARD) TEST
 		-------------------------------------------
@@ -260,7 +260,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 15233
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (REVERSE) TEST
 		-------------------------------------------
@@ -268,7 +268,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 14472
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (FORWARD) TEST
 		-------------------------------------------
@@ -276,7 +276,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 48659
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (REVERSE) TEST
 		-------------------------------------------
@@ -284,7 +284,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 48659
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (FORWARD) TEST
 		-------------------------------------------
@@ -292,7 +292,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 98060
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (REVERSE) TEST
 		-------------------------------------------
@@ -300,7 +300,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 98059
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (FORWARD) TEST
 		-------------------------------------------
@@ -308,7 +308,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 61396
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (REVERSE) TEST
 		-------------------------------------------
@@ -316,7 +316,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 61399
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (FORWARD) TEST
 		-------------------------------------------
@@ -324,7 +324,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 205405
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (REVERSE) TEST
 		-------------------------------------------
@@ -332,7 +332,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 205396
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (FORWARD) TEST
 		-------------------------------------------
@@ -340,7 +340,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 133386
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (REVERSE) TEST
 		-------------------------------------------
@@ -348,7 +348,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 133378
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (FORWARD) TEST
 		-------------------------------------------
@@ -356,7 +356,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 15587
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (REVERSE) TEST
 		-------------------------------------------
@@ -364,7 +364,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 14695
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (FORWARD) TEST
 		-------------------------------------------
@@ -372,7 +372,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 48492
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (REVERSE) TEST
 		-------------------------------------------
@@ -380,7 +380,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 48484
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (FORWARD) TEST
 		-------------------------------------------
@@ -388,7 +388,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 97278
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (REVERSE) TEST
 		-------------------------------------------
@@ -396,7 +396,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 97297
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (FORWARD) TEST
 		-------------------------------------------
@@ -404,7 +404,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 61970
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (REVERSE) TEST
 		-------------------------------------------
@@ -412,7 +412,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 61968
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (FORWARD) TEST
 		-------------------------------------------
@@ -420,7 +420,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 204716
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (REVERSE) TEST
 		-------------------------------------------
@@ -428,7 +428,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 204709
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (FORWARD) TEST
 		-------------------------------------------
@@ -436,7 +436,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 134124
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (REVERSE) TEST
 		-------------------------------------------
@@ -444,7 +444,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 134124
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (FORWARD) TEST
 		-------------------------------------------
@@ -452,7 +452,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 12967
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (REVERSE) TEST
 		-------------------------------------------
@@ -460,7 +460,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 12697
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (FORWARD) TEST
 		-------------------------------------------
@@ -468,7 +468,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 50627
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (REVERSE) TEST
 		-------------------------------------------
@@ -476,7 +476,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 50621
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (FORWARD) TEST
 		-------------------------------------------
@@ -484,7 +484,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 97520
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (REVERSE) TEST
 		-------------------------------------------
@@ -492,7 +492,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 97521
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (FORWARD) TEST
 		-------------------------------------------
@@ -500,7 +500,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 61360
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (REVERSE) TEST
 		-------------------------------------------
@@ -508,7 +508,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 61356
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (FORWARD) TEST
 		-------------------------------------------
@@ -516,7 +516,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 205444
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (REVERSE) TEST
 		-------------------------------------------
@@ -524,7 +524,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 205430
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (FORWARD) TEST
 		-------------------------------------------
@@ -532,7 +532,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 135446
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (REVERSE) TEST
 		-------------------------------------------
@@ -540,7 +540,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 135446
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (FORWARD) TEST
 		-------------------------------------------
@@ -548,7 +548,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 16437
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (REVERSE) TEST
 		-------------------------------------------
@@ -556,7 +556,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 15993
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (FORWARD) TEST
 		-------------------------------------------
@@ -564,7 +564,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 47890
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (REVERSE) TEST
 		-------------------------------------------
@@ -572,7 +572,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 47887
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (FORWARD) TEST
 		-------------------------------------------
@@ -580,7 +580,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 97633
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (REVERSE) TEST
 		-------------------------------------------
@@ -588,7 +588,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 97633
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (FORWARD) TEST
 		-------------------------------------------
@@ -596,7 +596,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 60004
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (REVERSE) TEST
 		-------------------------------------------
@@ -604,7 +604,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 60010
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (FORWARD) TEST
 		-------------------------------------------
@@ -612,7 +612,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 207671
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (REVERSE) TEST
 		-------------------------------------------
@@ -620,7 +620,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 207632
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (FORWARD) TEST
 		-------------------------------------------
@@ -628,7 +628,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 134604
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (REVERSE) TEST
 		-------------------------------------------
@@ -636,7 +636,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 134604
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (FORWARD) TEST
 		-------------------------------------------
@@ -644,7 +644,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 15174
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (REVERSE) TEST
 		-------------------------------------------
@@ -652,7 +652,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 14763
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (FORWARD) TEST
 		-------------------------------------------
@@ -660,7 +660,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 48661
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (REVERSE) TEST
 		-------------------------------------------
@@ -668,7 +668,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 48662
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (FORWARD) TEST
 		-------------------------------------------
@@ -676,7 +676,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 94146
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (REVERSE) TEST
 		-------------------------------------------
@@ -684,7 +684,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 94134
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (FORWARD) TEST
 		-------------------------------------------
@@ -692,7 +692,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 62489
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (REVERSE) TEST
 		-------------------------------------------
@@ -700,7 +700,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 62489
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (FORWARD) TEST
 		-------------------------------------------
@@ -708,7 +708,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 203493
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (REVERSE) TEST
 		-------------------------------------------
@@ -716,7 +716,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 203490
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (FORWARD) TEST
 		-------------------------------------------
@@ -724,7 +724,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 133722
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (REVERSE) TEST
 		-------------------------------------------
@@ -732,7 +732,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 133718
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (FORWARD) TEST
 		-------------------------------------------
@@ -740,7 +740,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 15509
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (REVERSE) TEST
 		-------------------------------------------
@@ -748,7 +748,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 14729
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (FORWARD) TEST
 		-------------------------------------------
@@ -756,7 +756,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 51915
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (REVERSE) TEST
 		-------------------------------------------
@@ -764,7 +764,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 51915
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (FORWARD) TEST
 		-------------------------------------------
@@ -772,7 +772,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 98483
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (REVERSE) TEST
 		-------------------------------------------
@@ -780,7 +780,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 98486
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (FORWARD) TEST
 		-------------------------------------------
@@ -788,7 +788,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 61978
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (REVERSE) TEST
 		-------------------------------------------
@@ -796,7 +796,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 61978
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (FORWARD) TEST
 		-------------------------------------------
@@ -804,7 +804,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 206469
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (REVERSE) TEST
 		-------------------------------------------
@@ -812,7 +812,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 206464
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (FORWARD) TEST
 		-------------------------------------------
@@ -820,7 +820,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 135579
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (REVERSE) TEST
 		-------------------------------------------
@@ -828,7 +828,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 135580
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (FORWARD) TEST
 		-------------------------------------------
@@ -836,7 +836,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 16653
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (REVERSE) TEST
 		-------------------------------------------
@@ -844,7 +844,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 16298
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (FORWARD) TEST
 		-------------------------------------------
@@ -852,7 +852,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 51419
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (REVERSE) TEST
 		-------------------------------------------
@@ -860,7 +860,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 51421
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (FORWARD) TEST
 		-------------------------------------------
@@ -868,7 +868,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 98298
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (REVERSE) TEST
 		-------------------------------------------
@@ -876,7 +876,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 98299
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (FORWARD) TEST
 		-------------------------------------------
@@ -884,7 +884,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 60484
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (REVERSE) TEST
 		-------------------------------------------
@@ -892,7 +892,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 60492
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (FORWARD) TEST
 		-------------------------------------------
@@ -900,7 +900,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 206987
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (REVERSE) TEST
 		-------------------------------------------
@@ -908,7 +908,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 206986
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (FORWARD) TEST
 		-------------------------------------------
@@ -916,7 +916,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 133217
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (REVERSE) TEST
 		-------------------------------------------
@@ -924,7 +924,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 133212
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (FORWARD) TEST
 		-------------------------------------------
@@ -932,7 +932,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 12321
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (REVERSE) TEST
 		-------------------------------------------
@@ -940,7 +940,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 12046
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (FORWARD) TEST
 		-------------------------------------------
@@ -948,7 +948,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 49040
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (REVERSE) TEST
 		-------------------------------------------
@@ -956,7 +956,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 49042
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (FORWARD) TEST
 		-------------------------------------------
@@ -964,7 +964,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 97091
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (REVERSE) TEST
 		-------------------------------------------
@@ -972,7 +972,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 97098
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (FORWARD) TEST
 		-------------------------------------------
@@ -980,7 +980,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 61881
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (REVERSE) TEST
 		-------------------------------------------
@@ -988,7 +988,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 61880
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (FORWARD) TEST
 		-------------------------------------------
@@ -996,7 +996,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 206354
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (REVERSE) TEST
 		-------------------------------------------
@@ -1004,7 +1004,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 206348
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (FORWARD) TEST
 		-------------------------------------------
@@ -1012,7 +1012,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 133862
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (REVERSE) TEST
 		-------------------------------------------
@@ -1020,7 +1020,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 133854
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (FORWARD) TEST
 		-------------------------------------------
@@ -1028,7 +1028,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 15173
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (REVERSE) TEST
 		-------------------------------------------
@@ -1036,7 +1036,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 14826
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (FORWARD) TEST
 		-------------------------------------------
@@ -1044,7 +1044,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 49122
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (REVERSE) TEST
 		-------------------------------------------
@@ -1052,7 +1052,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 49119
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (FORWARD) TEST
 		-------------------------------------------
@@ -1060,7 +1060,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 94298
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (REVERSE) TEST
 		-------------------------------------------
@@ -1068,7 +1068,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 94296
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (FORWARD) TEST
 		-------------------------------------------
@@ -1076,7 +1076,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 62256
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (REVERSE) TEST
 		-------------------------------------------
@@ -1084,7 +1084,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 62258
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (FORWARD) TEST
 		-------------------------------------------
@@ -1092,7 +1092,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 205481
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (REVERSE) TEST
 		-------------------------------------------
@@ -1100,7 +1100,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 205478
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (FORWARD) TEST
 		-------------------------------------------
@@ -1108,7 +1108,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 135469
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (REVERSE) TEST
 		-------------------------------------------
@@ -1116,7 +1116,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 135463
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (FORWARD) TEST
 		-------------------------------------------
@@ -1124,7 +1124,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 13478
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (REVERSE) TEST
 		-------------------------------------------
@@ -1132,7 +1132,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 12778
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (FORWARD) TEST
 		-------------------------------------------
@@ -1140,7 +1140,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 47970
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (REVERSE) TEST
 		-------------------------------------------
@@ -1148,7 +1148,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 47951
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (FORWARD) TEST
 		-------------------------------------------
@@ -1156,7 +1156,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 94508
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (REVERSE) TEST
 		-------------------------------------------
@@ -1164,7 +1164,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 94506
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (FORWARD) TEST
 		-------------------------------------------
@@ -1172,7 +1172,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 59322
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (REVERSE) TEST
 		-------------------------------------------
@@ -1180,7 +1180,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 59324
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (FORWARD) TEST
 		-------------------------------------------
@@ -1188,7 +1188,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 207523
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (REVERSE) TEST
 		-------------------------------------------
@@ -1196,7 +1196,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 207508
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (FORWARD) TEST
 		-------------------------------------------
@@ -1204,7 +1204,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 133836
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (REVERSE) TEST
 		-------------------------------------------
@@ -1212,7 +1212,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 133822
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (FORWARD) TEST
 		-------------------------------------------
@@ -1220,7 +1220,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 14050
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (REVERSE) TEST
 		-------------------------------------------
@@ -1228,7 +1228,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 13480
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (FORWARD) TEST
 		-------------------------------------------
@@ -1236,7 +1236,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 49959
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (REVERSE) TEST
 		-------------------------------------------
@@ -1244,7 +1244,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 49961
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (FORWARD) TEST
 		-------------------------------------------
@@ -1252,7 +1252,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 98512
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (REVERSE) TEST
 		-------------------------------------------
@@ -1260,7 +1260,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 98514
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (FORWARD) TEST
 		-------------------------------------------
@@ -1268,7 +1268,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 61721
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (REVERSE) TEST
 		-------------------------------------------
@@ -1276,7 +1276,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 61720
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (FORWARD) TEST
 		-------------------------------------------
@@ -1284,7 +1284,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 207673
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (REVERSE) TEST
 		-------------------------------------------
@@ -1292,7 +1292,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 207656
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (FORWARD) TEST
 		-------------------------------------------
@@ -1300,7 +1300,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 134713
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (REVERSE) TEST
 		-------------------------------------------
@@ -1308,7 +1308,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 134716
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (FORWARD) TEST
 		-------------------------------------------
@@ -1316,7 +1316,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 14801
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (REVERSE) TEST
 		-------------------------------------------
@@ -1324,7 +1324,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 14667
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (FORWARD) TEST
 		-------------------------------------------
@@ -1332,7 +1332,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 48656
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (REVERSE) TEST
 		-------------------------------------------
@@ -1340,7 +1340,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 48656
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (FORWARD) TEST
 		-------------------------------------------
@@ -1348,7 +1348,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 96858
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (REVERSE) TEST
 		-------------------------------------------
@@ -1356,7 +1356,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 96862
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (FORWARD) TEST
 		-------------------------------------------
@@ -1364,7 +1364,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 61780
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (REVERSE) TEST
 		-------------------------------------------
@@ -1372,7 +1372,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 61782
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (FORWARD) TEST
 		-------------------------------------------
@@ -1380,7 +1380,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 205092
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (REVERSE) TEST
 		-------------------------------------------
@@ -1388,7 +1388,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 205078
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (FORWARD) TEST
 		-------------------------------------------
@@ -1396,7 +1396,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 133714
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (REVERSE) TEST
 		-------------------------------------------
@@ -1404,7 +1404,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 133712
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (FORWARD) TEST
 		-------------------------------------------
@@ -1412,7 +1412,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 13890
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (REVERSE) TEST
 		-------------------------------------------
@@ -1420,7 +1420,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 13003
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (FORWARD) TEST
 		-------------------------------------------
@@ -1428,7 +1428,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 47946
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (REVERSE) TEST
 		-------------------------------------------
@@ -1436,7 +1436,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 47950
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (FORWARD) TEST
 		-------------------------------------------
@@ -1444,7 +1444,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 98298
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (REVERSE) TEST
 		-------------------------------------------
@@ -1452,7 +1452,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 98314
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (FORWARD) TEST
 		-------------------------------------------
@@ -1460,7 +1460,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 62332
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (REVERSE) TEST
 		-------------------------------------------
@@ -1468,7 +1468,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 62332
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (FORWARD) TEST
 		-------------------------------------------
@@ -1476,7 +1476,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 206377
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (REVERSE) TEST
 		-------------------------------------------
@@ -1484,7 +1484,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 206368
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (FORWARD) TEST
 		-------------------------------------------
@@ -1492,7 +1492,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 135405
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (REVERSE) TEST
 		-------------------------------------------
@@ -1500,7 +1500,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 135392
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (FORWARD) TEST
 		-------------------------------------------
@@ -1508,7 +1508,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 14387
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (REVERSE) TEST
 		-------------------------------------------
@@ -1516,7 +1516,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 14032
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (FORWARD) TEST
 		-------------------------------------------
@@ -1524,7 +1524,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 47629
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (REVERSE) TEST
 		-------------------------------------------
@@ -1532,7 +1532,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 47631
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (FORWARD) TEST
 		-------------------------------------------
@@ -1540,7 +1540,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 96989
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (REVERSE) TEST
 		-------------------------------------------
@@ -1548,7 +1548,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 96989
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (FORWARD) TEST
 		-------------------------------------------
@@ -1556,7 +1556,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 63312
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (REVERSE) TEST
 		-------------------------------------------
@@ -1564,7 +1564,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 63312
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (FORWARD) TEST
 		-------------------------------------------
@@ -1572,7 +1572,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 205262
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (REVERSE) TEST
 		-------------------------------------------
@@ -1580,7 +1580,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 205256
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (FORWARD) TEST
 		-------------------------------------------
@@ -1588,7 +1588,7 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 137250
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 		      CUMULATIVE SUMS (REVERSE) TEST
 		-------------------------------------------
@@ -1596,5 +1596,5 @@ FAILURE		p_value = 0.000000
 		-------------------------------------------
 		(a) The maximum partial sum = 137251
 		-------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 

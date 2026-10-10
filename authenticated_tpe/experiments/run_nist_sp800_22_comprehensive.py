@@ -14,6 +14,7 @@ import json
 import platform
 import re
 import shutil
+import statistics
 import subprocess
 import sys
 import tempfile
@@ -52,9 +53,14 @@ CATEGORIES = (
     "image_output_step2",
     "image_output_final_marked",
 )
+CATEGORY_LABELS = {
+    "authentication_tag_stream": "Authentication-tag stream",
+    "image_output_step2": "Encrypted Step-2 image-output diagnostic",
+    "image_output_final_marked": "Final encrypted image with embedded authentication information",
+}
 BIT_TEXT = tuple(f"{v:08b}".encode("ascii") for v in range(256))
 REPORT_LINE = re.compile(
-    r"^\s*(?:\d+\s+){10}(?P<uniformity>\d+\.\d+|----)\s+\*?\s*"
+    r"^\s*(?:\d+\s+){10}(?P<uniformity>(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][+-]?\d+)?|----)\s+\*?\s*"
     r"(?P<proportion>\d+/\d+|------)\s+\*?\s*(?P<test>[A-Za-z]+)\s*$"
 )
 
@@ -75,6 +81,11 @@ def old_fixture(domain: bytes, index: int, length: int) -> bytes:
 
 def bit_ascii_hash(data: bytes) -> str:
     return sha(b"".join(BIT_TEXT[value] for value in data))
+
+
+def classify_first_level_pvalue(value: str) -> str:
+    """Apply the STS decision boundary while preserving the source text."""
+    return "pass" if float(value) >= ALPHA else "fail"
 
 
 def row_writer(path: Path, rows: list[dict], fields: list[str] | None = None) -> None:
@@ -105,7 +116,44 @@ def previous_manifest() -> dict[tuple[str, int], dict[str, str]]:
         return {}
     with path.open(newline="", encoding="utf-8") as f:
         data = list(csv.DictReader(f))
-    return {(r["image"], int(r["stream_index"])): r for r in data}
+    return {(r["category"], int(r["stream_index"])): r for r in data}
+
+
+def raw_tag_sample_digests(manifest: list[dict]) -> list[dict]:
+    """Hash one actual raw 256-bit group tag from 100 independent contexts."""
+    stream_rows = {int(r["stream_index"]): r for r in manifest if r["category"] == "authentication_tag_stream"}
+    rows = []
+    contexts_per_stream = 21
+    for stream_index in range(1, N_STREAMS + 1):
+        fixture_index = (stream_index - 1) * contexts_per_stream + 1
+        user_key = fixture(b"authenticated-tpe-nist-tag-key-v1", fixture_index, 32)
+        image_id = fixture(b"authenticated-tpe-nist-tag-image-id-v1", fixture_index, 16)
+        image_name = IMAGES[(fixture_index - 1) % len(IMAGES)]
+        image_sha256 = sha((UCT / f"{image_name}.tif").read_bytes())
+        stream = stream_rows[stream_index]
+        stream_path = OUT / stream["raw_stream_file"]
+        with stream_path.open("rb") as stream_file:
+            stream_file.seek(int(stream["byte_offset"]))
+            tag = stream_file.read(32)
+        if len(tag) != 32:
+            raise AssertionError("Authentication-tag stream does not contain a complete raw 256-bit tag")
+        rows.append({
+            "category": "Authentication-tag stream",
+            "stream_index": stream_index,
+            "sample_tag_index": 1,
+            "source_image": image_name,
+            "source_image_file_sha256": image_sha256,
+            "user_key_sha256": sha(user_key),
+            "image_id_sha256": sha(image_id),
+            "tag_bits": 256,
+            "tag_digest_sha256": sha(tag),
+            "tag_role": "SHA-256 digest of the first raw HMAC-SHA256 group tag in this NIST stream; raw tag bytes are not stored separately",
+            "stream_sha256": stream["stream_sha256"],
+            "stream_length_bits": STREAM_BITS,
+        })
+    if len({r["user_key_sha256"] for r in rows}) != N_STREAMS or len({r["image_id_sha256"] for r in rows}) != N_STREAMS:
+        raise AssertionError("Raw authentication-tag sample does not have 100 independent key/ImageID pairs")
+    return rows
 
 
 def generate_streams() -> tuple[list[dict], list[dict], list[dict]]:
@@ -135,6 +183,9 @@ def generate_streams() -> tuple[list[dict], list[dict], list[dict]]:
         digest = sha(payload)
         if digest in seen_hashes:
             raise AssertionError(f"Duplicate raw stream detected: {category} #{index}")
+        prior = old.get((category, index))
+        if prior and prior.get("stream_sha256") != digest:
+            raise AssertionError(f"Regenerated stream differs from prior hash for {category} #{index}")
         seen_hashes.add(digest)
         handles[category].write(payload)
         manifest.append({
@@ -273,17 +324,23 @@ def generate_streams() -> tuple[list[dict], list[dict], list[dict]]:
             image_id = fixture(b"authenticated-tpe-nist-tag-image-id-v1", global_index, 16)
             name = IMAGES[(global_index - 1) % len(IMAGES)]
             step1_ref, step1_hash = tag_fixture_images[name]
+            context_tags = bytearray()
             for channel in range(auth.CHANNELS):
                 kstruct = auth.derive_keys(user_key, channel)["Kstruct"]
                 for block_ids in auth.group_blocks(kstruct):
-                    out.extend(auth._group_mac(step1_ref, user_key, image_id, channel, block_ids))
+                    tag = auth._group_mac(step1_ref, user_key, image_id, channel, block_ids)
+                    out.extend(tag)
+                    context_tags.extend(tag)
             context_rows.append({
                 "category": "authentication_tag_stream", "stream_index": i,
                 "context_index": context + 1, "fixture_index": global_index,
                 "user_key_sha256": sha(user_key), "image_id_sha256": sha(image_id),
                 "user_key_domain": "authenticated-tpe-nist-tag-key-v1",
                 "image_id_domain": "authenticated-tpe-nist-tag-image-id-v1",
-                "step1_reference_image": name, "step1_reference_array_sha256": step1_hash,
+                "step1_reference_image": name,
+                "source_image_file_sha256": image_cache[name][1],
+                "step1_reference_array_sha256": step1_hash,
+                "context_tags_sha256": sha(bytes(context_tags)),
                 "tags_generated": tags_per_context,
             })
             tag_context_digests.append(sha(user_key) + sha(image_id))
@@ -313,12 +370,12 @@ def generate_streams() -> tuple[list[dict], list[dict], list[dict]]:
             raise AssertionError(f"Exact recovery failed for image stream {i} ({name})")
         step2_raw = step2.tobytes(order="C")[:STREAM_BYTES]
         marked_raw = protected.marked_image.tobytes(order="C")[:STREAM_BYTES]
-        old_step2 = old.get((name, i), {})
-        old_final = old.get((name, i), {})
+        old_step2 = old.get(("image_output_step2", i), {})
+        old_final = old.get(("image_output_final_marked", i), {})
         step2_ascii_hash = bit_ascii_hash(step2_raw)
         marked_ascii_hash = bit_ascii_hash(marked_raw)
-        step2_match = step2_ascii_hash == old_step2.get("step2_stream_sha256", "")
-        marked_match = marked_ascii_hash == old_final.get("final_marked_stream_sha256", "")
+        step2_match = step2_ascii_hash == old_step2.get("previous_ascii_bitstream_sha256", "")
+        marked_match = marked_ascii_hash == old_final.get("previous_ascii_bitstream_sha256", "")
         if old and not (step2_match and marked_match):
             raise AssertionError(f"Reconstructed stream disagrees with prior manifest for {name} #{i}")
         if old:
@@ -326,8 +383,8 @@ def generate_streams() -> tuple[list[dict], list[dict], list[dict]]:
                 (old_step2.get("source_image_sha256"), source_hash, "source image"),
                 (old_step2.get("user_key_sha256"), sha(user_key), "UserKey"),
                 (old_step2.get("image_id_sha256"), sha(image_id), "ImageID"),
-                (old_step2.get("step2_sha256"), sha(step2.tobytes(order="C")), "Step-2 array"),
-                (old_final.get("final_marked_image_sha256"), sha(protected.marked_image.tobytes(order="C")), "marked array"),
+                (old_step2.get("tested_array_sha256"), sha(step2.tobytes(order="C")), "Step-2 array"),
+                (old_final.get("tested_array_sha256"), sha(protected.marked_image.tobytes(order="C")), "marked array"),
             )
             for prior, current, label in checks:
                 if prior and prior != current:
@@ -415,7 +472,7 @@ def stats_statuses(test: str, stats_path: Path) -> list[str | None]:
         vals = [v.strip() for v in stats_path.with_name("results.txt").read_text(errors="replace").splitlines() if v.strip()]
         if len(vals) != N_STREAMS:
             raise AssertionError(f"LinearComplexity: expected {N_STREAMS} native p-values, got {len(vals)}")
-        return ["pass" if float(v) >= ALPHA else "fail" for v in vals]
+        return [classify_first_level_pvalue(v) for v in vals]
     if test == "Runs":
         blocks = re.split(r"RUNS TEST", text, flags=re.IGNORECASE)[1:]
         if len(blocks) != N_STREAMS:
@@ -472,7 +529,7 @@ def component_labels(test: str, sts_root: Path) -> list[str]:
     return [f"component={i + 1}" for i in range(COMPONENT_COUNTS[test])]
 
 
-def run_sts(sts_source: Path, manifest: list[dict]) -> tuple[dict[str, Path], dict[str, Path], list[dict]]:
+def run_sts(sts_source: Path, manifest: list[dict], reuse_existing: bool = False) -> tuple[dict[str, Path], dict[str, Path], list[dict]]:
     raw_reports_root = OUT / "raw_reports"
     raw_reports_root.mkdir(parents=True, exist_ok=True)
     final_reports: dict[str, Path] = {}
@@ -485,32 +542,16 @@ def run_sts(sts_source: Path, manifest: list[dict]) -> tuple[dict[str, Path], di
         for category in CATEGORIES:
             print(f"running official STS 2.1.2: {category}", flush=True)
             exp = sts_root / "experiments" / "AlgorithmTesting"
-            shutil.rmtree(exp, ignore_errors=True)
-            for test in TEST_NAMES:
-                (exp / test).mkdir(parents=True, exist_ok=True)
+            if not reuse_existing:
+                shutil.rmtree(exp, ignore_errors=True)
+                for test in TEST_NAMES:
+                    (exp / test).mkdir(parents=True, exist_ok=True)
             input_path = (OUT / "raw_streams" / category / "input.bin").resolve()
             input_paths[category] = input_path
-            cached_dir = OUT / "raw_reports" / category
-            cached_report = OUT / f"{category}_finalAnalysisReport.txt"
-            if not ((cached_dir / "freq.txt").is_file() and (cached_dir / "finalAnalysisReport.txt").is_file() and cached_report.is_file()):
-                if category == "image_output_step2":
-                    cached_dir = OUT / "step2_image_derived_keyed_intermediate_raw_reports"
-                    cached_report = OUT / "step2_image_derived_keyed_intermediate_finalAnalysisReport.txt"
-                elif category == "image_output_final_marked":
-                    cached_dir = OUT / "final_marked_rgb_raw_reports"
-                    cached_report = OUT / "final_marked_rgb_finalAnalysisReport.txt"
-            reusable = (cached_dir / "freq.txt").is_file() and (cached_dir / "finalAnalysisReport.txt").is_file() and cached_report.is_file()
-            if reusable:
-                if cached_dir.resolve() != (raw_reports_root / category).resolve():
-                    shutil.rmtree(raw_reports_root / category, ignore_errors=True)
-                    shutil.copytree(cached_dir, raw_reports_root / category)
-                nist_report = raw_reports_root / category / "finalAnalysisReport.txt"
-                final = OUT / f"{category}_finalAnalysisReport.txt"
-                if cached_report.resolve() != final.resolve():
-                    shutil.copyfile(cached_report, final)
-                final_reports[category] = final
-                raw_copy = raw_reports_root / category
-                print(f"reusing preserved official STS output for {category}", flush=True)
+            raw_copy = raw_reports_root / category
+            if reuse_existing:
+                if not (raw_copy / "finalAnalysisReport.txt").is_file():
+                    raise FileNotFoundError(f"Missing preserved STS report for {category}")
             else:
                 answers = f"0\n{input_path}\n1\n0\n{N_STREAMS}\n1\n"
                 proc = subprocess.run(
@@ -520,12 +561,13 @@ def run_sts(sts_source: Path, manifest: list[dict]) -> tuple[dict[str, Path], di
                 )
                 if "Statistical Testing Complete" not in proc.stdout:
                     raise RuntimeError(f"STS failed for {category}:\n{proc.stdout[-3000:]}")
-                nist_report = exp / "finalAnalysisReport.txt"
-                raw_copy = raw_reports_root / category
+                shutil.rmtree(raw_copy, ignore_errors=True)
                 shutil.copytree(exp, raw_copy)
-                final = OUT / f"{category}_finalAnalysisReport.txt"
+            nist_report = raw_copy / "finalAnalysisReport.txt"
+            final = OUT / f"{category}_finalAnalysisReport.txt"
+            if nist_report.resolve() != final.resolve():
                 shutil.copyfile(nist_report, final)
-                final_reports[category] = final
+            final_reports[category] = final
             freq = raw_copy / "freq.txt"
             freq_rows = re.findall(r"BITSREAD\s*=\s*(\d+)\s+0s\s*=\s*(\d+)\s+1s\s*=\s*(\d+)", freq.read_text(errors="replace"))
             if len(freq_rows) != N_STREAMS or any(int(r[0]) != STREAM_BITS for r in freq_rows):
@@ -544,6 +586,11 @@ def run_sts(sts_source: Path, manifest: list[dict]) -> tuple[dict[str, Path], di
                 if len(master_values) != N_STREAMS * ncomp:
                     raise AssertionError(f"{category}/{test}: raw NIST results have {len(master_values)} p-values")
                 statuses = stats_statuses(test, test_dir / "stats.txt")
+                if len(statuses) != len(master_values):
+                    raise AssertionError(f"{category}/{test}: parsed statuses and raw p-values have different component counts")
+                for status, p_text in zip(statuses, master_values):
+                    if status is not None and status != classify_first_level_pvalue(p_text):
+                        raise AssertionError(f"{category}/{test}: native status disagrees with p >= alpha rule for {p_text}")
                 labels = component_labels(test, sts_root)
                 if len(labels) != ncomp:
                     raise AssertionError(f"{category}/{test}: component label count mismatch")
@@ -635,6 +682,15 @@ def write_results_and_summary(summary_rows: list[dict]) -> list[dict]:
                             "test_name": test,
                             "component": component,
                             "p_value": value,
+                            "p_value_reported": value,
+                            "p_value_status": (
+                                "not_applicable" if mark is None else
+                                "algorithm_defined_zero" if value in ("0", "0.0", "0.000000") and test == "Runs" else
+                                "double_underflow" if value in ("0", "0.0", "0.000000") else
+                                "finite"
+                            ),
+                            "p_value_upper_bound": "<1e-300" if mark is not None and value in ("0", "0.0", "0.000000") and test != "Runs" else "",
+                            "p_value_precision_note": "N/A" if mark is None else "17 significant digits from STS double; underflow and N/A are labeled separately",
                             "status": "not-applicable" if mark is None else mark,
                             "pass_proportion": item["pass_proportion"],
                             "uniformity_p_value": item["uniformity_p_value"],
@@ -642,7 +698,7 @@ def write_results_and_summary(summary_rows: list[dict]) -> list[dict]:
                             "stream_length_bits": STREAM_BITS,
                             "nist_version": "2.1.2",
                             "p_value_source": f"raw_reports/{category}/{test}/results.txt",
-                            "native_precision": "6 decimal places; 0.000000 is rounded output, not missing",
+                            "native_precision": "17 significant digits from STS double; underflow and N/A are labeled separately",
                             "raw_stream_sha256": stream["stream_sha256"],
                         })
     row_writer(OUT / "results.csv", result_rows)
@@ -658,8 +714,8 @@ def write_results_and_summary(summary_rows: list[dict]) -> list[dict]:
     lines = [
         "NIST SP 800-22 Rev. 1a evaluation; official NIST STS 2.1.2.",
         "All six categories use 100 streams of exactly 1,000,000 bits; alpha=0.01.",
-        "The p-value column in results.csv contains each individual first-level p-value as printed by STS (six decimals).",
-        "A printed 0.000000 is a rounded STS value, not a missing p-value. N/A means the NIST test was not applicable.",
+        "The p_value_reported column contains each first-level p-value serialized with 17 significant digits from the STS double result.",
+        "p_value_status distinguishes finite values, N/A, algorithm-defined zero, and computed zero that may reflect double underflow. Unmodified native reports are preserved under official_native_6dp/.",
         "Uniformity p-values are second-level NIST values from finalAnalysisReport.txt and are separate from first-level p-values.",
         "No overall NIST pass or cryptographic security claim is made.",
     ]
@@ -697,11 +753,17 @@ def write_provenance(sts_source: Path, manifest: list[dict], input_paths: dict[s
     by_category = {c: [r for r in manifest if r["category"] == c] for c in CATEGORIES}
     old_commit = subprocess.check_output(["git", "-C", str(REPO), "rev-parse", "HEAD"], text=True).strip()
     py_version = sys.version.replace("\n", " ")
+    compiler = subprocess.run(["gcc", "--version"], text=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, check=False).stdout.splitlines()[0]
+    patch_metadata = OUT / "nist_sts_precision_patch_metadata.txt"
     prov = [
         "Evaluation: authenticated-TPE-only NIST SP 800-22 Rev. 1a statistical diagnostics.",
         "NIST STS version: 2.1.2, downloaded from the NIST CSRC SP 800-22 Documentation and Software page.",
         f"NIST assess executable SHA-256: {sha(nist_binary.read_bytes())}",
         f"NIST STS extracted tree SHA-256: {sha(tree)} (see nist_sts_source_manifest.csv)",
+        f"NIST STS compiler: {compiler}",
+        f"NIST STS precision patch SHA-256: {sha((OUT / 'nist_sts_precision_patch.diff').read_bytes())}",
+        f"NIST STS precision patch metadata: {patch_metadata.name}",
+        "NIST STS precision changes are output-only: C report formats use 17 significant digits; assess.c reads and partitions p-values as double, and final uniformity output uses 17 significant digits. Statistical formulas, test algorithms, alpha, thresholds, defaults, and raw input bytes are unchanged.",
         f"Runner SHA-256: {runner_hash}",
         f"Authenticated-TPE implementation SHA-256: {sha((PROJECT / 'src' / 'authenticated_tpe.py').read_bytes())}",
         f"Authenticated-TPE source baseline commit: {old_commit}",
@@ -709,16 +771,21 @@ def write_provenance(sts_source: Path, manifest: list[dict], input_paths: dict[s
         f"NumPy: {np.__version__}",
         f"Pillow: {pillow_version}",
         f"Platform: {platform.platform()}",
-        f"Command: {sys.executable} authenticated_tpe/experiments/run_nist_sp800_22_comprehensive.py --sts-dir <official sts-2.1.2 extraction> --streams 100 --bits 1000000 --alpha 0.01",
+        "Precision patch command: python3 authenticated_tpe/experiments/patch_nist_sts_precision.py --source '/Users/sufal/Documents/Codex/2026-09-28/files-pasted-by-the-user-work/work/sts-2.1.2/sts-2.1.2' --destination /tmp/authenticated-tpe-sts-precision --diff authenticated_tpe/output/nist_sp800_22_improved/nist_sts_precision_patch.diff --metadata authenticated_tpe/output/nist_sp800_22_improved/nist_sts_precision_patch_metadata.txt",
+        "Precision-patched STS build command: make clean && make -j4 (working directory /tmp/authenticated-tpe-sts-precision).",
+        f"Full STS execution command: {sys.executable} authenticated_tpe/experiments/run_nist_sp800_22_comprehensive.py --sts-dir /tmp/authenticated-tpe-sts-precision --streams 100 --bits 1000000 --alpha 0.01",
+        f"Post-run parse/validation command: {sys.executable} authenticated_tpe/experiments/run_nist_sp800_22_comprehensive.py --sts-dir /tmp/authenticated-tpe-sts-precision --streams 100 --bits 1000000 --alpha 0.01 --reuse-existing-sts-output",
         "STS interaction: generator choice 0 (input file); all 15 tests; default parameters; 100 bitstreams; binary input mode 1.",
         "NIST defaults: block-frequency M=128; non-overlapping template m=9 (148 templates); overlapping template m=9; approximate entropy m=10; serial m=16; linear complexity M=500.",
         "STS input serialization: packed binary bytes; each byte consumed most-significant bit first; one 125,000-byte chunk per 1,000,000-bit stream.",
         "Alpha=0.01 is the NIST STS default compiled threshold; unchanged.",
-        "The STS native results.txt and stats.txt print individual p-values to six decimal places. 0.000000 is retained as native rounded output; it is not replaced with zero precision or called missing.",
-        "Uniformity p-values and pass proportions are the separate second-level results reported by STS finalAnalysisReport.txt.",
+        "The higher-precision STS rerun reports individual first-level p-values with 17 significant digits. A serialized zero is flagged in results.csv and is not confused with N/A; original native six-decimal reports are preserved under official_native_6dp/.",
+        "The precision-only STS change is recorded in nist_sts_precision_patch.diff. It changes only floating-point serialization and assess.c input from float to double; formulas, thresholds, tests, parameters, alpha, and streams are unchanged.",
+        "Uniformity p-values and pass proportions are second-level STS results computed after reading 17-significant-digit p-values as double.",
         "Key and ImageID bytes are deterministic public test fixtures. Only SHA-256 digests are recorded; no production secret is used or emitted.",
         "The six source images are public UCT airplane, baboon, couple, girl, lena, peppers. Source image hashes and all stream hashes are in stream_manifest.csv.",
         "Authentication-tag stream key/ImageID provenance: 2,100 independent fixture pairs, with each 1,000,000-bit sequence taking raw HMAC group tags from 21 contexts; see component_contexts.csv.",
+        "Raw-tag audit: authentication_tag_sample_digests.csv contains SHA-256 digests for one actual raw 256-bit group tag from each of 100 independent key/ImageID pairs; raw tag bytes and secret credentials are not published.",
     ]
     prov.extend(f"{c} input sha256: {input_hashes[c]}" for c in CATEGORIES)
     (OUT / "provenance.txt").write_text("\n".join(prov) + "\n", encoding="utf-8")
@@ -731,6 +798,13 @@ def write_report(summary_rows: list[dict], result_rows: list[dict], image_recove
     for c in CATEGORIES:
         rows = [r for r in summary_rows if r["category"] == c]
         counts[c] = {s: sum(int(r[k]) for r in rows) for s, k in (("pass", "pass_count"), ("fail", "fail_count"), ("not-applicable", "not_applicable_count"))}
+    frequency_imbalance = {}
+    for c in ("image_output_step2", "image_output_final_marked"):
+        stats_text = (OUT / "raw_reports" / c / "Frequency" / "stats.txt").read_text(errors="replace")
+        sums = [abs(int(x)) for x in re.findall(r"nth partial sum\s*=\s*([-+]?\d+)", stats_text)]
+        if len(sums) != N_STREAMS:
+            raise AssertionError(f"{c}: expected 100 Frequency partial sums, got {len(sums)}")
+        frequency_imbalance[c] = (min(sums), statistics.median(sums), max(sums))
     lines = [
         "# NIST SP 800-22 Rev. 1a Evaluation of the Authenticated-TPE Method",
         "",
@@ -742,7 +816,7 @@ def write_report(summary_rows: list[dict], result_rows: list[dict], image_recove
         "",
         "The implementation processes 512×512 RGB uint8 arrays in non-overlapping 32×32 blocks. It uses 256 blocks per channel, 512 adjacent pixel pairs per block, groups four ordered blocks, 64 groups per channel and 192 groups per RGB image. Authentication uses HMAC-SHA256; grouping uses the implemented HMAC-DRBG; transforms are Step 1 pair-sum-preserving mapping, Step 2 image-derived keyed smaller-pixel re-encryption, and reversible contrast mapping (RCM) for tag embedding. Verification and exact recovery occur before plaintext release.",
         "",
-        "The cryptographic-component categories test outputs used by the implementation. The Authentication-tag stream is raw 256-bit HMAC output, tested separately using independently generated keys and ImageIDs. The image-output categories are explicitly diagnostic and preserve the method's image-dependent structure.",
+        "The cryptographic-component categories test outputs used by the implementation. The Authentication-tag stream concatenates raw 256-bit HMAC-SHA256 group tags produced under independent test keys and ImageIDs; an individual 256-bit tag is not represented as a 1,000,000-bit stream. The image-output categories are explicitly diagnostic and preserve the method's image-dependent structure.",
         "",
         "## NIST software and settings",
         "",
@@ -750,7 +824,8 @@ def write_report(summary_rows: list[dict], result_rows: list[dict], image_recove
         "- Tests: all 15 STS tests; alpha = 0.01; default parameters (block frequency 128, non-overlapping templates m=9, overlapping template m=9, approximate entropy m=10, serial m=16, linear complexity M=500).",
         "- Sample: 100 streams for each category; each stream is exactly 1,000,000 bits; 600 streams total across six categories.",
         "- Input: NIST binary mode. The runner confirmed 100 `BITSREAD = 1000000` records per category. Each 125,000-byte stream is consumed MSB-first, matching the NIST `convertToBits` implementation.",
-        "- NIST's native individual p-value output is six decimal places. The CSV preserves that output; a displayed `0.000000` is rounded output, not a missing p-value. No synthetic precision is added.",
+        "- This report uses a precision-only rebuild of official NIST STS 2.1.2. NIST test algorithms, formulas, thresholds, alpha, parameters, and input streams are unchanged. Floating-point report formatting uses 17 significant digits, and assess.c reads serialized values as double so second-level calculations use full computed precision. The exact patch and SHA-256 are included.",
+        "- Original reports from the unmodified STS binary are preserved under `official_native_6dp/`; the original rounded values are not used as the source for high-precision CSV values.",
         "- Deterministic component fixture bytes use SHA-256(domain_label || 0x00 || uint64_be(index)), truncated only where a 16-byte ImageID is needed. The exact domain labels, per-stream key/nonce digests, and fixture indexes are recorded in stream_manifest.csv and component_contexts.csv.",
         "",
         "## Exact stream-generation procedure",
@@ -776,7 +851,7 @@ def write_report(summary_rows: list[dict], result_rows: list[dict], image_recove
         "|---|---:|---:|---:|",
     ]
     for c in CATEGORIES[:4]:
-        lines.append(f"| {'Authentication-tag stream' if c == 'authentication_tag_stream' else c} | {counts[c]['pass']} | {counts[c]['fail']} | {counts[c]['not-applicable']} |")
+        lines.append(f"| {CATEGORY_LABELS.get(c, c)} | {counts[c]['pass']} | {counts[c]['fail']} | {counts[c]['not-applicable']} |")
     lines += [
         "",
         "### Image-output statistical diagnostic",
@@ -786,32 +861,53 @@ def write_report(summary_rows: list[dict], result_rows: list[dict], image_recove
     ]
     exact_n = sum(r["exact_recovery"] == "True" or r["exact_recovery"] is True for r in image_recovery)
     for c in CATEGORIES[4:]:
-        lines.append(f"| {c} | {counts[c]['pass']} | {counts[c]['fail']} | {counts[c]['not-applicable']} | {exact_n}/100 |")
+        lines.append(f"| {CATEGORY_LABELS.get(c, c)} | {counts[c]['pass']} | {counts[c]['fail']} | {counts[c]['not-applicable']} | {exact_n}/100 |")
     lines += [
         "",
-        "The image outputs retain source-image and RCM/tag structure by design. Their image-output tests are diagnostics and should not be expected to behave like an ideal random-number stream. Low p-values in those categories do not by themselves establish a cryptographic implementation defect. The cryptographic component results assess pseudorandom outputs separately, but they also do not constitute a security proof.",
+        "Step 1 preserves pair sums and therefore retains source-image structure in the encrypted intermediate. Reversible contrast mapping (RCM) embeds authentication information reversibly in the final marked image. Both image-output categories retain image-dependent structure and are statistical diagnostics; they are not expected to behave like ideal random streams. Low p-values in these categories do not by themselves establish an implementation defect. The HMAC/DRBG component diagnostics are more appropriate for pseudorandom behavior, but NIST SP 800-22 does not prove security.",
+        "A `0` from the precision-patched STS is not six-decimal rounding. For Runs, an algorithm-defined zero indicates the NIST PI estimator criterion was not met. For other applicable tests, binary64 returned zero; the CSV labels this `double_underflow` and gives the conservative bound `p < 1e-300`. These differ from N/A, which has a blank p-value and is excluded from valid-stream counts.",
+        f"The very small Frequency p-values in image outputs follow from the observed NIST signed partial sums S_n: |S_n| spans {frequency_imbalance['image_output_step2'][0]:,} to {frequency_imbalance['image_output_step2'][2]:,} bits (median {frequency_imbalance['image_output_step2'][1]:,.1f}) for the Encrypted Step-2 image-output diagnostic, and {frequency_imbalance['image_output_final_marked'][0]:,} to {frequency_imbalance['image_output_final_marked'][2]:,} bits (median {frequency_imbalance['image_output_final_marked'][1]:,.1f}) for the final marked image. For N=1,000,000, the Frequency p-value is erfc(|S_n|/sqrt(2N)); these large deviations from a balanced bit count yield extremely small tail probabilities, with the largest values below binary64 range. This is consistent with retained image structure. The full S_n, p-values, and other test statistics are preserved in the per-stream STS stats files.",
         "",
-        "## Full test/component tables",
-        "",
-        "The tables below give, for every NIST test/component, the number of valid streams, first-level pass/fail/N/A counts, native NIST uniformity p-value, and pass proportion. The uniformity p-value is a second-level value over first-level p-values and is not an individual stream p-value.",
     ]
     for c in CATEGORIES:
-        lines += ["", f"### {'Authentication-tag stream' if c == 'authentication_tag_stream' else c}", "", "| NIST test | Component | Valid | Pass | Fail | N/A | Uniformity p-value | Pass proportion |", "|---|---|---:|---:|---:|---:|---:|---:|"]
+        lines += ["", f"### {CATEGORY_LABELS.get(c, c)}", "", "| NIST test | Component | Valid | Pass | Fail | N/A | Uniformity p-value | Pass proportion |", "|---|---|---:|---:|---:|---:|---:|---:|"]
         for r in (x for x in summary_rows if x["category"] == c):
             lines.append(f"| {r['test_name']} | {r['component']} | {r['valid_streams']} | {r['pass_count']} | {r['fail_count']} | {r['not_applicable_count']} | {r['uniformity_p_value']} | {r['pass_proportion']} |")
+    extremes = []
+    for row in result_rows:
+        if row["status"] == "not-applicable" or not row["p_value_reported"]:
+            continue
+        try:
+            numeric = float(row["p_value_reported"])
+        except ValueError:
+            continue
+        extremes.append((numeric, row))
+    extremes.sort(key=lambda pair: pair[0])
+    lines += ["", "## Interpreting very small first-level p-values", "",
+              "The following are the 12 smallest applicable first-level values in the complete run, shown to explain the numeric edge cases; this is not a filtered result set. Every stream/test/component result, including all failures, is retained in `results.csv` and `p_values_full_precision.csv.", "",
+              "| Category | Stream | Test | Component | First-level p-value | Status |", "|---|---:|---|---|---:|---|"]
+    for _numeric, row in extremes[:12]:
+        if row["p_value_status"] == "double_underflow":
+            display_value = "<1e-300 (STS binary64 underflow)"
+        elif row["p_value_status"] == "algorithm_defined_zero":
+            display_value = "0 (Runs PI criterion not met)"
+        else:
+            display_value = row["p_value_reported"]
+        lines.append(f"| {CATEGORY_LABELS.get(row['category'], row['category'])} | {row['stream_index']} | {row['test_name']} | {row['component']} | {display_value} | {row['p_value_status']} |")
     lines += [
         "",
         "## Individual p-values and official reports",
         "",
-        "- [`results.csv`](results.csv) contains one row for every stream and component with the individual first-level p-value, status, pass proportion, uniformity p-value, alpha, bit length, NIST version, and raw input stream hash. N/A p-values are blank and explicitly labeled not applicable.",
+        "- [`results.csv`](results.csv) and [`p_values_full_precision.csv`](p_values_full_precision.csv) contain one row for every stream and test component, the full first-level value, a zero/N/A status, any underflow bound, the uniformity p-value, alpha, bit length, and raw input stream hash.",
+        "- [`authentication_tag_sample_digests.csv`](authentication_tag_sample_digests.csv) provides SHA-256 digests of one actual raw 256-bit HMAC tag from each of 100 independent key/ImageID cases; no secret key, ImageID, or raw tag bytes are published.",
         "- [`per_test_summary.csv`](per_test_summary.csv) contains the complete per-test/component summary.",
-        "- [`raw_reports/`](raw_reports/) preserves complete STS `finalAnalysisReport.txt`, per-test `stats.txt`, master `results.txt`, and official component partition files for all six categories.",
-        "- The three professor-requested report aliases are [`cryptographic_components_finalAnalysisReport.txt`](cryptographic_components_finalAnalysisReport.txt), [`image_output_step2_finalAnalysisReport.txt`](image_output_step2_finalAnalysisReport.txt), and [`image_output_final_marked_finalAnalysisReport.txt`](image_output_final_marked_finalAnalysisReport.txt).",
+        "- [`raw_reports/`](raw_reports/) preserves the complete high-precision rerun, including finalAnalysisReport.txt, per-test stats.txt, master results.txt, and component partitions. [`official_native_6dp/`](official_native_6dp/) preserves the six original unmodified native finalAnalysisReport.txt files.",
+        "- The three high-precision category reports are [`authentication_tag_stream_finalAnalysisReport.txt`](authentication_tag_stream_finalAnalysisReport.txt), [`encrypted_step2_finalAnalysisReport.txt`](encrypted_step2_finalAnalysisReport.txt), and [`final_marked_authenticated_finalAnalysisReport.txt`](final_marked_authenticated_finalAnalysisReport.txt). Their official native counterparts are `official_authentication_tag_stream_finalAnalysisReport.txt`, `official_encrypted_step2_finalAnalysisReport.txt`, and `official_final_marked_authenticated_finalAnalysisReport.txt`.",
         "- [`raw_streams/`](raw_streams/) contains the exact packed binary NIST inputs. `stream_manifest.csv` records each stream's byte offset, size, hash, key/ImageID digests and source details.",
         "",
         "## Provenance and reproducibility",
         "",
-        "See [`provenance.txt`](provenance.txt), [`stream_manifest.csv`](stream_manifest.csv), [`component_contexts.csv`](component_contexts.csv), and [`nist_sts_source_manifest.csv`](nist_sts_source_manifest.csv). They record source and executable hashes, runtime versions, platform, exact command and settings, input image hashes, per-stream hashes, and digest-only test credential identifiers. No test key or ImageID bytes are written.",
+        "See [`provenance.txt`](provenance.txt), [`stream_manifest.csv`](stream_manifest.csv), [`authentication_tag_stream_manifest.csv`](authentication_tag_stream_manifest.csv), [`authentication_tag_sample_digests.csv`](authentication_tag_sample_digests.csv), [`component_contexts.csv`](component_contexts.csv), and [`nist_sts_source_manifest.csv`](nist_sts_source_manifest.csv). They record source and executable hashes, runtime versions, platform, exact command and settings, image/key/ImageID/tag/stream digests, and test credential identifiers. No key or ImageID bytes are written.",
         "",
         "## Limitations",
         "",
@@ -830,8 +926,9 @@ def write_report(summary_rows: list[dict], result_rows: list[dict], image_recove
     report.write_text("\n".join(lines), encoding="utf-8")
     (OUT / "README.md").write_text(
         "# Authenticated-TPE NIST output\n\n"
-        "This directory contains separate NIST SP 800-22 evaluation of actual authenticated-TPE cryptographic components and image-output statistical diagnostics. Read [`NIST_AUTHENTICATED_TPE_REPORT.md`](NIST_AUTHENTICATED_TPE_REPORT.md) or its [`PDF companion`](NIST_AUTHENTICATED_TPE_REPORT.pdf) first. The raw 256-bit HMAC output is tested as the separate Authentication-tag stream category using unique key/ImageID fixtures.\n\n"
-        "Individual first-level p-values are in [`results.csv`](results.csv); second-level NIST uniformity p-values and pass proportions are in that CSV and [`per_test_summary.csv`](per_test_summary.csv). Native STS p-values are printed to six decimal places. `0.000000` is retained as rounded output and is not missing. `raw_streams/` holds the exact packed binary inputs; `raw_reports/` holds complete official NIST reports and raw test output.\n\n"
+        "This directory contains separate NIST SP 800-22 evaluation of authenticated-TPE cryptographic components and image-output diagnostics. Read [`NIST_AUTHENTICATED_TPE_REPORT.md`](NIST_AUTHENTICATED_TPE_REPORT.md) or its [`PDF companion`](NIST_AUTHENTICATED_TPE_REPORT.pdf) first. The Authentication-tag stream concatenates actual raw 256-bit HMAC group tags generated under independent keys and ImageIDs; the raw tag length is not misrepresented as 1,000,000 bits.\n\n"
+        "Individual first-level p-values with 17 significant digits are in [`results.csv`](results.csv) and [`p_values_full_precision.csv`](p_values_full_precision.csv); second-level uniformity p-values are in these files and [`per_test_summary.csv`](per_test_summary.csv). Original unmodified six-decimal output is preserved under `official_native_6dp/`. `raw_streams/` contains the exact packed binary inputs; `raw_reports/` holds the complete higher-precision STS rerun.\n\n"
+        "[`authentication_tag_sample_digests.csv`](authentication_tag_sample_digests.csv) gives an auditable SHA-256 digest for one actual raw 256-bit authentication tag from each of 100 independent key/ImageID cases.\n\n"
         "No overall NIST pass or security proof is claimed. The image output is expected to retain image structure. All image data is from six available UCT images; no CelebA-HQ images are claimed.\n",
         encoding="utf-8",
     )
@@ -844,8 +941,24 @@ def run(args: argparse.Namespace) -> None:
     if args.streams != N_STREAMS or args.bits != STREAM_BITS or args.alpha != ALPHA:
         raise ValueError("This reproducible protocol is fixed at 100 streams, 1,000,000 bits, alpha=0.01")
     OUT.mkdir(parents=True, exist_ok=True)
+    native_backup = OUT / "official_native_6dp"
+    if not native_backup.exists() and (OUT / "raw_reports").is_dir():
+        native_backup.mkdir(parents=True)
+        for category in CATEGORIES:
+            source = OUT / "raw_reports" / category / "finalAnalysisReport.txt"
+            if source.is_file():
+                target = native_backup / category / "finalAnalysisReport.txt"
+                target.parent.mkdir(parents=True, exist_ok=True)
+                shutil.copyfile(source, target)
     print("Loading validated generated streams or generating deterministic test fixtures.", flush=True)
     manifest_path = OUT / "stream_manifest.csv"
+    previous_stream_hashes = {}
+    if manifest_path.is_file():
+        with manifest_path.open(newline="", encoding="utf-8") as f:
+            previous_stream_hashes = {
+                (r["category"], int(r["stream_index"])): r["stream_sha256"]
+                for r in csv.DictReader(f)
+            }
     generated_ready = manifest_path.is_file() and all(
         (OUT / "raw_streams" / c / "input.bin").is_file()
         and (OUT / "raw_streams" / c / "input.bin").stat().st_size == N_STREAMS * STREAM_BYTES
@@ -855,6 +968,16 @@ def run(args: argparse.Namespace) -> None:
         with manifest_path.open(newline="", encoding="utf-8") as f:
             manifest = list(csv.DictReader(f))
         generated_ready = len(manifest) == len(CATEGORIES) * N_STREAMS and {r["category"] for r in manifest} == set(CATEGORIES)
+        context_path = OUT / "component_contexts.csv"
+        if context_path.is_file():
+            with context_path.open(newline="", encoding="utf-8") as f:
+                existing_contexts = list(csv.DictReader(f))
+            tag_contexts = [r for r in existing_contexts if r.get("category") == "authentication_tag_stream"]
+            generated_ready = generated_ready and len(tag_contexts) == 2100 and all(
+                r.get("context_tags_sha256") and r.get("source_image_file_sha256") for r in tag_contexts
+            )
+        else:
+            generated_ready = False
     if generated_ready:
         def read_csv_rows(filename: str) -> list[dict]:
             path = OUT / filename
@@ -870,6 +993,11 @@ def run(args: argparse.Namespace) -> None:
         print("Reusing complete six-category raw inputs and manifests.", flush=True)
     else:
         manifest, contexts, recoveries = generate_streams()
+        if previous_stream_hashes:
+            new_hashes = {(r["category"], int(r["stream_index"])): r["stream_sha256"] for r in manifest}
+            if new_hashes != previous_stream_hashes:
+                raise AssertionError("Regenerated streams differ from the previously recorded inputs; stopping before STS")
+            print("Regenerated deterministic inputs match all previously recorded stream hashes exactly.", flush=True)
     for category in CATEGORIES:
         rows = [r for r in manifest if r["category"] == category]
         input_path = OUT / "raw_streams" / category / "input.bin"
@@ -879,7 +1007,33 @@ def run(args: argparse.Namespace) -> None:
     row_writer(OUT / "stream_manifest.csv", manifest)
     row_writer(OUT / "component_contexts.csv", contexts)
     row_writer(OUT / "image_recovery.csv", recoveries)
-    final_reports, input_paths, summaries = run_sts(sts_source, manifest)
+    tag_streams = {int(r["stream_index"]): r for r in manifest if r["category"] == "authentication_tag_stream"}
+    tag_manifest = []
+    for context in contexts:
+        if context.get("category") != "authentication_tag_stream":
+            continue
+        stream = tag_streams[int(context["stream_index"])]
+        tag_manifest.append({
+            "category": "Authentication-tag stream",
+            "stream_index": context["stream_index"],
+            "context_index": context["context_index"],
+            "fixture_index": context["fixture_index"],
+            "source_image": context["step1_reference_image"],
+            "source_image_file_sha256": context["source_image_file_sha256"],
+            "step1_reference_array_sha256": context["step1_reference_array_sha256"],
+            "user_key_sha256": context["user_key_sha256"],
+            "image_id_sha256": context["image_id_sha256"],
+            "group_tag_sequence_sha256": context["context_tags_sha256"],
+            "tags_in_context": context["tags_generated"],
+            "stream_sha256": stream["stream_sha256"],
+            "stream_length_bits": STREAM_BITS,
+            "stream_input_file": stream["raw_stream_file"],
+            "stream_byte_offset": stream["byte_offset"],
+            "serialization": "raw 256-bit HMAC-SHA256 tags concatenated in context/channel/group order; MSB-first",
+        })
+    row_writer(OUT / "authentication_tag_stream_manifest.csv", tag_manifest)
+    row_writer(OUT / "authentication_tag_sample_digests.csv", raw_tag_sample_digests(manifest))
+    final_reports, input_paths, summaries = run_sts(sts_source, manifest, reuse_existing=args.reuse_existing_sts_output)
     # Keep the complete native tree for each category; also provide requested
     # concise aliases without altering the official reports.
     crypto_alias = OUT / "cryptographic_components_finalAnalysisReport.txt"
@@ -895,7 +1049,32 @@ def run(args: argparse.Namespace) -> None:
         dst = OUT / f"{old_name}_raw_reports"
         shutil.rmtree(dst, ignore_errors=True)
         shutil.copytree(src, dst)
+    report_names = {
+        "authentication_tag_stream": "authentication_tag_stream_finalAnalysisReport.txt",
+        "image_output_step2": "encrypted_step2_finalAnalysisReport.txt",
+        "image_output_final_marked": "final_marked_authenticated_finalAnalysisReport.txt",
+    }
+    official_names = {
+        "authentication_tag_stream": "official_authentication_tag_stream_finalAnalysisReport.txt",
+        "image_output_step2": "official_encrypted_step2_finalAnalysisReport.txt",
+        "image_output_final_marked": "official_final_marked_authenticated_finalAnalysisReport.txt",
+    }
+    for category, name in report_names.items():
+        destination = OUT / name
+        if final_reports[category].resolve() != destination.resolve():
+            shutil.copyfile(final_reports[category], destination)
+    for category, name in official_names.items():
+        original = native_backup / category / "finalAnalysisReport.txt"
+        if original.is_file():
+            shutil.copyfile(original, OUT / name)
     result_rows = write_results_and_summary(summaries)
+    precision_fields = [
+        "category", "stream_index", "test_name", "component", "p_value_reported",
+        "p_value_status", "p_value_upper_bound", "alpha", "uniformity_p_value",
+        "p_value_source", "raw_stream_sha256",
+    ]
+    precision_rows = [{field: row.get(field, "") for field in precision_fields} for row in result_rows]
+    row_writer(OUT / "p_values_full_precision.csv", precision_rows, precision_fields)
     runner_hash = sha(Path(__file__).read_bytes())
     sts_records = write_provenance(sts_source, manifest, input_paths, runner_hash)
     write_report(summaries, result_rows, recoveries, sts_records)
@@ -908,6 +1087,7 @@ def main() -> None:
     ap.add_argument("--streams", type=int, default=N_STREAMS)
     ap.add_argument("--bits", type=int, default=STREAM_BITS)
     ap.add_argument("--alpha", type=float, default=ALPHA)
+    ap.add_argument("--reuse-existing-sts-output", action="store_true", help="Parse and validate raw reports from the immediately preceding full STS run; do not execute STS again")
     run(ap.parse_args())
 
 

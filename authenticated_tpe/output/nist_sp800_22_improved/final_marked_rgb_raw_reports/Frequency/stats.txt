@@ -5,34 +5,34 @@
 		(a) The nth partial sum = 106418
 		(b) S_n/n               = 0.106418
 		---------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 			      FREQUENCY TEST
 		---------------------------------------------
 		COMPUTATIONAL INFORMATION:
 		---------------------------------------------
 		(a) The nth partial sum = -62532
-		(b) S_n/n               = -0.062532
+		(b) S_n/n               = -0.062532000000000004
 		---------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 			      FREQUENCY TEST
 		---------------------------------------------
 		COMPUTATIONAL INFORMATION:
 		---------------------------------------------
 		(a) The nth partial sum = -207636
-		(b) S_n/n               = -0.207636
+		(b) S_n/n               = -0.20763599999999999
 		---------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 			      FREQUENCY TEST
 		---------------------------------------------
 		COMPUTATIONAL INFORMATION:
 		---------------------------------------------
 		(a) The nth partial sum = -133498
-		(b) S_n/n               = -0.133498
+		(b) S_n/n               = -0.13349800000000001
 		---------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 			      FREQUENCY TEST
 		---------------------------------------------
@@ -41,16 +41,16 @@ FAILURE		p_value = 0.000000
 		(a) The nth partial sum = 14846
 		(b) S_n/n               = 0.014846
 		---------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 7.3845357315614183e-50
 
 			      FREQUENCY TEST
 		---------------------------------------------
 		COMPUTATIONAL INFORMATION:
 		---------------------------------------------
 		(a) The nth partial sum = -47806
-		(b) S_n/n               = -0.047806
+		(b) S_n/n               = -0.047806000000000001
 		---------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 			      FREQUENCY TEST
 		---------------------------------------------
@@ -59,34 +59,34 @@ FAILURE		p_value = 0.000000
 		(a) The nth partial sum = 103714
 		(b) S_n/n               = 0.103714
 		---------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 			      FREQUENCY TEST
 		---------------------------------------------
 		COMPUTATIONAL INFORMATION:
 		---------------------------------------------
 		(a) The nth partial sum = -59386
-		(b) S_n/n               = -0.059386
+		(b) S_n/n               = -0.059386000000000001
 		---------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 			      FREQUENCY TEST
 		---------------------------------------------
 		COMPUTATIONAL INFORMATION:
 		---------------------------------------------
 		(a) The nth partial sum = -207700
-		(b) S_n/n               = -0.207700
+		(b) S_n/n               = -0.2077
 		---------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 			      FREQUENCY TEST
 		---------------------------------------------
 		COMPUTATIONAL INFORMATION:
 		---------------------------------------------
 		(a) The nth partial sum = -134032
-		(b) S_n/n               = -0.134032
+		(b) S_n/n               = -0.13403200000000001
 		---------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 			      FREQUENCY TEST
 		---------------------------------------------
@@ -95,43 +95,43 @@ FAILURE		p_value = 0.000000
 		(a) The nth partial sum = 15502
 		(b) S_n/n               = 0.015502
 		---------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 3.3625976693417432e-54
 
 			      FREQUENCY TEST
 		---------------------------------------------
 		COMPUTATIONAL INFORMATION:
 		---------------------------------------------
 		(a) The nth partial sum = -47478
-		(b) S_n/n               = -0.047478
+		(b) S_n/n               = -0.047477999999999999
 		---------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 			      FREQUENCY TEST
 		---------------------------------------------
 		COMPUTATIONAL INFORMATION:
 		---------------------------------------------
 		(a) The nth partial sum = 101880
-		(b) S_n/n               = 0.101880
+		(b) S_n/n               = 0.10188
 		---------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 			      FREQUENCY TEST
 		---------------------------------------------
 		COMPUTATIONAL INFORMATION:
 		---------------------------------------------
 		(a) The nth partial sum = -60848
-		(b) S_n/n               = -0.060848
+		(b) S_n/n               = -0.060847999999999999
 		---------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 			      FREQUENCY TEST
 		---------------------------------------------
 		COMPUTATIONAL INFORMATION:
 		---------------------------------------------
 		(a) The nth partial sum = -205050
-		(b) S_n/n               = -0.205050
+		(b) S_n/n               = -0.20505000000000001
 		---------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 			      FREQUENCY TEST
 		---------------------------------------------
@@ -140,16 +140,16 @@ FAILURE		p_value = 0.000000
 		(a) The nth partial sum = -131574
 		(b) S_n/n               = -0.131574
 		---------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 			      FREQUENCY TEST
 		---------------------------------------------
 		COMPUTATIONAL INFORMATION:
 		---------------------------------------------
 		(a) The nth partial sum = 17150
-		(b) S_n/n               = 0.017150
+		(b) S_n/n               = 0.017149999999999999
 		---------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 6.2852466984037047e-66
 
 			      FREQUENCY TEST
 		---------------------------------------------
@@ -158,7 +158,7 @@ FAILURE		p_value = 0.000000
 		(a) The nth partial sum = -45522
 		(b) S_n/n               = -0.045522
 		---------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 			      FREQUENCY TEST
 		---------------------------------------------
@@ -167,25 +167,25 @@ FAILURE		p_value = 0.000000
 		(a) The nth partial sum = 104036
 		(b) S_n/n               = 0.104036
 		---------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 			      FREQUENCY TEST
 		---------------------------------------------
 		COMPUTATIONAL INFORMATION:
 		---------------------------------------------
 		(a) The nth partial sum = -59674
-		(b) S_n/n               = -0.059674
+		(b) S_n/n               = -0.059673999999999998
 		---------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 			      FREQUENCY TEST
 		---------------------------------------------
 		COMPUTATIONAL INFORMATION:
 		---------------------------------------------
 		(a) The nth partial sum = -205408
-		(b) S_n/n               = -0.205408
+		(b) S_n/n               = -0.20540800000000001
 		---------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 			      FREQUENCY TEST
 		---------------------------------------------
@@ -194,25 +194,25 @@ FAILURE		p_value = 0.000000
 		(a) The nth partial sum = -131852
 		(b) S_n/n               = -0.131852
 		---------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 			      FREQUENCY TEST
 		---------------------------------------------
 		COMPUTATIONAL INFORMATION:
 		---------------------------------------------
 		(a) The nth partial sum = 16950
-		(b) S_n/n               = 0.016950
+		(b) S_n/n               = 0.01695
 		---------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 1.9245379116864629e-64
 
 			      FREQUENCY TEST
 		---------------------------------------------
 		COMPUTATIONAL INFORMATION:
 		---------------------------------------------
 		(a) The nth partial sum = -45052
-		(b) S_n/n               = -0.045052
+		(b) S_n/n               = -0.045052000000000002
 		---------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 			      FREQUENCY TEST
 		---------------------------------------------
@@ -221,16 +221,16 @@ FAILURE		p_value = 0.000000
 		(a) The nth partial sum = 103974
 		(b) S_n/n               = 0.103974
 		---------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 			      FREQUENCY TEST
 		---------------------------------------------
 		COMPUTATIONAL INFORMATION:
 		---------------------------------------------
 		(a) The nth partial sum = -60590
-		(b) S_n/n               = -0.060590
+		(b) S_n/n               = -0.060589999999999998
 		---------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 			      FREQUENCY TEST
 		---------------------------------------------
@@ -239,52 +239,52 @@ FAILURE		p_value = 0.000000
 		(a) The nth partial sum = -203768
 		(b) S_n/n               = -0.203768
 		---------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 			      FREQUENCY TEST
 		---------------------------------------------
 		COMPUTATIONAL INFORMATION:
 		---------------------------------------------
 		(a) The nth partial sum = -133316
-		(b) S_n/n               = -0.133316
+		(b) S_n/n               = -0.13331599999999999
 		---------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 			      FREQUENCY TEST
 		---------------------------------------------
 		COMPUTATIONAL INFORMATION:
 		---------------------------------------------
 		(a) The nth partial sum = 14650
-		(b) S_n/n               = 0.014650
+		(b) S_n/n               = 0.01465
 		---------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 1.3471570700370239e-48
 
 			      FREQUENCY TEST
 		---------------------------------------------
 		COMPUTATIONAL INFORMATION:
 		---------------------------------------------
 		(a) The nth partial sum = -47010
-		(b) S_n/n               = -0.047010
+		(b) S_n/n               = -0.047010000000000003
 		---------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 			      FREQUENCY TEST
 		---------------------------------------------
 		COMPUTATIONAL INFORMATION:
 		---------------------------------------------
 		(a) The nth partial sum = 104094
-		(b) S_n/n               = 0.104094
+		(b) S_n/n               = 0.10409400000000001
 		---------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 			      FREQUENCY TEST
 		---------------------------------------------
 		COMPUTATIONAL INFORMATION:
 		---------------------------------------------
 		(a) The nth partial sum = -59632
-		(b) S_n/n               = -0.059632
+		(b) S_n/n               = -0.059631999999999998
 		---------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 			      FREQUENCY TEST
 		---------------------------------------------
@@ -293,7 +293,7 @@ FAILURE		p_value = 0.000000
 		(a) The nth partial sum = -205154
 		(b) S_n/n               = -0.205154
 		---------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 			      FREQUENCY TEST
 		---------------------------------------------
@@ -302,16 +302,16 @@ FAILURE		p_value = 0.000000
 		(a) The nth partial sum = -134184
 		(b) S_n/n               = -0.134184
 		---------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 			      FREQUENCY TEST
 		---------------------------------------------
 		COMPUTATIONAL INFORMATION:
 		---------------------------------------------
 		(a) The nth partial sum = 18270
-		(b) S_n/n               = 0.018270
+		(b) S_n/n               = 0.018270000000000002
 		---------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 1.434507238317889e-74
 
 			      FREQUENCY TEST
 		---------------------------------------------
@@ -320,25 +320,25 @@ FAILURE		p_value = 0.000000
 		(a) The nth partial sum = -43982
 		(b) S_n/n               = -0.043982
 		---------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 			      FREQUENCY TEST
 		---------------------------------------------
 		COMPUTATIONAL INFORMATION:
 		---------------------------------------------
 		(a) The nth partial sum = 104070
-		(b) S_n/n               = 0.104070
+		(b) S_n/n               = 0.10407
 		---------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 			      FREQUENCY TEST
 		---------------------------------------------
 		COMPUTATIONAL INFORMATION:
 		---------------------------------------------
 		(a) The nth partial sum = -58720
-		(b) S_n/n               = -0.058720
+		(b) S_n/n               = -0.058720000000000001
 		---------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 			      FREQUENCY TEST
 		---------------------------------------------
@@ -347,25 +347,25 @@ FAILURE		p_value = 0.000000
 		(a) The nth partial sum = -206706
 		(b) S_n/n               = -0.206706
 		---------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 			      FREQUENCY TEST
 		---------------------------------------------
 		COMPUTATIONAL INFORMATION:
 		---------------------------------------------
 		(a) The nth partial sum = -133316
-		(b) S_n/n               = -0.133316
+		(b) S_n/n               = -0.13331599999999999
 		---------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 			      FREQUENCY TEST
 		---------------------------------------------
 		COMPUTATIONAL INFORMATION:
 		---------------------------------------------
 		(a) The nth partial sum = 16504
-		(b) S_n/n               = 0.016504
+		(b) S_n/n               = 0.016504000000000001
 		---------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 3.4337409796878546e-61
 
 			      FREQUENCY TEST
 		---------------------------------------------
@@ -374,7 +374,7 @@ FAILURE		p_value = 0.000000
 		(a) The nth partial sum = -45598
 		(b) S_n/n               = -0.045598
 		---------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 			      FREQUENCY TEST
 		---------------------------------------------
@@ -383,16 +383,16 @@ FAILURE		p_value = 0.000000
 		(a) The nth partial sum = 100352
 		(b) S_n/n               = 0.100352
 		---------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 			      FREQUENCY TEST
 		---------------------------------------------
 		COMPUTATIONAL INFORMATION:
 		---------------------------------------------
 		(a) The nth partial sum = -60554
-		(b) S_n/n               = -0.060554
+		(b) S_n/n               = -0.060553999999999997
 		---------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 			      FREQUENCY TEST
 		---------------------------------------------
@@ -401,61 +401,61 @@ FAILURE		p_value = 0.000000
 		(a) The nth partial sum = -203518
 		(b) S_n/n               = -0.203518
 		---------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 			      FREQUENCY TEST
 		---------------------------------------------
 		COMPUTATIONAL INFORMATION:
 		---------------------------------------------
 		(a) The nth partial sum = -132432
-		(b) S_n/n               = -0.132432
+		(b) S_n/n               = -0.13243199999999999
 		---------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 			      FREQUENCY TEST
 		---------------------------------------------
 		COMPUTATIONAL INFORMATION:
 		---------------------------------------------
 		(a) The nth partial sum = 17202
-		(b) S_n/n               = 0.017202
+		(b) S_n/n               = 0.017201999999999999
 		---------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 2.5652239778991054e-66
 
 			      FREQUENCY TEST
 		---------------------------------------------
 		COMPUTATIONAL INFORMATION:
 		---------------------------------------------
 		(a) The nth partial sum = -49020
-		(b) S_n/n               = -0.049020
+		(b) S_n/n               = -0.049020000000000001
 		---------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 			      FREQUENCY TEST
 		---------------------------------------------
 		COMPUTATIONAL INFORMATION:
 		---------------------------------------------
 		(a) The nth partial sum = 105356
-		(b) S_n/n               = 0.105356
+		(b) S_n/n               = 0.10535600000000001
 		---------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 			      FREQUENCY TEST
 		---------------------------------------------
 		COMPUTATIONAL INFORMATION:
 		---------------------------------------------
 		(a) The nth partial sum = -60628
-		(b) S_n/n               = -0.060628
+		(b) S_n/n               = -0.060628000000000001
 		---------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 			      FREQUENCY TEST
 		---------------------------------------------
 		COMPUTATIONAL INFORMATION:
 		---------------------------------------------
 		(a) The nth partial sum = -206026
-		(b) S_n/n               = -0.206026
+		(b) S_n/n               = -0.20602599999999999
 		---------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 			      FREQUENCY TEST
 		---------------------------------------------
@@ -464,7 +464,7 @@ FAILURE		p_value = 0.000000
 		(a) The nth partial sum = -134272
 		(b) S_n/n               = -0.134272
 		---------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 			      FREQUENCY TEST
 		---------------------------------------------
@@ -473,16 +473,16 @@ FAILURE		p_value = 0.000000
 		(a) The nth partial sum = 18778
 		(b) S_n/n               = 0.018778
 		---------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 1.14305190166897e-78
 
 			      FREQUENCY TEST
 		---------------------------------------------
 		COMPUTATIONAL INFORMATION:
 		---------------------------------------------
 		(a) The nth partial sum = -48308
-		(b) S_n/n               = -0.048308
+		(b) S_n/n               = -0.048307999999999997
 		---------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 			      FREQUENCY TEST
 		---------------------------------------------
@@ -491,34 +491,34 @@ FAILURE		p_value = 0.000000
 		(a) The nth partial sum = 105102
 		(b) S_n/n               = 0.105102
 		---------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 			      FREQUENCY TEST
 		---------------------------------------------
 		COMPUTATIONAL INFORMATION:
 		---------------------------------------------
 		(a) The nth partial sum = -59712
-		(b) S_n/n               = -0.059712
+		(b) S_n/n               = -0.059712000000000001
 		---------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 			      FREQUENCY TEST
 		---------------------------------------------
 		COMPUTATIONAL INFORMATION:
 		---------------------------------------------
 		(a) The nth partial sum = -206660
-		(b) S_n/n               = -0.206660
+		(b) S_n/n               = -0.20666000000000001
 		---------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 			      FREQUENCY TEST
 		---------------------------------------------
 		COMPUTATIONAL INFORMATION:
 		---------------------------------------------
 		(a) The nth partial sum = -132310
-		(b) S_n/n               = -0.132310
+		(b) S_n/n               = -0.13231000000000001
 		---------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 			      FREQUENCY TEST
 		---------------------------------------------
@@ -527,16 +527,16 @@ FAILURE		p_value = 0.000000
 		(a) The nth partial sum = 13996
 		(b) S_n/n               = 0.013996
 		---------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 1.648938545263265e-44
 
 			      FREQUENCY TEST
 		---------------------------------------------
 		COMPUTATIONAL INFORMATION:
 		---------------------------------------------
 		(a) The nth partial sum = -45330
-		(b) S_n/n               = -0.045330
+		(b) S_n/n               = -0.045330000000000002
 		---------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 			      FREQUENCY TEST
 		---------------------------------------------
@@ -545,16 +545,16 @@ FAILURE		p_value = 0.000000
 		(a) The nth partial sum = 103904
 		(b) S_n/n               = 0.103904
 		---------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 			      FREQUENCY TEST
 		---------------------------------------------
 		COMPUTATIONAL INFORMATION:
 		---------------------------------------------
 		(a) The nth partial sum = -60766
-		(b) S_n/n               = -0.060766
+		(b) S_n/n               = -0.060766000000000001
 		---------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 			      FREQUENCY TEST
 		---------------------------------------------
@@ -563,7 +563,7 @@ FAILURE		p_value = 0.000000
 		(a) The nth partial sum = -206154
 		(b) S_n/n               = -0.206154
 		---------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 			      FREQUENCY TEST
 		---------------------------------------------
@@ -572,16 +572,16 @@ FAILURE		p_value = 0.000000
 		(a) The nth partial sum = -132572
 		(b) S_n/n               = -0.132572
 		---------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 			      FREQUENCY TEST
 		---------------------------------------------
 		COMPUTATIONAL INFORMATION:
 		---------------------------------------------
 		(a) The nth partial sum = 16672
-		(b) S_n/n               = 0.016672
+		(b) S_n/n               = 0.016671999999999999
 		---------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 2.0946696350983846e-62
 
 			      FREQUENCY TEST
 		---------------------------------------------
@@ -590,7 +590,7 @@ FAILURE		p_value = 0.000000
 		(a) The nth partial sum = -45758
 		(b) S_n/n               = -0.045758
 		---------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 			      FREQUENCY TEST
 		---------------------------------------------
@@ -599,16 +599,16 @@ FAILURE		p_value = 0.000000
 		(a) The nth partial sum = 101188
 		(b) S_n/n               = 0.101188
 		---------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 			      FREQUENCY TEST
 		---------------------------------------------
 		COMPUTATIONAL INFORMATION:
 		---------------------------------------------
 		(a) The nth partial sum = -60632
-		(b) S_n/n               = -0.060632
+		(b) S_n/n               = -0.060631999999999998
 		---------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 			      FREQUENCY TEST
 		---------------------------------------------
@@ -617,16 +617,16 @@ FAILURE		p_value = 0.000000
 		(a) The nth partial sum = -204904
 		(b) S_n/n               = -0.204904
 		---------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 			      FREQUENCY TEST
 		---------------------------------------------
 		COMPUTATIONAL INFORMATION:
 		---------------------------------------------
 		(a) The nth partial sum = -133664
-		(b) S_n/n               = -0.133664
+		(b) S_n/n               = -0.13366400000000001
 		---------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 			      FREQUENCY TEST
 		---------------------------------------------
@@ -635,16 +635,16 @@ FAILURE		p_value = 0.000000
 		(a) The nth partial sum = 14726
 		(b) S_n/n               = 0.014726
 		---------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 4.3892842873025422e-49
 
 			      FREQUENCY TEST
 		---------------------------------------------
 		COMPUTATIONAL INFORMATION:
 		---------------------------------------------
 		(a) The nth partial sum = -44496
-		(b) S_n/n               = -0.044496
+		(b) S_n/n               = -0.044496000000000001
 		---------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 			      FREQUENCY TEST
 		---------------------------------------------
@@ -653,16 +653,16 @@ FAILURE		p_value = 0.000000
 		(a) The nth partial sum = 101146
 		(b) S_n/n               = 0.101146
 		---------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 			      FREQUENCY TEST
 		---------------------------------------------
 		COMPUTATIONAL INFORMATION:
 		---------------------------------------------
 		(a) The nth partial sum = -58218
-		(b) S_n/n               = -0.058218
+		(b) S_n/n               = -0.058217999999999999
 		---------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 			      FREQUENCY TEST
 		---------------------------------------------
@@ -671,34 +671,34 @@ FAILURE		p_value = 0.000000
 		(a) The nth partial sum = -207478
 		(b) S_n/n               = -0.207478
 		---------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 			      FREQUENCY TEST
 		---------------------------------------------
 		COMPUTATIONAL INFORMATION:
 		---------------------------------------------
 		(a) The nth partial sum = -132554
-		(b) S_n/n               = -0.132554
+		(b) S_n/n               = -0.13255400000000001
 		---------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 			      FREQUENCY TEST
 		---------------------------------------------
 		COMPUTATIONAL INFORMATION:
 		---------------------------------------------
 		(a) The nth partial sum = 15654
-		(b) S_n/n               = 0.015654
+		(b) S_n/n               = 0.015654000000000001
 		---------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 3.1197855556479228e-55
 
 			      FREQUENCY TEST
 		---------------------------------------------
 		COMPUTATIONAL INFORMATION:
 		---------------------------------------------
 		(a) The nth partial sum = -46864
-		(b) S_n/n               = -0.046864
+		(b) S_n/n               = -0.046864000000000003
 		---------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 			      FREQUENCY TEST
 		---------------------------------------------
@@ -707,7 +707,7 @@ FAILURE		p_value = 0.000000
 		(a) The nth partial sum = 104974
 		(b) S_n/n               = 0.104974
 		---------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 			      FREQUENCY TEST
 		---------------------------------------------
@@ -716,25 +716,25 @@ FAILURE		p_value = 0.000000
 		(a) The nth partial sum = -60162
 		(b) S_n/n               = -0.060162
 		---------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 			      FREQUENCY TEST
 		---------------------------------------------
 		COMPUTATIONAL INFORMATION:
 		---------------------------------------------
 		(a) The nth partial sum = -206936
-		(b) S_n/n               = -0.206936
+		(b) S_n/n               = -0.20693600000000001
 		---------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 			      FREQUENCY TEST
 		---------------------------------------------
 		COMPUTATIONAL INFORMATION:
 		---------------------------------------------
 		(a) The nth partial sum = -133910
-		(b) S_n/n               = -0.133910
+		(b) S_n/n               = -0.13391
 		---------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 			      FREQUENCY TEST
 		---------------------------------------------
@@ -743,52 +743,52 @@ FAILURE		p_value = 0.000000
 		(a) The nth partial sum = 17186
 		(b) S_n/n               = 0.017186
 		---------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 3.3806708340480459e-66
 
 			      FREQUENCY TEST
 		---------------------------------------------
 		COMPUTATIONAL INFORMATION:
 		---------------------------------------------
 		(a) The nth partial sum = -45044
-		(b) S_n/n               = -0.045044
+		(b) S_n/n               = -0.045044000000000001
 		---------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 			      FREQUENCY TEST
 		---------------------------------------------
 		COMPUTATIONAL INFORMATION:
 		---------------------------------------------
 		(a) The nth partial sum = 103636
-		(b) S_n/n               = 0.103636
+		(b) S_n/n               = 0.10363600000000001
 		---------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 			      FREQUENCY TEST
 		---------------------------------------------
 		COMPUTATIONAL INFORMATION:
 		---------------------------------------------
 		(a) The nth partial sum = -60304
-		(b) S_n/n               = -0.060304
+		(b) S_n/n               = -0.060304000000000003
 		---------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 			      FREQUENCY TEST
 		---------------------------------------------
 		COMPUTATIONAL INFORMATION:
 		---------------------------------------------
 		(a) The nth partial sum = -204912
-		(b) S_n/n               = -0.204912
+		(b) S_n/n               = -0.20491200000000001
 		---------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 			      FREQUENCY TEST
 		---------------------------------------------
 		COMPUTATIONAL INFORMATION:
 		---------------------------------------------
 		(a) The nth partial sum = -132618
-		(b) S_n/n               = -0.132618
+		(b) S_n/n               = -0.13261800000000001
 		---------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 			      FREQUENCY TEST
 		---------------------------------------------
@@ -797,70 +797,70 @@ FAILURE		p_value = 0.000000
 		(a) The nth partial sum = 14872
 		(b) S_n/n               = 0.014872
 		---------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 5.0094181402629129e-50
 
 			      FREQUENCY TEST
 		---------------------------------------------
 		COMPUTATIONAL INFORMATION:
 		---------------------------------------------
 		(a) The nth partial sum = -44258
-		(b) S_n/n               = -0.044258
+		(b) S_n/n               = -0.044257999999999999
 		---------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 			      FREQUENCY TEST
 		---------------------------------------------
 		COMPUTATIONAL INFORMATION:
 		---------------------------------------------
 		(a) The nth partial sum = 104830
-		(b) S_n/n               = 0.104830
+		(b) S_n/n               = 0.10483000000000001
 		---------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 			      FREQUENCY TEST
 		---------------------------------------------
 		COMPUTATIONAL INFORMATION:
 		---------------------------------------------
 		(a) The nth partial sum = -60838
-		(b) S_n/n               = -0.060838
+		(b) S_n/n               = -0.060838000000000003
 		---------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 			      FREQUENCY TEST
 		---------------------------------------------
 		COMPUTATIONAL INFORMATION:
 		---------------------------------------------
 		(a) The nth partial sum = -206332
-		(b) S_n/n               = -0.206332
+		(b) S_n/n               = -0.20633199999999999
 		---------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 			      FREQUENCY TEST
 		---------------------------------------------
 		COMPUTATIONAL INFORMATION:
 		---------------------------------------------
 		(a) The nth partial sum = -134150
-		(b) S_n/n               = -0.134150
+		(b) S_n/n               = -0.13414999999999999
 		---------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 			      FREQUENCY TEST
 		---------------------------------------------
 		COMPUTATIONAL INFORMATION:
 		---------------------------------------------
 		(a) The nth partial sum = 15940
-		(b) S_n/n               = 0.015940
+		(b) S_n/n               = 0.015939999999999999
 		---------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 3.343538091973007e-57
 
 			      FREQUENCY TEST
 		---------------------------------------------
 		COMPUTATIONAL INFORMATION:
 		---------------------------------------------
 		(a) The nth partial sum = -44002
-		(b) S_n/n               = -0.044002
+		(b) S_n/n               = -0.044001999999999999
 		---------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 			      FREQUENCY TEST
 		---------------------------------------------
@@ -869,16 +869,16 @@ FAILURE		p_value = 0.000000
 		(a) The nth partial sum = 103826
 		(b) S_n/n               = 0.103826
 		---------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 			      FREQUENCY TEST
 		---------------------------------------------
 		COMPUTATIONAL INFORMATION:
 		---------------------------------------------
 		(a) The nth partial sum = -61568
-		(b) S_n/n               = -0.061568
+		(b) S_n/n               = -0.061567999999999998
 		---------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 			      FREQUENCY TEST
 		---------------------------------------------
@@ -887,14 +887,14 @@ FAILURE		p_value = 0.000000
 		(a) The nth partial sum = -204486
 		(b) S_n/n               = -0.204486
 		---------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
 			      FREQUENCY TEST
 		---------------------------------------------
 		COMPUTATIONAL INFORMATION:
 		---------------------------------------------
 		(a) The nth partial sum = -136190
-		(b) S_n/n               = -0.136190
+		(b) S_n/n               = -0.13619000000000001
 		---------------------------------------------
-FAILURE		p_value = 0.000000
+FAILURE		p_value = 0
 
