@@ -1,0 +1,8 @@
+category,kind,first_level_valid_values,first_level_pass,first_level_fail,first_level_not_applicable,first_level_pass_rate,first_level_expected_failures_if_null,component_proportions_below_nist_approx_bound,second_level_rows,second_level_uniformity_values,second_level_failures_at_nist_0_0001,second_level_values_below_0_01_exploratory_only,minimum_second_level_p_value
+hmac_drbg,cryptographic-component,17942,17758,184,858,0.98974473,179.4200,8,188,188,0,3,0.00204298965629
+pair_shift,cryptographic-component,17994,17811,183,806,0.98982994,179.9400,2,188,188,0,2,0.00357703092676
+block_r1,cryptographic-component,17864,17684,180,936,0.98992387,178.6400,4,188,188,0,0,0.01265042135
+auth_tag,cryptographic-component,17656,17439,217,1144,0.98770956,176.5600,6,188,188,0,2,0.000199128574335
+reduced_shift_diag,image-diagnostic,16200,220,15980,2600,0.01358025,162.0000,162,188,162,162,162,6.18680103239e-188
+ciphertext_diag,image-diagnostic,16200,1339,14861,2600,0.08265432,162.0000,162,188,162,162,162,6.18680103239e-188
+recovered_diag,image-diagnostic,16200,470,15730,2600,0.02901235,162.0000,162,188,162,162,162,6.18680103239e-188
