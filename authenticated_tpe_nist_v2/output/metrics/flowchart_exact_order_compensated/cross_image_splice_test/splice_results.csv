@@ -1,0 +1,2 @@
+case,donor,recipient,block_origin_yx,blocks_hxw,replaced_pixels_per_channel,accepted,failed_groups,expected_affected_groups,localization_exact,plaintext_withheld,result_reason,tampered_image_file
+one_interior_32x32_block,Lena authenticated ciphertext,Airplane authenticated ciphertext,"1,5","1,1",1024,False,"((0, 185), (1, 98), (2, 189))","((0, 185), (1, 98), (2, 189))",True,True,one or more four-block HMAC tags failed; plaintext withheld,airplane_with_lena_one_interior_32x32_block.png

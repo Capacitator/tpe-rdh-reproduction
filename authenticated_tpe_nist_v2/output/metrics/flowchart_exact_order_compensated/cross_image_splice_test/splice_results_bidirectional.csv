@@ -1,0 +1,3 @@
+case,recipient,donor,block_origin_yx,block_size,changed_RGB_pixels,accepted,failed_groups,expected_affected_groups,localization_exact,plaintext_withheld,reason,tampered_image_file
+lena_to_airplane,Airplane authenticated ciphertext,Lena authenticated ciphertext,"1,5",32x32,3072,False,"((0, 185), (1, 98), (2, 189))","((0, 185), (1, 98), (2, 189))",True,True,one or more four-block HMAC tags failed; plaintext withheld,airplane_with_lena_block_y1_x5.png
+airplane_to_lena,Lena authenticated ciphertext,Airplane authenticated ciphertext,"0,0",32x32,3072,False,"((0, 204), (1, 128), (2, 186))","((0, 204), (1, 128), (2, 186))",True,True,one or more four-block HMAC tags failed; plaintext withheld,lena_with_airplane_block_y0_x0.png
