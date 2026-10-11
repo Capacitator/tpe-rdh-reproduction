@@ -1,0 +1,8 @@
+# Exact versions used for the verified 11 October 2026 run (Python 3.12)
+numpy==2.5.3
+Pillow==12.3.0
+scikit-image==0.26.0
+scipy==1.18.1
+cryptography==50.0.1
+python-docx==1.2.0
+pytest==9.1.1

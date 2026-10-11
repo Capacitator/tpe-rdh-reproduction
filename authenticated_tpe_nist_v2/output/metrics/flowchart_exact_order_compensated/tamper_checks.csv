@@ -1,0 +1,5 @@
+case,accepted,failed_groups,expected_group,reason
+untampered saved couple output,True,(),,all four-block HMAC tags accepted
+one pixel flipped in selected group,False,"((1, 42),)","((1, 42),)",one or more four-block HMAC tags failed; plaintext withheld
+one sidecar authentication bit flipped,False,(),,layout/key validation failed: InvalidTag
+wrong ImageID,False,(),,layout/key validation failed: InvalidTag
