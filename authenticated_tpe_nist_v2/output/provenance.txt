@@ -29,3 +29,24 @@ image_pool_size=106
 image_pool=6 UCT colour images (tpe_rdh_reproduction/input/uct_colour) + 100 distinct UCID images (github.com/girfa/ColorImageDatasets, UCID-1338/1..100.tif), each converted to RGB and resized once to 512x512 with PIL LANCZOS
 bit_order=MSB-first within each byte, bytes in row-major order, first 1,000,000 bits of the 125,000-byte stream payload
 evaluation=official assess executable; first-level p-values from the suite's per-test results.txt; second-level uniformity recomputed from the suite's C1..C10 histogram with gammaincc(9/2, chi2/2) and cross-checked against the suite's printed value
+
+image_fidelity_correction_date=2026-10-11
+image_fidelity_metric=PSNR/SSIM of original plaintext input vs final encrypted/marked image; data_range=255; RGB channel_axis=2
+separate_marking_metric=PSNR/SSIM of final marked image vs Step-2 image immediately before authentication tag embedding
+prior_v2_table1_issue=labelled marked-vs-Step-2 distortion as encrypted-image fidelity; preserved old report at output/report/authenticated_tpe_nist_v2_report.docx
+corrected_baboon_input_vs_encrypted_psnr_db=17.2877
+corrected_baboon_input_vs_encrypted_ssim=0.4941
+corrected_baboon_marking_distortion_psnr_db=27.7176
+corrected_baboon_marking_distortion_ssim=0.9629
+cipher_algorithm_changed=false
+key_or_image_id_changed=false
+original_paper_pdf_present=false
+fidelity_regression_tests=17 passed; tests/test_atpe_v2.py::test_image_fidelity_uses_original_input_as_reference
+corrected_fidelity_report=output/report/authenticated_tpe_nist_v2_fidelity_correction.docx
+fidelity_correction_note=docs/FIDELITY_CORRECTION.md
+fidelity_correction_source_commit=1cb8741f61c987cce2811d043e67f4aa0c779878
+run_metrics_sha256=259098f9ea64a044ef5c87dba5e4cf35c65273d4d461c4434f2b323f327f5b4d
+make_report_sha256=5933d69419428318ac4e2602da38eef420264a63861b857f84e7fa967a76e31c
+fidelity_tests_sha256=07531b7e2fd513b2bb54870e16a16b6e0763df2f67dfa745b63f342dd0c8306c
+image_quality_csv_sha256=14d148caf9154b9c29cc058e9d8d818aa1ac6499ec881e3df1bf5fa23f9f0c28
+corrected_word_report_sha256=97bdd5e2f67111c81f2d2b93132a2694d7b6a425f28280b499e67a852a985802

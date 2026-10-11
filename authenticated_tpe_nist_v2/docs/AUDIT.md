@@ -39,6 +39,7 @@ correctness fixes below.
 | A13 | The tag does not bind image identity | **design property** (disclosed) | not a NIST input |
 | A14 | Random Excursions is not applicable to roughly a third of `n = 10^6` streams | **official-suite property** (disclosed) | reduces the applicable sample only |
 | A15 | Sum-class size uniformity screening | **checked, no residual bias** | none |
+| A16 | Encrypted-image PSNR reference | **measurement-label defect** (corrected) | 27.77 dB was marking-only, not input-to-ciphertext fidelity |
 
 ---
 
@@ -347,6 +348,36 @@ rejections after correction. The two marginal sizes were re-tested with
 are uniform (p = 0.3207 for size 4, 0.1495 for 86, 0.6103 for 142). The
 rejection-sampled reduction is therefore confirmed exact, with no detectable
 residual bias.
+
+## A16. Encrypted-image PSNR reference — measurement-label defect, corrected
+
+**Finding.** `run_metrics.py` measured `PSNR(marked_image, step2_image)` and the
+report labelled it "Encrypted-image PSNR". That compares the final marked
+ciphertext with the already transformed Step-2 carrier; it measures the
+distortion of authentication-tag embedding only. It is not the input-to-final-
+ciphertext image fidelity that the user's concern and that table heading
+implied. This reference mismatch explains why a value near 27.77 dB could be
+reported while the final image's actual fidelity against the original was lower.
+
+**Correction.** The experiment now separately calculates the two valid,
+explicitly named pairs:
+
+* `input_vs_encrypted_psnr_db` / `input_vs_encrypted_ssim`: original input versus
+  final encrypted/marked output;
+* `marking_distortion_psnr_db` / `marking_distortion_ssim`: final marked output
+  versus the Step-2 carrier immediately before tag embedding.
+
+On the Baboon fixture the rerun gives input-to-final PSNR **17.2877 dB**, SSIM
+**0.4941**, while marking-only distortion is **27.7176 dB**, SSIM **0.9629**.
+The output confirms why the comparison references must not be interchanged. The
+cipher algorithm, keys, identifiers, parameters and image inputs did not change;
+this is a metric/reference correction, not score tuning. Exact decryption and
+authentication still pass on all six UCT images.
+
+The supplied paper PDF and the user's referenced example image were not present
+in the active workspace. The corrected report therefore fixes the standard
+input-vs-final-output measure without claiming that the missing paper's precise
+fixture or preprocessing has been reproduced. See `FIDELITY_CORRECTION.md`.
 
 ## What was *not* changed
 

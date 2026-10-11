@@ -25,7 +25,7 @@ import nist_runner as N  # noqa: E402
 import streams as S  # noqa: E402
 
 TEMPLATE = Path("/home/ubuntu/upload/authenticated_tpe_latest_old_format.docx")
-TARGET = OUT / "report" / "authenticated_tpe_nist_v2_report.docx"
+TARGET = OUT / "report" / "authenticated_tpe_nist_v2_fidelity_correction.docx"
 CAPTION_STYLE = "MDPI_4.1_table_caption"
 
 
@@ -110,43 +110,60 @@ def main() -> None:
         document.element.body.remove(element)
 
     add_paragraph(document,
-                  "Thumbnail-Preserving Encrypted Colour Images: corrected NIST SP 800-22 Rev. 1a "
+                  "Fidelity correction: Thumbnail-Preserving Encrypted Colour Images, corrected NIST SP 800-22 Rev. 1a "
                   "evaluation of the authenticated scheme (revision atpe-v2.1). This document was "
-                  "generated from the run recorded under "
-                  "authenticated_tpe_nist_v2/output/. It replaces no existing report: the original "
-                  "word document with its Tables 1-7 is preserved unchanged.")
+                  "generated after a review found that an earlier report labelled marking-stage "
+                  "distortion as encrypted-image fidelity. It replaces no existing report; both the "
+                  "original Word report and the first v2 report are preserved unchanged.")
 
     # ---- Table 1 -------------------------------------------------------
-    add_caption(document, "Table 1. Results of the revised authenticated method on six UCT images "
-                          "(block size 32x32, 512x512 RGB, group or whole-image mode as reported).")
+    add_caption(document, "Table 1. Image fidelity measured between the original input and the final "
+                          "encrypted/marked image (six UCT images; 32x32 blocks; 512x512 RGB).")
     rows = []
     for row in quality:
         rows.append([row["image"], row["mode"], f"{float(row['protect_seconds']):.4f}",
                      f"{float(row['verify_seconds']):.4f}",
-                     f"{float(row['marked_vs_step2_psnr_db']):.4f}",
-                     f"{float(row['marked_vs_step2_ssim']):.4f}",
+                     f"{float(row['input_vs_encrypted_psnr_db']):.4f}",
+                     f"{float(row['input_vs_encrypted_ssim']):.4f}",
                      f"{row['max_abs_error']}",
                      f"{float(row['recovery_psnr_db']):.4f}",
                      f"{float(row['recovery_ssim']):.4f}"])
     if rows:
         mean = ["Mean"] + [""] * 8
-        for index, key in enumerate(["protect_seconds", "verify_seconds", "marked_vs_step2_psnr_db",
-                                     "marked_vs_step2_ssim"]):
+        for index, key in enumerate(["protect_seconds", "verify_seconds", "input_vs_encrypted_psnr_db",
+                                     "input_vs_encrypted_ssim"]):
             mean[index + 2] = f"{sum(float(r[key]) for r in quality) / len(quality):.4f}"
         mean[6] = "0"
         mean[7] = "inf"
         mean[8] = "1.0000"
         rows.append(mean)
     add_table(document, ["Image Id", "Mode", "Encryption time (s)", "Decryption time (s)",
-                         "Encrypted-image PSNR (dB)", "Encrypted-image SSIM",
+                         "Input-vs-encrypted PSNR (dB)", "Input-vs-encrypted SSIM",
                          "Decrypted-image MSE..max error", "Decrypted-image PSNR",
                          "Decrypted-image SSIM"], rows)
     add_paragraph(document,
                   "Recovery is exact for every image (maximum absolute error 0, PSNR inf, SSIM 1.0), "
-                  "and every tag verified. Marked-image PSNR/SSIM are measured against the Step-2 "
-                  "intermediate, as in the original document. Whole-image mode appears where a group "
-                  "of four blocks cannot reach 256 net bits; it is the method's documented fallback "
-                  "and its tag verifies identically.")
+                  "and every tag verified. The PSNR/SSIM in Table 1 now compare the original plaintext "
+                  "input directly with the final encrypted/marked output—the relevant image-fidelity "
+                  "comparison. Whole-image mode appears where a group of four blocks cannot reach 256 "
+                  "net bits; it is the method's documented fallback and its tag verifies identically.")
+    if quality:
+        fidelity_rows = [[r["image"], f"{float(r['marking_distortion_psnr_db']):.4f}",
+                          f"{float(r['marking_distortion_ssim']):.4f}"] for r in quality]
+        add_caption(document, "Table 1A. Authentication-marking distortion only: final marked image "
+                              "compared with the Step-2 image immediately before tag embedding.")
+        add_table(document, ["Image Id", "Marked-vs-Step-2 PSNR (dB)", "Marked-vs-Step-2 SSIM"],
+                  fidelity_rows)
+        add_paragraph(document,
+                      "The previous 27.7714 dB value for Baboon was described as encrypted-image PSNR, "
+                      "but that quantity is not input-to-encrypted fidelity: the earlier code computed "
+                      "PSNR between the final marked image and the Step-2 intermediate. In this rerun, "
+                      f"that marking-only comparison is {float(quality[1]['marking_distortion_psnr_db']):.4f} dB, "
+                      f"while the correctly labelled original-input-to-final-ciphertext value is "
+                      f"{float(quality[1]['input_vs_encrypted_psnr_db']):.4f} dB (SSIM "
+                      f"{float(quality[1]['input_vs_encrypted_ssim']):.4f}). The algorithm was not tuned "
+                      "to raise either result. Both references are included so the difference cannot be "
+                      "mistaken for improved visual fidelity.")
 
     # ---- Table 2 -------------------------------------------------------
     add_caption(document, "Table 2. Differential, entropy and correlation statistics with the "

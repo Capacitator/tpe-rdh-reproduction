@@ -110,6 +110,18 @@ def quality_case(index: int) -> dict:
         "recovery_psnr_db": float(peak_signal_noise_ratio(image, recovered, data_range=255)),
         "recovery_ssim": float(structural_similarity(image, recovered, channel_axis=2,
                                                      data_range=255)),
+        # Thumbnail/image fidelity is plaintext input vs the final marked ciphertext.
+        # Keep the historical marked-vs-Step-2 value separately: that measures only
+        # the extra distortion from embedding the authentication tag, not encryption
+        # fidelity relative to the input image.
+        "input_vs_encrypted_psnr_db": float(peak_signal_noise_ratio(
+            image, marked, data_range=255)),
+        "input_vs_encrypted_ssim": float(structural_similarity(
+            image, marked, channel_axis=2, data_range=255)),
+        "marking_distortion_psnr_db": float(peak_signal_noise_ratio(
+            step2, marked, data_range=255)),
+        "marking_distortion_ssim": float(structural_similarity(
+            step2, marked, channel_axis=2, data_range=255)),
         "marked_vs_step2_psnr_db": float(peak_signal_noise_ratio(step2, marked, data_range=255)),
         "marked_vs_step2_ssim": float(structural_similarity(step2, marked, channel_axis=2,
                                                             data_range=255)),

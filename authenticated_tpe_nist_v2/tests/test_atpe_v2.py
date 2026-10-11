@@ -149,6 +149,28 @@ def test_authentication_and_exact_recovery(protected_case):
     assert protected.mode in {"group", "whole-image"}
 
 
+def test_image_fidelity_uses_original_input_as_reference():
+    """The encryption-fidelity metric must not use the pre-mark Step-2 image."""
+    sys.path.insert(0, str(ROOT / "experiments"))
+    from run_metrics import quality_case
+
+    row = quality_case(1)  # baboon fixture
+    image = S.load_image(1)
+    key, image_id = S.pool_key(5001), S.pool_image_id(5001)
+    protected = v2.protect_image(image, key, image_id)
+    step2 = v2.base._step2_image(v2.step1_image(image, key, image_id), key)
+    from skimage.metrics import peak_signal_noise_ratio, structural_similarity
+
+    expected_input_psnr = peak_signal_noise_ratio(image, protected.marked_image, data_range=255)
+    expected_input_ssim = structural_similarity(image, protected.marked_image,
+                                                channel_axis=2, data_range=255)
+    expected_marking_psnr = peak_signal_noise_ratio(step2, protected.marked_image, data_range=255)
+    assert row["input_vs_encrypted_psnr_db"] == pytest.approx(expected_input_psnr)
+    assert row["input_vs_encrypted_ssim"] == pytest.approx(expected_input_ssim)
+    assert row["marking_distortion_psnr_db"] == pytest.approx(expected_marking_psnr)
+    assert row["input_vs_encrypted_psnr_db"] < row["marking_distortion_psnr_db"]
+
+
 def test_plaintext_is_never_released_without_authentication(protected_case):
     _, protected = protected_case
     marked = protected.marked_image

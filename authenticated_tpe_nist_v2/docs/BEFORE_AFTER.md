@@ -7,6 +7,14 @@ and the raw official reports under `output/nist_raw/`. The "before" numbers are
 transcribed from Table 7 of the original Word document (`authenticated_tpe_latest_old_format.docx`,
 column *Step-2 intermediate*), which is preserved unchanged.
 
+**Supplemental correction (2026-10-11):** a review found that the earlier v2
+report called a Step-2-to-marked-image comparison "encrypted-image PSNR". That
+is tag-marking distortion, not input-to-final-ciphertext image fidelity. The
+correct original-input-to-final-encrypted/marked metrics and exact Baboon
+comparison are in [`FIDELITY_CORRECTION.md`](FIDELITY_CORRECTION.md) and the
+separate corrected Word report. The earlier v2 report is preserved as an audit
+artifact; do not cite its mislabeled Table 1 as input-to-ciphertext fidelity.
+
 ## Headline
 
 | | Before (original Table 7) | After (this revision) |

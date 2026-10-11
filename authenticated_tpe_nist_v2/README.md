@@ -15,6 +15,7 @@ new report is written to `output/report/`.
 | [`docs/AUDIT.md`](docs/AUDIT.md) | Full audit: every checked item, verdict, evidence and fix. Includes what was **not** changed and an honest statement about the outcome. |
 | [`docs/STREAM_DEFINITIONS.md`](docs/STREAM_DEFINITIONS.md) | Exact, reproducible definition of all 700 streams and the independence argument. |
 | [`docs/BEFORE_AFTER.md`](docs/BEFORE_AFTER.md) | Before/after comparison, including the failures that remain. |
+| [`docs/FIDELITY_CORRECTION.md`](docs/FIDELITY_CORRECTION.md) | Corrected original-input-to-final-ciphertext PSNR/SSIM; explains the earlier reference-image mismatch. |
 
 ## Layout
 
@@ -23,7 +24,7 @@ src/atpe_v2.py            revised cipher (thin revision layer over the audited p
 src/streams.py            predefined stream families, manifests, independence checks
 src/nist_runner.py        official assess driver + report parser + uniformity recomputation
 experiments/run_protocol.py   the whole campaign (streams -> assess -> CSVs -> provenance)
-experiments/run_metrics.py    recovery, tamper, same-key, NPCR/UACI, class uniformity
+experiments/run_metrics.py    recovery, input-vs-encrypted fidelity, tag-marking distortion, tamper, same-key, NPCR/UACI, class uniformity
 experiments/retest_class_uniformity.py  1,048,576-draw re-test of the marginal class sizes
 experiments/summarise_nist.py per-(category,test) aggregation and before/after table
 experiments/make_report.py    builds the new Word report in the original format
@@ -81,6 +82,10 @@ identical digests, which is recorded in `docs/BEFORE_AFTER.md`.
 5. **Correct differential metrics.** NPCR/UACI are computed between two ciphertexts of the
    same plaintext (ideal 99.6094 % / 33.4635 %); the old embedding-distortion quantity is
    still reported, but under its own name.
+6. **Correct image-fidelity reference.** Encrypted-image PSNR/SSIM compare the final
+   marked ciphertext with the original input. Distortion between final marking and the
+   pre-mark Step-2 image remains separately reported, but is not called encrypted-image
+   fidelity.
 
 Parameter values — block size, image size, tag length, key schedule, domain labels,
 traversal orders, α = 0.01, stream count and stream length — are unchanged.
