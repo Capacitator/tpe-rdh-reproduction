@@ -1,0 +1,7 @@
+image,dims,post_step2_T,post_step2_O,post_step2_N,post_step2_whole_net_capacity_bits,groups_total,groups_with_capacity_ge_256,groups_below_256,minimum_four_block_net_capacity,median_four_block_net_capacity,legacy_after_substitution_whole_net_capacity_bits
+airplane,512x512,242316,79645,71255,250706,192,191,1,68,1365.0,-132962
+baboon,512x512,224639,73475,95102,203012,192,188,4,-156,1090.0,-133026
+couple,256x256,41813,11475,45016,8272,48,22,26,-788,204.0,-35216
+girl,256x256,51125,16138,31041,36222,48,42,6,-470,794.0,-34448
+lena,512x512,243381,80245,69590,254036,192,189,3,-178,1393.0,-132040
+peppers,512x512,227284,72692,93240,206736,192,183,9,-350,1093.0,-128360

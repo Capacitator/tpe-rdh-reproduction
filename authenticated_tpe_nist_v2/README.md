@@ -116,3 +116,24 @@ revision while stating it must not be used as an assessment of cryptographic gen
 This work does not claim cryptographic security, does not hide any failure or
 not-applicable outcome, did not remove any failing stream, and did not change any
 parameter in order to raise a p-value.
+
+## Flowchart hybrid: preserved block effect plus authentication
+
+The separate research prototype combining the legacy 32×32 block-TPE/RDH stage
+with HMAC-SHA256, HMAC_DRBG grouping and reversible RCM marking is documented in
+[`docs/FLOWCHART_HYBRID.md`](docs/FLOWCHART_HYBRID.md). It explains the reversible
+ordering adjustment required by a genuine RCM capacity problem and reports all
+six images, both full-pixel and block-thumbnail PSNR/SSIM, exact-recovery tests,
+and the whole-image fallback (four-block localization did not pass for this set).
+
+- Code: `src/block32_authenticated_tpe.py`
+- Six-image runner: `experiments/run_flowchart_hybrid.py`
+- Capacity audit: `experiments/run_capacity_audit.py`
+- Tests: `tests/test_block32_authenticated_tpe.py`
+- Results/provenance/hashes: `output/metrics/flowchart_hybrid/`
+- Updated Word gallery: `output/metrics/block32_corrected_images/professor_32x32_block_effect_gallery.docx`
+
+Reproduce with `python3 experiments/run_flowchart_hybrid.py`,
+`python3 experiments/run_capacity_audit.py`, and
+`python3 -m pytest tests -q`. The Word generator appends the measured results
+without removing the earlier gallery pages.
