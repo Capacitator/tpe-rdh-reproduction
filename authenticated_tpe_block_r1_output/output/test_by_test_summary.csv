@@ -1,0 +1,16 @@
+nist_test,components,first_level_pass,first_level_fail,first_level_NA_component_values,first_level_NA_streams,first_level_valid_p_values,first_level_pass_rate,second_level_values,second_level_failures_at_0_0001,second_level_values_below_0_01_exploratory,minimum_second_level_p
+Frequency,1,100,0,0,0,100,1.00000000,1,0,0,0.798139062395
+BlockFrequency,1,99,1,0,0,100,0.99000000,1,0,0,0.616305224983
+CumulativeSums,2,200,0,0,0,200,1.00000000,2,0,0,0.171866837467
+Runs,1,100,0,0,0,100,1.00000000,1,0,0,0.350485212323
+LongestRun,1,99,1,0,0,100,0.99000000,1,0,0,0.474985686648
+Rank,1,98,2,0,0,100,0.98000000,1,0,0,0.595548507284
+FFT,1,99,1,0,0,100,0.99000000,1,0,0,0.191686740847
+NonOverlappingTemplate,148,14667,133,0,0,14800,0.99101351,148,0,6,0.000199128574335
+OverlappingTemplate,1,98,2,0,0,100,0.98000000,1,0,0,0.851382575357
+Universal,1,99,1,0,0,100,0.99000000,1,0,0,0.181556631981
+ApproximateEntropy,1,98,2,0,0,100,0.98000000,1,0,0,0.236809815218
+RandomExcursions,8,483,5,312,39,488,0.98975410,8,0,0,0.311542340562
+RandomExcursionsVariant,18,1093,5,702,39,1098,0.99544627,18,0,0,0.0212616594993
+Serial,2,197,3,0,0,200,0.98500000,2,0,0,0.0288171732613
+LinearComplexity,1,100,0,0,0,100,1.00000000,1,0,0,0.883171378424
