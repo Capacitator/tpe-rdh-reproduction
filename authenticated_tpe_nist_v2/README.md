@@ -96,6 +96,8 @@ python3 experiments/retest_class_uniformity.py
 python3 experiments/summarise_nist.py
 python3 experiments/make_report.py
 python3 -m pytest tests -q
+# 3. re-verify every delivered artifact against its recorded digest
+python3 experiments/verify_artifacts.py     # -> "RESULT: all checks passed"
 ```
 
 Regenerating the streams reproduces every SHA-256 in `output/stream_manifest.csv`.
