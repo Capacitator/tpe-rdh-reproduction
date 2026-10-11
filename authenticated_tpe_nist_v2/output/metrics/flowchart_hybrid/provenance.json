@@ -5,8 +5,8 @@
     "whole-image": 6
   },
   "branch": "audit/flowchart-hybrid-auth",
-  "commit": "498f8db25e99f566f7ee05e50de78a0a9069b69f",
-  "generated_utc": "2026-10-11T03:51:20.521991+00:00",
+  "code_commit": "e189d762f1a1fdaca6bb328e6de0383a081b14bf",
+  "generated_utc": "2026-10-11T03:51:58.961739+00:00",
   "image_count": 6,
   "output_files_sha256": {
     "README.md": "ab985a5390a2e9f78e001f4f947466cd08e7fe867cc763ef78ce2346ab48f2ad",
@@ -38,8 +38,10 @@
   "python": "3.12.3",
   "report_sha256": "b6bde365b893edb3fd9da6521b5cb0c9cedd2e8b4b8d9faa2f994d2c26dd151f",
   "source_hashes_sha256": {
+    "authenticated_tpe_nist_v2/experiments/append_flowchart_results_to_gallery.py": "51ea9808d744752fa812f14396a2f79ac2b8ff8acbd580178d783f30d5f4ec91",
     "authenticated_tpe_nist_v2/experiments/run_capacity_audit.py": "4df3249030c19474dcc73bdb59d9fb3ea323fa33e167705a5a0f2020892dce50",
     "authenticated_tpe_nist_v2/experiments/run_flowchart_hybrid.py": "b6905da1754410d81a70e16c849f7eab5ed0af4898103958b5c4f8496928738a",
+    "authenticated_tpe_nist_v2/experiments/write_flowchart_provenance.py": "89e8ed10a5e64f86985a8da1c045704aa7a18f993491636c8c56c4c9d664a6c8",
     "authenticated_tpe_nist_v2/src/atpe_v2.py": "4c6cfcf03ffe1ef18f210c1dfab4fe12eb165826179c4b91b49d34f5f09ef30f",
     "authenticated_tpe_nist_v2/src/block32_authenticated_tpe.py": "e17ff77eeb81bfb7ccc63d765b5870c04e595400301adda2320943f1ab17378f",
     "authenticated_tpe_nist_v2/tests/test_block32_authenticated_tpe.py": "3612ce72a036814d826db62c0a7fb11069bf0ee904cdd7a01bc43f06d537b147",

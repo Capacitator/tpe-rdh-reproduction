@@ -19,12 +19,13 @@ def git(*args):
  except Exception:return 'unavailable'
 
 def main():
- code=[ROOT/'src'/'block32_authenticated_tpe.py',ROOT/'experiments'/'run_flowchart_hybrid.py',ROOT/'experiments'/'run_capacity_audit.py',ROOT/'tests'/'test_block32_authenticated_tpe.py',REPO/'tpe_rdh_reproduction'/'src'/'pipeline.py',REPO/'tpe_rdh_reproduction'/'src'/'permutation.py',REPO/'tpe_rdh_reproduction'/'src'/'substitution.py',REPO/'tpe_rdh_reproduction'/'src'/'rdh.py',ROOT/'src'/'atpe_v2.py']
+ code=[ROOT/'src'/'block32_authenticated_tpe.py',ROOT/'experiments'/'run_flowchart_hybrid.py',ROOT/'experiments'/'run_capacity_audit.py',ROOT/'experiments'/'append_flowchart_results_to_gallery.py',ROOT/'experiments'/'write_flowchart_provenance.py',ROOT/'tests'/'test_block32_authenticated_tpe.py',REPO/'tpe_rdh_reproduction'/'src'/'pipeline.py',REPO/'tpe_rdh_reproduction'/'src'/'permutation.py',REPO/'tpe_rdh_reproduction'/'src'/'substitution.py',REPO/'tpe_rdh_reproduction'/'src'/'rdh.py',ROOT/'src'/'atpe_v2.py']
  inputs=[REPO/'tpe_rdh_reproduction'/'input'/'uct_colour'/f'{n}.tif' for n in ['airplane','baboon','couple','girl','lena','peppers']]
  rows=list(csv.DictReader((OUT/'metrics.csv').open(newline='',encoding='utf-8')))
  p={
   'generated_utc':datetime.now(timezone.utc).isoformat(),
-  'branch':git('branch','--show-current'),'commit':git('rev-parse','HEAD'),
+  'branch':git('branch','--show-current'),
+  'code_commit':git('log','-1','--format=%H','--','authenticated_tpe_nist_v2/src/block32_authenticated_tpe.py'),
   'python':platform.python_version(),'platform':platform.platform(),
   'protocol':'32x32 block-TPE/RDH plus HMAC-SHA256, HMAC_DRBG grouping, reversible RCM authentication, and outer reversible pair-sum-preserving legacy substitution',
   'image_count':len(rows),'all_exact_recovery':all(r['exact_recovery']=='True' for r in rows),
