@@ -14,6 +14,7 @@ The script reads the immutable campaign CSVs from `../authenticated_tpe_nist_v2/
 
 - `output/P_VALUE_REVIEW.md` — interpretation and actionable conclusion;
 - `output/category_interpretation.csv` — first-level, applicability and second-level counts by category;
+- `output/nist_test_by_test.csv` — pass/fail/N/A and uniformity results for each named NIST test (Frequency, Block Frequency, Runs, etc.) by category;
 - `output/cryptographic_component_proportions.csv` — component-level pass rates, NIST three-sigma lower bounds, exact binomial tail p-values and Holm adjustment.
 
 Thresholds follow NIST SP 800-22 Rev. 1a: first-level α=0.01, the requested value; second-level uniformity p-value ≥0.0001, a separate NIST criterion. Sources and the exact section references are in `SOURCES.md`.

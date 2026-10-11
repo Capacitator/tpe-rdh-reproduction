@@ -45,6 +45,7 @@ def main() -> None:
     OUT.mkdir(parents=True, exist_ok=True)
     category_summary: list[dict] = []
     crypto_components: list[dict] = []
+    test_summary_rows: list[dict] = []
     for category in CATEGORIES:
         first = rows(SOURCE / "categories" / category / "first_level_pvalues.csv")
         valid = [r for r in first if r["status"] in ("pass", "fail")]
@@ -59,6 +60,33 @@ def main() -> None:
         second_alpha01_screen = sum(p < ALPHA for p in second_p)
 
         comp_rows = rows(SOURCE / "categories" / category / "summary_counts.csv")
+        second_by_test: dict[str, list[float]] = {}
+        for r in second_valid:
+            second_by_test.setdefault(r["test_name"], []).append(
+                float(r["recomputed_uniformity_p_value"]))
+        for test_name in sorted({r["test_name"] for r in comp_rows}):
+            matching = [r for r in comp_rows if r["test_name"] == test_name]
+            test_pass = sum(int(r["pass"]) for r in matching)
+            test_fail = sum(int(r["fail"]) for r in matching)
+            test_na = sum(int(r["not_applicable"]) for r in matching)
+            test_valid = test_pass + test_fail
+            uniforms = second_by_test.get(test_name, [])
+            test_summary_rows.append({
+                "category": category,
+                "kind": "cryptographic-component" if category in CRYPTO else "image-diagnostic",
+                "nist_test": test_name,
+                "components": len(matching),
+                "first_level_pass": test_pass,
+                "first_level_fail": test_fail,
+                "first_level_not_applicable": test_na,
+                "first_level_pass_rate": f"{test_pass / test_valid:.8f}" if test_valid else "",
+                "second_level_uniformity_values": len(uniforms),
+                "second_level_failures_at_nist_0_0001": sum(
+                    p < UNIFORMITY_ALPHA_NIST for p in uniforms),
+                "second_level_values_below_0_01_exploratory_only": sum(
+                    p < ALPHA for p in uniforms),
+                "minimum_second_level_p_value": f"{min(uniforms):.12g}" if uniforms else "",
+            })
         component_warnings = 0
         for r in comp_rows:
             p, f, na = (int(r[k]) for k in ("pass", "fail", "not_applicable"))
@@ -104,6 +132,7 @@ def main() -> None:
     holm_adjust(crypto_components, ALPHA)
     write_csv(OUT / "category_interpretation.csv", category_summary)
     write_csv(OUT / "cryptographic_component_proportions.csv", crypto_components)
+    write_csv(OUT / "nist_test_by_test.csv", test_summary_rows)
 
     crypto_summary = [r for r in category_summary if r["kind"] == "cryptographic-component"]
     diagnostic_summary = [r for r in category_summary if r["kind"] == "image-diagnostic"]
@@ -141,6 +170,20 @@ def main() -> None:
         report.append(f"| `{r['category']}` | {r['kind']} | {r['first_level_pass']}/{r['first_level_fail']}/{r['first_level_not_applicable']} | {100*float(r['first_level_pass_rate']):.3f}% | {r['component_proportions_below_nist_approx_bound']} | {r['second_level_failures_at_nist_0_0001']}/{r['second_level_uniformity_values']} | {r['second_level_values_below_0_01_exploratory_only']}/{r['second_level_uniformity_values']} | {r['minimum_second_level_p_value'] or 'N/A'} |")
     report += [
         "",
+        "## Actual NIST tests, by category",
+        "",
+        "The following table reports the named tests (Frequency, Block Frequency, Runs, etc.), not image diagnostics. P/F/N-A is summed across a test's components (for example, 148 NonOverlappingTemplate templates). The second-level column uses NIST's 0.0001 criterion.",
+        "",
+        "| Category | NIST test | First-level P/F/N-A | Pass rate | Second-level p < 0.0001 | Min second-level p |",
+        "|---|---|---:|---:|---:|---:|",
+    ]
+    for r in test_summary_rows:
+        if r["kind"] != "cryptographic-component":
+            continue
+        pass_rate = f"{100*float(r['first_level_pass_rate']):.2f}%" if r["first_level_pass_rate"] else "N/A"
+        report.append(f"| `{r['category']}` | {r['nist_test']} | {r['first_level_pass']}/{r['first_level_fail']}/{r['first_level_not_applicable']} | {pass_rate} | {r['second_level_failures_at_nist_0_0001']}/{r['second_level_uniformity_values']} | {r['minimum_second_level_p_value'] or 'N/A'} |")
+    report += [
+        "",
         "First-level pass/fail/N-A totals are across every individual stream-test component in the category. The expected first-level failure fraction under the null is α=0.01; p-values are not supposed to be near 1 for every stream.",
         "",
         "## What to do",
@@ -153,7 +196,7 @@ def main() -> None:
         "",
         "NIST SP 800-22 Rev. 1a §4.2.1 defines the first-level pass-proportion interval. §4.2.2 says the second-level uniformity p-value should be at least 0.0001 and at least 55 sequences should be processed. This campaign uses 100 streams per cryptographic category.",
         "",
-        "See [SOURCES.md](SOURCES.md) for the source links. The detailed component-level calculations are in `output/cryptographic_component_proportions.csv`.",
+        "See [SOURCES.md](SOURCES.md) for the source links. The detailed test-by-test table is in `output/nist_test_by_test.csv`; component-level calculations are in `output/cryptographic_component_proportions.csv`.",
         "",
     ]
     (OUT / "P_VALUE_REVIEW.md").write_text("\n".join(report), encoding="utf-8")
