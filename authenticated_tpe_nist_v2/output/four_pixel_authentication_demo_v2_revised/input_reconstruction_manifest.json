@@ -1,0 +1,65 @@
+{
+  "inputs": [
+    {
+      "input": "000_uct_airplane.png",
+      "reference": "authenticated_tpe_nist_v2/output/metrics/visual_gallery/airplane_original.png",
+      "width": 512,
+      "height": 512,
+      "rgb_pixel_sha256": "a7405a85dc79ba2207e04c2544d55b6fce0eb29e9293768db1aee663bee44e35",
+      "png_file_sha256": "622348a0e14bbf8b5ec8c1dccaeab4754f74570072a654b33967d8f34e58a63f",
+      "pixel_identical_to_reference": true,
+      "write_readback_verified": true
+    },
+    {
+      "input": "001_uct_baboon.png",
+      "reference": "authenticated_tpe_nist_v2/output/metrics/visual_gallery/baboon_original.png",
+      "width": 512,
+      "height": 512,
+      "rgb_pixel_sha256": "a511e253857a0bfd85137d3b35d6f4e6140b0c3288ca8d56f1f5c39aff59e694",
+      "png_file_sha256": "4d5ae8631f1a994b01e7f8fce5ff811489c6e7d6237d6dc024d0bafd25875f1b",
+      "pixel_identical_to_reference": true,
+      "write_readback_verified": true
+    },
+    {
+      "input": "002_uct_couple.png",
+      "reference": "authenticated_tpe_nist_v2/output/metrics/visual_gallery/couple_original.png",
+      "width": 512,
+      "height": 512,
+      "rgb_pixel_sha256": "7ac5f99ce6e090aed2ca4a84509ecc6391437c299f1bea47e1e5024c0194b445",
+      "png_file_sha256": "c380ad3147eb6e45e79a4bbd77eaa2640593d0671062b2f96bd75909462cc91b",
+      "pixel_identical_to_reference": true,
+      "write_readback_verified": true
+    },
+    {
+      "input": "003_uct_girl.png",
+      "reference": "authenticated_tpe_nist_v2/output/metrics/visual_gallery/girl_original.png",
+      "width": 512,
+      "height": 512,
+      "rgb_pixel_sha256": "47ffc14019e003443cb8536174a21f4232f4a987a0ae409d99c2b5c06d038fe4",
+      "png_file_sha256": "fb9b56903a711568322594e936a8de2831e8b05eaf60d20ced4756edbe80f827",
+      "pixel_identical_to_reference": true,
+      "write_readback_verified": true
+    },
+    {
+      "input": "004_uct_lena.png",
+      "reference": "authenticated_tpe_nist_v2/output/metrics/visual_gallery/lena_original.png",
+      "width": 512,
+      "height": 512,
+      "rgb_pixel_sha256": "c878c0dc0b46bd7a13d0d183467b74752165e39c7b86f627666ad637da6be500",
+      "png_file_sha256": "6265a93b94b90165e0b64f5cc6dc4ed853c85c38ac89d7096fcfd8ac23a50dd2",
+      "pixel_identical_to_reference": true,
+      "write_readback_verified": true
+    },
+    {
+      "input": "005_uct_peppers.png",
+      "reference": "authenticated_tpe_nist_v2/output/metrics/visual_gallery/peppers_original.png",
+      "width": 512,
+      "height": 512,
+      "rgb_pixel_sha256": "5350521bbe3522935ed1f87e43532fafb679f5fea3419de13695a2e4da63ba46",
+      "png_file_sha256": "0e4b19a3b69425c134157cf999ec48397b764a73ec0a46268f331ee57b8e07ef",
+      "pixel_identical_to_reference": true,
+      "write_readback_verified": true
+    }
+  ],
+  "note": "RGB arrays match the tracked visual-gallery originals; PNG byte hashes may differ from the omitted experiment inputs."
+}

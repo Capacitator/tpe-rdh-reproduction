@@ -5,6 +5,7 @@
 output/streams/*.bin
 output/nist_input/
 input/images_512/*.png
+input/images_512/input_reconstruction_manifest.json
 __pycache__/
 *.pyc
 output/categories/*/raw_report_manifest.csv.tmp

@@ -1,0 +1,47 @@
+[
+  {
+    "report": "upsilon_p_finalAnalysisReport.txt",
+    "manifest": "upsilon_p_manifest.json",
+    "test_instances": 162,
+    "flagged_instances": 148,
+    "unflagged_instances": 14,
+    "flagged_by_test": {
+      "ApproximateEntropy": 1,
+      "BlockFrequency": 1,
+      "CumulativeSums": 2,
+      "FFT": 1,
+      "Frequency": 1,
+      "LongestRun": 1,
+      "NonOverlappingTemplate": 136,
+      "OverlappingTemplate": 1,
+      "Runs": 1,
+      "Serial": 2,
+      "Universal": 1
+    },
+    "smallest_reported_p": 0.0,
+    "largest_reported_p": 0.991468
+  },
+  {
+    "report": "substitution_r_finalAnalysisReport.txt",
+    "manifest": "substitution_r_manifest.json",
+    "test_instances": 188,
+    "flagged_instances": 153,
+    "unflagged_instances": 35,
+    "flagged_by_test": {
+      "ApproximateEntropy": 1,
+      "BlockFrequency": 1,
+      "CumulativeSums": 2,
+      "FFT": 1,
+      "Frequency": 1,
+      "LongestRun": 1,
+      "NonOverlappingTemplate": 133,
+      "OverlappingTemplate": 1,
+      "RandomExcursions": 8,
+      "Runs": 1,
+      "Serial": 2,
+      "Universal": 1
+    },
+    "smallest_reported_p": 0.0,
+    "largest_reported_p": 0.964295
+  }
+]
