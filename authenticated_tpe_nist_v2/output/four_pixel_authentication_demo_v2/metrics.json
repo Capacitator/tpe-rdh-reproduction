@@ -1,0 +1,1182 @@
+{
+  "experiment": "four-pixel SPE with exact-order four-block HMAC-SHA256 authentication",
+  "method_note": "Four-pixel SPE with repository 2D-CSM-derived schedules. Three 256-bit keyed image tags are embedded in the native histogram-shifting RDH stage (one per channel); caller payload bits share the red-channel RDH stream. The outer AEAD sidecar stores the reversible pairing and block-sum correction map, not the payload or RDH tags.",
+  "block_size": 32,
+  "authentication_group_size_blocks": 4,
+  "native_rdh_authentication": {
+    "tag": "HMAC-SHA256, full 256-bit tag per RGB channel",
+    "payload_location": "red-channel reversible histogram-shifting RDH payload",
+    "pixel_sum_compensation": "authenticated reversible correction map restores source 32x32 block sums"
+  },
+  "test_images": 6,
+  "mean_full_image_psnr_db": 13.206253351302742,
+  "full_image_psnr_db_range": [
+    11.282003465539134,
+    16.757570050284173
+  ],
+  "sidecar_size_bytes": {
+    "mean": 1184667.6666666667,
+    "min": 1150828,
+    "max": 1200453
+  },
+  "mean_thumbnail_psnr_db": null,
+  "measurement_definitions": {
+    "full_image_psnr": "10 log10(255^2/MSE), MSE is the arithmetic mean of squared uint8 sample differences over all pixels and RGB channels between the original and final authenticated ciphertext; arithmetic mean of six per-image PSNR values is reported.",
+    "thumbnail": "Per-channel arithmetic means over each non-overlapping 32x32 block; thumbnail MSE is the arithmetic mean over all 16x16x3 means. Zero MSE is reported as exact equality and infinite PSNR (JSON null). It is separate from full-image PSNR."
+  },
+  "thumbnail_psnr_note": "All six per-channel 32x32 block-mean thumbnails are exactly equal (MSE=0); PSNR is +infinity and is encoded as JSON null.",
+  "all_exact_image_recovery": true,
+  "all_exact_payload_recovery": true,
+  "all_serialized_export_import_recovery": true,
+  "all_thumbnail_exact": true,
+  "images": [
+    {
+      "image": "000_uct_airplane.png",
+      "width": 512,
+      "height": 512,
+      "full_image_psnr_db_original_vs_authenticated_ciphertext": 12.365148591734972,
+      "full_image_mse_original_vs_authenticated_ciphertext": 3771.946304321289,
+      "thumbnail_mse_32x32_per_channel_block_means": 0.0,
+      "thumbnail_psnr_db_32x32_block_means": null,
+      "thumbnail_max_abs_mean_difference": 0.0,
+      "thumbnail_exact": true,
+      "exact_image_recovery": true,
+      "exact_payload_recovery": true,
+      "serialized_png_sidecar_recovery_without_external_ids": true,
+      "fresh_process_recovery_without_encryption_result": true,
+      "group_count": 192,
+      "minimum_group_capacity_bits": 1554,
+      "rdh_tag_bits_per_channel": 256,
+      "rdh_user_payload_bits_in_red_channel": 5,
+      "rdh_metadata_bits_per_channel": [
+        80,
+        80,
+        80
+      ],
+      "sidecar_bytes": 1198659,
+      "elapsed_seconds_encrypt_and_decrypt": 9.965,
+      "source_sha256": "1b5331e2fd04edb7b6b746d82027c034bf8bb6a738ea5ba1a79c2b23ba2e1518",
+      "encrypted_sha256": "3258818b598fd99980b1f38949c9d80fe107ace2e752efc71579b6bd4cf43c8b",
+      "sidecar_sha256": "731c2852e331d11b6a4f97bb26cb38dd603e0616834b749d30de1a2e5fc16a3b"
+    },
+    {
+      "image": "001_uct_baboon.png",
+      "width": 512,
+      "height": 512,
+      "full_image_psnr_db_original_vs_authenticated_ciphertext": 11.282003465539134,
+      "full_image_mse_original_vs_authenticated_ciphertext": 4840.386202494304,
+      "thumbnail_mse_32x32_per_channel_block_means": 0.0,
+      "thumbnail_psnr_db_32x32_block_means": null,
+      "thumbnail_max_abs_mean_difference": 0.0,
+      "thumbnail_exact": true,
+      "exact_image_recovery": true,
+      "exact_payload_recovery": true,
+      "serialized_png_sidecar_recovery_without_external_ids": true,
+      "fresh_process_recovery_without_encryption_result": true,
+      "group_count": 192,
+      "minimum_group_capacity_bits": 1440,
+      "rdh_tag_bits_per_channel": 256,
+      "rdh_user_payload_bits_in_red_channel": 5,
+      "rdh_metadata_bits_per_channel": [
+        296,
+        80,
+        98
+      ],
+      "sidecar_bytes": 1200453,
+      "elapsed_seconds_encrypt_and_decrypt": 9.476,
+      "source_sha256": "80881a4c0922592e7aa907c21fa3aebf6b0c7eafd0cd4c5b051f4f6945e2e121",
+      "encrypted_sha256": "fdf32abafd4ca5b20fdf67e19260c7760f623696443b3ee5b13eee8d456fba24",
+      "sidecar_sha256": "8666f580b18753751d5edd9c1b57038eaa226c9b0ccabebc95700ceb6a1051fb"
+    },
+    {
+      "image": "002_uct_couple.png",
+      "width": 512,
+      "height": 512,
+      "full_image_psnr_db_original_vs_authenticated_ciphertext": 16.757570050284173,
+      "full_image_mse_original_vs_authenticated_ciphertext": 1371.9028422037761,
+      "thumbnail_mse_32x32_per_channel_block_means": 0.0,
+      "thumbnail_psnr_db_32x32_block_means": null,
+      "thumbnail_max_abs_mean_difference": 0.0,
+      "thumbnail_exact": true,
+      "exact_image_recovery": true,
+      "exact_payload_recovery": true,
+      "serialized_png_sidecar_recovery_without_external_ids": true,
+      "fresh_process_recovery_without_encryption_result": true,
+      "group_count": 192,
+      "minimum_group_capacity_bits": 968,
+      "rdh_tag_bits_per_channel": 256,
+      "rdh_user_payload_bits_in_red_channel": 5,
+      "rdh_metadata_bits_per_channel": [
+        80,
+        80,
+        80
+      ],
+      "sidecar_bytes": 1150828,
+      "elapsed_seconds_encrypt_and_decrypt": 9.417,
+      "source_sha256": "0d633d9e25d40c28cd2b3823169e245d74102ac2ad5f2f98794e2950c19e961c",
+      "encrypted_sha256": "b407d5f12dcf34675dc4a2c8e8f4e9ad7ac10fc9db1155ec8ae46bf1965e9dbd",
+      "sidecar_sha256": "84897e685266e0c71ba527e8d3eecbe45fc85f5beb2c2edffba44af5f6b17aea"
+    },
+    {
+      "image": "003_uct_girl.png",
+      "width": 512,
+      "height": 512,
+      "full_image_psnr_db_original_vs_authenticated_ciphertext": 14.549669949060029,
+      "full_image_mse_original_vs_authenticated_ciphertext": 2280.9373982747397,
+      "thumbnail_mse_32x32_per_channel_block_means": 0.0,
+      "thumbnail_psnr_db_32x32_block_means": null,
+      "thumbnail_max_abs_mean_difference": 0.0,
+      "thumbnail_exact": true,
+      "exact_image_recovery": true,
+      "exact_payload_recovery": true,
+      "serialized_png_sidecar_recovery_without_external_ids": true,
+      "fresh_process_recovery_without_encryption_result": true,
+      "group_count": 192,
+      "minimum_group_capacity_bits": 1004,
+      "rdh_tag_bits_per_channel": 256,
+      "rdh_user_payload_bits_in_red_channel": 5,
+      "rdh_metadata_bits_per_channel": [
+        98,
+        80,
+        80
+      ],
+      "sidecar_bytes": 1169771,
+      "elapsed_seconds_encrypt_and_decrypt": 9.434,
+      "source_sha256": "06b052f1fa7d0648feeff04b07186fce4c357afebe8585afc483321f7ffc52bd",
+      "encrypted_sha256": "b03b68a8535bba2ccdd26aff2f140c4862c2cfab145055c85e37fa485e2b114f",
+      "sidecar_sha256": "41b9675dd41331375653bd61ba788907c3a82a644cc029b03f24f2dd8cf3c62b"
+    },
+    {
+      "image": "004_uct_lena.png",
+      "width": 512,
+      "height": 512,
+      "full_image_psnr_db_original_vs_authenticated_ciphertext": 12.2921566633503,
+      "full_image_mse_original_vs_authenticated_ciphertext": 3835.877192179362,
+      "thumbnail_mse_32x32_per_channel_block_means": 0.0,
+      "thumbnail_psnr_db_32x32_block_means": null,
+      "thumbnail_max_abs_mean_difference": 0.0,
+      "thumbnail_exact": true,
+      "exact_image_recovery": true,
+      "exact_payload_recovery": true,
+      "serialized_png_sidecar_recovery_without_external_ids": true,
+      "fresh_process_recovery_without_encryption_result": true,
+      "group_count": 192,
+      "minimum_group_capacity_bits": 1480,
+      "rdh_tag_bits_per_channel": 256,
+      "rdh_user_payload_bits_in_red_channel": 5,
+      "rdh_metadata_bits_per_channel": [
+        80,
+        80,
+        80
+      ],
+      "sidecar_bytes": 1199320,
+      "elapsed_seconds_encrypt_and_decrypt": 9.341,
+      "source_sha256": "15366a94a447b85982c8f15d4b2d1c6f65bf72355a35f99a81b6a8acb9076eec",
+      "encrypted_sha256": "010e81443a93ab73f781e61cf9df3c09a3e14531c37697c66d8f8067c1bcb89c",
+      "sidecar_sha256": "65703050cb933969300360879cd71a49737ccb415b4a802d9813a3c9f3a5e7ae"
+    },
+    {
+      "image": "005_uct_peppers.png",
+      "width": 512,
+      "height": 512,
+      "full_image_psnr_db_original_vs_authenticated_ciphertext": 11.990971387847853,
+      "full_image_mse_original_vs_authenticated_ciphertext": 4111.338376363118,
+      "thumbnail_mse_32x32_per_channel_block_means": 0.0,
+      "thumbnail_psnr_db_32x32_block_means": null,
+      "thumbnail_max_abs_mean_difference": 0.0,
+      "thumbnail_exact": true,
+      "exact_image_recovery": true,
+      "exact_payload_recovery": true,
+      "serialized_png_sidecar_recovery_without_external_ids": true,
+      "fresh_process_recovery_without_encryption_result": true,
+      "group_count": 192,
+      "minimum_group_capacity_bits": 1408,
+      "rdh_tag_bits_per_channel": 256,
+      "rdh_user_payload_bits_in_red_channel": 5,
+      "rdh_metadata_bits_per_channel": [
+        80,
+        80,
+        80
+      ],
+      "sidecar_bytes": 1188975,
+      "elapsed_seconds_encrypt_and_decrypt": 9.442,
+      "source_sha256": "f3d54162d964683625a735e340ba18be583a1fb0b4ef7fd2d9b9c9ae3f4ae9b4",
+      "encrypted_sha256": "83dcd5f62f8c961fd1b8aaa7d73fcba0c7bbeda1617f0601a9ccb270ab0b26d4",
+      "sidecar_sha256": "af60f8d6ae6e887dd5b60586619d12f7cd776292f31428de1dc707fcbd78696e"
+    }
+  ],
+  "attacks": {
+    "one_pixel_change": {
+      "target": "004_uct_lena.png",
+      "channel": 1,
+      "coordinate_yx": [
+        135,
+        361
+      ],
+      "changed_pixel_count": 1,
+      "accepted": false,
+      "failed_group_label": [
+        1,
+        75
+      ],
+      "failed_group_block_ids": [
+        75,
+        226,
+        253,
+        185
+      ],
+      "localized_group_count": 1,
+      "recovered_image_withheld": true
+    },
+    "single_pixel_channel_and_location_sweep": [
+      {
+        "channel": 0,
+        "block_id": 0,
+        "failed_groups": [
+          [
+            0,
+            127
+          ]
+        ],
+        "recovered_image_withheld": true
+      },
+      {
+        "channel": 1,
+        "block_id": 127,
+        "failed_groups": [
+          [
+            1,
+            150
+          ]
+        ],
+        "recovered_image_withheld": true
+      },
+      {
+        "channel": 2,
+        "block_id": 255,
+        "failed_groups": [
+          [
+            2,
+            212
+          ]
+        ],
+        "recovered_image_withheld": true
+      }
+    ],
+    "splice_000_uct_airplane_to_004_uct_lena": {
+      "donor": "000_uct_airplane.png",
+      "target": "004_uct_lena.png",
+      "replaced_ciphertext_block_id": 5,
+      "replaced_region_yxhw": [
+        0,
+        160,
+        32,
+        32
+      ],
+      "failed_group_labels_by_channel": [
+        [
+          0,
+          83
+        ],
+        [
+          1,
+          15
+        ],
+        [
+          2,
+          5
+        ]
+      ],
+      "failed_group_block_ids_by_channel": {
+        "0": [
+          83,
+          221,
+          43,
+          5
+        ],
+        "1": [
+          15,
+          202,
+          236,
+          5
+        ],
+        "2": [
+          5,
+          169,
+          84,
+          134
+        ]
+      },
+      "localized_group_count": 3,
+      "accepted": false,
+      "recovered_image_withheld": true
+    },
+    "splice_004_uct_lena_to_000_uct_airplane": {
+      "donor": "004_uct_lena.png",
+      "target": "000_uct_airplane.png",
+      "replaced_ciphertext_block_id": 42,
+      "replaced_region_yxhw": [
+        64,
+        320,
+        32,
+        32
+      ],
+      "failed_group_labels_by_channel": [
+        [
+          0,
+          29
+        ],
+        [
+          1,
+          78
+        ],
+        [
+          2,
+          208
+        ]
+      ],
+      "failed_group_block_ids_by_channel": {
+        "0": [
+          29,
+          42,
+          155,
+          178
+        ],
+        "1": [
+          78,
+          76,
+          121,
+          42
+        ],
+        "2": [
+          208,
+          42,
+          219,
+          24
+        ]
+      },
+      "localized_group_count": 3,
+      "accepted": false,
+      "recovered_image_withheld": true
+    },
+    "bundle_failure_cases": {
+      "wrong_authentication_key": {
+        "accepted": false,
+        "failed_groups": [],
+        "recovered_image_withheld": true,
+        "reason": "layout/key validation failed: InvalidTag"
+      },
+      "wrong_image_id": {
+        "accepted": false,
+        "failed_groups": [],
+        "recovered_image_withheld": true,
+        "reason": "layout/key validation failed: ValueError"
+      },
+      "altered_sidecar": {
+        "accepted": false,
+        "failed_groups": [],
+        "recovered_image_withheld": true,
+        "reason": "layout/key validation failed: InvalidTag"
+      },
+      "truncated_sidecar": {
+        "accepted": false,
+        "failed_groups": [],
+        "recovered_image_withheld": true,
+        "reason": "layout/key validation failed: InvalidTag"
+      },
+      "replaced_cross_image_sidecar": {
+        "accepted": false,
+        "failed_groups": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            6
+          ],
+          [
+            0,
+            12
+          ],
+          [
+            0,
+            13
+          ],
+          [
+            0,
+            15
+          ],
+          [
+            0,
+            29
+          ],
+          [
+            0,
+            32
+          ],
+          [
+            0,
+            35
+          ],
+          [
+            0,
+            45
+          ],
+          [
+            0,
+            48
+          ],
+          [
+            0,
+            55
+          ],
+          [
+            0,
+            56
+          ],
+          [
+            0,
+            58
+          ],
+          [
+            0,
+            59
+          ],
+          [
+            0,
+            66
+          ],
+          [
+            0,
+            67
+          ],
+          [
+            0,
+            69
+          ],
+          [
+            0,
+            75
+          ],
+          [
+            0,
+            76
+          ],
+          [
+            0,
+            77
+          ],
+          [
+            0,
+            81
+          ],
+          [
+            0,
+            83
+          ],
+          [
+            0,
+            87
+          ],
+          [
+            0,
+            88
+          ],
+          [
+            0,
+            89
+          ],
+          [
+            0,
+            94
+          ],
+          [
+            0,
+            98
+          ],
+          [
+            0,
+            107
+          ],
+          [
+            0,
+            109
+          ],
+          [
+            0,
+            117
+          ],
+          [
+            0,
+            126
+          ],
+          [
+            0,
+            127
+          ],
+          [
+            0,
+            129
+          ],
+          [
+            0,
+            138
+          ],
+          [
+            0,
+            147
+          ],
+          [
+            0,
+            148
+          ],
+          [
+            0,
+            150
+          ],
+          [
+            0,
+            151
+          ],
+          [
+            0,
+            160
+          ],
+          [
+            0,
+            167
+          ],
+          [
+            0,
+            180
+          ],
+          [
+            0,
+            181
+          ],
+          [
+            0,
+            182
+          ],
+          [
+            0,
+            191
+          ],
+          [
+            0,
+            192
+          ],
+          [
+            0,
+            194
+          ],
+          [
+            0,
+            199
+          ],
+          [
+            0,
+            201
+          ],
+          [
+            0,
+            207
+          ],
+          [
+            0,
+            211
+          ],
+          [
+            0,
+            213
+          ],
+          [
+            0,
+            216
+          ],
+          [
+            0,
+            217
+          ],
+          [
+            0,
+            219
+          ],
+          [
+            0,
+            228
+          ],
+          [
+            0,
+            229
+          ],
+          [
+            0,
+            232
+          ],
+          [
+            0,
+            234
+          ],
+          [
+            0,
+            239
+          ],
+          [
+            0,
+            241
+          ],
+          [
+            0,
+            246
+          ],
+          [
+            0,
+            250
+          ],
+          [
+            0,
+            255
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            1,
+            8
+          ],
+          [
+            1,
+            11
+          ],
+          [
+            1,
+            13
+          ],
+          [
+            1,
+            14
+          ],
+          [
+            1,
+            15
+          ],
+          [
+            1,
+            18
+          ],
+          [
+            1,
+            26
+          ],
+          [
+            1,
+            27
+          ],
+          [
+            1,
+            28
+          ],
+          [
+            1,
+            29
+          ],
+          [
+            1,
+            33
+          ],
+          [
+            1,
+            34
+          ],
+          [
+            1,
+            35
+          ],
+          [
+            1,
+            44
+          ],
+          [
+            1,
+            47
+          ],
+          [
+            1,
+            50
+          ],
+          [
+            1,
+            53
+          ],
+          [
+            1,
+            54
+          ],
+          [
+            1,
+            63
+          ],
+          [
+            1,
+            66
+          ],
+          [
+            1,
+            69
+          ],
+          [
+            1,
+            75
+          ],
+          [
+            1,
+            77
+          ],
+          [
+            1,
+            78
+          ],
+          [
+            1,
+            79
+          ],
+          [
+            1,
+            91
+          ],
+          [
+            1,
+            96
+          ],
+          [
+            1,
+            100
+          ],
+          [
+            1,
+            101
+          ],
+          [
+            1,
+            111
+          ],
+          [
+            1,
+            112
+          ],
+          [
+            1,
+            115
+          ],
+          [
+            1,
+            123
+          ],
+          [
+            1,
+            124
+          ],
+          [
+            1,
+            125
+          ],
+          [
+            1,
+            132
+          ],
+          [
+            1,
+            133
+          ],
+          [
+            1,
+            142
+          ],
+          [
+            1,
+            144
+          ],
+          [
+            1,
+            147
+          ],
+          [
+            1,
+            150
+          ],
+          [
+            1,
+            159
+          ],
+          [
+            1,
+            160
+          ],
+          [
+            1,
+            161
+          ],
+          [
+            1,
+            171
+          ],
+          [
+            1,
+            173
+          ],
+          [
+            1,
+            179
+          ],
+          [
+            1,
+            192
+          ],
+          [
+            1,
+            197
+          ],
+          [
+            1,
+            198
+          ],
+          [
+            1,
+            199
+          ],
+          [
+            1,
+            200
+          ],
+          [
+            1,
+            201
+          ],
+          [
+            1,
+            203
+          ],
+          [
+            1,
+            214
+          ],
+          [
+            1,
+            222
+          ],
+          [
+            1,
+            223
+          ],
+          [
+            1,
+            230
+          ],
+          [
+            1,
+            248
+          ],
+          [
+            1,
+            251
+          ],
+          [
+            1,
+            254
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            2,
+            7
+          ],
+          [
+            2,
+            12
+          ],
+          [
+            2,
+            14
+          ],
+          [
+            2,
+            15
+          ],
+          [
+            2,
+            34
+          ],
+          [
+            2,
+            35
+          ],
+          [
+            2,
+            45
+          ],
+          [
+            2,
+            48
+          ],
+          [
+            2,
+            50
+          ],
+          [
+            2,
+            53
+          ],
+          [
+            2,
+            58
+          ],
+          [
+            2,
+            60
+          ],
+          [
+            2,
+            62
+          ],
+          [
+            2,
+            65
+          ],
+          [
+            2,
+            70
+          ],
+          [
+            2,
+            71
+          ],
+          [
+            2,
+            80
+          ],
+          [
+            2,
+            83
+          ],
+          [
+            2,
+            96
+          ],
+          [
+            2,
+            98
+          ],
+          [
+            2,
+            103
+          ],
+          [
+            2,
+            104
+          ],
+          [
+            2,
+            105
+          ],
+          [
+            2,
+            107
+          ],
+          [
+            2,
+            108
+          ],
+          [
+            2,
+            109
+          ],
+          [
+            2,
+            112
+          ],
+          [
+            2,
+            115
+          ],
+          [
+            2,
+            116
+          ],
+          [
+            2,
+            119
+          ],
+          [
+            2,
+            120
+          ],
+          [
+            2,
+            121
+          ],
+          [
+            2,
+            126
+          ],
+          [
+            2,
+            128
+          ],
+          [
+            2,
+            130
+          ],
+          [
+            2,
+            135
+          ],
+          [
+            2,
+            139
+          ],
+          [
+            2,
+            140
+          ],
+          [
+            2,
+            146
+          ],
+          [
+            2,
+            148
+          ],
+          [
+            2,
+            158
+          ],
+          [
+            2,
+            161
+          ],
+          [
+            2,
+            162
+          ],
+          [
+            2,
+            163
+          ],
+          [
+            2,
+            166
+          ],
+          [
+            2,
+            167
+          ],
+          [
+            2,
+            171
+          ],
+          [
+            2,
+            173
+          ],
+          [
+            2,
+            179
+          ],
+          [
+            2,
+            186
+          ],
+          [
+            2,
+            190
+          ],
+          [
+            2,
+            193
+          ],
+          [
+            2,
+            195
+          ],
+          [
+            2,
+            200
+          ],
+          [
+            2,
+            208
+          ],
+          [
+            2,
+            212
+          ],
+          [
+            2,
+            228
+          ],
+          [
+            2,
+            230
+          ],
+          [
+            2,
+            234
+          ],
+          [
+            2,
+            240
+          ],
+          [
+            2,
+            247
+          ],
+          [
+            2,
+            248
+          ],
+          [
+            2,
+            249
+          ]
+        ],
+        "recovered_image_withheld": true,
+        "reason": "invalid reversible block-sum correction and/or four-block HMAC tag; affected group(s) localized; plaintext withheld"
+      },
+      "wrong_tpe_key": {
+        "accepted": false,
+        "failed_groups": [],
+        "recovered_image_withheld": true,
+        "reason": "authenticated TPE recovery failed: ValueError"
+      }
+    }
+  },
+  "payload_bits": [
+    0,
+    1,
+    1,
+    0,
+    1
+  ],
+  "key_handling": "Experimental keys were supplied through FOURPX_TPE_KEY_HEX and FOURPX_AUTH_KEY_HEX; key values and hashes are intentionally omitted from saved outputs.",
+  "nist_sp800_22": {
+    "status": "not_run_for_this_variant",
+    "reason": "The checked-in predeclared stream definitions are bound to the previous variant's component streams and tag-message format; this adaptation changes the 2D-CSM-derived substitution schedule and authenticated carrier. The previous method's NIST outcomes are not reused or presented as v2 results."
+  }
+}

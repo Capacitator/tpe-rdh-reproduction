@@ -16,6 +16,7 @@ group lacks capacity.
 from __future__ import annotations
 from dataclasses import dataclass
 import hashlib, hmac, secrets, zlib
+import struct
 from typing import Sequence
 import numpy as np
 from cryptography.hazmat.primitives.ciphers.aead import ChaCha20Poly1305
@@ -26,7 +27,9 @@ GROUP=4
 TAG_BYTES=32
 TAG_BITS=256
 _DOMAIN=b"authenticated-tpe:flowchart-exact:v2\x00"
-_LAYOUT_MAGIC=b"ATPL5"
+_SIDECAR_MAGIC=b"ATPE"
+_SIDECAR_VERSION=1
+_SIDECAR_HEADER=struct.Struct(">4sBBHII16s12s")
 
 @dataclass(frozen=True)
 class ExactEncryption:
@@ -161,25 +164,35 @@ def _seal_layout(layout: np.ndarray, correction: np.ndarray, user_key: bytes,
          _encode_identifier(tpe_identifier)+
          len(payload_bits).to_bytes(8,"big")+bytes(int(bit) for bit in payload_bits))
     compressed=zlib.compress(raw,level=9)
-    nonce=secrets.token_bytes(12)
-    ciphertext=ChaCha20Poly1305(_layout_key(user_key)).encrypt(nonce,compressed,_aad(image_id,h,w))
     image_id=bytes(image_id)
     if len(image_id)!=16:
         raise ValueError("ImageID must be exactly 16 bytes")
-    return _LAYOUT_MAGIC+image_id+nonce+ciphertext
+    if not (0 < h <= 0xFFFFFFFF and 0 < w <= 0xFFFFFFFF):
+        raise ValueError("image dimensions are outside the sidecar format range")
+    nonce=secrets.token_bytes(12)
+    # The fixed header is public and authenticated as AEAD associated data.
+    # Recovery maps, the TPE schedule identifier and optional sidecar payload
+    # remain encrypted in `compressed`.
+    header=_SIDECAR_HEADER.pack(_SIDECAR_MAGIC,_SIDECAR_VERSION,0,0,h,w,image_id,nonce)
+    ciphertext=ChaCha20Poly1305(_layout_key(user_key)).encrypt(nonce,compressed,header)
+    return header+ciphertext
 
 
 def _open_layout(blob: bytes, user_key: bytes, image_id: bytes, h: int, w: int,
                  nblocks: int) -> tuple[np.ndarray,np.ndarray,list[int],object,bytes]:
-    header=len(_LAYOUT_MAGIC)
-    if len(blob)<header+16+12+16 or not blob.startswith(_LAYOUT_MAGIC):
+    if len(blob)<_SIDECAR_HEADER.size+16:
         raise ValueError("layout sidecar is missing or malformed")
-    stored_image_id=blob[header:header+16]
+    magic,version,flags,reserved,stored_h,stored_w,stored_image_id,nonce=(
+        _SIDECAR_HEADER.unpack(blob[:_SIDECAR_HEADER.size]))
+    if magic!=_SIDECAR_MAGIC or version!=_SIDECAR_VERSION or flags or reserved:
+        raise ValueError("unsupported or malformed sidecar header")
+    if (stored_h,stored_w)!=(h,w):
+        raise ValueError("sidecar dimensions do not match the image")
     if image_id is not None and not hmac.compare_digest(bytes(image_id),stored_image_id):
         raise ValueError("authentication ImageID does not match sidecar metadata")
-    nonce=blob[header+16:header+28]
-    ciphertext=blob[header+28:]
-    compressed=ChaCha20Poly1305(_layout_key(user_key)).decrypt(nonce,ciphertext,_aad(stored_image_id,h,w))
+    header=blob[:_SIDECAR_HEADER.size]
+    ciphertext=blob[_SIDECAR_HEADER.size:]
+    compressed=ChaCha20Poly1305(_layout_key(user_key)).decrypt(nonce,ciphertext,header)
     raw=zlib.decompress(compressed)
     plane=3*nblocks*BLOCK*BLOCK
     base=plane*4
@@ -422,3 +435,18 @@ def decrypt_authenticated_tpe(marked_image: np.ndarray, layout_sidecar: bytes,
     if expected_payload is not None and decoded.payload_bits!=list(expected_payload):
         return ExactDecryption(False,"authenticated image recovered but payload mismatch",decoded.recovered_image,decoded.payload_bits,())
     return ExactDecryption(True,"authenticated and exactly recovered",decoded.recovered_image,decoded.payload_bits,())
+
+
+def decrypt_authenticated_tpe_bundle(marked_image: np.ndarray, layout_sidecar: bytes,
+                                     tpe_key: bytes, auth_key: bytes,
+                                     tpe_module=None) -> ExactDecryption:
+    """Verify and recover a serialized PNG/sidecar bundle using only its keys.
+
+    The public ImageID and dimensions are read from the authenticated sidecar
+    header. The TPE schedule identifier and reversible metadata are opened
+    from the AEAD-protected body. No EncryptionResult or plaintext is needed.
+    """
+    tpe_module=common.legacy if tpe_module is None else tpe_module
+    params=tpe_module.DemoPipelineParameters(block_size=BLOCK,key=bytes(tpe_key))
+    return decrypt_authenticated_tpe(marked_image,layout_sidecar,params,auth_key,
+                                     None,None,None,tpe_module=tpe_module)

@@ -27,7 +27,13 @@ def _validate(values: Sequence[int], r: int) -> tuple[int, int, int, int]:
 
 
 def encrypt4(values: Sequence[int], r: int) -> tuple[int, int, int, int]:
-    """Apply the appendix's four piecewise sum-preserving SPE cases."""
+    """Apply the paper's four piecewise sum-preserving SPE cases.
+
+    The appendix sets e=255 and selects Case 1 with S<e, Case 2 through 2e,
+    Case 3 through 3e, then Case 4. The article's prose gives rounded intervals
+    that place S=255 in Case 1 instead; both boundary assignments are
+    invertible, and this implementation follows the appendix inequalities.
+    """
     a, b, c, d = _validate(values, r)
     r = int(r)
     e = BYTE_MAX

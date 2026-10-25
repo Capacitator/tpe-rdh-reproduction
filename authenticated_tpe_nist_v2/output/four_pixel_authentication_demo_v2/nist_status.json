@@ -1,0 +1,4 @@
+{
+  "status": "not_run_for_this_variant",
+  "reason": "The checked-in predeclared stream definitions are bound to the previous variant's component streams and tag-message format; this adaptation changes the 2D-CSM-derived substitution schedule and authenticated carrier. The previous method's NIST outcomes are not reused or presented as v2 results."
+}

@@ -7,11 +7,11 @@ histogram-shifting RDH stage after block permutation and before four-pixel
 substitution. Decryption reverses substitution, extracts and verifies each
 tag, exactly recovers the permuted carrier, then reverses block permutation.
 
-The paper's chaotic schedule is not treated as interchangeable with the
-repository's existing 2D-CSM schedule. This reproducible prototype uses the
-established 2D-CSM permutation schedule and quantizes its substitution matrix
-to r in [1,255]. This is an explicit adaptation, not bit-for-bit reproduction
-of the paper's chaotic-key schedule.
+The paper's keyed schedule is not treated as interchangeable with the
+repository's existing 2D-CSM schedule. This reproducible prototype maps the
+repository's 2D-CSM values to r in [1,255], matching the paper's stated key
+domain while retaining a different schedule. This is an explicit adaptation,
+not a bit-for-bit reproduction of the paper's key schedule.
 """
 from __future__ import annotations
 
@@ -76,10 +76,11 @@ def _channel_key(master_key: bytes, channel: int) -> bytes:
 def _keys_from_matrix(matrix: np.ndarray, block_y: int, block_x: int) -> np.ndarray:
     y0, x0 = block_y * BLOCK_SIZE, block_x * BLOCK_SIZE
     u = np.asarray(matrix[y0:y0 + BLOCK_SIZE, x0:x0 + BLOCK_SIZE], dtype=np.float64).reshape(-1)[::4]
-    # Existing 2D-CSM produces values in [-1,1]. Normalize and quantize to
-    # the paper's nonzero byte-key set {1,...,255} using an explicit rule.
-    q = np.floor(127.0 * (np.clip(u, -1.0, 1.0) + 1.0)).astype(np.int64)
-    return (np.clip(q, 0, 254) + 1).astype(np.uint8)
+    # The article maps unit-interval outputs by floor(255*u)+1, yielding
+    # r in {1,...,255}. First map this repository's [-1,1] domain to [0,1].
+    unit=(np.clip(u,-1.0,1.0)+1.0)/2.0
+    q=np.floor(255.0*unit).astype(np.int64)+1
+    return np.clip(q,1,255).astype(np.uint8)
 
 
 def _apply_spe(image: np.ndarray, matrices: Sequence[np.ndarray], inverse: bool = False) -> np.ndarray:

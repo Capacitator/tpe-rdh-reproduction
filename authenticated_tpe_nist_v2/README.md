@@ -141,17 +141,23 @@ without removing the earlier gallery pages.
 
 ## Four-pixel TPE with native RDH authentication
 
-The `scripts/run_four_pixel_auth_demo.py` evaluation combines the four-pixel
-sum-preserving transform with the repository's histogram-shifting RDH stage.
-Each RGB channel carries a keyed full-length 256-bit HMAC tag in the RDH payload;
-the red channel also carries the user payload. The existing exact-order RCM layer
-adds keyed four-block tags for localization. Its authenticated sidecar carries
-the pairing and source block-sum correction maps plus both image identifiers,
-not the RDH tags or user payload. The four-pixel paper does not specify RDH
-payload carriage, so this is an explicit hybrid integration.
+The v2 runner is an experimental adaptation, not a faithful reproduction of the
+paper's complete TPE key schedule. It preserves the paper's sequential
+four-pixel tuple processing, e=255 appendix equations, and r-domain mapping;
+the apparent Case 2 inverse sign error is corrected algebraically. The project
+uses its repository 2D-CSM schedule and adds native RDH tags, four-block HMAC
+localization, AEAD-protected recovery metadata, and a reversible block-sum
+correction map. See [`docs/FOUR_PIXEL_AUTH_V2_AUDIT.md`](docs/FOUR_PIXEL_AUTH_V2_AUDIT.md)
+for the paper audit, exact departures, file format, assumptions, results, and
+NIST decision.
 
-The runner checks six UCT images, exact image and payload recovery, exact
-32x32 block-mean thumbnails, one-pixel and cross-image splice detection, and
-serialized PNG/sidecar recovery without external image identifiers. Run it with
-`python3 scripts/run_four_pixel_auth_demo.py`; regression coverage is in
-`tests/test_four_pixel_authenticated_tpe.py`.
+Run the six-image experiment with two independent 32-byte secrets supplied
+outside the repository, for example through `FOURPX_TPE_KEY_HEX` and
+`FOURPX_AUTH_KEY_HEX`. The script refuses to fall back to committed keys and
+writes to `output/four_pixel_authentication_demo_v2/`, preserving the earlier
+report and results. `scripts/recover_four_pixel_bundle.py` verifies and recovers
+an exported PNG/sidecar using only the two keys; the public versioned header
+supplies dimensions and the random ImageID, while the TPE schedule identifier
+and reversible maps are encrypted in the sidecar. User payload bits are
+recovered from the native red-channel RDH stream, not copied from an
+`EncryptionResult` or the sidecar.

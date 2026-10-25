@@ -1,0 +1,67 @@
+{
+  "script_sha256": "784a6355943dba6de449daa2c6b2fba9880e730e0f42f80dcbc8ed3c40fe26aa",
+  "python": "3.11.0 (v3.11.0:deaf509e8f, Oct 24 2022, 14:43:23) [Clang 13.0.0 (clang-1300.0.29.30)]",
+  "numpy": "2.4.4",
+  "image_files": [
+    "000_uct_airplane.png",
+    "001_uct_baboon.png",
+    "002_uct_couple.png",
+    "003_uct_girl.png",
+    "004_uct_lena.png",
+    "005_uct_peppers.png"
+  ],
+  "all_input_sha256": {
+    "000_uct_airplane.png": "1b5331e2fd04edb7b6b746d82027c034bf8bb6a738ea5ba1a79c2b23ba2e1518",
+    "001_uct_baboon.png": "80881a4c0922592e7aa907c21fa3aebf6b0c7eafd0cd4c5b051f4f6945e2e121",
+    "002_uct_couple.png": "0d633d9e25d40c28cd2b3823169e245d74102ac2ad5f2f98794e2950c19e961c",
+    "003_uct_girl.png": "06b052f1fa7d0648feeff04b07186fce4c357afebe8585afc483321f7ffc52bd",
+    "004_uct_lena.png": "15366a94a447b85982c8f15d4b2d1c6f65bf72355a35f99a81b6a8acb9076eec",
+    "005_uct_peppers.png": "f3d54162d964683625a735e340ba18be583a1fb0b4ef7fd2d9b9c9ae3f4ae9b4"
+  },
+  "output_files": [
+    "six lossless authenticated PNGs and six AEAD sidecars",
+    "metrics.csv",
+    "metrics.json",
+    "nist_status.json",
+    "provenance.json",
+    "four_pixel_authenticated_tpe_report_v2.docx",
+    "SHA256SUMS.txt (excluding itself)"
+  ],
+  "sidecar_format": {
+    "magic": "ATPE",
+    "version": 1,
+    "public_header": "flags, reserved, dimensions, random 16-byte ImageID, 12-byte AEAD nonce; full header is AEAD associated data",
+    "encrypted_body": "pairing layout, reversible correction vector, TPE schedule identifier; no user payload for this adapter"
+  },
+  "key_sources": {
+    "tpe_key": "FOURPX_TPE_KEY_HEX environment variable; value/hash omitted",
+    "authentication_key": "FOURPX_AUTH_KEY_HEX environment variable; value/hash omitted"
+  },
+  "branch": "audit/tpe-fourpixel-auth-v2",
+  "base_commit": "4eb18c232989d27da3bcbdee26a282354d7f1a15",
+  "run_commit_note": "The experiment was run on the v2 branch worktree based on base_commit; source changes are included in this branch commit.",
+  "implementation_sha256": {
+    "authenticated_tpe_nist_v2/src/block32_exact_order_authenticated_tpe.py": "8c05ae43c488224b600a34137d62e3b0b5769e6d01aa36622262e9855532efe2",
+    "authenticated_tpe_nist_v2/scripts/run_four_pixel_auth_demo.py": "784a6355943dba6de449daa2c6b2fba9880e730e0f42f80dcbc8ed3c40fe26aa",
+    "authenticated_tpe_nist_v2/scripts/recover_four_pixel_bundle.py": "a344c6a4807f111364952c6385e73f928b67a742987b787846d1a4f1fbb52b55",
+    "tpe_rdh_reproduction/src/four_pixel_spe.py": "d60ddee5a4ab6504f76c59f3816a66cd70d9bf6aaa37f9c2d8f5f6a79c498067",
+    "tpe_rdh_reproduction/src/four_pixel_pipeline.py": "e55e0e7b440bdc759e1448ebefbbdd0665f53968d54d76f441798c74124ac299",
+    "authenticated_tpe_nist_v2/tests/test_four_pixel_authenticated_tpe.py": "35e05ec7ac7d53ec17be1a82963d93304cd6b0b476d34b233f55e71ab93c0d4b"
+  },
+  "test_run": {
+    "command": "python -m pytest authenticated_tpe_nist_v2/tests/test_four_pixel_authenticated_tpe.py -q",
+    "result": "12 passed"
+  },
+  "environment_packages": {
+    "numpy": "2.4.4",
+    "Pillow": "12.0.0",
+    "cryptography": "50.0.2"
+  },
+  "source_paper_doi": "10.1038/s41598-026-47090-9",
+  "experiment_key_generation": "Two fresh random 32-byte keys were generated in the external runner process and supplied via environment variables; no key value or key hash is retained.",
+  "nist_sp800_22": {
+    "status": "not_run_for_this_variant",
+    "reason": "The checked-in predeclared stream definitions are bound to the previous variant's component streams and tag-message format; this adaptation changes the 2D-CSM-derived substitution schedule and authenticated carrier. The previous method's NIST outcomes are not reused or presented as v2 results."
+  },
+  "report_sha256": "60595bd4f3adee97dd33de8e9bff9b708197d04ac62cf50d416b812b94641d71"
+}
