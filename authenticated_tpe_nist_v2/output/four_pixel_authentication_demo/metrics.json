@@ -1,0 +1,251 @@
+{
+  "experiment": "four-pixel SPE with exact-order four-block HMAC-SHA256 authentication",
+  "method_note": "Four-pixel SPE paper transform with repository 2D-CSM-derived schedules; caller payload protected in the existing AEAD sidecar because the SPE paper does not specify payload carriage.",
+  "block_size": 32,
+  "authentication_group_size_blocks": 4,
+  "test_images": 6,
+  "mean_full_image_psnr_db": 13.252817978715742,
+  "mean_thumbnail_psnr_db": null,
+  "thumbnail_psnr_note": "All six 32x32 block-mean thumbnails are bit-exact (zero MSE); PSNR is mathematically infinite/undefined as a finite average.",
+  "all_exact_image_recovery": true,
+  "all_exact_payload_recovery": true,
+  "all_thumbnail_exact": true,
+  "images": [
+    {
+      "image": "000_uct_airplane.png",
+      "width": 512,
+      "height": 512,
+      "full_image_psnr_db_original_vs_authenticated_ciphertext": 12.378386885054253,
+      "thumbnail_psnr_db_32x32_block_means": null,
+      "thumbnail_max_abs_mean_difference": 0.0,
+      "thumbnail_exact": true,
+      "exact_image_recovery": true,
+      "exact_payload_recovery": true,
+      "group_count": 192,
+      "minimum_group_capacity_bits": 1528,
+      "sidecar_bytes": 1199731,
+      "elapsed_seconds_encrypt_and_decrypt": 15.476,
+      "source_sha256": "1b5331e2fd04edb7b6b746d82027c034bf8bb6a738ea5ba1a79c2b23ba2e1518",
+      "encrypted_sha256": "293c2eb49e694a9e0a7f1e37a2b97b06f5dc5f0509aa1a8acaa4532725b69d22",
+      "sidecar_sha256": "30c629fe38d994e8960fb59466878c7fa641dd6940f6d69fb131bed4351a1465"
+    },
+    {
+      "image": "001_uct_baboon.png",
+      "width": 512,
+      "height": 512,
+      "full_image_psnr_db_original_vs_authenticated_ciphertext": 11.31014142170984,
+      "thumbnail_psnr_db_32x32_block_means": null,
+      "thumbnail_max_abs_mean_difference": 0.0,
+      "thumbnail_exact": true,
+      "exact_image_recovery": true,
+      "exact_payload_recovery": true,
+      "group_count": 192,
+      "minimum_group_capacity_bits": 1434,
+      "sidecar_bytes": 1198987,
+      "elapsed_seconds_encrypt_and_decrypt": 15.053,
+      "source_sha256": "80881a4c0922592e7aa907c21fa3aebf6b0c7eafd0cd4c5b051f4f6945e2e121",
+      "encrypted_sha256": "9269093d0cde6d41581c39b17708a2949456f11e5e57c5394524b6bdf4c015f4",
+      "sidecar_sha256": "dab539a086e5647f9558c64c05ad04bdfa366bc4a2b5ef3b7f83aff4bf8724a1"
+    },
+    {
+      "image": "002_uct_couple.png",
+      "width": 512,
+      "height": 512,
+      "full_image_psnr_db_original_vs_authenticated_ciphertext": 16.89576381945679,
+      "thumbnail_psnr_db_32x32_block_means": null,
+      "thumbnail_max_abs_mean_difference": 0.0,
+      "thumbnail_exact": true,
+      "exact_image_recovery": true,
+      "exact_payload_recovery": true,
+      "group_count": 192,
+      "minimum_group_capacity_bits": 766,
+      "sidecar_bytes": 1131001,
+      "elapsed_seconds_encrypt_and_decrypt": 15.128,
+      "source_sha256": "bebca79f28d4b88dd533c298f5ad6e4363abf21f769aafc66b4cf54e6a72751c",
+      "encrypted_sha256": "f9da26b8c48680e78bbbeb573d02b488f00998d882240451c6de57eb5eaf3fa4",
+      "sidecar_sha256": "202edcb695b3b131de9ce7c0db2632caf270bab9ede92dd557e36bdf6bcac840"
+    },
+    {
+      "image": "003_uct_girl.png",
+      "width": 512,
+      "height": 512,
+      "full_image_psnr_db_original_vs_authenticated_ciphertext": 14.626153362583594,
+      "thumbnail_psnr_db_32x32_block_means": null,
+      "thumbnail_max_abs_mean_difference": 0.0,
+      "thumbnail_exact": true,
+      "exact_image_recovery": true,
+      "exact_payload_recovery": true,
+      "group_count": 192,
+      "minimum_group_capacity_bits": 1120,
+      "sidecar_bytes": 1158264,
+      "elapsed_seconds_encrypt_and_decrypt": 14.791,
+      "source_sha256": "9fc565fd0bc94193576640f1e345109a9b1db0594c926ce62dba6a787248e29e",
+      "encrypted_sha256": "cace54d5e9760d87994c6b33376b50fec54dd7cb2e75fd1242a606e13bdf6a7b",
+      "sidecar_sha256": "fb548aa15fbef7fe0e29ad439e7b7c39a54b12b249de3abba3d1389c55b7325c"
+    },
+    {
+      "image": "004_uct_lena.png",
+      "width": 512,
+      "height": 512,
+      "full_image_psnr_db_original_vs_authenticated_ciphertext": 12.291761421167088,
+      "thumbnail_psnr_db_32x32_block_means": null,
+      "thumbnail_max_abs_mean_difference": 0.0,
+      "thumbnail_exact": true,
+      "exact_image_recovery": true,
+      "exact_payload_recovery": true,
+      "group_count": 192,
+      "minimum_group_capacity_bits": 1504,
+      "sidecar_bytes": 1197461,
+      "elapsed_seconds_encrypt_and_decrypt": 15.13,
+      "source_sha256": "15366a94a447b85982c8f15d4b2d1c6f65bf72355a35f99a81b6a8acb9076eec",
+      "encrypted_sha256": "e66617ed135b7ac18fafa2d2260dd7b340fdbf6ee246c9ee2d8f20982e99bddd",
+      "sidecar_sha256": "7d1ce670279431dc008f49e71c5d7cf5791d3b519564dd004d515b3969943354"
+    },
+    {
+      "image": "005_uct_peppers.png",
+      "width": 512,
+      "height": 512,
+      "full_image_psnr_db_original_vs_authenticated_ciphertext": 12.014700962322895,
+      "thumbnail_psnr_db_32x32_block_means": null,
+      "thumbnail_max_abs_mean_difference": 0.0,
+      "thumbnail_exact": true,
+      "exact_image_recovery": true,
+      "exact_payload_recovery": true,
+      "group_count": 192,
+      "minimum_group_capacity_bits": 1404,
+      "sidecar_bytes": 1183841,
+      "elapsed_seconds_encrypt_and_decrypt": 15.349,
+      "source_sha256": "f3d54162d964683625a735e340ba18be583a1fb0b4ef7fd2d9b9c9ae3f4ae9b4",
+      "encrypted_sha256": "1d8828723e77d0ff60621c00735e85bd94accad6309c154076e91d970b6c783e",
+      "sidecar_sha256": "bcdada1c217d81177d06032bb74b0716270bb133f2ae0f91ecd17ee691ca62b4"
+    }
+  ],
+  "attacks": {
+    "one_pixel_change": {
+      "target": "004_uct_lena.png",
+      "channel": 1,
+      "coordinate_yx": [
+        263,
+        137
+      ],
+      "changed_pixel_count": 1,
+      "accepted": false,
+      "failed_group_label": [
+        1,
+        132
+      ],
+      "failed_group_block_ids": [
+        132,
+        44,
+        159,
+        120
+      ],
+      "localized_group_count": 1
+    },
+    "splice_000_uct_airplane_to_004_uct_lena": {
+      "donor": "000_uct_airplane.png",
+      "target": "004_uct_lena.png",
+      "replaced_ciphertext_block_id": 5,
+      "replaced_region_yxhw": [
+        0,
+        160,
+        32,
+        32
+      ],
+      "failed_group_labels_by_channel": [
+        [
+          0,
+          91
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          2,
+          5
+        ]
+      ],
+      "failed_group_block_ids_by_channel": {
+        "0": [
+          91,
+          207,
+          5,
+          189
+        ],
+        "1": [
+          5,
+          238,
+          64,
+          195
+        ],
+        "2": [
+          5,
+          248,
+          205,
+          137
+        ]
+      },
+      "localized_group_count": 3,
+      "accepted": false
+    },
+    "splice_004_uct_lena_to_000_uct_airplane": {
+      "donor": "004_uct_lena.png",
+      "target": "000_uct_airplane.png",
+      "replaced_ciphertext_block_id": 42,
+      "replaced_region_yxhw": [
+        64,
+        320,
+        32,
+        32
+      ],
+      "failed_group_labels_by_channel": [
+        [
+          0,
+          238
+        ],
+        [
+          1,
+          42
+        ],
+        [
+          2,
+          179
+        ]
+      ],
+      "failed_group_block_ids_by_channel": {
+        "0": [
+          238,
+          131,
+          42,
+          180
+        ],
+        "1": [
+          42,
+          55,
+          187,
+          214
+        ],
+        "2": [
+          179,
+          237,
+          42,
+          127
+        ]
+      },
+      "localized_group_count": 3,
+      "accepted": false
+    }
+  },
+  "fixture_key_sha256": {
+    "tpe_key": "728998fd6c1efa8df3a0e8487055dc41edadc7f46e525dab5d844dc9651c2cac",
+    "auth_key": "72efd9ff659e30c84a30d0ed262c6493c4f5ca8825dd99b991c75f0ad9df3680"
+  },
+  "payload_bits": [
+    0,
+    1,
+    1,
+    0,
+    1
+  ]
+}

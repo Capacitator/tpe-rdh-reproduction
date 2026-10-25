@@ -1,0 +1,40 @@
+{
+  "script_sha256": "e36796792764c18d21cdeab9151ad77bd61ff9fe617f9fdd145e2c2e216c0f31",
+  "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+  "numpy": "2.5.3",
+  "image_files": [
+    "000_uct_airplane.png",
+    "001_uct_baboon.png",
+    "002_uct_couple.png",
+    "003_uct_girl.png",
+    "004_uct_lena.png",
+    "005_uct_peppers.png"
+  ],
+  "all_input_sha256": {
+    "000_uct_airplane.png": "1b5331e2fd04edb7b6b746d82027c034bf8bb6a738ea5ba1a79c2b23ba2e1518",
+    "001_uct_baboon.png": "80881a4c0922592e7aa907c21fa3aebf6b0c7eafd0cd4c5b051f4f6945e2e121",
+    "002_uct_couple.png": "bebca79f28d4b88dd533c298f5ad6e4363abf21f769aafc66b4cf54e6a72751c",
+    "003_uct_girl.png": "9fc565fd0bc94193576640f1e345109a9b1db0594c926ce62dba6a787248e29e",
+    "004_uct_lena.png": "15366a94a447b85982c8f15d4b2d1c6f65bf72355a35f99a81b6a8acb9076eec",
+    "005_uct_peppers.png": "f3d54162d964683625a735e340ba18be583a1fb0b4ef7fd2d9b9c9ae3f4ae9b4"
+  },
+  "output_files": [
+    "000_uct_airplane_authentication_sidecar.bin",
+    "000_uct_airplane_four_pixel_authenticated.png",
+    "001_uct_baboon_authentication_sidecar.bin",
+    "001_uct_baboon_four_pixel_authenticated.png",
+    "002_uct_couple_authentication_sidecar.bin",
+    "002_uct_couple_four_pixel_authenticated.png",
+    "003_uct_girl_authentication_sidecar.bin",
+    "003_uct_girl_four_pixel_authenticated.png",
+    "004_uct_lena_authentication_sidecar.bin",
+    "004_uct_lena_four_pixel_authenticated.png",
+    "005_uct_peppers_authentication_sidecar.bin",
+    "005_uct_peppers_four_pixel_authenticated.png",
+    "SHA256SUMS.txt",
+    "four_pixel_authenticated_tpe_report.docx",
+    "metrics.csv",
+    "metrics.json",
+    "provenance.json"
+  ]
+}

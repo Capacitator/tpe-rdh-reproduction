@@ -25,7 +25,7 @@ GROUP=4
 TAG_BYTES=32
 TAG_BITS=256
 _DOMAIN=b"authenticated-tpe:flowchart-exact:v2\x00"
-_LAYOUT_MAGIC=b"ATPL2"
+_LAYOUT_MAGIC=b"ATPL3"
 
 @dataclass(frozen=True)
 class ExactEncryption:
@@ -44,6 +44,7 @@ class ExactVerification:
     restored_tpe_ciphertext: np.ndarray | None
     failed_groups: tuple[tuple[int, int], ...]
     layout: np.ndarray | None = None
+    recovered_payload_bits: list[int] | None = None
 
 @dataclass(frozen=True)
 class ExactDecryption:
@@ -114,9 +115,10 @@ def _layout_key(user_key: bytes) -> bytes:
 
 
 def _seal_layout(layout: np.ndarray, correction: np.ndarray, user_key: bytes,
-                 image_id: bytes, h: int, w: int) -> bytes:
+                 image_id: bytes, h: int, w: int, payload_bits: Sequence[int] = ()) -> bytes:
     raw=(np.asarray(layout,dtype=">u2").tobytes(order="C")+
-         np.asarray(correction,dtype=">i2").tobytes(order="C"))
+         np.asarray(correction,dtype=">i2").tobytes(order="C")+
+         len(payload_bits).to_bytes(8,"big")+bytes(int(bit) for bit in payload_bits))
     compressed=zlib.compress(raw,level=9)
     nonce=secrets.token_bytes(12)
     ciphertext=ChaCha20Poly1305(_layout_key(user_key)).encrypt(nonce,compressed,_aad(image_id,h,w))
@@ -124,7 +126,7 @@ def _seal_layout(layout: np.ndarray, correction: np.ndarray, user_key: bytes,
 
 
 def _open_layout(blob: bytes, user_key: bytes, image_id: bytes, h: int, w: int,
-                 nblocks: int) -> tuple[np.ndarray,np.ndarray]:
+                 nblocks: int) -> tuple[np.ndarray,np.ndarray,list[int]]:
     if len(blob)<len(_LAYOUT_MAGIC)+12+16 or not blob.startswith(_LAYOUT_MAGIC):
         raise ValueError("layout sidecar is missing or malformed")
     nonce=blob[len(_LAYOUT_MAGIC):len(_LAYOUT_MAGIC)+12]
@@ -132,14 +134,20 @@ def _open_layout(blob: bytes, user_key: bytes, image_id: bytes, h: int, w: int,
     compressed=ChaCha20Poly1305(_layout_key(user_key)).decrypt(nonce,ciphertext,_aad(image_id,h,w))
     raw=zlib.decompress(compressed)
     plane=3*nblocks*BLOCK*BLOCK
-    expected=plane*4
-    if len(raw)!=expected:
+    expected=plane*4+8
+    if len(raw)<expected:
         raise ValueError("layout sidecar length does not match image dimensions")
     layout=np.frombuffer(raw[:plane*2],dtype=">u2").astype(np.uint16).reshape(3,nblocks,BLOCK*BLOCK)
-    correction=np.frombuffer(raw[plane*2:],dtype=">i2").astype(np.int16).reshape(3,nblocks,BLOCK*BLOCK)
+    correction=np.frombuffer(raw[plane*2:plane*4],dtype=">i2").astype(np.int16).reshape(3,nblocks,BLOCK*BLOCK)
     if np.any(correction < -255) or np.any(correction > 255):
         raise ValueError("block-sum correction is outside the uint8 range")
-    return _validate_layout(layout,nblocks),correction
+    payload_length=int.from_bytes(raw[plane*4:plane*4+8],"big")
+    if payload_length>len(raw)-expected or len(raw)!=expected+payload_length:
+        raise ValueError("sidecar payload length is invalid")
+    payload_bytes=raw[expected:]
+    if any(bit not in (0,1) for bit in payload_bytes):
+        raise ValueError("sidecar payload contains a non-binary value")
+    return _validate_layout(layout,nblocks),correction,list(payload_bytes)
 
 
 def _balanced_adjust(values: np.ndarray, delta: int) -> np.ndarray:
@@ -185,16 +193,19 @@ def _restore_block_sums(marked: np.ndarray, target: np.ndarray) -> np.ndarray:
     return correction
 
 
-def _undo_block_sum_correction(packed: np.ndarray, correction: np.ndarray) -> np.ndarray:
+def _undo_block_sum_correction(packed: np.ndarray, correction: np.ndarray) -> tuple[np.ndarray,tuple[tuple[int,int],...]]:
     out=np.empty_like(packed)
+    invalid=[]
     for c in range(3):
         for bid in range(correction.shape[1]):
             values=common._block(packed,c,bid).astype(np.int32)
             restored=values-correction[c,bid].astype(np.int32).reshape(BLOCK,BLOCK)
             if restored.min()<0 or restored.max()>255:
-                raise ValueError("invalid reversible block-sum correction")
-            common._block(out,c,bid)[:]=restored.astype(np.uint8)
-    return out
+                invalid.append((c,bid))
+                common._block(out,c,bid)[:]=common._block(packed,c,bid)
+            else:
+                common._block(out,c,bid)[:]=restored.astype(np.uint8)
+    return out,tuple(invalid)
 
 
 def _group_layout_bytes(layout: np.ndarray, c: int, ids: Sequence[int]) -> bytes:
@@ -226,7 +237,11 @@ def _capacity(a: np.ndarray, c: int, ids: Sequence[int]) -> int:
 
 def encrypt_authenticated_tpe(image: np.ndarray, payload_bits: Sequence[int],
                               tpe_params: common.legacy.DemoPipelineParameters,
-                              auth_key: bytes, auth_image_id: bytes | None = None) -> ExactEncryption:
+                              auth_key: bytes, auth_image_id: bytes | None = None,
+                              tpe_module=None) -> ExactEncryption:
+    # A dedicated research branch may inject another reversible TPE adapter;
+    # the existing pipeline remains the unchanged default.
+    tpe_module=common.legacy if tpe_module is None else tpe_module
     source=np.ascontiguousarray(image)
     h,w,nblocks=_dimensions(source)
     if tpe_params.block_size!=BLOCK:
@@ -234,13 +249,13 @@ def encrypt_authenticated_tpe(image: np.ndarray, payload_bits: Sequence[int],
     key=bytes(auth_key)
     if len(key)<16:
         raise ValueError("authentication key must be at least 128 bits")
-    payload=common.legacy._validate_bits(payload_bits)
+    payload=tpe_module._validate_bits(payload_bits)
     iid=secrets.token_bytes(16) if auth_image_id is None else bytes(auth_image_id)
     if len(iid)!=16:
         raise ValueError("ImageID must be exactly 16 bytes")
 
-    # Stage 1: actual legacy block TPE/RDH output.
-    tpe_result=common.legacy.encrypt_rgb_image(source,payload,tpe_params)
+    # Stage 1: selected reversible block TPE/RDH output.
+    tpe_result=tpe_module.encrypt_rgb_image(source,payload,tpe_params)
     tpe_cipher=np.ascontiguousarray(tpe_result.encrypted_image)
     layout=_layout_from_ciphertext(tpe_cipher)
     packed=_pack(tpe_cipher,layout)
@@ -268,7 +283,7 @@ def encrypt_authenticated_tpe(image: np.ndarray, payload_bits: Sequence[int],
             total+=1
 
     correction=_restore_block_sums(marked,tpe_cipher)
-    layout_blob=_seal_layout(layout,correction,key,iid,h,w)
+    layout_blob=_seal_layout(layout,correction,key,iid,h,w,payload)
     final=_scatter(marked,layout)
     return ExactEncryption(final,layout_blob,iid,tpe_result.image_identifier,total,min(capacities),tuple(capacities))
 
@@ -281,17 +296,19 @@ def verify_tpe_ciphertext(marked_image: np.ndarray, layout_sidecar: bytes,
         key=bytes(user_key); iid=bytes(image_id)
         if len(key)<16 or len(iid)!=16:
             raise ValueError("invalid authentication key or ImageID length")
-        layout,correction=_open_layout(bytes(layout_sidecar),key,iid,h,w,nblocks)
+        layout,correction,payload_bits=_open_layout(bytes(layout_sidecar),key,iid,h,w,nblocks)
     except Exception as exc:
         return ExactVerification(False,f"layout/key validation failed: {type(exc).__name__}",None,())
 
     packed_corrected=_pack(src,layout)
-    try:
-        packed=_undo_block_sum_correction(packed_corrected,correction)
-    except ValueError:
-        return ExactVerification(False,"invalid reversible block-sum correction",None,(),layout)
-    restored=packed.copy(); received_groups=[]; failed=[]
+    packed,invalid_blocks=_undo_block_sum_correction(packed_corrected,correction)
     groups_by_channel=[common._group_order(key,c,nblocks) for c in range(3)]
+    failed=[]
+    if invalid_blocks:
+        for c,bid in invalid_blocks:
+            ids=next(group for group in groups_by_channel[c] if bid in group)
+            failed.append((c,int(ids[0])))
+    restored=packed.copy(); received_groups=[]
     for c,groups in enumerate(groups_by_channel):
         for ids in groups:
             candidate=restored.copy()
@@ -307,30 +324,39 @@ def verify_tpe_ciphertext(marked_image: np.ndarray, layout_sidecar: bytes,
         if not hmac.compare_digest(received,expected):
             failed.append((c,int(ids[0])))
     if failed:
-        return ExactVerification(False,"one or more four-block HMAC tags failed; plaintext withheld",None,tuple(failed),layout)
+        reason=("invalid reversible block-sum correction and/or four-block HMAC tag; "
+                "affected group(s) localized; plaintext withheld")
+        return ExactVerification(False,reason,None,tuple(sorted(set(failed))),layout,payload_bits)
 
     # Only after all group tags pass do we reverse Step-2 and Step-1, then the
     # logical pairing layout, returning the exact legacy TPE ciphertext.
     step1=common._auth_step2(restored,key,inverse=True)
     packed_tpe=common._auth_step1(step1,key,iid,inverse=True)
     tpe_cipher=_scatter(packed_tpe,layout)
-    return ExactVerification(True,"all four-block HMAC tags accepted",tpe_cipher,(),layout)
+    return ExactVerification(True,"all four-block HMAC tags accepted",tpe_cipher,(),layout,payload_bits)
 
 
 def decrypt_authenticated_tpe(marked_image: np.ndarray, layout_sidecar: bytes,
                               tpe_params: common.legacy.DemoPipelineParameters,
                               auth_key: bytes, auth_image_id: bytes,
-                              tpe_image_identifier, expected_payload: Sequence[int] | None = None) -> ExactDecryption:
+                              tpe_image_identifier, expected_payload: Sequence[int] | None = None,
+                              tpe_module=None) -> ExactDecryption:
+    tpe_module=common.legacy if tpe_module is None else tpe_module
     verification=verify_tpe_ciphertext(marked_image,layout_sidecar,auth_key,auth_image_id)
     if not verification.accepted or verification.restored_tpe_ciphertext is None:
         return ExactDecryption(False,verification.reason,None,None,verification.failed_groups)
-    params=common.legacy.DemoPipelineParameters(
+    params=tpe_module.DemoPipelineParameters(
         block_size=tpe_params.block_size,key=tpe_params.key,
         image_identifier=tpe_image_identifier,vartheta=tpe_params.vartheta)
     try:
-        decoded=common.legacy.decrypt_rgb_image(verification.restored_tpe_ciphertext,params)
+        if getattr(tpe_module,"SIDECAR_PAYLOAD",False):
+            decoded=tpe_module.decrypt_rgb_image(
+                verification.restored_tpe_ciphertext,params,
+                payload_bits=verification.recovered_payload_bits or [])
+        else:
+            decoded=tpe_module.decrypt_rgb_image(verification.restored_tpe_ciphertext,params)
     except Exception as exc:
-        return ExactDecryption(False,f"authenticated legacy recovery failed: {type(exc).__name__}",None,None,())
+        return ExactDecryption(False,f"authenticated TPE recovery failed: {type(exc).__name__}",None,None,())
     if expected_payload is not None and decoded.payload_bits!=list(expected_payload):
         return ExactDecryption(False,"authenticated image recovered but payload mismatch",decoded.recovered_image,decoded.payload_bits,())
     return ExactDecryption(True,"authenticated and exactly recovered",decoded.recovered_image,decoded.payload_bits,())
