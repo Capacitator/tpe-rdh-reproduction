@@ -1,0 +1,104 @@
+{
+  "schema": "four-pixel-auth-v3-input-manifest",
+  "starting_commit": "32e6c4922c1fc624a0f3878294663ff97d6b35ef",
+  "corpus": "Six 512x512 RGB UCT-named fixtures from the repository tracked visual_gallery originals.",
+  "exactness": "The six RGB arrays are available and pixel hashes verified. Four historical PNG byte hashes match the tracked references; Couple and Girl historical PNG bytes differ and are not recoverable from the repository, although their pixel arrays match the verified reconstruction references.",
+  "entries": [
+    {
+      "run_input_filename": "000_uct_airplane.png",
+      "recovered_reference_path": "authenticated_tpe_nist_v2/output/metrics/visual_gallery/airplane_original.png",
+      "dimensions_px": [
+        512,
+        512
+      ],
+      "mode": "RGB",
+      "preprocessing": "RGB pixels used as stored; no resize, crop, or color transform in the run input preparation. Reconstruction helper re-encodes PNG but verifies array equality.",
+      "historical_run_file_sha256": "1b5331e2fd04edb7b6b746d82027c034bf8bb6a738ea5ba1a79c2b23ba2e1518",
+      "reference_png_file_sha256": "1b5331e2fd04edb7b6b746d82027c034bf8bb6a738ea5ba1a79c2b23ba2e1518",
+      "historical_file_bytes_recovered": true,
+      "rgb_pixel_sha256": "a7405a85dc79ba2207e04c2544d55b6fce0eb29e9293768db1aee663bee44e35",
+      "source_lineage": "Repository visual_gallery original PNG; named UCT fixture. The complete upstream source/license record is not present in this repository.",
+      "redistribution_note": "The exact tracked reference file is already part of this repository; upstream redistribution/license status is undocumented here."
+    },
+    {
+      "run_input_filename": "001_uct_baboon.png",
+      "recovered_reference_path": "authenticated_tpe_nist_v2/output/metrics/visual_gallery/baboon_original.png",
+      "dimensions_px": [
+        512,
+        512
+      ],
+      "mode": "RGB",
+      "preprocessing": "RGB pixels used as stored; no resize, crop, or color transform in the run input preparation. Reconstruction helper re-encodes PNG but verifies array equality.",
+      "historical_run_file_sha256": "80881a4c0922592e7aa907c21fa3aebf6b0c7eafd0cd4c5b051f4f6945e2e121",
+      "reference_png_file_sha256": "80881a4c0922592e7aa907c21fa3aebf6b0c7eafd0cd4c5b051f4f6945e2e121",
+      "historical_file_bytes_recovered": true,
+      "rgb_pixel_sha256": "a511e253857a0bfd85137d3b35d6f4e6140b0c3288ca8d56f1f5c39aff59e694",
+      "source_lineage": "Repository visual_gallery original PNG; named UCT fixture. The complete upstream source/license record is not present in this repository.",
+      "redistribution_note": "The exact tracked reference file is already part of this repository; upstream redistribution/license status is undocumented here."
+    },
+    {
+      "run_input_filename": "002_uct_couple.png",
+      "recovered_reference_path": "authenticated_tpe_nist_v2/output/metrics/visual_gallery/couple_original.png",
+      "dimensions_px": [
+        512,
+        512
+      ],
+      "mode": "RGB",
+      "preprocessing": "RGB pixels used as stored; no resize, crop, or color transform in the run input preparation. Reconstruction helper re-encodes PNG but verifies array equality.",
+      "historical_run_file_sha256": "0d633d9e25d40c28cd2b3823169e245d74102ac2ad5f2f98794e2950c19e961c",
+      "reference_png_file_sha256": "bebca79f28d4b88dd533c298f5ad6e4363abf21f769aafc66b4cf54e6a72751c",
+      "historical_file_bytes_recovered": false,
+      "rgb_pixel_sha256": "7ac5f99ce6e090aed2ca4a84509ecc6391437c299f1bea47e1e5024c0194b445",
+      "source_lineage": "Repository visual_gallery original PNG; named UCT fixture. The complete upstream source/license record is not present in this repository.",
+      "redistribution_note": "The exact tracked reference file is already part of this repository; upstream redistribution/license status is undocumented here."
+    },
+    {
+      "run_input_filename": "003_uct_girl.png",
+      "recovered_reference_path": "authenticated_tpe_nist_v2/output/metrics/visual_gallery/girl_original.png",
+      "dimensions_px": [
+        512,
+        512
+      ],
+      "mode": "RGB",
+      "preprocessing": "RGB pixels used as stored; no resize, crop, or color transform in the run input preparation. Reconstruction helper re-encodes PNG but verifies array equality.",
+      "historical_run_file_sha256": "06b052f1fa7d0648feeff04b07186fce4c357afebe8585afc483321f7ffc52bd",
+      "reference_png_file_sha256": "9fc565fd0bc94193576640f1e345109a9b1db0594c926ce62dba6a787248e29e",
+      "historical_file_bytes_recovered": false,
+      "rgb_pixel_sha256": "47ffc14019e003443cb8536174a21f4232f4a987a0ae409d99c2b5c06d038fe4",
+      "source_lineage": "Repository visual_gallery original PNG; named UCT fixture. The complete upstream source/license record is not present in this repository.",
+      "redistribution_note": "The exact tracked reference file is already part of this repository; upstream redistribution/license status is undocumented here."
+    },
+    {
+      "run_input_filename": "004_uct_lena.png",
+      "recovered_reference_path": "authenticated_tpe_nist_v2/output/metrics/visual_gallery/lena_original.png",
+      "dimensions_px": [
+        512,
+        512
+      ],
+      "mode": "RGB",
+      "preprocessing": "RGB pixels used as stored; no resize, crop, or color transform in the run input preparation. Reconstruction helper re-encodes PNG but verifies array equality.",
+      "historical_run_file_sha256": "15366a94a447b85982c8f15d4b2d1c6f65bf72355a35f99a81b6a8acb9076eec",
+      "reference_png_file_sha256": "15366a94a447b85982c8f15d4b2d1c6f65bf72355a35f99a81b6a8acb9076eec",
+      "historical_file_bytes_recovered": true,
+      "rgb_pixel_sha256": "c878c0dc0b46bd7a13d0d183467b74752165e39c7b86f627666ad637da6be500",
+      "source_lineage": "Repository visual_gallery original PNG; named UCT fixture. The complete upstream source/license record is not present in this repository.",
+      "redistribution_note": "The exact tracked reference file is already part of this repository; upstream redistribution/license status is undocumented here."
+    },
+    {
+      "run_input_filename": "005_uct_peppers.png",
+      "recovered_reference_path": "authenticated_tpe_nist_v2/output/metrics/visual_gallery/peppers_original.png",
+      "dimensions_px": [
+        512,
+        512
+      ],
+      "mode": "RGB",
+      "preprocessing": "RGB pixels used as stored; no resize, crop, or color transform in the run input preparation. Reconstruction helper re-encodes PNG but verifies array equality.",
+      "historical_run_file_sha256": "f3d54162d964683625a735e340ba18be583a1fb0b4ef7fd2d9b9c9ae3f4ae9b4",
+      "reference_png_file_sha256": "f3d54162d964683625a735e340ba18be583a1fb0b4ef7fd2d9b9c9ae3f4ae9b4",
+      "historical_file_bytes_recovered": true,
+      "rgb_pixel_sha256": "5350521bbe3522935ed1f87e43532fafb679f5fea3419de13695a2e4da63ba46",
+      "source_lineage": "Repository visual_gallery original PNG; named UCT fixture. The complete upstream source/license record is not present in this repository.",
+      "redistribution_note": "The exact tracked reference file is already part of this repository; upstream redistribution/license status is undocumented here."
+    }
+  ]
+}

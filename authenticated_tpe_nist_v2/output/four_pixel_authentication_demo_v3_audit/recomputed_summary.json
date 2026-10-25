@@ -1,0 +1,36 @@
+{
+  "images": 6,
+  "image_dimensions_px": [
+    512,
+    512
+  ],
+  "channels": 3,
+  "mean_full_image_psnr_db": 13.206253351302744,
+  "mean_full_image_mse": 3368.731385972765,
+  "thumbnail_dimensions": [
+    16,
+    16,
+    3
+  ],
+  "thumbnail_per_cell_source_block": [
+    32,
+    32
+  ],
+  "all_thumbnail_mse_zero": true,
+  "sum_original_png_bytes": 2704932,
+  "sum_encrypted_png_bytes": 4544029,
+  "sum_sidecar_bytes": 7108006,
+  "sum_combined_bundle_bytes": 11652035,
+  "mean_combined_bundle_bytes": 1942005.8333333333,
+  "raw_rgb_bytes_per_image": 786432,
+  "mean_bundle_over_raw_rgb_ratio": 2.4693881140814886,
+  "mean_bundle_over_source_png_ratio": 4.307699786907767,
+  "original_png_sha256_verified_against_run_record": 4,
+  "encrypted_png_sha256_verified_against_run_record": 6,
+  "sidecar_bytes_verified_against_run_record": 6,
+  "sidecar_hashes_verified_against_run_record": 6,
+  "original_keys_available": false,
+  "exact_recovery_replayed_in_this_audit": false,
+  "exact_recovery_historical_record": true,
+  "timing": "Omitted: saved combined encode/write/recovery timing is not a stage-isolated encryption runtime."
+}

@@ -84,6 +84,12 @@ def test_four_pixel_key_quantization_covers_full_byte_domain():
     assert keys[:5].tolist()==[1,64,128,192,255]
 
 
+def test_four_pixel_pipeline_rejects_omitted_default_key():
+    params = fourpx.DemoPipelineParameters()
+    with pytest.raises(ValueError, match="key is required"):
+        fourpx._generate_channel_matrices(32, 32, params, IMAGE_ID)
+
+
 def test_four_pixel_pipeline_exact_recovery_and_sum_preserving_substitution():
     image = _image()
     params = fourpx.DemoPipelineParameters(block_size=32, key=KEY_TPE)

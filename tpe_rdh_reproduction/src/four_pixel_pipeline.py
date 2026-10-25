@@ -23,7 +23,6 @@ import numpy as np
 from chaos import generate_upsilon_matrices
 from permutation import inverse_permute_image_blocks, permute_image_blocks
 from pipeline import (
-    DemoPipelineParameters as _LegacyParams,
     IdentifierLike,
     _resolve_encryption_identifier,
     _require_decryption_identifier,
@@ -41,7 +40,8 @@ RDH_TAG_BYTES = 32
 @dataclass(frozen=True)
 class DemoPipelineParameters:
     block_size: int = BLOCK_SIZE
-    key: bytes = _LegacyParams().key
+    # No public fixed demo key: callers must supply a private 256-bit key.
+    key: Optional[bytes] = None
     image_identifier: Optional[IdentifierLike] = None
     vartheta: float = 10000.0
 
@@ -101,6 +101,8 @@ def _generate_channel_matrices(height: int, width: int, params: DemoPipelinePara
                                image_identifier: IdentifierLike):
     if params.block_size != BLOCK_SIZE:
         raise ValueError("four-pixel authenticated prototype requires 32x32 blocks")
+    if params.key is None:
+        raise ValueError("four-pixel TPE key is required; no default demonstration key is provided")
     key = bytes(params.key)
     if len(key) != 32:
         raise ValueError("four-pixel TPE key must be exactly 32 bytes")

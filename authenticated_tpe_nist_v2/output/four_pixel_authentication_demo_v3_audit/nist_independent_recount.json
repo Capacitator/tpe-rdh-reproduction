@@ -1,0 +1,73 @@
+{
+  "protocol_classification": "exploratory schedule-stream diagnostics; not the predeclared full v2 image/authentication protocol",
+  "recount_method": "independent parser over every NIST finalAnalysisReport row; uniformity p<0.0001 plus the report proportion cutoff 0.96 for 100 sequences; compared with printed asterisks",
+  "alpha_first_level_tests": 0.01,
+  "streams": [
+    {
+      "stream_family": "substitution_r",
+      "report_rows": 188,
+      "p_value_below_0_01": 150,
+      "p_value_below_0_0001": 148,
+      "proportion_below_nist_report_cutoff": 150,
+      "nist_report_proportion_cutoff": 0.96,
+      "failing_either_nist_report_check": 153,
+      "asterisk_rows": 153,
+      "all_test_families": [
+        "ApproximateEntropy",
+        "BlockFrequency",
+        "CumulativeSums",
+        "FFT",
+        "Frequency",
+        "LinearComplexity",
+        "LongestRun",
+        "NonOverlappingTemplate",
+        "OverlappingTemplate",
+        "RandomExcursions",
+        "RandomExcursionsVariant",
+        "Rank",
+        "Runs",
+        "Serial",
+        "Universal"
+      ],
+      "input_sequences": 100,
+      "bits_per_sequence": 1000000,
+      "report_sha256": "25571f7d1597ed96f0957fc4a0c75c9ef018890f47f988103ebf377a3e42e32a",
+      "manifest_sha256": "92604d2de4a1361e8fd30a42cec5e19603d433ec934a203f88c825cbf867c894",
+      "assess_log_sha256": "14d955edaad1e3d27c2c4de0baff520bd53d944079410e51a415fd0463813f3b",
+      "input_ascii_bytes": 100000100,
+      "input_ascii_sha256": "a169a1cdbbab60602d066ddbceb21bfbaf0b076b3d92c2c52661140f7543d7d9"
+    },
+    {
+      "stream_family": "upsilon_p",
+      "report_rows": 162,
+      "p_value_below_0_01": 147,
+      "p_value_below_0_0001": 144,
+      "proportion_below_nist_report_cutoff": 146,
+      "nist_report_proportion_cutoff": 0.96,
+      "failing_either_nist_report_check": 148,
+      "asterisk_rows": 148,
+      "all_test_families": [
+        "ApproximateEntropy",
+        "BlockFrequency",
+        "CumulativeSums",
+        "FFT",
+        "Frequency",
+        "LinearComplexity",
+        "LongestRun",
+        "NonOverlappingTemplate",
+        "OverlappingTemplate",
+        "Rank",
+        "Runs",
+        "Serial",
+        "Universal"
+      ],
+      "input_sequences": 100,
+      "bits_per_sequence": 1000000,
+      "report_sha256": "454761fa123facd5b672282d787998e87409cbaba49a4201b0625acc6a781237",
+      "manifest_sha256": "28ec25d3e49ae6c6dc1821332637ac19443a32ff4022780c0827fb643c365e47",
+      "assess_log_sha256": "8a80dbd86e2e050d61660dc4e6ef6a2a5c0cbfa20fa0e3d3dd17368767288861",
+      "input_ascii_bytes": 100000100,
+      "input_ascii_sha256": "c4145079b65e72a857c28e023c5e348ded2e818a493955c358582a254ebd8555"
+    }
+  ]
+}
