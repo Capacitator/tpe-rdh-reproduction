@@ -43,15 +43,18 @@ def test_four_pixel_transform_exactly_inverts_and_preserves_sum():
         assert decrypt4(encrypt4(src, key), key) == src
 
 
-def test_four_pixel_pipeline_exact_image_and_32_block_sums():
+def test_four_pixel_pipeline_exact_recovery_and_sum_preserving_substitution():
     image = _image()
     params = fourpx.DemoPipelineParameters(block_size=32, key=KEY_TPE)
     enc = fourpx.encrypt_rgb_image(image, PAYLOAD, params)
     assert np.array_equal(fourpx.decrypt_rgb_image(enc, params).recovered_image, image)
     dec = fourpx.decrypt_rgb_image(enc, params)
-    source_sums = image.reshape(8, 32, 8, 32, 3).sum(axis=(1, 3), dtype=np.uint64)
+    rdh_sums = enc.marked_image.reshape(8, 32, 8, 32, 3).sum(axis=(1, 3), dtype=np.uint64)
     cipher_sums = enc.encrypted_image.reshape(8, 32, 8, 32, 3).sum(axis=(1, 3), dtype=np.uint64)
-    assert np.array_equal(source_sums, cipher_sums)
+    # The native RDH tag stage can change thumbnail sums; the outer authenticated
+    # wrapper restores source sums reversibly before releasing the ciphertext.
+    assert not np.array_equal(rdh_sums, image.reshape(8, 32, 8, 32, 3).sum(axis=(1, 3), dtype=np.uint64))
+    assert np.array_equal(cipher_sums, rdh_sums)
 
 
 def _authenticated():
@@ -62,16 +65,38 @@ def _authenticated():
     return params, enc
 
 
+def test_four_pixel_native_rdh_carries_tags_and_user_payload():
+    image = _image()
+    params = fourpx.DemoPipelineParameters(block_size=32, key=KEY_TPE)
+    enc = fourpx.encrypt_rgb_image(image, PAYLOAD, params)
+    assert len(enc.rdh_infos) == 3
+    assert [info.payload_length for info in enc.rdh_infos] == [256 + len(PAYLOAD), 256, 256]
+    assert np.array_equal(fourpx.decrypt_rgb_image(enc, params).recovered_image, image)
+    tampered = enc.encrypted_image.copy()
+    tampered[13, 27, 0] ^= 1
+    try:
+        fourpx.decrypt_rgb_image(tampered, fourpx.DemoPipelineParameters(block_size=32, key=KEY_TPE, image_identifier=enc.image_identifier), payload_bits=PAYLOAD)
+    except ValueError:
+        pass
+    else:
+        raise AssertionError("four-pixel RDH tag accepted a modified ciphertext")
+
+
 def test_four_pixel_authentication_exact_recovery():
     params, enc = _authenticated()
     dec = exact.decrypt_authenticated_tpe(
         enc.marked_image, enc.layout_sidecar, params, KEY_AUTH, IMAGE_ID,
-        enc.tpe_image_identifier, PAYLOAD, tpe_module=fourpx
+        None, PAYLOAD, tpe_module=fourpx
     )
     assert dec.accepted, dec.reason
     assert np.array_equal(dec.recovered_image, _image())
     assert dec.recovered_payload_bits == PAYLOAD
+    verified = exact.verify_tpe_ciphertext(enc.marked_image, enc.layout_sidecar, KEY_AUTH, IMAGE_ID)
+    assert verified.tpe_image_identifier == enc.tpe_image_identifier
     assert enc.group_count == 48
+    source_sums = _image().reshape(8, 32, 8, 32, 3).sum(axis=(1, 3), dtype=np.uint64)
+    cipher_sums = enc.marked_image.reshape(8, 32, 8, 32, 3).sum(axis=(1, 3), dtype=np.uint64)
+    assert np.array_equal(source_sums, cipher_sums)
 
 
 def test_four_pixel_authentication_detects_and_localizes_one_pixel_tamper():

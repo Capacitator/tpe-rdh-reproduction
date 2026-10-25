@@ -1,9 +1,11 @@
-"""Four-pixel sum-preserving TPE adapter for authenticated integration.
+"""Four-pixel sum-preserving TPE adapter with native RDH authentication tags.
 
 The supplied Four-Pixel SPE paper does not define an auxiliary-payload
-container. The authenticated adapter therefore keeps the TPE image transform
-pure and carries caller payload bits in the existing ChaCha20-Poly1305-protected
-authentication sidecar. This avoids altering the paper transform's block sums.
+container. This adapter embeds keyed per-channel 256-bit image tags (and the
+caller's payload in the red-channel stream) using the repository's reversible
+histogram-shifting RDH stage after block permutation and before four-pixel
+substitution. Decryption reverses substitution, extracts and verifies each
+tag, exactly recovers the permuted carrier, then reverses block permutation.
 
 The paper's chaotic schedule is not treated as interchangeable with the
 repository's existing 2D-CSM schedule. This reproducible prototype uses the
@@ -28,10 +30,12 @@ from pipeline import (
     _validate_bits,
     _validate_rgb_image,
 )
+from rdh import bits_from_bytes, bytes_from_bits, embed_bits, extract_bits_and_recover
 from four_pixel_spe import transform_block
 
 BLOCK_SIZE = 32
-SIDECAR_PAYLOAD = True
+SIDECAR_PAYLOAD = False
+RDH_TAG_BYTES = 32
 
 
 @dataclass(frozen=True)
@@ -107,6 +111,19 @@ def _generate_channel_matrices(height: int, width: int, params: DemoPipelinePara
     return tuple(p_mats), tuple(s_mats)
 
 
+def _rdh_tag(key: bytes, image_identifier: IdentifierLike, channel: int,
+             carrier: np.ndarray, payload_bits: Sequence[int]) -> bytes:
+    """Bind the recovered pre-RDH channel and payload to this TPE image."""
+    import hashlib, hmac
+    image_id = (image_identifier.encode("utf-8") if isinstance(image_identifier, str)
+                else bytes(image_identifier))
+    payload = bytes(int(bit) for bit in payload_bits)
+    message = (b"four-pixel-rdh-auth:v1\x00" + len(image_id).to_bytes(2, "big") + image_id
+               + bytes([channel]) + len(payload).to_bytes(8, "big") + payload
+               + np.ascontiguousarray(carrier).tobytes())
+    return hmac.new(_channel_key(key, channel), message, hashlib.sha256).digest()
+
+
 def encrypt_rgb_image(image: np.ndarray, payload_bits: Sequence[int],
                       params: DemoPipelineParameters) -> EncryptionResult:
     _validate_rgb_image(image)
@@ -119,9 +136,17 @@ def encrypt_rgb_image(image: np.ndarray, payload_bits: Sequence[int],
     permuted = np.stack([
         permute_image_blocks(image[:, :, c], p_mats[c], BLOCK_SIZE) for c in range(3)
     ], axis=2)
-    encrypted = _apply_spe(permuted, s_mats)
-    return EncryptionResult(encrypted, p_mats, s_mats, permuted, permuted,
-                            (), image_identifier, tuple(payload))
+    marked = np.empty_like(permuted)
+    rdh_infos = []
+    for channel in range(3):
+        channel_payload = payload if channel == 0 else []
+        tag = _rdh_tag(params.key, image_identifier, channel, permuted[:, :, channel], channel_payload)
+        carrier_bits = bits_from_bytes(tag) + [int(bit) for bit in channel_payload]
+        marked[:, :, channel], info = embed_bits(permuted[:, :, channel], carrier_bits)
+        rdh_infos.append(info)
+    encrypted = _apply_spe(marked, s_mats)
+    return EncryptionResult(encrypted, p_mats, s_mats, permuted, marked,
+                            tuple(rdh_infos), image_identifier, tuple(payload))
 
 
 def decrypt_rgb_image(encrypted: EncryptionResult | np.ndarray,
@@ -130,19 +155,34 @@ def decrypt_rgb_image(encrypted: EncryptionResult | np.ndarray,
     if isinstance(encrypted, EncryptionResult):
         ciphertext = encrypted.encrypted_image
         image_identifier = encrypted.image_identifier
-        stored_payload = list(encrypted.payload_bits)
     else:
         ciphertext = np.asarray(encrypted)
         image_identifier = _require_decryption_identifier(params.image_identifier)
-        stored_payload = [] if payload_bits is None else _validate_bits(payload_bits)
     _validate_rgb_image(ciphertext)
     if ciphertext.shape[0] % BLOCK_SIZE or ciphertext.shape[1] % BLOCK_SIZE:
         raise ValueError("image dimensions must be multiples of 32")
     h, w, _ = ciphertext.shape
     p_mats, s_mats = _generate_channel_matrices(h, w, params, image_identifier)
-    recovered_permuted = _apply_spe(ciphertext, s_mats, inverse=True)
+    recovered_marked = _apply_spe(ciphertext, s_mats, inverse=True)
+    recovered_permuted = np.empty_like(recovered_marked)
+    recovered_payload: list[int] | None = None
+    import hmac
+    for channel in range(3):
+        extracted, recovered_channel = extract_bits_and_recover(recovered_marked[:, :, channel])
+        if len(extracted) < RDH_TAG_BYTES * 8:
+            raise ValueError("RDH authentication payload is truncated")
+        tag = bytes_from_bits(extracted[:RDH_TAG_BYTES * 8])
+        channel_payload = extracted[RDH_TAG_BYTES * 8:] if channel == 0 else []
+        expected = _rdh_tag(params.key, image_identifier, channel, recovered_channel, channel_payload)
+        if not hmac.compare_digest(tag, expected):
+            raise ValueError(f"RDH authentication tag failed for channel {channel}")
+        if channel == 0:
+            recovered_payload = channel_payload
+        recovered_permuted[:, :, channel] = recovered_channel
+    if payload_bits is not None and recovered_payload != _validate_bits(payload_bits):
+        raise ValueError("RDH payload does not match the expected payload")
     recovered = np.stack([
         inverse_permute_image_blocks(recovered_permuted[:, :, c], p_mats[c], BLOCK_SIZE)
         for c in range(3)
     ], axis=2)
-    return DecryptionResult(recovered, stored_payload, recovered_permuted, recovered_permuted)
+    return DecryptionResult(recovered, recovered_payload or [], recovered_permuted, recovered_marked)

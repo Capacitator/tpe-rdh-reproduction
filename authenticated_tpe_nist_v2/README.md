@@ -137,3 +137,21 @@ Reproduce with `python3 experiments/run_flowchart_hybrid.py`,
 `python3 experiments/run_capacity_audit.py`, and
 `python3 -m pytest tests -q`. The Word generator appends the measured results
 without removing the earlier gallery pages.
+
+
+## Four-pixel TPE with native RDH authentication
+
+The `scripts/run_four_pixel_auth_demo.py` evaluation combines the four-pixel
+sum-preserving transform with the repository's histogram-shifting RDH stage.
+Each RGB channel carries a keyed full-length 256-bit HMAC tag in the RDH payload;
+the red channel also carries the user payload. The existing exact-order RCM layer
+adds keyed four-block tags for localization. Its authenticated sidecar carries
+the pairing and source block-sum correction maps plus both image identifiers,
+not the RDH tags or user payload. The four-pixel paper does not specify RDH
+payload carriage, so this is an explicit hybrid integration.
+
+The runner checks six UCT images, exact image and payload recovery, exact
+32x32 block-mean thumbnails, one-pixel and cross-image splice detection, and
+serialized PNG/sidecar recovery without external image identifiers. Run it with
+`python3 scripts/run_four_pixel_auth_demo.py`; regression coverage is in
+`tests/test_four_pixel_authenticated_tpe.py`.

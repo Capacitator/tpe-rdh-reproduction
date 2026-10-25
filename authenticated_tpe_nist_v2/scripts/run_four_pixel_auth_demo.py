@@ -56,7 +56,7 @@ def main() -> None:
         )
         recovered = exact.decrypt_authenticated_tpe(
             encrypted.marked_image, encrypted.layout_sidecar, params,
-            AUTH_KEY, image_id, encrypted.tpe_image_identifier, PAYLOAD,
+            AUTH_KEY, None, None, PAYLOAD,
             tpe_module=fourpx,
         )
         if not recovered.accepted or not np.array_equal(recovered.recovered_image, original):
@@ -67,6 +67,16 @@ def main() -> None:
         Image.fromarray(encrypted.marked_image, mode="RGB").save(encrypted_path)
         sidecar_path = OUT / f"{stem}_authentication_sidecar.bin"
         sidecar_path.write_bytes(encrypted.layout_sidecar)
+        # Export/import check: reload only the lossless PNG and AEAD sidecar;
+        # both schedule identifiers are recovered from protected metadata.
+        exported_image = np.asarray(Image.open(encrypted_path).convert("RGB"), dtype=np.uint8)
+        exported_sidecar = sidecar_path.read_bytes()
+        exported_recovery = exact.decrypt_authenticated_tpe(
+            exported_image, exported_sidecar, params, AUTH_KEY, None, None, PAYLOAD,
+            tpe_module=fourpx,
+        )
+        if not exported_recovery.accepted or not np.array_equal(exported_recovery.recovered_image, original):
+            raise AssertionError(f"export/import recovery failed for {filename}: {exported_recovery.reason}")
         thumb_diff = block_means(original) - block_means(encrypted.marked_image)
         thumb_psnr = psnr(block_means(original), block_means(encrypted.marked_image))
         rec = {
@@ -78,8 +88,12 @@ def main() -> None:
             "thumbnail_exact": bool(np.array_equal(block_means(original), block_means(encrypted.marked_image))),
             "exact_image_recovery": bool(np.array_equal(recovered.recovered_image, original)),
             "exact_payload_recovery": bool(recovered.recovered_payload_bits == PAYLOAD),
+            "serialized_png_sidecar_recovery_without_external_ids": bool(exported_recovery.accepted),
             "group_count": int(encrypted.group_count),
             "minimum_group_capacity_bits": int(encrypted.minimum_group_capacity),
+            "rdh_tag_bits_per_channel": 256,
+            "rdh_user_payload_bits_in_red_channel": len(PAYLOAD),
+            "rdh_metadata_bits_per_channel": [int(info.embedded_bit_count - info.payload_length) for info in encrypted.rdh_infos],
             "sidecar_bytes": len(encrypted.layout_sidecar),
             "elapsed_seconds_encrypt_and_decrypt": round(time.perf_counter() - started, 3),
             "source_sha256": hashlib.sha256(src_path.read_bytes()).hexdigest(),
@@ -96,15 +110,17 @@ def main() -> None:
     # block-mean equality and a JSON null mean rather than inventing a finite value.
     result = {
         "experiment": "four-pixel SPE with exact-order four-block HMAC-SHA256 authentication",
-        "method_note": "Four-pixel SPE paper transform with repository 2D-CSM-derived schedules; caller payload protected in the existing AEAD sidecar because the SPE paper does not specify payload carriage.",
+        "method_note": "Four-pixel SPE with repository 2D-CSM-derived schedules. Three 256-bit keyed image tags are embedded in the native histogram-shifting RDH stage (one per channel); caller payload bits share the red-channel RDH stream. The outer AEAD sidecar stores the reversible pairing and block-sum correction map, not the payload or RDH tags.",
         "block_size": 32,
         "authentication_group_size_blocks": 4,
+        "native_rdh_authentication": {"tag": "HMAC-SHA256, full 256-bit tag per RGB channel", "payload_location": "red-channel reversible histogram-shifting RDH payload", "pixel_sum_compensation": "authenticated reversible correction map restores source 32x32 block sums"},
         "test_images": len(rows),
         "mean_full_image_psnr_db": mean_full,
         "mean_thumbnail_psnr_db": None,
         "thumbnail_psnr_note": "All six 32x32 block-mean thumbnails are bit-exact (zero MSE); PSNR is mathematically infinite/undefined as a finite average.",
         "all_exact_image_recovery": all(r["exact_image_recovery"] for r in rows),
         "all_exact_payload_recovery": all(r["exact_payload_recovery"] for r in rows),
+        "all_serialized_export_import_recovery": all(r["serialized_png_sidecar_recovery_without_external_ids"] for r in rows),
         "all_thumbnail_exact": all(r["thumbnail_exact"] for r in rows),
         "images": rows,
         "attacks": {},
@@ -171,7 +187,7 @@ def main() -> None:
 
     (OUT / "metrics.json").write_text(json.dumps(result, indent=2, allow_nan=False), encoding="utf-8")
     with (OUT / "metrics.csv").open("w", newline="", encoding="utf-8") as f:
-        writer = csv.DictWriter(f, fieldnames=list(rows[0].keys()))
+        writer = csv.DictWriter(f, fieldnames=list(rows[0].keys()), lineterminator="\n")
         writer.writeheader(); writer.writerows(rows)
     provenance = {
         "script_sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),

@@ -6,11 +6,12 @@ block grouping -> reversible contrast-mapping (RCM) tag embedding.
 
 Capacity repair: within each 32x32 block, a stable value-sorted *logical pair
 layout* pairs nearby ciphertext values before Step-1/Step-2/RCM. A reversible
-block-sum correction then restores every 32x32 channel sum to its pre-auth value.
-The pairing map and correction vector are carried in a ChaCha20-Poly1305-
-protected sidecar; the pairing map is also included in each group MAC. Neither
-operation moves displayed pixels outside their original blocks. No whole-image
-fallback is used: encryption fails closed if any four-block group lacks capacity.
+block-sum correction then restores every 32x32 channel sum to the source value.
+The pairing map, correction vector and both schedule identifiers are carried in
+a ChaCha20-Poly1305-protected sidecar; the pairing map is also included in each
+group MAC. The TPE-native RDH tags and caller payload stay in the image stream.
+No whole-image fallback is used: encryption fails closed if any four-block
+group lacks capacity.
 """
 from __future__ import annotations
 from dataclasses import dataclass
@@ -25,7 +26,7 @@ GROUP=4
 TAG_BYTES=32
 TAG_BITS=256
 _DOMAIN=b"authenticated-tpe:flowchart-exact:v2\x00"
-_LAYOUT_MAGIC=b"ATPL3"
+_LAYOUT_MAGIC=b"ATPL5"
 
 @dataclass(frozen=True)
 class ExactEncryption:
@@ -36,6 +37,7 @@ class ExactEncryption:
     group_count: int
     minimum_group_capacity: int
     group_capacities: tuple[int, ...]
+    rdh_infos: tuple = ()
 
 @dataclass(frozen=True)
 class ExactVerification:
@@ -45,6 +47,8 @@ class ExactVerification:
     failed_groups: tuple[tuple[int, int], ...]
     layout: np.ndarray | None = None
     recovered_payload_bits: list[int] | None = None
+    tpe_image_identifier: object | None = None
+    auth_image_id: bytes | None = None
 
 @dataclass(frozen=True)
 class ExactDecryption:
@@ -114,40 +118,90 @@ def _layout_key(user_key: bytes) -> bytes:
     return hmac.new(kauth,b"authenticated-tpe:layout-sidecar:v2",hashlib.sha256).digest()
 
 
+def _encode_identifier(identifier: object) -> bytes:
+    if isinstance(identifier, str):
+        kind, value = b"s", identifier.encode("utf-8")
+    elif isinstance(identifier, int):
+        if identifier < 0:
+            raise ValueError("TPE image identifier integer must be non-negative")
+        kind = b"i"
+        value = identifier.to_bytes(max(1, (identifier.bit_length() + 7) // 8), "big")
+    elif isinstance(identifier, (bytes, bytearray)):
+        kind, value = b"b", bytes(identifier)
+    else:
+        raise TypeError("unsupported TPE image identifier type")
+    if len(value) > 0xFFFF:
+        raise ValueError("TPE image identifier is too long for the sidecar format")
+    return kind + len(value).to_bytes(2, "big") + value
+
+
+def _decode_identifier(data: bytes) -> object:
+    if len(data) < 3:
+        raise ValueError("TPE image identifier metadata is truncated")
+    kind, length = data[:1], int.from_bytes(data[1:3], "big")
+    value = data[3:]
+    if len(value) != length:
+        raise ValueError("TPE image identifier length is invalid")
+    if kind == b"s":
+        return value.decode("utf-8")
+    if kind == b"b":
+        if not value:
+            raise ValueError("TPE image identifier must not be empty")
+        return value
+    if kind == b"i":
+        return int.from_bytes(value, "big")
+    raise ValueError("TPE image identifier type is invalid")
+
+
 def _seal_layout(layout: np.ndarray, correction: np.ndarray, user_key: bytes,
-                 image_id: bytes, h: int, w: int, payload_bits: Sequence[int] = ()) -> bytes:
+                 image_id: bytes, h: int, w: int, tpe_identifier: object,
+                 payload_bits: Sequence[int] = ()) -> bytes:
     raw=(np.asarray(layout,dtype=">u2").tobytes(order="C")+
          np.asarray(correction,dtype=">i2").tobytes(order="C")+
+         _encode_identifier(tpe_identifier)+
          len(payload_bits).to_bytes(8,"big")+bytes(int(bit) for bit in payload_bits))
     compressed=zlib.compress(raw,level=9)
     nonce=secrets.token_bytes(12)
     ciphertext=ChaCha20Poly1305(_layout_key(user_key)).encrypt(nonce,compressed,_aad(image_id,h,w))
-    return _LAYOUT_MAGIC+nonce+ciphertext
+    image_id=bytes(image_id)
+    if len(image_id)!=16:
+        raise ValueError("ImageID must be exactly 16 bytes")
+    return _LAYOUT_MAGIC+image_id+nonce+ciphertext
 
 
 def _open_layout(blob: bytes, user_key: bytes, image_id: bytes, h: int, w: int,
-                 nblocks: int) -> tuple[np.ndarray,np.ndarray,list[int]]:
-    if len(blob)<len(_LAYOUT_MAGIC)+12+16 or not blob.startswith(_LAYOUT_MAGIC):
+                 nblocks: int) -> tuple[np.ndarray,np.ndarray,list[int],object,bytes]:
+    header=len(_LAYOUT_MAGIC)
+    if len(blob)<header+16+12+16 or not blob.startswith(_LAYOUT_MAGIC):
         raise ValueError("layout sidecar is missing or malformed")
-    nonce=blob[len(_LAYOUT_MAGIC):len(_LAYOUT_MAGIC)+12]
-    ciphertext=blob[len(_LAYOUT_MAGIC)+12:]
-    compressed=ChaCha20Poly1305(_layout_key(user_key)).decrypt(nonce,ciphertext,_aad(image_id,h,w))
+    stored_image_id=blob[header:header+16]
+    if image_id is not None and not hmac.compare_digest(bytes(image_id),stored_image_id):
+        raise ValueError("authentication ImageID does not match sidecar metadata")
+    nonce=blob[header+16:header+28]
+    ciphertext=blob[header+28:]
+    compressed=ChaCha20Poly1305(_layout_key(user_key)).decrypt(nonce,ciphertext,_aad(stored_image_id,h,w))
     raw=zlib.decompress(compressed)
     plane=3*nblocks*BLOCK*BLOCK
-    expected=plane*4+8
-    if len(raw)<expected:
+    base=plane*4
+    if len(raw)<base+3+8:
         raise ValueError("layout sidecar length does not match image dimensions")
     layout=np.frombuffer(raw[:plane*2],dtype=">u2").astype(np.uint16).reshape(3,nblocks,BLOCK*BLOCK)
-    correction=np.frombuffer(raw[plane*2:plane*4],dtype=">i2").astype(np.int16).reshape(3,nblocks,BLOCK*BLOCK)
+    correction=np.frombuffer(raw[plane*2:base],dtype=">i2").astype(np.int16).reshape(3,nblocks,BLOCK*BLOCK)
     if np.any(correction < -255) or np.any(correction > 255):
         raise ValueError("block-sum correction is outside the uint8 range")
-    payload_length=int.from_bytes(raw[plane*4:plane*4+8],"big")
+    identifier_length=int.from_bytes(raw[base+1:base+3],"big")
+    identifier_end=base+3+identifier_length
+    if identifier_end+8>len(raw):
+        raise ValueError("TPE image identifier metadata is truncated")
+    tpe_identifier=_decode_identifier(raw[base:identifier_end])
+    expected=identifier_end+8
+    payload_length=int.from_bytes(raw[identifier_end:expected],"big")
     if payload_length>len(raw)-expected or len(raw)!=expected+payload_length:
         raise ValueError("sidecar payload length is invalid")
     payload_bytes=raw[expected:]
     if any(bit not in (0,1) for bit in payload_bytes):
         raise ValueError("sidecar payload contains a non-binary value")
-    return _validate_layout(layout,nblocks),correction,list(payload_bytes)
+    return _validate_layout(layout,nblocks),correction,list(payload_bytes),tpe_identifier,stored_image_id
 
 
 def _balanced_adjust(values: np.ndarray, delta: int) -> np.ndarray:
@@ -282,21 +336,25 @@ def encrypt_authenticated_tpe(image: np.ndarray, payload_bits: Sequence[int],
                 raise AssertionError("capacity preflight disagreed with the RCM embedder")
             total+=1
 
-    correction=_restore_block_sums(marked,tpe_cipher)
-    layout_blob=_seal_layout(layout,correction,key,iid,h,w,payload)
+    # Restore each displayed 32x32 RGB block sum to the original source.
+    # The authenticated correction vector is undone before the TPE's native
+    # RDH extraction, preserving both thumbnail identity and exact recovery.
+    correction=_restore_block_sums(marked,source)
+    layout_payload = payload if getattr(tpe_module, "SIDECAR_PAYLOAD", False) else ()
+    layout_blob=_seal_layout(layout,correction,key,iid,h,w,tpe_result.image_identifier,layout_payload)
     final=_scatter(marked,layout)
-    return ExactEncryption(final,layout_blob,iid,tpe_result.image_identifier,total,min(capacities),tuple(capacities))
+    return ExactEncryption(final,layout_blob,iid,tpe_result.image_identifier,total,min(capacities),tuple(capacities),getattr(tpe_result,"rdh_infos",()))
 
 
 def verify_tpe_ciphertext(marked_image: np.ndarray, layout_sidecar: bytes,
-                          user_key: bytes, image_id: bytes) -> ExactVerification:
+                          user_key: bytes, image_id: bytes | None = None) -> ExactVerification:
     src=np.ascontiguousarray(marked_image)
     try:
         h,w,nblocks=_dimensions(src)
-        key=bytes(user_key); iid=bytes(image_id)
-        if len(key)<16 or len(iid)!=16:
-            raise ValueError("invalid authentication key or ImageID length")
-        layout,correction,payload_bits=_open_layout(bytes(layout_sidecar),key,iid,h,w,nblocks)
+        key=bytes(user_key)
+        if len(key)<16:
+            raise ValueError("invalid authentication key")
+        layout,correction,payload_bits,tpe_identifier,iid=_open_layout(bytes(layout_sidecar),key,image_id,h,w,nblocks)
     except Exception as exc:
         return ExactVerification(False,f"layout/key validation failed: {type(exc).__name__}",None,())
 
@@ -326,28 +384,32 @@ def verify_tpe_ciphertext(marked_image: np.ndarray, layout_sidecar: bytes,
     if failed:
         reason=("invalid reversible block-sum correction and/or four-block HMAC tag; "
                 "affected group(s) localized; plaintext withheld")
-        return ExactVerification(False,reason,None,tuple(sorted(set(failed))),layout,payload_bits)
+        return ExactVerification(False,reason,None,tuple(sorted(set(failed))),layout,payload_bits,tpe_identifier,iid)
 
     # Only after all group tags pass do we reverse Step-2 and Step-1, then the
     # logical pairing layout, returning the exact legacy TPE ciphertext.
     step1=common._auth_step2(restored,key,inverse=True)
     packed_tpe=common._auth_step1(step1,key,iid,inverse=True)
     tpe_cipher=_scatter(packed_tpe,layout)
-    return ExactVerification(True,"all four-block HMAC tags accepted",tpe_cipher,(),layout,payload_bits)
+    return ExactVerification(True,"all four-block HMAC tags accepted",tpe_cipher,(),layout,payload_bits,tpe_identifier,iid)
 
 
 def decrypt_authenticated_tpe(marked_image: np.ndarray, layout_sidecar: bytes,
                               tpe_params: common.legacy.DemoPipelineParameters,
-                              auth_key: bytes, auth_image_id: bytes,
-                              tpe_image_identifier, expected_payload: Sequence[int] | None = None,
+                              auth_key: bytes, auth_image_id: bytes | None = None,
+                              tpe_image_identifier=None, expected_payload: Sequence[int] | None = None,
                               tpe_module=None) -> ExactDecryption:
     tpe_module=common.legacy if tpe_module is None else tpe_module
     verification=verify_tpe_ciphertext(marked_image,layout_sidecar,auth_key,auth_image_id)
     if not verification.accepted or verification.restored_tpe_ciphertext is None:
         return ExactDecryption(False,verification.reason,None,None,verification.failed_groups)
+    auth_image_id=verification.auth_image_id
+    stored_identifier=verification.tpe_image_identifier
+    if tpe_image_identifier is not None and tpe_image_identifier != stored_identifier:
+        return ExactDecryption(False,"TPE image identifier does not match authenticated sidecar metadata",None,None,())
     params=tpe_module.DemoPipelineParameters(
         block_size=tpe_params.block_size,key=tpe_params.key,
-        image_identifier=tpe_image_identifier,vartheta=tpe_params.vartheta)
+        image_identifier=stored_identifier,vartheta=tpe_params.vartheta)
     try:
         if getattr(tpe_module,"SIDECAR_PAYLOAD",False):
             decoded=tpe_module.decrypt_rgb_image(
